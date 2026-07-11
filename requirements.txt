@@ -1,0 +1,6 @@
+# Dependencies currently used by the data-loading and exploration notebooks.
+# Add new libraries when a real analysis starts using them.
+numpy>=1.26
+pandas>=2.1
+requests>=2.31
+jupyterlab>=4.0
