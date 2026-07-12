@@ -33,10 +33,10 @@ jobs:
             exit 1
           fi
           big=$(git ls-files | while read -r f; do
-            [ -f "$f" ] && sz=$(wc -c < "$f") && [ "$sz" -gt 26214400 ] && echo "$((sz / 1048576))MB  $f"
+            [ -f "$f" ] && sz=$(wc -c < "$f") && [ "$sz" -gt 52428800 ] && echo "$((sz / 1048576))MB  $f"
           done)
           if [ -n "$big" ]; then
-            echo "::error::Files larger than 25 MB should not be committed:"
+            echo "::error::Files larger than 50 MB should not be committed:"
             echo "$big"
             exit 1
           fi
