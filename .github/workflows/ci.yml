@@ -1,0 +1,67 @@
+name: CI
+
+# Minimal repo-hygiene check for a student data-science repo.
+#
+# DECISION (2026-07-13, registered here on purpose): keep CI to exactly two
+# cheap, high-signal guards that only fail on a real problem — deliberately NO
+# style linting (avoids red-X noise for Git beginners) and NO dependency-install
+# or data-dependent tests (would add complexity and need the gitignored ~GB HCP
+# download). The two guards:
+#   1. block data blobs / oversized files from entering Git — the #1 risk on a
+#      public repo shared by the team, and
+#   2. confirm every tracked .py and .ipynb is syntactically valid / parseable.
+# Revisit (add tests, linting) only when a real, reviewed analysis lands in
+# pipeline/ and the team asks for it.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No data blobs or oversized files in Git
+        run: |
+          data=$(git ls-files | grep -E '\.(npy|npz|tgz|tar\.gz|nii|nii\.gz|mat|h5|hdf5|parquet)$' || true)
+          if [ -n "$data" ]; then
+            echo "::error::Data files must not be committed (they belong in data/, which is gitignored):"
+            echo "$data"
+            exit 1
+          fi
+          big=$(git ls-files | while read -r f; do
+            [ -f "$f" ] && sz=$(wc -c < "$f") && [ "$sz" -gt 26214400 ] && echo "$((sz / 1048576))MB  $f"
+          done)
+          if [ -n "$big" ]; then
+            echo "::error::Files larger than 25 MB should not be committed:"
+            echo "$big"
+            exit 1
+          fi
+          echo "No data blobs or oversized files. OK."
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Python files and notebooks are valid
+        run: |
+          pyfiles=$(git ls-files '*.py')
+          if [ -n "$pyfiles" ]; then
+            python -m py_compile $pyfiles && echo "py_compile OK: $pyfiles"
+          fi
+          python -m pip install --quiet nbformat
+          python - <<'PY'
+          import glob, sys, nbformat
+          bad = 0
+          for f in glob.glob('**/*.ipynb', recursive=True):
+              try:
+                  nbformat.read(f, as_version=4)
+                  print('ok', f)
+              except Exception as e:
+                  print('INVALID', f, e)
+                  bad += 1
+          sys.exit(1 if bad else 0)
+          PY
