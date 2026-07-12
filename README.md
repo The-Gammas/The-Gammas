@@ -53,10 +53,11 @@ flowchart LR
 
 ## ▶️ Start here
 
-1. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-10.md).
-2. Load the data with the official [HCP task loader with behaviour](https://colab.research.google.com/github/NeuromatchAcademy/course-content/blob/main/projects/fMRI/load_hcp_task_with_behaviour.ipynb).
-3. Work inside your own `sandbox/<name>/` folder, starting from [`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](pipeline/00_NOTEBOOK_TEMPLATE.ipynb).
-4. Read the short [contribution guide](CONTRIBUTING.md) before opening a PR.
+1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
+2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-10.md).
+3. Load the data with the official [HCP task loader with behaviour](https://colab.research.google.com/github/NeuromatchAcademy/course-content/blob/main/projects/fMRI/load_hcp_task_with_behaviour.ipynb).
+4. Work inside your own `sandbox/<name>/` folder, starting from [`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](pipeline/00_NOTEBOOK_TEMPLATE.ipynb).
+5. Read the short [contribution guide](CONTRIBUTING.md) before opening a PR.
 
 ---
 
@@ -99,6 +100,7 @@ Short working profiles, not fixed job descriptions — each member can update th
 |---|---|
 | 🎥 Pod Zoom room | [Join](https://zoom.us/j/7944834775?pwd=M016NlExWm44ZDhRSEk0ZmROaURSZz09) |
 | 📦 Group repository | [The-Gammas/The-Gammas](https://github.com/The-Gammas/The-Gammas) |
+| 🤖 Agent & contributor guide | [AGENTS.md](AGENTS.md) · [CONTRIBUTING.md](CONTRIBUTING.md) |
 | 🧪 Shared Colab (initial POC) | [Open in Colab](https://colab.research.google.com/drive/1Wu9Ke8bqr_UQp8_ZmtLTus-l0Xja3oIq) |
 | ✍️ Live abstract | [Google Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit) |
 | 📚 Official tutorials | [compneuro.neuromatch.io](https://compneuro.neuromatch.io/tutorials/intro.html) |

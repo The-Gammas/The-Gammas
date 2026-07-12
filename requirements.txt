@@ -1,6 +1,24 @@
-# Dependencies currently used by the data-loading and exploration notebooks.
-# Add new libraries when a real analysis starts using them.
+# Python dependencies for The Gammas — HCP N-back working-memory project.
+#
+# Version floors are deliberately loose so this installs cleanly on Google Colab
+# and on local venvs alike. Pin harder only if we hit a real incompatibility.
+#
+# Known-good reference (tested locally, Jul 2026):
+#   python 3.12 · numpy 2.5 · pandas 3.0 · matplotlib 3.11 · scipy 1.18 ·
+#   scikit-learn 1.9 · seaborn 0.13 · nilearn 0.13 · jupyterlab 4.6
+
+# --- core: used by the current sandbox notebooks ---
 numpy>=1.26
 pandas>=2.1
-requests>=2.31
+matplotlib>=3.7
 jupyterlab>=4.0
+
+# --- data access: official NMA HCP loaders (download + atlas plotting) ---
+requests>=2.31
+nilearn>=0.10
+
+# --- pipeline (steps 3-6): functional connectivity, graphs, metrics, prediction ---
+scipy>=1.11
+scikit-learn>=1.3
+networkx>=3.1
+seaborn>=0.13

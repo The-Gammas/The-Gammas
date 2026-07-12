@@ -29,6 +29,12 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Personal agent overrides (private; keep shared rules in AGENTS.md)
+AGENTS.local.md
+.agents.md
+**/AGENTS.local.md
+**/.agents.md
+
 
 # Notebook figures live embedded in the .ipynb, not as loose files.
 # Ignore both savefig outputs and viewer/preview render duplicates.
