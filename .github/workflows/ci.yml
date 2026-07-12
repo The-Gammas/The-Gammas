@@ -8,8 +8,10 @@ name: CI
 # or data-dependent tests (would add complexity and need the gitignored ~GB HCP
 # download). The two guards:
 #   1. block data blobs / oversized files from entering Git — the #1 risk on a
-#      public repo shared by the team, and
-#   2. confirm every tracked .py and .ipynb is syntactically valid / parseable.
+#      public repo shared by the team (checked repo-wide), and
+#   2. confirm .py and .ipynb files in pipeline/ (the protected, shared area)
+#      parse. sandbox/ is intentionally NOT validated, so anyone can keep any
+#      experiment — even a broken draft — in their own folder.
 # Revisit (add tests, linting) only when a real, reviewed analysis lands in
 # pipeline/ and the team asks for it.
 
@@ -46,22 +48,24 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Python files and notebooks are valid
+      - name: Validate pipeline/ files   # sandbox/ stays free for experiments
         run: |
-          pyfiles=$(git ls-files '*.py')
+          pyfiles=$(git ls-files pipeline/ | grep -E '\.py$' || true)
           if [ -n "$pyfiles" ]; then
             python -m py_compile $pyfiles && echo "py_compile OK: $pyfiles"
           fi
           python -m pip install --quiet nbformat
           python - <<'PY'
           import glob, sys, nbformat
+          files = set(glob.glob('pipeline/**/*.ipynb', recursive=True)) | set(glob.glob('pipeline/*.ipynb'))
           bad = 0
-          for f in glob.glob('**/*.ipynb', recursive=True):
+          for f in sorted(files):
               try:
                   nbformat.read(f, as_version=4)
                   print('ok', f)
               except Exception as e:
                   print('INVALID', f, e)
                   bad += 1
+          print(f'checked {len(files)} pipeline notebook(s)')
           sys.exit(1 if bad else 0)
           PY
