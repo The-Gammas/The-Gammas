@@ -1,0 +1,36 @@
+# Local HCP downloads and generated data
+data/*
+!data/README.md
+**/hcp_task/
+**/hcp_task.tgz
+
+# Personal staging outputs remain local until the team agrees how to share them
+sandbox/*/artifacts_staging/*
+!sandbox/*/artifacts_staging/README.md
+
+# Python / Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Secrets and local configuration
+.env
+.env.*
+*.pem
+credentials*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+
+# Notebook figures live embedded in the .ipynb, not as loose files.
+# Ignore both savefig outputs and viewer/preview render duplicates.
+sandbox/**/fig*.png
+**/_view_*.png
