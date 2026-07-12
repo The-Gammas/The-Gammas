@@ -44,9 +44,9 @@ team decision (see notebook 00); if B is adopted, these functions re-run by poin
 ``hcp_dir`` at the new paths and reading the target from ``data/hcp/behavior/wm.csv``
 instead of ``Stats.txt``.
 
-The companion notebooks were executed against the real dataset before the
-repository restructure. Their outputs document the inspected shapes and ranges;
-scientific interpretation and the final hand-off remain team decisions.
+The companion notebooks (``00`` framing, ``01`` ingestion + EV, ``02`` EDA) are
+executed against the real dataset and embed their outputs; scientific
+interpretation and the final hand-off remain team decisions.
 """
 
 from __future__ import annotations
@@ -108,6 +108,9 @@ def load_single_timeseries(
 ) -> np.ndarray:
     """Load the parcellated BOLD time series for one subject/experiment/run.
 
+    Reimplements the official NMA loader's ``load_single_timeseries`` (loader link
+    in the module docstring); ``remove_mean`` is exposed here as an explicit flag.
+
     Args:
         hcp_dir: root of the extracted ``hcp_task`` folder.
         subject: subject ID (e.g. ``"100307"``).
@@ -132,9 +135,10 @@ def load_single_timeseries(
 def load_condition_frames(hcp_dir: str | Path, subject: str, run: int, level: str) -> np.ndarray:
     """Frame indices belonging to a load level in one run.
 
-    Reads the EV ``.txt`` files for the 4 stimulus categories of ``level`` and
-    converts each trial's (onset, duration) from seconds to frame indices via
-    ``TR``, then pools and de-duplicates them.
+    Reimplements the official loader's ``load_evs``: reads the EV ``.txt`` files
+    for the 4 stimulus categories of ``level`` and converts each trial's
+    (onset, duration) from seconds to frame indices via ``TR`` (``floor`` the
+    onset, ``ceil`` the duration), then pools and de-duplicates them.
 
     Args:
         level: ``"0back"`` or ``"2back"``.
@@ -181,7 +185,12 @@ def load_condition_timeseries(
 # 3. Behaviour (prediction target)
 # --------------------------------------------------------------------------- #
 def parse_stats(hcp_dir: str | Path, subject: str, run: int) -> dict[str, float]:
-    """Parse one ``Stats.txt`` into a ``{label: value}`` dict."""
+    """Parse one ``Stats.txt`` into a ``{label: value}`` dict.
+
+    The official loaders ship no behaviour reader; ``Stats.txt`` is the per-run
+    behavioural summary documented in the loader's folder layout (lines such as
+    ``"2-Back Faces Median ACC: 0.9"``). This parser is ours.
+    """
     path = Path(hcp_dir) / "subjects" / subject / "WM" / f"tfMRI_WM_{RUNS[run]}" / "EVs" / "Stats.txt"
     out: dict[str, float] = {}
     for line in path.read_text().splitlines():
@@ -248,9 +257,10 @@ def behaviour_table(hcp_dir: str | Path, subjects: list[str]) -> pd.DataFrame:
 def build_region_table(hcp_dir: str | Path) -> pd.DataFrame:
     """ROI -> full network name -> hemisphere, for all 360 parcels.
 
-    Columns: ``roi_index, name, network_raw, network, hemi``. ``network`` holds
-    the de-truncated Cole-Anticevic name; ``network_raw`` keeps the 12-char form
-    exactly as stored in ``regions.npy`` for traceability.
+    Reads the same ``regions.npy`` the official loader uses; we additionally
+    de-truncate the network labels (see ``NETWORK_FULL``). Columns:
+    ``roi_index, name, network_raw, network, hemi`` — ``network`` holds the full
+    Cole-Anticevic name and ``network_raw`` the 12-char form for traceability.
     """
     regions = np.load(Path(hcp_dir) / "regions.npy").T
     table = pd.DataFrame({
@@ -273,7 +283,9 @@ def make_split(subjects: list[str], seed: int = 42, test_frac: float = 0.2, cv_f
     """Build an exploratory subject-level train/test split + development folds.
 
     The split is by SUBJECT (never by timepoint/run), so no subject appears in
-    both train and test — this is what makes the step-6 prediction valid.
+    both train and test. Rationale: NMA's project guidance treats prediction on
+    held-out subjects as the gold standard and warns to always split by the unit
+    of generalization (here the subject) to avoid leakage.
 
     Returns a dict ready to serialise to ``artifacts_staging/splits.json``:
         ``{seed, test_frac, cv_folds, n_train, n_test, train, test, cv}``
