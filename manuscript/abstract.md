@@ -1,8 +1,10 @@
 # Abstract (draft)
 
-> **Snapshot** of the shared [Google Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
-> as of **2026-07-10**. Edit the live text in the Doc; sync a fresh snapshot here at milestones.
-> **Due Fri Jul 17 (W2D5).**
+> **Historical snapshot — not a current team decision.** Captured from the shared
+> [Google Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
+> on **2026-07-10**, before Valeria Moraga's
+> [research proposal](research-proposal.md). Preserve this text for provenance; edit the live Doc and
+> create a new dated snapshot at the next agreed milestone. **Due Fri Jul 17 (W2D5).**
 
 ## Research question
 
@@ -29,7 +31,9 @@ This study investigates (1) how functional segregation and integration differ ac
 load (0-back vs 2-back); (2) how intrinsic organization balances segregation and integration; and
 (3) whether these network properties **predict individual working-memory performance**.
 
-## Open flags (see the [living project plan](../docs/project-plan.md#open-now))
+## Open flags recorded with this snapshot
+
+See the [living project plan](../docs/project-plan.md#open-now) for current decisions.
 
 - **Objective 2 (resting-state / intrinsic organization):** the task dataset has no clean resting
   state. Decide whether to drop objective 2, reframe it as a caveat, or use a different loader.

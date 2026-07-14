@@ -49,7 +49,10 @@ Running bibliography, collected by the team. Annotations note why each is releva
 
 ## Load-dependent reconfiguration & WM performance
 
-*Surfaced in **Valeria's proposal contribution** ([`sandbox/valeria/research-question-development.md`](../sandbox/valeria/research-question-development.md)); citations checked against PubMed (real papers, correct metadata) with a per-paper interpretation note. **Pending team discussion — not a team decision.***
+*Surfaced in **Valeria Moraga's proposal contribution**
+([source transcription](../sandbox/valeria/research-question-development.md)) and integrated into the
+NMA-structured [`research-proposal.md`](research-proposal.md). Citations are annotated below at the
+claim level. **Pending team discussion — not a team decision.***
 
 - **Cai W., Ryali S., Pasumarthy R., Talasila V., Menon V., Dynamic causal brain circuits during
   working memory and their functional controllability** — *Nature Communications* 12(1):3314, 2021.

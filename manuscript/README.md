@@ -3,27 +3,47 @@
 The scientific write-up: from the abstract (due **Fri Jul 17**) toward the final report /
 presentation (week 3).
 
-## How the writing is organized
+## Source and status model
 
-- **The shared Google Doc is a multi-tab working document titled "Ideas"** (owner: Valeria Moraga; the
-  *Abstract* tab was drafted by Arefeh) —
-  [open Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit).
-  It has five tabs — *Ideas · Data Understanding · Literature Related · Main Tasks · Abstract* — and
-  stays the single editing surface for the abstract so we don't fork the text. Where each tab's content
-  is mirrored in this repo:
-  - *Data Understanding* → region table / 12 networks in [`../sandbox/jaime/02_eda_and_data_dictionary.ipynb`](../sandbox/jaime/02_eda_and_data_dictionary.ipynb)
-  - *Main Tasks* → the pipeline in [`../docs/project-plan.md`](../docs/project-plan.md)
-  - *Literature Related* → [`references.md`](references.md)
-  - *Abstract* → [`abstract.md`](abstract.md)
-- This folder holds **versioned snapshots + structure** so the repo has a durable record and a
-  place to grow the full report:
-  - [`abstract.md`](abstract.md) — snapshot of the current abstract, synced from the Doc's *Abstract*
-    tab at milestones. *(Doc last edited 9 Jul; re-snapshot after the W2D1 proposal session, when the
-    abstract is expected to be rewritten.)*
-  - [`references.md`](references.md) — running bibliography.
-  - [`prior-work.md`](prior-work.md) — internal prior explorations we build on.
+This folder separates source contributions, proposals, accepted decisions and manuscript snapshots
+so that they do not silently become interchangeable:
+
+- **Live abstract:** the shared multi-tab Google Doc titled **“Ideas”** remains the single editing
+  surface for the submitted abstract (owner: Valeria Moraga; the *Abstract* tab was drafted by
+  Arefeh) — [open Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit).
+- **Proposal for team review:** [`research-proposal.md`](research-proposal.md) condenses Valeria
+  Moraga's *Research Question Development* contribution into the
+  [four-step NMA W2D1 framework](https://compneuro.neuromatch.io/tutorials/W2D1_ModelingPractice/student/W2D1_Tutorial1.html). It is
+  explicitly a proposal, not a record of team agreement; the
+  [PDF](../sandbox/valeria/Research%20Question%20Development.pdf) and
+  [Markdown transcription](../sandbox/valeria/research-question-development.md) remain unchanged.
+- **Historical abstract snapshot:** [`abstract.md`](abstract.md) preserves the 10 July Google Doc
+  text for provenance. Its content predates the research proposal and is not the current team
+  decision.
+- **Accepted direction:** [`../docs/project-plan.md`](../docs/project-plan.md) records the living plan
+  and open decisions; dated meeting notes preserve when the team accepts or rejects a proposal.
+- **Supporting record:** [`references.md`](references.md) is the annotated bibliography and
+  [`prior-work.md`](prior-work.md) documents internal explorations.
+
+The Google Doc tabs map to the repository as follows:
+
+- *Data Understanding* → data dictionary and exploratory analysis in `sandbox/jaime/`
+- *Main Tasks* → [`../docs/project-plan.md`](../docs/project-plan.md)
+- *Literature Related* → [`references.md`](references.md)
+- *Abstract* → dated snapshots such as [`abstract.md`](abstract.md)
+
+## Attribution and review workflow
+
+1. Preserve each source contribution in its author's sandbox and link it explicitly.
+2. Mark derived syntheses as proposals until the team records a decision in the living plan or
+   meeting notes.
+3. Keep scientific qualifications traceable to [`references.md`](references.md); do not duplicate a
+   second bibliography in each proposal.
+4. Update the live Google Doc first when revising the submitted abstract, then capture a dated
+   repository snapshot at a meaningful milestone.
 
 ## Toward the full report
 
-When we move past the abstract, grow the write-up here as: Introduction · Methods · Results ·
-Discussion · Limitations. Method details and decisions come from [`../docs/`](../docs/).
+When the team moves past the abstract, accepted material can grow into Introduction · Methods ·
+Results · Discussion · Limitations. Method details and decisions continue to come from
+[`../docs/`](../docs/); proposals remain attributable to their source until accepted.
