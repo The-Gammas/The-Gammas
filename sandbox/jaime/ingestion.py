@@ -105,21 +105,11 @@ def load_single_timeseries(
     hcp_dir: str | Path, subject: str, experiment: str, run: int,
     remove_mean: bool = True,
 ) -> np.ndarray:
-    """Load the parcellated BOLD time series for one subject/experiment/run.
-
-    Reimplements the official NMA loader's ``load_single_timeseries`` (loader link
-    in the module docstring); ``remove_mean`` is exposed here as an explicit flag.
+    """Parcellated BOLD for one subject/run, ``(N_PARCELS, n_timepoints)``.
 
     Args:
-        hcp_dir: root of the extracted ``hcp_task`` folder.
-        subject: subject ID (e.g. ``"100307"``).
-        experiment: task name (``"WM"`` for us).
         run: 0 (LR) or 1 (RL).
-        remove_mean: subtract each parcel's temporal mean (the mean BOLD level
-            carries no task information and is standard to drop).
-
-    Returns:
-        Array ``(N_PARCELS, n_timepoints)`` of BOLD values.
+        remove_mean: subtract each parcel's temporal mean (carries no task information).
     """
     path = Path(hcp_dir) / "subjects" / subject / experiment / f"tfMRI_{experiment}_{RUNS[run]}" / "data.npy"
     ts = np.load(path)
@@ -132,18 +122,13 @@ def load_single_timeseries(
 # 2. EV segmentation
 # --------------------------------------------------------------------------- #
 def load_condition_frames(hcp_dir: str | Path, subject: str, run: int, level: str) -> np.ndarray:
-    """Frame indices belonging to a load level in one run.
+    """Sorted, unique frame indices for a load level in one run.
 
-    Reimplements the official loader's ``load_evs``: reads the EV ``.txt`` files
-    for the 4 stimulus categories of ``level`` and converts each trial's
-    (onset, duration) from seconds to frame indices via ``TR`` (``floor`` the
-    onset, ``ceil`` the duration), then pools and de-duplicates them.
+    Pools the 4 stimulus categories of ``level``; onset/duration -> frames via
+    ``floor(onset/TR)`` / ``ceil(duration/TR)``.
 
     Args:
         level: ``"0back"`` or ``"2back"``.
-
-    Returns:
-        Sorted, unique array of frame indices for that condition.
     """
     conditions = COND_0BACK if level == "0back" else COND_2BACK
     frames: list[np.ndarray] = []
@@ -160,16 +145,13 @@ def load_condition_frames(hcp_dir: str | Path, subject: str, run: int, level: st
 def load_condition_timeseries(
     hcp_dir: str | Path, subject: str, level: str, concat_runs: bool = True,
 ) -> np.ndarray:
-    """BOLD time series for one subject restricted to a load level.
+    """BOLD for one subject restricted to a load level, ``(N_PARCELS, n_frames)``.
+
+    The object step 3 (functional connectivity) consumes, one FC matrix per condition.
 
     Args:
         level: ``"0back"`` or ``"2back"``.
-        concat_runs: concatenate LR+RL along time (doubling the frames available
-            for later analysis). If False, only run LR.
-
-    Returns:
-        Array ``(N_PARCELS, n_frames)`` — the input step 3 (functional
-        connectivity) consumes to build one FC matrix per condition.
+        concat_runs: stack LR+RL along time (312 frames); if False, only run LR.
     """
     mats: list[np.ndarray] = []
     for run in ([0, 1] if concat_runs else [0]):
@@ -186,9 +168,7 @@ def load_condition_timeseries(
 def parse_stats(hcp_dir: str | Path, subject: str, run: int) -> dict[str, float]:
     """Parse one ``Stats.txt`` into a ``{label: value}`` dict.
 
-    The official loaders ship no behaviour reader; ``Stats.txt`` is the per-run
-    behavioural summary documented in the loader's folder layout (lines such as
-    ``"2-Back Faces Median ACC: 0.9"``). This parser is ours.
+    Per-run behavioural summary; lines such as ``"2-Back Faces Median ACC: 0.9"``.
     """
     path = Path(hcp_dir) / "subjects" / subject / "WM" / f"tfMRI_WM_{RUNS[run]}" / "EVs" / "Stats.txt"
     out: dict[str, float] = {}
@@ -203,10 +183,11 @@ def parse_stats(hcp_dir: str | Path, subject: str, run: int) -> dict[str, float]
 
 
 def _mean_metric(run_stats: list[dict[str, float]], load: str, metric: str) -> float:
-    """Average one metric (``"Median ACC"`` or ``"Median RT"``) for one load level.
+    """Average one metric across the 4 stimulus categories and both runs.
 
-    Averages across the 4 stimulus categories (BP/Faces/Places/Tools) and both
-    runs. ``load`` is the ``Stats.txt`` prefix, ``"0-Back"`` or ``"2-Back"``.
+    Args:
+        load: ``Stats.txt`` prefix, ``"0-Back"`` or ``"2-Back"``.
+        metric: ``"Median ACC"`` or ``"Median RT"``.
     """
     values: list[float] = []
     for stats in run_stats:
@@ -218,21 +199,13 @@ def _mean_metric(run_stats: list[dict[str, float]], load: str, metric: str) -> f
 def load_behaviour(hcp_dir: str | Path, subject: str) -> dict[str, float]:
     """Per-subject WM performance, averaged over the 4 categories and both runs.
 
-    Keys returned:
-        ``acc_0bk`` / ``acc_2bk``  — mean accuracy at each load
-        ``acc_cost``               — acc_2bk - acc_0bk (load cost; < 0 = worse under load)
-        ``rt_0bk`` / ``rt_2bk``    — mean median reaction time (ms) at each load
-        ``rt_cost``                — rt_2bk - rt_0bk
+    Returns ``acc_0bk``/``acc_2bk`` (mean accuracy), ``acc_cost`` (acc_2bk - acc_0bk),
+    ``rt_0bk``/``rt_2bk`` (median RT, ms) and ``rt_cost``.
 
-    ``acc_2bk`` is the recommended target: 0.54-0.99 spread, no missing values, and
-    its pooled global accuracy matches correct/(correct+error) from the EV files
-    exactly (200/200 runs).
-
-    No signal-detection d' is provided for this dataset: the ``Stats.txt`` Target /
-    Non-Target accuracies are internally inconsistent (378/800 = 47% of 2-back
-    records have the global accuracy outside [Target, Non-Target], impossible for
-    coherent rates — the documented HCP WM accuracy bug). The 339-subject
-    ``wm.csv`` passes this invariant, so d' must be derived there if needed.
+    ``acc_2bk`` is the recommended target (0.54-0.99, no missing). No d' here: this
+    dataset's ``Stats.txt`` Target/Non-Target accuracies are internally inconsistent
+    (the documented HCP WM bug); B's ``wm.csv`` passes that invariant, so derive d'
+    there if needed.
     """
     run_stats = [parse_stats(hcp_dir, subject, run) for run in (0, 1)]
 
@@ -260,12 +233,10 @@ def behaviour_table(hcp_dir: str | Path, subjects: list[str]) -> pd.DataFrame:
 # 4. Region table
 # --------------------------------------------------------------------------- #
 def build_region_table(hcp_dir: str | Path) -> pd.DataFrame:
-    """ROI -> full network name -> hemisphere, for all 360 parcels.
+    """ROI -> network -> hemisphere for all 360 parcels.
 
-    Reads the same ``regions.npy`` the official loader uses; we additionally
-    de-truncate the network labels (see ``NETWORK_FULL``). Columns:
-    ``roi_index, name, network_raw, network, hemi`` — ``network`` holds the full
-    Cole-Anticevic name and ``network_raw`` the 12-char form for traceability.
+    De-truncates the 12-char network labels via ``NETWORK_FULL``. Columns:
+    ``roi_index, name, network_raw, network, hemi``.
     """
     regions = np.load(Path(hcp_dir) / "regions.npy").T
     table = pd.DataFrame({
@@ -285,17 +256,12 @@ def build_region_table(hcp_dir: str | Path) -> pd.DataFrame:
 # 5. Anti-leakage subject-level split
 # --------------------------------------------------------------------------- #
 def make_split(subjects: list[str], seed: int = 42, test_frac: float = 0.2, cv_folds: int = 5) -> dict:
-    """Build an exploratory subject-level train/test split + development folds.
+    """Exploratory subject-level train/test split + CV folds.
 
-    The split is by SUBJECT (never by timepoint/run), so no subject appears in
-    both train and test. Rationale: NMA's project guidance treats prediction on
-    held-out subjects as the gold standard and warns to always split by the unit
-    of generalization (here the subject) to avoid leakage.
-
-    Returns a dict ready to serialise to ``artifacts_staging/splits.json``:
-        ``{seed, test_frac, cv_folds, n_train, n_test, train, test, cv}``
-    where ``cv`` is a list of ``{fold, val}`` and the union of the validation
-    folds equals the training set exactly.
+    Split by SUBJECT (never timepoint/run) so none appears in both sets — prediction
+    on held-out subjects is the leakage-safe unit of generalization. Returns
+    ``{seed, test_frac, cv_folds, n_train, n_test, train, test, cv}``; the CV
+    validation folds partition ``train`` exactly.
     """
     rng = np.random.default_rng(seed)
     ids = np.array(sorted(subjects))
@@ -333,14 +299,9 @@ def save_split(split: dict, path: str | Path) -> None:
 
 
 def load_split(path: str | Path) -> dict:
-    """Load and validate an exploratory subject-level split from ``splits.json``.
+    """Load and re-validate a subject-level split from ``splits.json``.
 
-    ``make_split`` builds the sandbox candidate and this function reads it back.
-    A shared split is not part of the public scaffold until the group reviews it.
-
-    Returns:
-        The split dict ``{seed, test_frac, cv_folds, n_train, n_test, train, test, cv}``,
-        re-validated on load so a corrupted or hand-edited file fails loudly.
+    Re-validated on load, so a corrupted or hand-edited file fails loudly.
     """
     split = json.loads(Path(path).read_text())
     _validate_split(split)
