@@ -107,6 +107,8 @@ def load_single_timeseries(
 ) -> np.ndarray:
     """Parcellated BOLD for one subject/run, ``(N_PARCELS, n_timepoints)``.
 
+    Reimplements the official NMA loader's ``load_single_timeseries``.
+
     Args:
         run: 0 (LR) or 1 (RL).
         remove_mean: subtract each parcel's temporal mean (carries no task information).
@@ -124,8 +126,8 @@ def load_single_timeseries(
 def load_condition_frames(hcp_dir: str | Path, subject: str, run: int, level: str) -> np.ndarray:
     """Sorted, unique frame indices for a load level in one run.
 
-    Pools the 4 stimulus categories of ``level``; onset/duration -> frames via
-    ``floor(onset/TR)`` / ``ceil(duration/TR)``.
+    Reimplements the official loader's ``load_evs``: pools the 4 stimulus categories of
+    ``level``; onset/duration -> frames via ``floor(onset/TR)`` / ``ceil(duration/TR)``.
 
     Args:
         level: ``"0back"`` or ``"2back"``.
@@ -168,7 +170,8 @@ def load_condition_timeseries(
 def parse_stats(hcp_dir: str | Path, subject: str, run: int) -> dict[str, float]:
     """Parse one ``Stats.txt`` into a ``{label: value}`` dict.
 
-    Per-run behavioural summary; lines such as ``"2-Back Faces Median ACC: 0.9"``.
+    Ours — the official loaders ship no behaviour reader. Per-run summary; lines such
+    as ``"2-Back Faces Median ACC: 0.9"``.
     """
     path = Path(hcp_dir) / "subjects" / subject / "WM" / f"tfMRI_WM_{RUNS[run]}" / "EVs" / "Stats.txt"
     out: dict[str, float] = {}
@@ -235,8 +238,8 @@ def behaviour_table(hcp_dir: str | Path, subjects: list[str]) -> pd.DataFrame:
 def build_region_table(hcp_dir: str | Path) -> pd.DataFrame:
     """ROI -> network -> hemisphere for all 360 parcels.
 
-    De-truncates the 12-char network labels via ``NETWORK_FULL``. Columns:
-    ``roi_index, name, network_raw, network, hemi``.
+    Reads the official ``regions.npy``; our addition is de-truncating the 12-char network
+    labels via ``NETWORK_FULL``. Columns: ``roi_index, name, network_raw, network, hemi``.
     """
     regions = np.load(Path(hcp_dir) / "regions.npy").T
     table = pd.DataFrame({
@@ -256,12 +259,12 @@ def build_region_table(hcp_dir: str | Path) -> pd.DataFrame:
 # 5. Anti-leakage subject-level split
 # --------------------------------------------------------------------------- #
 def make_split(subjects: list[str], seed: int = 42, test_frac: float = 0.2, cv_folds: int = 5) -> dict:
-    """Exploratory subject-level train/test split + CV folds.
+    """Exploratory subject-level train/test split + CV folds — ours.
 
-    Split by SUBJECT (never timepoint/run) so none appears in both sets — prediction
-    on held-out subjects is the leakage-safe unit of generalization. Returns
-    ``{seed, test_frac, cv_folds, n_train, n_test, train, test, cv}``; the CV
-    validation folds partition ``train`` exactly.
+    Split by SUBJECT (never timepoint/run) so none appears in both sets; prediction on
+    held-out subjects is NMA's project-guidance gold standard and the leakage-safe unit
+    of generalization. Returns ``{seed, test_frac, cv_folds, n_train, n_test, train,
+    test, cv}``; the CV validation folds partition ``train`` exactly.
     """
     rng = np.random.default_rng(seed)
     ids = np.array(sorted(subjects))

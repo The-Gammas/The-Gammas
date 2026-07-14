@@ -128,7 +128,11 @@ def _b_timeseries_path(spec: DatasetSpec, subject: str, run: int) -> Path:
 
 def load_single_timeseries(spec: DatasetSpec, subject: str, run: int,
                            remove_mean: bool = True) -> np.ndarray:
-    """One WM run as ``(N_PARCELS, n_timepoints)``. ``run`` is 0 or 1."""
+    """One WM run as ``(N_PARCELS, n_timepoints)``. ``run`` is 0 or 1.
+
+    A delegates to :mod:`ingestion`; B reimplements the official ``load_hcp_task``
+    bold-file loading (WM = ``bold7``/``bold8``).
+    """
     if spec.kind == "A":
         return ing.load_single_timeseries(spec.task_dir, subject, "WM", run, remove_mean)
     ts = np.load(_b_timeseries_path(spec, subject, run))
@@ -138,7 +142,11 @@ def load_single_timeseries(spec: DatasetSpec, subject: str, run: int,
 
 
 def load_condition_frames(spec: DatasetSpec, subject: str, run: int, level: str) -> np.ndarray:
-    """Sorted unique frame indices for a load level in one run (``"0back"``/``"2back"``)."""
+    """Sorted unique frame indices for a load level in one run (``"0back"``/``"2back"``).
+
+    A delegates to :mod:`ingestion`; B reimplements the official ``load_evs``
+    (run -> ``tfMRI_WM_{['RL','LR'][run]}``).
+    """
     if spec.kind == "A":
         return ing.load_condition_frames(spec.task_dir, subject, run, level)
     conditions = ing.COND_0BACK if level == "0back" else ing.COND_2BACK
