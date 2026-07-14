@@ -42,13 +42,21 @@ Only three are HCP-WM-relevant; the rest are vision/retinotopy studies rejected 
 ## 3 · Local layout
 
 ```
-data/                              9.1 GB total · all gitignored (except this doc's link + data/README.md)
-├── hcp_task/            1.1 GB    Finalist A — load_hcp_task_with_behaviour (100 subj, real HCP IDs)
-├── hcp_task_339/        3.7 GB    Finalist B · task  — load_hcp (339 subj, pseudo-IDs)
-├── hcp_rest/            4.4 GB    Finalist B · rest  — load_hcp (339 subj, 4 rest runs)
-├── hcp/                  17 MB    Finalist B · covariates — behaviour CSVs + demographics + ID map
-└── hcp_atlas_339.npz     92 KB    Finalist B · atlas — ROI coordinates + vertex→ROI labels
+data/                                        9.1 GB total · all gitignored (except this doc's link + data/README.md)
+├── A_load_hcp_task_with_behaviour/          Finalist A — load_hcp_task_with_behaviour (100 subj, real HCP IDs)
+│   └── hcp_task/            1.1 GB            task time series + per-subject Stats.txt behaviour
+├── B_load_hcp/                              Finalist B — load_hcp (339 subj, pseudo-IDs)
+│   ├── hcp_task_339/        3.7 GB            task time series + EVs
+│   ├── hcp_rest/            4.4 GB            resting-state (4 rest runs)
+│   ├── hcp/                  17 MB            behaviour CSVs + demographics + ID map
+│   └── hcp_atlas_339.npz     92 KB           atlas — ROI coordinates + vertex→ROI labels
+├── HCP_S1200_Release_Reference_Manual.pdf    shared reference manual (both datasets)
+└── README.md
 ```
+
+Folders are grouped by loader (`A_load_hcp_task_with_behaviour/`, `B_load_hcp/`); `datasets.py`
+resolves the grouped layout and falls back to the legacy flat layout automatically. The leaf folder
+names below (`hcp_task/`, `hcp_task_339/`, …) are unchanged.
 
 Folder → what's *uniquely* in it (loader and subject count are in §2):
 
@@ -120,10 +128,10 @@ hcp/
 
 | Object | Shape / form | What it is | Loaded by |
 |---|---|---|---|
-| `regions.npy` | **(360, 3)** `<U12` | `[ROI name, network(12-char), myelin]`; rows 0–179 = Right, 180–359 = Left | `build_region_table` |
+| `regions.npy` | **(360, 3)** `<U12` | `[ROI name, network(12-char), myelin]`; rows 0–179 = Right, 180–359 = Left | `region_table` |
 | `data.npy` (A) / `bold##…npy` (B) | **(360, frames)** float64 | Parcellated BOLD time series (WM run ≈ 405 frames; rest = 1200) | `load_single_timeseries` |
-| `EVs/<cond>.txt` | rows `(onset_s, dur_s, amp)` | Condition timing in **seconds** (FSL 3-column format) | `load_condition_frames` |
-| `Stats.txt` (A only) | ~46 lines `key: value` | Per-condition ACC & RT summary → the target | `parse_stats` |
+| `EVs/<cond>.txt` | rows `(onset_s, dur_s, amp)` | Condition timing in **seconds** (FSL 3-column format) | `condition_frames` |
+| `Stats.txt` (A only) | ~46 lines `key: value` | Per-condition ACC & RT summary → the target | `_parse_stats` |
 | `wm.csv` (B) | **(5382, 9)** | `Subject, Run, ConditionName, ACC, ACC_NONTARGET, ACC_TARGET, MEDIAN_RT, …` | pandas |
 | `pseudo_demographics.npy` (B) | **(339, 25)** float64 | Anonymised, z-scored demographic covariates | numpy |
 | `hcp_atlas_339.npz` (B) | `coords (360,3)`, `labels_R (10242,)`, `labels_L (10242,)` | ROI centroid coordinates + surface-vertex→ROI maps | numpy (**not yet used** — see §8) |
@@ -169,7 +177,7 @@ Only **WM** matters for us; the others come bundled in B and are noise for this 
 - **0-back (low load):** "does this match a *fixed* target shown at block start?" — an attention/perception control; near-ceiling.
 - **2-back (high load):** "does this match the image *2 positions back*?" — requires holding + updating a memory buffer; this is genuine working memory, and where people **differ**.
 
-**`acc_2bk` = mean 2-back accuracy per subject.** In A it is parsed from `Stats.txt` (`parse_stats` → `load_behaviour`),
+**`acc_2bk` = mean 2-back accuracy per subject.** In A it is parsed from `Stats.txt` (`_parse_stats` → `behaviour_table`),
 averaging *Median ACC* over the 4 categories × 2 runs. In B the same number comes from `wm.csv`
 (`groupby(Subject, load).ACC.mean()` on `2BK`). Candidate targets exposed by `load_behaviour`:
 
@@ -187,7 +195,7 @@ limitation (or a logit transform) when we fit the predictor.
 
 ## 8 · Atlas file — `hcp_atlas_339.npz`
 
-`hcp_atlas_339.npz` — **not yet used** by any notebook or `ingestion.py`. The *spatial* description the rest of the data lacks:
+`hcp_atlas_339.npz` — **not yet used** by any notebook or the `datasets`/`preprocessing` loaders. The *spatial* description the rest of the data lacks:
 
 - **`coords` (360, 3)** — 3-D centroid per ROI. Anatomical node layout for graphs (steps 3–4), instead of an arbitrary circle.
 - **`labels_R` / `labels_L` (10242,)** — surface vertex → ROI map (fsaverage5). Paints any per-ROI value onto a brain surface (e.g. where 0→2-back reconfiguration is strongest).
@@ -216,7 +224,7 @@ today. A/B/C call for the proposal session (full costing in [`sandbox/jaime/00`]
 
 | Artifact | Where | What |
 |---|---|---|
-| `ingestion.py` | [`sandbox/jaime/`](../sandbox/jaime/ingestion.py) | loading, EV segmentation, `Stats.txt` parser, region table, anti-leakage split |
+| `datasets.py` · `preprocessing.py` · `evaluation.py` | [`sandbox/jaime/`](../sandbox/jaime/) | config + I/O · EV segmentation, `Stats.txt` parser, region table · anti-leakage split + QC |
 | `00_framing_and_dataset_choice` | sandbox | Blohm 4-step framing → dataset choice (A/B/C) |
 | `01_ingestion_and_ev` | sandbox | the deliverable: (360×312) per-condition matrices + target + split |
 | `02_eda_and_data_dictionary` | sandbox | side-by-side EDA of A and B |

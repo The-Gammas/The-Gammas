@@ -23,8 +23,9 @@ NMA-curated HCP task-fMRI subset: 360 Glasser cortical regions, two WM runs (LR/
 - **Finalist B** — `load_hcp`: 339 subjects, task + resting-state + consolidated behaviour (`wm.csv`).
 
 Comparison and trade-offs: [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb) and
-[`docs/data-dictionary.md`](data-dictionary.md). Official loader:
-[HCP task with behaviour](https://colab.research.google.com/github/NeuromatchAcademy/course-content/blob/main/projects/fMRI/load_hcp_task_with_behaviour.ipynb).
+[the data dictionary](data-dictionary.md). Official NMA loaders:
+[`load_hcp_task_with_behaviour`](https://compneuro.neuromatch.io/projects/fMRI/load_hcp_task_with_behaviour.html) (A)
+· [`load_hcp`](https://compneuro.neuromatch.io/projects/fMRI/load_hcp.html) (B).
 
 ## Working stages
 

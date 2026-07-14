@@ -20,8 +20,8 @@ NMA loaders referenced as the code-style base.
 | [`01_ingestion_and_ev.ipynb`](01_ingestion_and_ev.ipynb) | **the deliverable (tasks 1–2)** | Ingestion + EV segmentation: BOLD time series, 0/2-back frame selection, `Stats.txt` target, region table and anti-leakage subject split. | Executed with real outputs |
 | [`02_eda_and_data_dictionary.ipynb`](02_eda_and_data_dictionary.ipynb) | **understand the data** | Download/access (with guide links) + a **step-by-step EDA of both finalists** (A 100-subj and B 339-subj): load → columns → networks → conditions → target → basic viz. Plus a data dictionary of the objects. | Executed with real outputs |
 | [`03_dataset_comparison.ipynb`](03_dataset_comparison.ipynb) | **the A/B decision** | Both finalists on one shared code layer: side-by-side QC, target distribution, an example FC reconfiguration map, and a reasoned A-vs-B recommendation. Decision support for the team, not a unilateral choice. | Executed with real outputs |
-| [`datasets.py`](datasets.py) | **loaders / I-O** | Config + raw loaders (A **and** B): `DatasetSpec`, `spec_a`/`spec_b`, constants, `list_subjects`, `load_timeseries` (`bold7`=RL/`bold8`=LR for B) | Regression-verified vs. the old A helpers |
-| [`preprocessing.py`](preprocessing.py) | **preprocessing** | Raw → analysis-ready: `condition_frames`/`condition_timeseries`, `run_label`, `behaviour_table`, `signal_detection_table`, `region_table` | A+B; B yields 339→336 analytic subjects |
+| [`datasets.py`](datasets.py) | **loaders / I-O** | Config + raw loaders (A **and** B): `DatasetSpec`, `spec_a`/`spec_b`, constants, `load_subjects`, `load_timeseries` (`bold7`=RL/`bold8`=LR for B), `list_rest_runs`/`load_rest_timeseries` (B) | Regression-verified vs. the old A helpers |
+| [`preprocessing.py`](preprocessing.py) | **preprocessing** | Raw → analysis-ready: `condition_frames`/`condition_timeseries`, `behaviour_table`, `signal_detection_table`, `region_table` | A+B; B yields 339→336 analytic subjects |
 | [`evaluation.py`](evaluation.py) | **split + QC** | `make_split` (leakage-safe, N-agnostic) + `validate_dataset` (aggregate A/B QC) | A/B verified |
 | [`artifacts_staging/`](artifacts_staging/) | staged outputs | Local generated tables and exploratory split | Ignored by Git; not part of the initial public scaffold |
 
@@ -33,14 +33,15 @@ Figures live **embedded** in the notebooks (no loose `fig*.png` in the folder; t
 
 Both HCP candidates are downloaded locally under `data/` (all gitignored — see notebook `00`/`02` for why each exists):
 
-- `data/hcp_task/` — **Finalist A**, `load_hcp_task_with_behaviour`, 100 subjects, task only, per-subject `Stats.txt`. Current base for tasks 1–2.
-- `data/hcp_rest/`, `data/hcp_task_339/`, `data/hcp/` — **Finalist B**, `load_hcp`, 339 subjects, adds real resting-state (4 runs) and consolidated behaviour (`hcp/behavior/wm.csv`).
+- `data/A_load_hcp_task_with_behaviour/hcp_task/` — **Finalist A**, `load_hcp_task_with_behaviour`, 100 subjects, task only, per-subject `Stats.txt`. Current base for tasks 1–2.
+- `data/B_load_hcp/` (`hcp_task_339/`, `hcp_rest/`, `hcp/`, `hcp_atlas_339.npz`) — **Finalist B**, `load_hcp`, 339 subjects, adds real resting-state (4 runs) and consolidated behaviour (`hcp/behavior/wm.csv`).
 
 ## How to run
 
 The notebooks can be opened from the repository root or from this directory. Their setup cells locate the repository
-and use `data/hcp_task/` (and `data/hcp*/` for B) as the default data location. Set `GAMMAS_DATA_DIR` to use another
-local directory. The data are not stored in Git and require acceptance of the HCP Data Use Terms.
+and use the `data/` root as the default location — files are grouped by loader (`A_load_hcp_task_with_behaviour/`,
+`B_load_hcp/`), and the loaders fall back to the legacy flat layout. Set `GAMMAS_DATA_DIR` to use another local
+directory. The data are not stored in Git and require acceptance of the HCP Data Use Terms.
 
 To re-run and re-embed outputs (executed with the repo's `pixi` env):
 

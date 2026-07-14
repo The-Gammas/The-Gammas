@@ -56,7 +56,8 @@ def condition_timeseries(spec: ds.DatasetSpec, subject: str, level: str,
     Args:
         runs: acquisition runs to include, concatenated along time. Default ``(0, 1)``
             gives 312 frames; pass ``(0,)`` or ``(1,)`` for a single run (156 frames) —
-            the per-run access an LR/RL reliability check needs. Direction: :func:`run_label`.
+            the per-run access an LR/RL reliability check needs. Direction of a run:
+            ``ds.RUN_LABELS[spec.kind][run]``.
     """
     mats: list[np.ndarray] = []
     for run in runs:
@@ -67,14 +68,6 @@ def condition_timeseries(spec: ds.DatasetSpec, subject: str, level: str,
     return np.concatenate(mats, axis=1)
 
 
-def run_label(spec: ds.DatasetSpec, run: int) -> str:
-    """Phase-encoding direction (``"LR"``/``"RL"``) of an acquisition run.
-
-    A run 0 is LR; B run 0 is RL — the datasets order the runs oppositely.
-    """
-    return ds.RUN_LABELS[spec.kind][run]
-
-
 # --------------------------------------------------------------------------- #
 # Behaviour (prediction target)
 # --------------------------------------------------------------------------- #
@@ -82,9 +75,10 @@ def _parse_stats(spec: ds.DatasetSpec, subject: str, run: int) -> dict[str, floa
     """Parse one Finalist-A ``Stats.txt`` into a ``{label: value}`` dict.
 
     Ours — the official loaders ship no behaviour reader. Per-run summary; lines such as
-    ``"2-Back Faces Median ACC: 0.9"``.
+    ``"2-Back Faces Median ACC: 0.9"``. Rooted at ``spec.behaviour`` (A's behaviour source,
+    which equals ``task_dir``) so both A and B resolve behaviour through the same spec field.
     """
-    path = (spec.task_dir / "subjects" / subject / "WM"
+    path = (spec.behaviour / "subjects" / subject / "WM"
             / f"tfMRI_WM_{ds.RUN_LABELS['A'][run]}" / "EVs" / "Stats.txt")
     out: dict[str, float] = {}
     for line in path.read_text().splitlines():
@@ -114,7 +108,7 @@ def _mean_metric(run_stats: list[dict[str, float]], load: str, metric: str) -> f
 def _behaviour_a(spec: ds.DatasetSpec) -> pd.DataFrame:
     """Finalist-A behaviour table, parsed and aggregated from per-subject ``Stats.txt``."""
     rows: list[dict[str, float]] = []
-    for subject in ds.list_subjects(spec):
+    for subject in ds.load_subjects(spec):
         run_stats = [_parse_stats(spec, subject, run) for run in (0, 1)]
         acc_0bk = _mean_metric(run_stats, "0-Back", "Median ACC")
         acc_2bk = _mean_metric(run_stats, "2-Back", "Median ACC")
@@ -135,7 +129,7 @@ def behaviour_table(spec: ds.DatasetSpec) -> pd.DataFrame:
     a 0-1 rate; RT is the median in ms. Both datasets average over the 4 stimulus
     categories and both runs. A parses per-subject ``Stats.txt``; B reads the consolidated
     ``wm.csv``, where subjects without 2-back rows carry ``NaN`` in the 2-back columns
-    (kept here; filtered by :func:`datasets.list_subjects`). ``acc_2bk`` is the recommended
+    (kept here; filtered by :func:`datasets.load_subjects`). ``acc_2bk`` is the recommended
     target: A's ``Stats.txt`` Target/Non-Target fields are inconsistent (HCP WM bug), so no
     d' for A — see :func:`signal_detection_table`.
     """
@@ -183,6 +177,9 @@ def signal_detection_table(spec: ds.DatasetSpec) -> pd.DataFrame:
              .reindex(index=subjects, columns=["0BK", "2BK"]))
     cr = (wm.pivot_table(index="Subject", columns="load", values="ACC_NONTARGET", aggfunc="mean")
             .reindex(index=subjects, columns=["0BK", "2BK"]))
+    # TODO(team): d' = z(hit) - z(fa) from these columns, once the extreme-rate correction is
+    # chosen (e.g. loglinear, or the 1/2N adjustment for hit==1 / fa==0). B-only: A cannot
+    # (its Stats.txt Target/Non-Target accuracies are internally inconsistent — HCP WM bug).
     return pd.DataFrame({
         "subject": [str(s) for s in subjects],
         "hit_0bk": hit["0BK"].to_numpy(),

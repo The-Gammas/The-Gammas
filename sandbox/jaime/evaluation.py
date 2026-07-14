@@ -31,7 +31,7 @@ def make_split(spec: ds.DatasetSpec, seed: int = 42, test_frac: float = 0.2,
     exactly.
     """
     rng = np.random.default_rng(seed)
-    ids = np.array(sorted(ds.list_subjects(spec)))
+    ids = np.array(sorted(ds.load_subjects(spec)))
     rng.shuffle(ids)
     n_test = int(round(len(ids) * test_frac))
     test = sorted(ids[:n_test].tolist())
@@ -52,13 +52,20 @@ def make_split(spec: ds.DatasetSpec, seed: int = 42, test_frac: float = 0.2,
 
 
 def _validate_split(split: dict) -> None:
-    """Fail loudly if the split could leak or is malformed."""
+    """Fail loudly if the split could leak or is malformed.
+
+    Explicit raises, not ``assert``: this is the module's core leakage guarantee and must
+    survive ``python -O`` (which strips asserts).
+    """
     train, test = set(split["train"]), set(split["test"])
-    assert train.isdisjoint(test), "leak: a subject is in both train and test"
+    if not train.isdisjoint(test):
+        raise ValueError("leak: a subject is in both train and test")
     n_total = split.get("n_total", len(train) + len(test))  # N-agnostic: A (100) or B (336)
-    assert len(train) + len(test) == n_total, "train+test must cover all subjects"
+    if len(train) + len(test) != n_total:
+        raise ValueError("train+test must cover all subjects")
     val_union = sorted(s for f in split["cv"] for s in f["val"])
-    assert val_union == sorted(split["train"]), "CV validation folds must partition the train set exactly"
+    if val_union != sorted(split["train"]):
+        raise ValueError("CV validation folds must partition the train set exactly")
 
 
 def save_split(split: dict, path: str | Path) -> None:
@@ -86,8 +93,8 @@ def validate_dataset(spec: ds.DatasetSpec) -> dict:
     shape, frames per load, condition overlap, ROI/network counts, resting-state
     availability and behavioural spread/missingness. No subject identifiers are returned.
     """
-    all_subjects = ds.list_subjects(spec, require_behaviour=False)
-    analytic = ds.list_subjects(spec, require_behaviour=True)
+    all_subjects = ds.load_subjects(spec, require_behaviour=False)
+    analytic = ds.load_subjects(spec, require_behaviour=True)
     probe = analytic[0]
 
     ts_shape = ds.load_timeseries(spec, probe, run=0).shape
@@ -100,16 +107,13 @@ def validate_dataset(spec: ds.DatasetSpec) -> dict:
     beh = pp.behaviour_table(spec)
     acc2 = beh["acc_2bk"].dropna()
 
-    rest_runs, rest_shape = 0, None
-    if spec.rest_dir is not None:
-        rest_probe = spec.rest_dir / "subjects" / probe / "timeseries"
-        rest_files = sorted(rest_probe.glob("bold*.npy")) if rest_probe.exists() else []
-        rest_runs = len(rest_files)
-        if rest_files:
-            rest_shape = np.load(rest_files[0]).shape
+    rest_files = ds.list_rest_runs(spec, probe)
+    rest_runs = len(rest_files)
+    rest_shape = ds.load_rest_timeseries(spec, probe).shape if rest_files else None
 
     return {
         "dataset": spec.name,
+        "loader": spec.loader,
         "n_subjects_total": len(all_subjects),
         "n_subjects_analytic": len(analytic),
         "wm_run_shape": ts_shape,
