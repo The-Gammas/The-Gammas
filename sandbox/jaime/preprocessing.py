@@ -30,6 +30,8 @@ def condition_frames(spec: ds.DatasetSpec, subject: str, run: int, level: str) -
     Args:
         level: ``"0back"`` or ``"2back"``.
     """
+    if level not in ("0back", "2back"):
+        raise ValueError(f'level must be "0back" or "2back", got {level!r}')
     conditions = ds.COND_0BACK if level == "0back" else ds.COND_2BACK
     if spec.kind == "A":
         ev_dir = (spec.task_dir / "subjects" / subject / "WM"

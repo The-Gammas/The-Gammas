@@ -95,6 +95,8 @@ def validate_dataset(spec: ds.DatasetSpec) -> dict:
     """
     all_subjects = ds.load_subjects(spec, require_behaviour=False)
     analytic = ds.load_subjects(spec, require_behaviour=True)
+    if not analytic:
+        raise ValueError(f"{spec.name}: no analytic subjects — check the data path and behaviour source")
     probe = analytic[0]
 
     ts_shape = ds.load_timeseries(spec, probe, run=0).shape

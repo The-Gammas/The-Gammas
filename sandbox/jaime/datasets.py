@@ -168,6 +168,8 @@ def load_timeseries(spec: DatasetSpec, subject: str, run: int,
     ``WM/tfMRI_WM_{LR,RL}/data.npy`` (run 0 = LR); B reads ``timeseries/bold{7,8}...`` and
     maps run 0 -> bold7 (RL), run 1 -> bold8 (LR).
     """
+    if run not in (0, 1):
+        raise ValueError(f"run must be 0 or 1, got {run!r}")
     if spec.kind == "A":
         path = (spec.task_dir / "subjects" / subject / "WM"
                 / f"tfMRI_WM_{RUN_LABELS['A'][run]}" / "data.npy")
