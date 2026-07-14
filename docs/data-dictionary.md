@@ -27,15 +27,16 @@ Only three are HCP-WM-relevant; the rest are vision/retinotopy studies rejected 
 
 | Official loader | Subjects | **Delivers → folder(s) on disk** | What you get | Our verdict |
 |---|---|---|---|---|
-| `load_hcp_task_with_behaviour` | 100 (real IDs) | `hcp_task/` | 7 tasks' time series **+ per-subject `Stats.txt` behaviour** | **Finalist A** ✅ |
-| `load_hcp_task` | 100 | — *(never downloaded)* | 7 tasks, **no behaviour** | dominated by A (no target) |
-| `load_hcp` | 339 (pseudo IDs) | `hcp_task_339/` · `hcp_rest/` · `hcp/` · `hcp_atlas_339.npz` | task **+ resting-state** + consolidated behaviour (`wm.csv`) + covariates + atlas | **Finalist B** ✅ |
+| [`load_hcp_task_with_behaviour`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) | 100 (real IDs) | `hcp_task/` | 7 tasks' time series **+ per-subject `Stats.txt` behaviour** | **Finalist A** ✅ |
+| [`load_hcp_task`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task.ipynb) | 339 (pseudo IDs) | task-only component under its configured HCP directory | 7 tasks, **no behaviour**; same OSF task archive used by `load_hcp` | not a separate finalist; included within B |
+| [`load_hcp`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp.ipynb) | 339 (pseudo IDs) | official `hcp_task/` · `hcp_rest/` · `hcp/` · `atlas.npz`; locally renamed as described below | task **+ resting-state** + consolidated behaviour (`wm.csv`) + covariates + atlas | **Finalist B** ✅ |
 | `load_hcp_retino` | — | — *(never downloaded)* | retinotopic mapping (not WM) | rejected |
 
-> ⚠️ **Name trap (the one that bites).** The folder **`hcp_task_339/` comes from `load_hcp`** (Finalist B, 339 subj)
-> — **not** from the similarly-named loader `load_hcp_task` (100 subj, which we never downloaded). One loader,
-> `load_hcp`, unpacks **four** items (three tarballs + the atlas), which is why "3 loaders on the website" become
-> "4+ folders on disk". The `_339` suffix is a **local rename** so B's task folder can coexist with A's `hcp_task/`.
+> ⚠️ **Name trap (the one that bites).** Both `load_hcp_task` and `load_hcp` use the same
+> **339-subject task archive**. `load_hcp_task` exposes only that component; Finalist B uses
+> `load_hcp`, which adds resting-state, covariates/behaviour and the atlas. The official B task folder
+> is `hcp_task/`; `_339` is a **local rename** so it can coexist with A's different 100-subject
+> `hcp_task/`.
 
 ---
 
@@ -72,8 +73,9 @@ Folder → what's *uniquely* in it (loader and subject count are in §2):
 
 ## 4 · Folder structures
 
-**A vs B packaging:** A keeps each task's time series + EVs together; B splits them (`EVs/`, `timeseries/`) and
-moves behaviour to a central CSV. Same HCP data, different packaging.
+**A vs B packaging:** both derive from HCP Young Adult and use the same task/parcellation logic, but
+they are **different NMA-curated subsets**, not identical cohorts. A keeps each task's time series + EVs
+together; B splits them (`EVs/`, `timeseries/`) and moves behaviour to a central CSV.
 
 ### Finalist A — `hcp_task/`
 ```
@@ -102,7 +104,8 @@ hcp_task_339/
         └── bold##_Atlas_MSMAll_Glasser360Cortical.npy   # (360, frames)
 ```
 > `hcp_task_339/subjects/0/EVs` shows per-task EV folders (`tfMRI_EMOTION_*`, …); the signal is one level over in
-> `timeseries/`. **Confirmed:** 4 747 timeseries `.npy`, `tfMRI_WM_{LR,RL}` present — B is usable for the task project, not only rest.
+> `timeseries/`. **Confirmed:** 4 746 timeseries `.npy` (339 subjects × 7 tasks × 2 runs),
+> `tfMRI_WM_{LR,RL}` present — B is usable for the task project, not only rest.
 
 ### Finalist B · rest — `hcp_rest/`
 ```
@@ -129,7 +132,7 @@ hcp/
 | Object | Shape / form | What it is | Loaded by |
 |---|---|---|---|
 | `regions.npy` | **(360, 3)** `<U12` | `[ROI name, network(12-char), myelin]`; rows 0–179 = Right, 180–359 = Left | `region_table` |
-| `data.npy` (A) / `bold##…npy` (B) | **(360, frames)** float64 | Parcellated BOLD time series (WM run ≈ 405 frames; rest = 1200) | `load_single_timeseries` |
+| `data.npy` (A) / `bold##…npy` (B) | **(360, frames)** float64 | Parcellated BOLD time series (WM run ≈ 405 frames; rest = 1200) | `load_timeseries` |
 | `EVs/<cond>.txt` | rows `(onset_s, dur_s, amp)` | Condition timing in **seconds** (FSL 3-column format) | `condition_frames` |
 | `Stats.txt` (A only) | ~46 lines `key: value` | Per-condition ACC & RT summary → the target | `_parse_stats` |
 | `wm.csv` (B) | **(5382, 9)** | `Subject, Run, ConditionName, ACC, ACC_NONTARGET, ACC_TARGET, MEDIAN_RT, …` | pandas |
@@ -179,12 +182,12 @@ Only **WM** matters for us; the others come bundled in B and are noise for this 
 
 **`acc_2bk` = mean 2-back accuracy per subject.** In A it is parsed from `Stats.txt` (`_parse_stats` → `behaviour_table`),
 averaging *Median ACC* over the 4 categories × 2 runs. In B the same number comes from `wm.csv`
-(`groupby(Subject, load).ACC.mean()` on `2BK`). Candidate targets exposed by `load_behaviour`:
+(`groupby(Subject, load).ACC.mean()` on `2BK`). Candidate targets exposed by `behaviour_table`:
 
 | Target | Definition | Note |
 |---|---|---|
 | `acc_0bk` | mean 0-back accuracy | near-ceiling (≈0.93) → little variance to predict |
-| **`acc_2bk`** | mean 2-back accuracy | **primary candidate**: spread ≈ 0.54–0.99, no missing values |
+| **`acc_2bk`** | mean 2-back accuracy | **primary candidate**: A ≈ 0.54–0.99; B ≈ 0.41–1.00 after excluding 3 subjects without complete 2-back |
 | `acc_cost` | `acc_2bk − acc_0bk` | *load cost* (mostly < 0) |
 | `rt_2bk`, `rt_cost` | median reaction time (ms) | speed alternatives |
 
@@ -209,14 +212,22 @@ limitation (or a logit transform) when we fit the predictor.
 | | **A — `hcp_task`** | **B — `hcp` (load_hcp)** |
 |---|---|---|
 | Subjects | 100 | **339** (3.4×) |
-| Task time series | ✅ | ✅ (**confirmed present** — 4 747 `.npy`) |
+| Task time series | ✅ | ✅ (**confirmed present** — 4 746 run-level `.npy`) |
 | Resting-state | ❌ | ✅ (unlocks abstract Objective 2) |
 | WM behaviour | `Stats.txt` per subject | `wm.csv` consolidated (comparable, not coarser) |
 | Subject IDs | real HCP | pseudo (`0…338`, mapped by `orig_ids.txt`) |
-| Ingestion status | **done** (tasks 1–2 run) | needs a re-ingest (new IDs + split EVs/timeseries paths) |
+| Ingestion status | **done** (tasks 1–2 run) | **done and verified** (339 total; 336 analytic) |
 
-**Bottom line:** B has task time series (confirmed). B = scripted re-ingest but 3.4× subjects **and** rest; A = ready
-today. A/B/C call for the proposal session (full costing in [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb)).
+**Bottom line:** both finalists are ingested and can be compared directly. B provides 3.4× total subjects
+(336 analytically complete) **and** resting-state; the final A/B decision remains a team decision. Full costing:
+[`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb).
+
+> **Cohort overlap (verified).** A and B are **mostly independent** cohorts, not nested: only **35 subjects
+> are shared** (A = 100, B = 339; 404 unique people in total), checked by cross-referencing A's real IDs
+> (`subjects_list.txt`) against B's pseudo→real map (`orig_ids.txt`). Consequence: pooling A∪B would add only
+> ~65 subjects over B while forcing two heterogeneous pipelines together and deduplicating the 35 overlap to
+> avoid leakage — so **B on its own is the clean path**. Reproduced in
+> [`sandbox/jaime/03` §6](../sandbox/jaime/03_dataset_comparison.ipynb).
 
 ---
 
