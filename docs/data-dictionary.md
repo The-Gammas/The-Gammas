@@ -222,6 +222,13 @@ limitation (or a logit transform) when we fit the predictor.
 (336 analytically complete) **and** resting-state; the final A/B decision remains a team decision. Full costing:
 [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb).
 
+> **Cohort overlap (verified).** A and B are **mostly independent** cohorts, not nested: only **35 subjects
+> are shared** (A = 100, B = 339; 404 unique people in total), checked by cross-referencing A's real IDs
+> (`subjects_list.txt`) against B's pseudo→real map (`orig_ids.txt`). Consequence: pooling A∪B would add only
+> ~65 subjects over B while forcing two heterogeneous pipelines together and deduplicating the 35 overlap to
+> avoid leakage — so **B on its own is the clean path**. Reproduced in
+> [`sandbox/jaime/03` §6](../sandbox/jaime/03_dataset_comparison.ipynb).
+
 ---
 
 ## 10 · Derived layer
