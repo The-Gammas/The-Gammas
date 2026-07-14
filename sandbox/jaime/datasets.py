@@ -163,19 +163,31 @@ def load_condition_frames(spec: DatasetSpec, subject: str, run: int, level: str)
 
 
 def load_condition_timeseries(spec: DatasetSpec, subject: str, level: str,
-                              concat_runs: bool = True) -> np.ndarray:
+                              runs: tuple[int, ...] = (0, 1)) -> np.ndarray:
     """BOLD restricted to one load level, ``(N_PARCELS, n_frames)``.
 
-    This is the object step 3 (functional connectivity) consumes to build one FC matrix
-    per condition. ``concat_runs`` stacks both runs along time (312 frames), else run 0.
+    The object step 3 (functional connectivity) consumes, one FC matrix per condition.
+
+    Args:
+        runs: acquisition runs to include, concatenated along time. Default ``(0, 1)``
+            gives 312 frames; pass ``(0,)`` or ``(1,)`` for a single run (156 frames) —
+            the per-run access an LR/RL reliability check needs. Direction: :func:`run_label`.
     """
     mats: list[np.ndarray] = []
-    for run in ([0, 1] if concat_runs else [0]):
+    for run in runs:
         ts = load_single_timeseries(spec, subject, run)
         frames = load_condition_frames(spec, subject, run, level)
         frames = frames[frames < ts.shape[1]]  # guard against rounding past scan end
         mats.append(ts[:, frames])
     return np.concatenate(mats, axis=1)
+
+
+def run_label(spec: DatasetSpec, run: int) -> str:
+    """Phase-encoding direction (``"LR"``/``"RL"``) of an acquisition run.
+
+    A run 0 is LR; B run 0 is RL — the datasets order the runs oppositely.
+    """
+    return RUN_LABELS[spec.kind][run]
 
 
 # --------------------------------------------------------------------------- #
@@ -213,12 +225,57 @@ def load_behaviour_table(spec: DatasetSpec) -> pd.DataFrame:
     return out[["subject", "acc_0bk", "acc_2bk", "acc_cost", "rt_0bk", "rt_2bk", "rt_cost"]]
 
 
+def load_signal_detection_table(spec: DatasetSpec) -> pd.DataFrame:
+    """Per-subject hit / false-alarm rates for 0-back and 2-back — the inputs a d' needs.
+
+    Ours, B-only, from ``wm.csv``: ``hit = ACC_TARGET``, ``fa = 1 - ACC_NONTARGET``,
+    averaged over the 4 categories and both runs. Does **not** compute d' — the
+    extreme-rate correction (e.g. loglinear) is a prespecified team choice. A raises:
+    its ``Stats.txt`` Target/Non-Target accuracies are internally inconsistent (the
+    documented HCP WM bug), so signal detection is not defensible for A.
+
+    Columns: ``subject, hit_0bk, fa_0bk, hit_2bk, fa_2bk``.
+    """
+    if spec.kind == "A":
+        raise NotImplementedError(
+            "Signal detection is B-only: A's Stats.txt Target/Non-Target accuracies are "
+            "internally inconsistent (HCP WM bug). Use acc_2bk for A."
+        )
+    wm = pd.read_csv(spec.behaviour)
+    wm["load"] = wm["ConditionName"].str[:3]  # "0BK" / "2BK"
+    subjects = sorted(wm["Subject"].unique())
+    hit = (wm.pivot_table(index="Subject", columns="load", values="ACC_TARGET", aggfunc="mean")
+             .reindex(index=subjects, columns=["0BK", "2BK"]))
+    cr = (wm.pivot_table(index="Subject", columns="load", values="ACC_NONTARGET", aggfunc="mean")
+            .reindex(index=subjects, columns=["0BK", "2BK"]))
+    return pd.DataFrame({
+        "subject": [str(s) for s in subjects],
+        "hit_0bk": hit["0BK"].to_numpy(),
+        "fa_0bk": 1 - cr["0BK"].to_numpy(),
+        "hit_2bk": hit["2BK"].to_numpy(),
+        "fa_2bk": 1 - cr["2BK"].to_numpy(),
+    })
+
+
 # --------------------------------------------------------------------------- #
 # Region table
 # --------------------------------------------------------------------------- #
 def build_region_table(spec: DatasetSpec) -> pd.DataFrame:
     """ROI -> full network name -> hemisphere. Both datasets ship the same ``regions.npy``."""
     return ing.build_region_table(spec.task_dir)
+
+
+# --------------------------------------------------------------------------- #
+# Subject-level split (leakage-safe)
+# --------------------------------------------------------------------------- #
+def make_split(spec: DatasetSpec, seed: int = 42, test_frac: float = 0.2,
+               cv_folds: int = 5) -> dict:
+    """Subject-level train/test + CV split over a dataset's analytic cohort — N-agnostic.
+
+    Thin wrapper over :func:`ingestion.make_split` on :func:`list_subjects`, so the same
+    leakage-safe split works for A (100) or B (336) without a hard-coded subject count.
+    """
+    return ing.make_split(list_subjects(spec), seed=seed, test_frac=test_frac, cv_folds=cv_folds)
 
 
 # --------------------------------------------------------------------------- #

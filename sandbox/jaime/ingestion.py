@@ -263,8 +263,8 @@ def make_split(subjects: list[str], seed: int = 42, test_frac: float = 0.2, cv_f
 
     Split by SUBJECT (never timepoint/run) so none appears in both sets; prediction on
     held-out subjects is NMA's project-guidance gold standard and the leakage-safe unit
-    of generalization. Returns ``{seed, test_frac, cv_folds, n_train, n_test, train,
-    test, cv}``; the CV validation folds partition ``train`` exactly.
+    of generalization. Returns ``{seed, test_frac, cv_folds, n_total, n_train, n_test,
+    train, test, cv}``; the CV validation folds partition ``train`` exactly.
     """
     rng = np.random.default_rng(seed)
     ids = np.array(sorted(subjects))
@@ -280,7 +280,7 @@ def make_split(subjects: list[str], seed: int = 42, test_frac: float = 0.2, cv_f
 
     split = {
         "seed": seed, "test_frac": test_frac, "cv_folds": cv_folds,
-        "n_train": len(train), "n_test": len(test),
+        "n_total": len(ids), "n_train": len(train), "n_test": len(test),
         "train": train, "test": test, "cv": cv,
     }
     _validate_split(split)
@@ -291,7 +291,8 @@ def _validate_split(split: dict) -> None:
     """Fail loudly if the split could leak or is malformed."""
     train, test = set(split["train"]), set(split["test"])
     assert train.isdisjoint(test), "leak: a subject is in both train and test"
-    assert len(train) + len(test) == N_SUBJECTS, "train+test must cover all subjects"
+    n_total = split.get("n_total", len(train) + len(test))  # N-agnostic: works for A (100) or B (336)
+    assert len(train) + len(test) == n_total, "train+test must cover all subjects"
     val_union = sorted(s for f in split["cv"] for s in f["val"])
     assert val_union == sorted(split["train"]), "CV validation folds must partition the train set exactly"
 
