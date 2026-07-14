@@ -6,7 +6,7 @@ This folder contains Jaime's assigned contribution: choose and understand the HC
 0-back / 2-back inputs (**tasks 1–2**), inspect the behavioural target and document the hand-off to the rest of the
 group. The work stays here until it is finished and reviewed with the team.
 
-The three notebooks are a **narrated path, one per role**, and are written in the **four-step modelling frame** taught
+The four notebooks are a **narrated path, one per role**, and are written in the **four-step modelling frame** taught
 in W2D1 ([Blohm et al., 2019](https://doi.org/10.1523/ENEURO.0352-19.2019); the tutorial is pulled to
 `coursework/W2D1/`), so the reasoning is replicable and shares the vocabulary the whole group uses. Read them in order.
 Each is an EXPLORE log: clean code, tables and focused plots, every decision tied to its evidence, and the official
@@ -19,10 +19,13 @@ NMA loaders referenced as the code-style base.
 | [`00_framing_and_dataset_choice.ipynb`](00_framing_and_dataset_choice.ipynb) | **why these data** | Blohm 4 steps (phenomenon→question→ingredients→hypothesis) → derive the data requirements → pick the dataset (prose + links to the official guide, not defensive loaders). The costed A/B/C decision for Monday. | Executed against real data |
 | [`01_ingestion_and_ev.ipynb`](01_ingestion_and_ev.ipynb) | **the deliverable (tasks 1–2)** | Ingestion + EV segmentation: BOLD time series, 0/2-back frame selection, `Stats.txt` target, region table and anti-leakage subject split. | Executed with real outputs |
 | [`02_eda_and_data_dictionary.ipynb`](02_eda_and_data_dictionary.ipynb) | **understand the data** | Download/access (with guide links) + a **step-by-step EDA of both finalists** (A 100-subj and B 339-subj): load → columns → networks → conditions → target → basic viz. Plus a data dictionary of the objects. | Executed with real outputs |
-| [`03_dataset_comparison.ipynb`](03_dataset_comparison.ipynb) | **the A/B decision** | Both finalists on one shared loader (`datasets.py`): side-by-side QC, target distribution, an example FC reconfiguration map, and a reasoned A-vs-B recommendation. Decision support for the team, not a unilateral choice. | Executed with real outputs |
-| [`ingestion.py`](ingestion.py) | shared logic (A) | Reusable loading, EV, behaviour, region-table and exploratory split helpers for Finalist A | Executed against the real dataset |
-| [`datasets.py`](datasets.py) | shared loader (A/B) | Common interface over **both** finalists — A via `ingestion.py`, B implemented here (`bold7`=RL/`bold8`=LR, `wm.csv`): `list_subjects`, `load_condition_timeseries`, `load_behaviour_table`, `build_region_table`, `validate_dataset` | A regression-verified; B yields 339→336 analytic subjects |
+| [`03_dataset_comparison.ipynb`](03_dataset_comparison.ipynb) | **the A/B decision** | Both finalists on one shared code layer: side-by-side QC, target distribution, an example FC reconfiguration map, and a reasoned A-vs-B recommendation. Decision support for the team, not a unilateral choice. | Executed with real outputs |
+| [`datasets.py`](datasets.py) | **loaders / I-O** | Config + raw loaders (A **and** B): `DatasetSpec`, `spec_a`/`spec_b`, constants, `list_subjects`, `load_timeseries` (`bold7`=RL/`bold8`=LR for B) | Regression-verified vs. the old A helpers |
+| [`preprocessing.py`](preprocessing.py) | **preprocessing** | Raw → analysis-ready: `condition_frames`/`condition_timeseries`, `run_label`, `behaviour_table`, `signal_detection_table`, `region_table` | A+B; B yields 339→336 analytic subjects |
+| [`evaluation.py`](evaluation.py) | **split + QC** | `make_split` (leakage-safe, N-agnostic) + `validate_dataset` (aggregate A/B QC) | A/B verified |
 | [`artifacts_staging/`](artifacts_staging/) | staged outputs | Local generated tables and exploratory split | Ignored by Git; not part of the initial public scaffold |
+
+The code layer is organised **by data-science category, not by dataset** — `datasets` (I/O) ← `preprocessing` (transforms) ← `evaluation` (split + QC) — so A and B live behind one interface. Modelling (FC, graphs, prediction) is intentionally downstream (the team's), not here.
 
 Figures live **embedded** in the notebooks (no loose `fig*.png` in the folder; they are gitignored).
 
