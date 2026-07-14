@@ -24,8 +24,8 @@ NMA-curated HCP task-fMRI subset: 360 Glasser cortical regions, two WM runs (LR/
 
 Comparison and trade-offs: [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb) and
 [the data dictionary](data-dictionary.md). Official NMA loaders:
-[`load_hcp_task_with_behaviour`](https://compneuro.neuromatch.io/projects/fMRI/load_hcp_task_with_behaviour.html) (A)
-· [`load_hcp`](https://compneuro.neuromatch.io/projects/fMRI/load_hcp.html) (B).
+[`load_hcp_task_with_behaviour`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) (A)
+· [`load_hcp`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp.ipynb) (B).
 
 ## Working stages
 
@@ -76,4 +76,3 @@ This plan is distilled from two team sources — keep both in sync as they evolv
   map into the repo.
 
 New decisions should update this plan; detailed discussion can stay in dated meeting notes.
-

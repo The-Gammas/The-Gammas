@@ -33,8 +33,12 @@ on your machine:
 
 | Finalist | Loader notebook | It downloads | Place it at |
 |---|---|---|---|
-| **A** | [`load_hcp_task_with_behaviour`](https://compneuro.neuromatch.io/projects/fMRI/load_hcp_task_with_behaviour.html) | `hcp_task/` | `data/A_load_hcp_task_with_behaviour/hcp_task/` |
-| **B** | [`load_hcp`](https://compneuro.neuromatch.io/projects/fMRI/load_hcp.html) | a task folder, `hcp_rest/`, `hcp/`, `hcp_atlas_339.npz` | `data/B_load_hcp/` — **rename B's task folder to `hcp_task_339/`** (our convention, so it never clashes with A's `hcp_task/`) |
+| **A** | [`load_hcp_task_with_behaviour`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) | `hcp_task/` | `data/A_load_hcp_task_with_behaviour/hcp_task/` |
+| **B** | [`load_hcp`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp.ipynb) | `DATA/hcp_task/`, `DATA/hcp_rest/`, `DATA/hcp/`, plus `atlas.npz` | `data/B_load_hcp/` — rename `hcp_task/` to `hcp_task_339/` and `atlas.npz` to `hcp_atlas_339.npz` (our convention, so A and B can coexist) |
+
+The links are pinned to the official NMA `v3.0.2` release. `load_hcp_task` is a separate
+task-only entry point for the same 339-subject task archive used by B; it is not an additional
+dataset in this repository.
 
 **3. Simpler alternative** — skip the group dirs and drop the folders **flat** in `data/`
 (`data/hcp_task/`, `data/hcp_task_339/`, `data/hcp_rest/`, `data/hcp/`, `data/hcp_atlas_339.npz`); the
@@ -49,9 +53,10 @@ python -c "import sys; sys.path.insert(0, 'sandbox/jaime'); import datasets as d
   print('A ok:', ds.spec_a('data').task_dir.exists(), '| B ok:', ds.spec_b('data').task_dir.exists())"
 ```
 
-Two `True` and you match our setup.
+Two `True` confirm that both task roots were found. Then run the notebook QC to verify subject
+counts, required behaviour files, shapes and condition frames; path existence alone does not prove
+that a download is complete.
 
 Full object map, shapes and glossary → [`docs/data-dictionary.md`](../docs/data-dictionary.md). Raw data,
 per-subject behaviour, splits and other derived files must never be committed (all of `data/` except this
 README is gitignored).
-

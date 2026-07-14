@@ -14,8 +14,9 @@ On disk both finalists live under loader-named group dirs (``data/A_load_hcp_tas
 ``data/B_load_hcp/``); the loaders resolve that or the legacy flat layout — see :func:`spec_a` / :func:`spec_b`.
 
 Provenance: NMA-curated HCP task fMRI; the loaders reimplement the official
-``load_hcp_task_with_behaviour`` / ``load_hcp`` notebooks (B is ``load_hcp`` — **not** the
-similarly-named ``load_hcp_task``, a different 100-subj, behaviour-free set we never used). Glasser 360 parcellation
+``load_hcp_task_with_behaviour`` / ``load_hcp`` notebooks. The similarly named
+``load_hcp_task`` is the task-only entry point for the same 339-subject task archive used by B;
+it is not a separate finalist. Glasser 360 parcellation
 (Glasser et al. 2016); 12-network Cole-Anticevic partition (Ji et al. 2019). Using HCP data
 requires accepting the HCP Data Use Terms. B's WM runs are ``bold7`` (RL) / ``bold8`` (LR),
 verified against the official ``EXPERIMENTS['WM']['runs'] == [7, 8]``; note A run 0 is LR but
