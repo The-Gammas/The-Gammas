@@ -35,14 +35,13 @@ Provenance (where every input comes from)
 Base dataset vs. the 339-subject alternative
 --------------------------------------------
 This module targets **Finalist A** — ``load_hcp_task_with_behaviour`` (100 subjects,
-task only, per-subject ``Stats.txt``), living under ``data/hcp_task/``. Notebook
-``00_project_and_dataset_selection`` compares it against **Finalist B** — the
-``load_hcp`` loader (339 subjects), which adds real resting-state and consolidated
-behaviour, and is also downloaded to the repo under ``data/hcp_rest/``,
-``data/hcp_task_339/`` and ``data/hcp/`` (all gitignored). Choosing A vs B is an open
-team decision (see notebook 00); if B is adopted, these functions re-run by pointing
-``hcp_dir`` at the new paths and reading the target from ``data/hcp/behavior/wm.csv``
-instead of ``Stats.txt``.
+task only, per-subject ``Stats.txt``), living under ``data/hcp_task/``. **Finalist B**
+— the ``load_hcp_task`` loader (339 subjects, + resting-state, consolidated
+``data/hcp/behavior/wm.csv``) — has a different on-disk layout (``bold{N}`` timeseries,
+top-level EV dirs) and **cannot be reached by a path swap**; its loader is implemented
+separately in ``datasets.py``, which wraps these A helpers behind a common A/B
+interface. Choosing A vs B is an open team decision (see
+``03_dataset_comparison.ipynb``).
 
 The companion notebooks (``00`` framing, ``01`` ingestion + EV, ``02`` EDA) are
 executed against the real dataset and embed their outputs; scientific
