@@ -77,7 +77,7 @@ STATS_CATEGORIES: tuple[str, ...] = ("BP", "Faces", "Places", "Tools")
 #: Ji et al. 2019). The mapping keys were read directly from the dataset's own
 #: ``regions.npy`` (via ``np.unique`` on the network column); the values are the
 #: corresponding full names the official loader notebook attributes to Ji (2019).
-#: A silent filter bug waits for anyone who matches on the full name without this mapping.
+#: Matching on the full name without this mapping would silently drop rows.
 NETWORK_FULL: dict[str, str] = {
     "Visual1": "Visual1",
     "Visual2": "Visual2",
@@ -219,15 +219,21 @@ def _mean_metric(run_stats: list[dict[str, float]], load: str, metric: str) -> f
 def load_behaviour(hcp_dir: str | Path, subject: str) -> dict[str, float]:
     """Per-subject WM performance, averaged over the 4 categories and both runs.
 
-    Returns candidate prediction targets:
+    Keys returned:
         ``acc_0bk`` / ``acc_2bk``  — mean accuracy at each load
-        ``acc_cost``               — acc_2bk - acc_0bk (load cost; <0 = worse under load)
+        ``acc_cost``               — acc_2bk - acc_0bk (load cost; < 0 = worse under load)
         ``rt_0bk`` / ``rt_2bk``    — mean median reaction time (ms) at each load
         ``rt_cost``                — rt_2bk - rt_0bk
 
-    Current sandbox candidate: ``acc_2bk`` (the high-load condition showed a
-    0.54-0.99 spread across these 100 subjects with no missing values). The team
-    has not yet frozen a primary target.
+    ``acc_2bk`` is the recommended target: 0.54-0.99 spread, no missing values, and
+    its pooled global accuracy matches correct/(correct+error) from the EV files
+    exactly (200/200 runs).
+
+    No signal-detection d' is provided for this dataset: the ``Stats.txt`` Target /
+    Non-Target accuracies are internally inconsistent (378/800 = 47% of 2-back
+    records have the global accuracy outside [Target, Non-Target], impossible for
+    coherent rates — the documented HCP WM accuracy bug). The 339-subject
+    ``wm.csv`` passes this invariant, so d' must be derived there if needed.
     """
     run_stats = [parse_stats(hcp_dir, subject, run) for run in (0, 1)]
 
