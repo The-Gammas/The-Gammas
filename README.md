@@ -6,7 +6,7 @@
 
 [![Neuromatch CompNeuro 2026](https://img.shields.io/badge/Neuromatch-CompNeuro_2026-5e35b1)](https://compneuro.neuromatch.io/tutorials/intro.html)
 [![Course week 2](https://img.shields.io/badge/course-week_2-1e88e5)](https://compneuro.neuromatch.io/tutorials/Schedule/daily_schedules.html)
-[![Dataset HCP N-back](https://img.shields.io/badge/dataset-HCP_N--back_·_100_subj-c62828)](data/README.md)
+[![Dataset HCP N-back](https://img.shields.io/badge/dataset-HCP_N--back_(A%2FB)-c62828)](data/README.md)
 [![Atlas Glasser 360](https://img.shields.io/badge/atlas-Glasser_360_·_Cole--Anticevic-00897b)](sandbox/jaime/02_eda_and_data_dictionary.ipynb)
 [![Abstract due Fri 17 Jul](https://img.shields.io/badge/abstract_due-Fri_17_Jul-fb8c00)](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
 [![Pod Zoom](https://img.shields.io/badge/pod_Zoom-join_room-2d8cff?logo=zoom&logoColor=white)](https://zoom.us/j/7944834775?pwd=M016NlExWm44ZDhRSEk0ZmROaURSZz09)
@@ -54,9 +54,9 @@ flowchart LR
 ## ▶️ Start here
 
 1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
-2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-10.md).
-3. Load the data with the official [HCP task loader with behaviour](https://colab.research.google.com/github/NeuromatchAcademy/course-content/blob/main/projects/fMRI/load_hcp_task_with_behaviour.ipynb).
-4. Work inside your own `sandbox/<name>/` folder, starting from [`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](pipeline/00_NOTEBOOK_TEMPLATE.ipynb).
+2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-14.md).
+3. **Get the data.** Two finalists (A ≈ 100 subjects, B = 339) sit behind one loader interface; the dataset decision is still open. [`data/README.md`](data/README.md) is the canonical guide to **download, place and load** either one.
+4. Work inside your own `sandbox/<name>/` folder, starting from [`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](pipeline/00_NOTEBOOK_TEMPLATE.ipynb) — its setup cells wire the data path and import the shared A/B loader for you.
 5. Read the short [contribution guide](CONTRIBUTING.md) before opening a PR.
 
 ---
@@ -124,10 +124,12 @@ repeated logic may live in a neighbouring `.py` file and be imported by the note
 <summary><b>⚙️ Setup</b> (click to expand)</summary>
 
 ### Google Colab
-The easiest route is to open an existing notebook in Colab. The template contains a commented
-bootstrap cell for cloning this repository.
+Open a notebook in Colab and run its setup cell to clone the repo and install requirements. **Note:**
+cloning brings the *code* but not the HCP data (~1 GB for A, ~8 GB for B) — you still have to fetch the
+data into the session (run the official loader notebook there, or mount Google Drive). See [`data/README.md`](data/README.md).
 
 ### Local
+Requires a recent Python (`requirements.txt` is known-good on 3.12).
 ```bash
 git clone https://github.com/The-Gammas/The-Gammas.git
 cd The-Gammas
@@ -136,6 +138,9 @@ source .venv/bin/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 jupyter lab
 ```
+These steps install the code, **not** the data — see [`data/README.md`](data/README.md) to download it. By
+default the loaders read from `./data`; set `GAMMAS_DATA_DIR` to point elsewhere
+(e.g. `export GAMMAS_DATA_DIR=/path/to/hcp`).
 
 </details>
 
@@ -145,4 +150,4 @@ jupyter lab
 
 The NMA subset derives from the **Human Connectome Project**. Every user must follow the
 [HCP Data Use Terms](https://www.humanconnectome.org/study/hcp-young-adult/document/wu-minn-hcp-consortium-open-access-data-use-terms).
-Raw data and subject-level derived files are **not** versioned here — see [`data/README.md`](data/README.md).
+Raw data and subject-level derived files are **not** versioned here; how to obtain, place and load it → [`data/README.md`](data/README.md).

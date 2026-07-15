@@ -12,8 +12,10 @@ docs. Change a rule here in the same PR that changes the behaviour.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — where files go, notebook conventions, the everyday Git flow.
 - [docs/meetings/](docs/meetings/) · [manuscript/references.md](manuscript/references.md) — decisions and sources.
 
-The data (NMA-curated HCP N-back, 360 ROIs) is **not in Git**: it lives under `data/` (gitignored);
-obtain it via the loaders linked in the project plan.
+The data (NMA-curated HCP N-back, 360 ROIs) is **not in Git**: it lives under `data/` (gitignored). How to
+**download, place and load** it → [`data/README.md`](data/README.md). The shared **A/B data layer**
+(`sandbox/jaime/datasets.py` ← `preprocessing.py` ← `evaluation.py`) is imported **read-only** from any sandbox —
+the one exception to "work only in your own folder": use it, don't edit it without the owner or a PR.
 
 ## Rules for agents
 

@@ -31,24 +31,30 @@ Figures live **embedded** in the notebooks (no loose `fig*.png` in the folder; t
 
 ## Datasets on disk
 
-Both HCP candidates are downloaded locally under `data/` (all gitignored — see notebook `00`/`02` for why each exists):
-
-- `data/A_load_hcp_task_with_behaviour/hcp_task/` — **Finalist A**, `load_hcp_task_with_behaviour`, 100 subjects, task only, per-subject `Stats.txt`. Current base for tasks 1–2.
-- `data/B_load_hcp/` (`hcp_task_339/`, `hcp_rest/`, `hcp/`, `hcp_atlas_339.npz`) — **Finalist B**, `load_hcp`, 339 subjects, adds real resting-state (4 runs) and consolidated behaviour (`hcp/behavior/wm.csv`).
+Both HCP candidates live under `data/` (gitignored). **Finalist A** (`hcp_task/`, 100 subj) is the current
+base for tasks 1–2; **Finalist B** (`load_hcp`, 339 subj) adds resting-state and consolidated behaviour. Full
+layout, provenance and the load contract → [`data/README.md`](../../data/README.md) · [`docs/data-dictionary.md`](../../docs/data-dictionary.md).
 
 ## How to run
 
-The notebooks can be opened from the repository root or from this directory. Their setup cells locate the repository
-and use the `data/` root as the default location — files are grouped by loader (`A_load_hcp_task_with_behaviour/`,
-`B_load_hcp/`), and the loaders fall back to the legacy flat layout. Set `GAMMAS_DATA_DIR` to use another local
-directory. The data are not stored in Git and require acceptance of the HCP Data Use Terms.
+The notebooks open from the repository root or from this directory. Their setup cells locate the repository and use
+the `data/` root by default — files are grouped by loader (`A_load_hcp_task_with_behaviour/`, `B_load_hcp/`), with a
+flat-layout fallback; set `GAMMAS_DATA_DIR` to use another local directory. The data are not stored in Git and require
+accepting the HCP Data Use Terms — download, placement and a minimal load example are in [`data/README.md`](../../data/README.md).
 
-To re-run and re-embed outputs (executed with the repo's `pixi` env):
+**This folder is the shared A/B data layer.** `datasets.py` ← `preprocessing.py` ← `evaluation.py` are meant to be
+**imported read-only** by everyone (teammates work in their own `sandbox/<name>/` but reach these here). The
+[notebook template](../../pipeline/00_NOTEBOOK_TEMPLATE.ipynb) wires the import automatically; the minimal call
+sequence lives in [`data/README.md` → Load it](../../data/README.md#load-it-shared-ab-interface). Signatures may still
+evolve before the layer is promoted to a package — if you need stability, pin to a commit.
+
+To re-run and re-embed a notebook's outputs, after `pip install -r requirements.txt` from the repo root:
 
 ```bash
-pixi run --manifest-path <NeuroAcademy>/pyproject.toml python -m nbconvert \
-  --to notebook --execute --inplace 01_ingestion_and_ev.ipynb
+python -m nbconvert --to notebook --execute --inplace 01_ingestion_and_ev.ipynb
 ```
+
+(The maintainer runs the same command through the repo's private `pixi` env; plain `python` after the venv install works too.)
 
 ## Findings verified during exploration
 
