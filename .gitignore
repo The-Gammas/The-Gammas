@@ -40,3 +40,6 @@ AGENTS.local.md
 # Ignore both savefig outputs and viewer/preview render duplicates.
 sandbox/**/fig*.png
 **/_view_*.png
+
+# Local scratch / temp (throwaway files, chat figures) — never commit.
+tmp/
