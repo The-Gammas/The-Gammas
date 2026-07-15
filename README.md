@@ -54,8 +54,8 @@ flowchart LR
 ## ▶️ Start here
 
 1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
-2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-14.md).
-3. **Get the data.** Two finalists (A ≈ 100 subjects, B = 339) sit behind one loader interface; the dataset decision is still open. [`data/README.md`](data/README.md) is the canonical guide to **download, place and load** either one.
+2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-15.md).
+3. **Get the data.** Two finalists (A ≈ 100 subjects, B = 339) sit behind one loader interface; we're currently leaning **B** (see the [project plan](docs/project-plan.md)). [`data/README.md`](data/README.md) is the canonical guide to **download, place and load** either one.
 4. Work inside your own `sandbox/<name>/` folder, starting from [`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](pipeline/00_NOTEBOOK_TEMPLATE.ipynb) — its setup cells wire the data path and import the shared A/B loader for you.
 5. Read the short [contribution guide](CONTRIBUTING.md) before opening a PR.
 
