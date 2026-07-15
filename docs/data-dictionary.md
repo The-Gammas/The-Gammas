@@ -106,6 +106,9 @@ hcp_task_339/
 > `hcp_task_339/subjects/0/EVs` shows per-task EV folders (`tfMRI_EMOTION_*`, …); the signal is one level over in
 > `timeseries/`. **Confirmed:** 4 746 timeseries `.npy` (339 subjects × 7 tasks × 2 runs),
 > `tfMRI_WM_{LR,RL}` present — B is usable for the task project, not only rest.
+>
+> **Which of the 14 `bold##` files is WM?** `bold7` (RL) and `bold8` (LR). Run index 0 = **RL** in B (but **LR** in
+> A) — `load_timeseries` maps this for you; each run is segmented with *its own* EVs (`ds.RUN_LABELS[kind][run]`).
 
 ### Finalist B · rest — `hcp_rest/`
 ```
@@ -120,7 +123,7 @@ hcp/
 ├── behavior/
 │   ├── wm.csv                      # (5382, 9) consolidated WM behaviour  ← B's prediction target
 │   └── {emotion,gambling,language,relational,social}.csv
-├── pseudo_demographics.npy         # (339, 25) anonymised, z-scored covariates (candidate confounds)
+├── pseudo_demographics.npy         # (339, 25) SYNTHETIC z-scored covariates — NOT real age/sex/motion (see §5)
 ├── orig_ids.txt                    # pseudo-ID → real HCP ID
 └── subjects/<n>/EVs/…              # EV copies only — 0 timeseries here
 ```
@@ -132,12 +135,24 @@ hcp/
 | Object | Shape / form | What it is | Loaded by |
 |---|---|---|---|
 | `regions.npy` | **(360, 3)** `<U12` | `[ROI name, network(12-char), myelin]`; rows 0–179 = Right, 180–359 = Left | `region_table` |
+| `subjects_list.txt` (A) | 100 lines | Real HCP subject IDs (A). B has no such file — its cohort = sorted `subjects/` dir names | `load_subjects` |
 | `data.npy` (A) / `bold##…npy` (B) | **(360, frames)** float64 | Parcellated BOLD time series (WM run ≈ 405 frames; rest = 1200) | `load_timeseries` |
 | `EVs/<cond>.txt` | rows `(onset_s, dur_s, amp)` | Condition timing in **seconds** (FSL 3-column format) | `condition_frames` |
 | `Stats.txt` (A only) | ~46 lines `key: value` | Per-condition ACC & RT summary → the target | `_parse_stats` |
-| `wm.csv` (B) | **(5382, 9)** | `Subject, Run, ConditionName, ACC, ACC_NONTARGET, ACC_TARGET, MEDIAN_RT, …` | pandas |
-| `pseudo_demographics.npy` (B) | **(339, 25)** float64 | Anonymised, z-scored demographic covariates | numpy |
+| `wm.csv` (B) | **(5382, 9)** | `Subject, Run, ConditionName, ACC, ACC_NONTARGET, ACC_TARGET, MEDIAN_RT, MEDIAN_RT_NONTARGET, MEDIAN_RT_TARGET` | pandas → `behaviour_table` |
+| `pseudo_demographics.npy` (B) | **(339, 25)** float64 | **Synthetic** z-scored covariates (model-generated from resting-state FC) — **not** real age/sex/motion; do **not** use as confounds (circular with an FC predictor) | not used |
 | `hcp_atlas_339.npz` (B) | `coords (360,3)`, `labels_R (10242,)`, `labels_L (10242,)` | ROI centroid coordinates + surface-vertex→ROI maps | numpy (**not yet used** — see §8) |
+
+### Derived tables (what the code returns)
+
+A newcomer usually consumes these DataFrames, not the raw files above:
+
+| Function | Columns / shape | Notes |
+|---|---|---|
+| `region_table(spec)` | `roi_index, name, network_raw, hemi, network` (360 rows) | `network` de-truncated to the full Cole-Anticevic name |
+| `behaviour_table(spec)` | `subject, acc_0bk, acc_2bk, acc_cost, rt_0bk, rt_2bk, rt_cost` | ACC 0–1, RT in ms; `acc_2bk` is the target (§7) |
+| `signal_detection_table(spec)` | `subject, hit_0bk, fa_0bk, hit_2bk, fa_2bk` | **B only** (A raises); inputs for d′ — d′ itself not computed |
+| `condition_timeseries(spec, subj, level)` | ndarray `(360, 312)` | BOLD for one load, both runs; `runs=(0,)` → `(360, 156)` |
 
 ---
 
@@ -157,6 +172,8 @@ hcp/
 | **Glasser360Cortical** | The parcellation used for the timeseries. |
 | **ACC** | *Accuracy* — fraction of correct responses. In the files it is a per-condition **Median ACC**. |
 | **RT** | *Reaction Time* (ms). |
+| **BOLD** | *Blood-Oxygen-Level-Dependent* signal — what fMRI measures. Each `(360, frames)` array is the mean BOLD per ROI per frame (parcellated BOLD). |
+| **myelin** | Per-ROI myelin-content estimate (T1w/T2w ratio), the 3rd column of `regions.npy`. A structural property; not a target here. |
 
 ### EV condition names, by task
 Only **WM** matters for us; the others come bundled in B and are noise for this project.
