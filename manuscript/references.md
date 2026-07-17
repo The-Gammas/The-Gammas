@@ -22,6 +22,24 @@ Running bibliography, collected by the team. Annotations note why each is releva
   Balance of segregation/integration relates to cognitive ability. *(Resting-state — see the
   resting-state caveat in the [living project plan](../docs/project-plan.md#open-now).)*
   https://doi.org/10.1073/pnas.2022288118
+- **Chan M.Y., Park D.C., Savalia N.K., Petersen S.E., Wig G.S., Decreased segregation of brain
+  systems across the healthy adult lifespan** — *PNAS* 111(46):E4997–E5006, 2014.
+  Origin of the graph-theoretic **system segregation** metric — a within/between-network edge-fraction
+  balance, SS = (Bw − Bb)/Bw, **not** Newman modularity. Resting-state; segregation declines across the
+  adult lifespan. Cite as the origin (paired with Calder 2026) for the single claim that resting system
+  segregation is linked to cognition — the analogy our notebook draws for the 0-back baseline modularity,
+  qualified because 0-back is task, not rest.
+- **Calder C.N., Helmick C., Hashmi J.A., High brain network system segregation is differentially
+  linked with cognitive performance across the life span** — *Network Neuroscience* 10(2):352–373, 2026.
+  Life-span extension of Chan 2014: resting-state system segregation (Chan within/between edge-fraction
+  SS on a Schaefer 200-ROI / 7-network parcellation, **not** Newman modularity), n=296 across 18–89 y.
+  Higher SS links to better cognition, but the link is **age-dependent** — semantic in both age groups,
+  executive only in older adults; effects small (rs ≈ 0.2–0.3), the band our baseline-modularity result
+  (r ~0.18) sits inside. *(Caveat: resting-state, **not** an HCP 0→2-back template; our 0-back Newman
+  modularity is only a task analogue, and Calder's age-dependence is itself why a young-adult-only effect
+  need not match. Also reports adding SS gave no incremental predictive value over cognition — a direct
+  parallel to our "mostly general ability / trait FC" caveat.)*
+  https://doi.org/10.1162/NETN.a.542
 - **Cohen & D'Esposito, The Segregation and Integration of Distinct Brain Networks and Their
   Relationship to Cognition** — *J. Neurosci.* 36(48):12083–12094, 2016.
   35 healthy adults (**not HCP**; the n-back had 0-/2-/3-back blocks, behavioural correlations on 3-back
@@ -33,8 +51,12 @@ Running bibliography, collected by the team. Annotations note why each is releva
   https://doi.org/10.1523/JNEUROSCI.2965-15.2016
 - **Bassett & Sporns, Network neuroscience** — *Nature Neuroscience* 20(3):353–364, 2017.
   Foundational framing of the brain as a complex network.
-- **Segregated Systems of Human Brain Networks** — *Trends in Cognitive Sciences*, 2017.
-  Supports a network-level (rather than region-level) read of WM-related activity.
+- **Wig G.S., Segregated Systems of Human Brain Networks** — *Trends in Cognitive Sciences*
+  21(12):981–996, 2017.
+  Supports a network-level (rather than region-level) read of WM-related activity. Resting-state
+  system-segregation lineage (Chan 2014 → Calder 2026); the "segregation-maintenance" framing our
+  notebook borrows for the 0-back baseline is a **rest** concept, applied to a low-load **task**
+  condition only by analogy.
 - **Sporns O., Network attributes for segregation and integration in the human brain** —
   *Current Opinion in Neurobiology* 23(2):162–171, 2013.
   Defines the segregation/integration attributes our graph metrics (step 4) operationalize.
@@ -93,6 +115,12 @@ claim level. **Pending team discussion — not a team decision.***
   visual short-term memory capacity. *(Caveat: resting-state, n=22, change-detection task — supports the
   theoretical claim, not our task-based HCP design.)*
   https://doi.org/10.1371/journal.pone.0030468
+- **Avery E.W., Yoo K., Rosenberg M.D. et al., Distributed patterns of functional connectivity predict
+  working memory performance in novel healthy and memory-impaired individuals** — *Journal of Cognitive
+  Neuroscience* 32(2):241–255, 2020.
+  HCP N-back: predicts **2-back accuracy** out-of-sample from task FC at **r=0.36** (rest r=0.20) —
+  **our exact design and the correct WM-specific calibration anchor; our r≈0.35 replicates it.** *[verified]*
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC8004893/
 
 ## Background / methods
 
@@ -108,3 +136,10 @@ claim level. **Pending team discussion — not a team decision.***
   sPPI/gPPI/cPPI, beta-series) disagree substantially; condition correlations are **inflated by
   co-activation** ("simultaneous activations without communication"). Backs guardrail #5 (coactivation ≠ FC).
   https://doi.org/10.1038/s42003-024-07088-3
+- **Hedge C., Powell G., Sumner P., The reliability paradox: why robust cognitive tasks do not produce
+  reliable individual differences** — *Behavior Research Methods* 50:1166–1186, 2018.
+  Difference/contrast scores subtract away the true-score variance shared between conditions, leaving
+  mostly error, so a robust within-subject contrast can have near-zero between-subject reliability.
+  Explains our result that the 2bk−0bk fingerprint (between-run reliability ~0.02 vs ~0.33 per
+  condition) cannot predict individual differences. *[verified]*
+  https://doi.org/10.3758/s13428-017-0935-1
