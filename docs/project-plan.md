@@ -1,6 +1,6 @@
 # Living project plan
 
-**Last reviewed:** 15 July 2026  
+**Last reviewed:** 17 July 2026  
 **Stage:** Week 2 — direction provisionally set; **dataset (B) and hypothesis are the group's lean, pending Goutham's read + Friday's lock.**
 
 A working plan, not a claim that every stage is implemented. NMA projects are iterative: question,
@@ -80,9 +80,11 @@ Three non-exclusive reasons it could be flat, each with a lever we can test:
 | Noisy / ceiling-compressed target (raw `acc_2bk`) | **d′** — a cleaner, better-distributed target |
 | No true effect | **Permutation null** — the arbiter of whether any signal survives |
 
-If B + d′ still show nothing above the permutation null, a clean negative is itself a valid result
-(per the Project TA). Note: graph-theoretic metrics proper (modularity, efficiency, clustering) are
-a **different, still-untried** feature family — the negative so far is on FC reconfiguration and
+B + d′ were then run (next section): the reconfiguration **pattern did beat the null**, and an n = 100
+subsampling of B reproduces A's flat r (≈ 0.08 ± 0.15), so **A's null was underpowered, not a true
+absence** — the power lever was the right one. A clean negative would still have counted (per the
+Project TA). Note: graph-theoretic metrics proper (modularity, efficiency, clustering) are a
+**different, still-untried** feature family — the pilot negatives were on FC reconfiguration and
 triple-network features only.
 
 ## Pilot follow-up on dataset B (audited 15 Jul; reframed 17 Jul post-audit)
@@ -107,7 +109,7 @@ than the raw number suggests.
   pattern predicts (repeated-CV r ≈ 0.37; leakage-free cross-run r ≈ 0.28) and adds over single-state
   trait FC (0bk-only repeated-CV r ≈ 0.27); only the *scalar* directional summaries of reconfiguration
   (net integration index r ≈ 0.04, mean modularity change) do not.
-- **Report as** a pattern-vs-scalar dissociation: *"the multivariate load-reconfiguration pattern
+- **Report as** *(proposed framing — pending the team's read)* a pattern-vs-scalar dissociation: *"the multivariate load-reconfiguration pattern
   predicts WM in unseen subjects (repeated-CV r ≈ 0.37, leakage-free cross-run r ≈ 0.28, p < 0.001,
   robust to a DVARS proxy), consistent with Avery 2020; its scalar directional summaries do not"* —
   **not** as the seed-42-optimistic *"reconfiguration predicts at r = 0.40"*.
