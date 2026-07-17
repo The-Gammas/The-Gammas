@@ -120,7 +120,7 @@ claim level. **Pending team discussion — not a team decision.***
   Neuroscience* 32(2):241–255, 2020.
   HCP N-back: predicts **2-back accuracy** out-of-sample from task FC at **r=0.36** (rest r=0.20) —
   **the closest same-task/target WM benchmark and our calibration anchor; our r≈0.35 is consistent
-  with it** — a conceptual replication (their leave-one-out CPM vs our 5-fold RidgeCV over network
+  with it** — a conceptual replication (their 10-fold-CV CPM vs our 5-fold RidgeCV over network
   summaries), not an exact replication. *[verified]*
   https://pmc.ncbi.nlm.nih.gov/articles/PMC8004893/
 

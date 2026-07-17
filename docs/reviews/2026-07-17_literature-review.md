@@ -45,7 +45,7 @@ that survived verification are kept. Provenance is tagged per item:
 
 ### Gap 1 — Same-task circularity & the correct WM-specific benchmark
 - **Avery 2020** predicts 2-back accuracy from same-task N-back FC in novel HCP subjects at **r=0.36**
-  (rest FC r=0.20). This is the closest same-task/target design (their leave-one-out CPM vs our 5-fold
+  (rest FC r=0.20). This is the closest same-task/target design (their 10-fold-CV CPM vs our 5-fold
   RidgeCV); **our r≈0.35 is consistent with it** — a conceptual replication, not exact. **[verified]**
   <https://pmc.ncbi.nlm.nih.gov/articles/PMC8004893/>
 - Other WM-specific out-of-sample benchmarks: out-of-scanner List-Sorting from N-back FC **r=0.24**
