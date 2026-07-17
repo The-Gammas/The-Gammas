@@ -119,7 +119,9 @@ claim level. **Pending team discussion — not a team decision.***
   working memory performance in novel healthy and memory-impaired individuals** — *Journal of Cognitive
   Neuroscience* 32(2):241–255, 2020.
   HCP N-back: predicts **2-back accuracy** out-of-sample from task FC at **r=0.36** (rest r=0.20) —
-  **our exact design and the correct WM-specific calibration anchor; our r≈0.35 replicates it.** *[verified]*
+  **the closest same-task/target WM benchmark and our calibration anchor; our r≈0.35 is consistent
+  with it** — a conceptual replication (their leave-one-out CPM vs our 5-fold RidgeCV over network
+  summaries), not an exact replication. *[verified]*
   https://pmc.ncbi.nlm.nih.gov/articles/PMC8004893/
 
 ## Background / methods
@@ -139,7 +141,8 @@ claim level. **Pending team discussion — not a team decision.***
 - **Hedge C., Powell G., Sumner P., The reliability paradox: why robust cognitive tasks do not produce
   reliable individual differences** — *Behavior Research Methods* 50:1166–1186, 2018.
   Difference/contrast scores subtract away the true-score variance shared between conditions, leaving
-  mostly error, so a robust within-subject contrast can have near-zero between-subject reliability.
-  Explains our result that the 2bk−0bk fingerprint (between-run reliability ~0.02 vs ~0.33 per
-  condition) cannot predict individual differences. *[verified]*
+  mostly error, so a robust within-subject contrast can have near-zero between-subject reliability,
+  which severely attenuates (rather than logically precludes) prediction. Consistent with our 2bk−0bk
+  fingerprint (between-run reliability ~0.02 vs ~0.33 per condition) barely predicting individual
+  differences. *[verified]*
   https://doi.org/10.3758/s13428-017-0935-1

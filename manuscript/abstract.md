@@ -2,10 +2,9 @@
 
 > Two dated snapshots are kept side by side **for comparison**. The **current proposal (2026-07-17)**
 > reflects an automated literature review + a reliability analysis on dataset B; the **previous
-> snapshot (2026-07-10)** is preserved below unchanged. Neither replaces the live editing surface —
+> snapshot (2026-07-10)** is preserved **unchanged** below. Neither replaces the live editing surface —
 > the shared [Google Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
-> Abstract tab (drafted by Arefeh). The current proposal is offered for team discussion, not as a
-> decision.
+> Abstract tab (drafted by Arefeh). The current proposal is offered for team discussion, not a decision.
 
 ## Current proposal — 2026-07-17 (dissociation framing)
 
@@ -18,31 +17,33 @@ reconfiguration carries individual predictive signal beyond baseline FC. Using t
 change predicts WM performance in held-out subjects. We compute per-condition FC, a subject-level
 reconfiguration matrix (2-back−0-back), a 78-dimensional 12-network fingerprint, and 5-fold
 cross-validated RidgeCV prediction, evaluated against a permutation null (N=1000). Task/baseline FC
-predicts 2-back accuracy out-of-sample (r≈0.35, p<0.001; not explained by head motion), replicating
-connectome-based WM prediction (Avery et al. 2020, r=0.36). The load-driven reconfiguration change
-score, however, does not predict (r≈0.04). We trace this to measurement reliability: the 2-back−0-back
-fingerprint has near-zero between-run test-retest reliability (r≈0.02) versus ~0.33 for each
-single-condition fingerprint, so the contrast cannot support individual-difference prediction by
-construction — consistent with difference-score psychometrics. The predictive signal instead reflects
-trait FC (0-back FC alone predicts, r≈0.29) and largely general cognitive ability (controlling 0-back
-accuracy, partial r≈0.22); d′ retains signal under this control and is reported as a robustness target.
+predicts 2-back accuracy out-of-sample (r≈0.35, p<0.001; not explained by head motion), consistent
+with connectome-based WM prediction (Avery et al. 2020, r=0.36; a conceptual replication). The
+load-driven reconfiguration change score, however, does not predict (r≈0.04). We trace this to
+measurement reliability: the 2-back−0-back fingerprint has near-zero between-run reliability (r≈0.02)
+and near-chance cross-run subject identification, versus ~0.33 for each single-condition fingerprint.
+Such low reliability severely attenuates any association — consistent with, and helping explain, the
+near-zero prediction (difference-score psychometrics) — rather than making it impossible. The
+predictive signal instead reflects trait FC (0-back FC alone predicts, r≈0.29) and general cognitive
+ability (controlling 0-back accuracy attenuates it to a comparable partial r≈0.22–0.24 for accuracy
+and d′). d′ is the primary target on measurement grounds (separating sensitivity from response bias).
 For direction, individual integration change does not predict; only baseline 0-back modularity does,
 weakly (r≈0.18). We report an honest dissociation: FC predicts WM in unseen subjects, but load
-reconfiguration per se does not — a cautionary, reliability-grounded result for change-based network
-accounts.
+reconfiguration per se does not.
 
 **What changed vs the 2026-07-10 snapshot (and why):**
 - **One falsifiable, non-directional question** (does reconfiguration predict?), not three objectives.
-  Objective 2 (resting-state) dropped — the task dataset has no clean rest.
-- **Named target and numbers**: 2-back accuracy (d′ as robustness), 336 subjects, held-out CV,
-  permutation null — reads as a study, not a review.
-- **Honest framing**: the prediction replicates Avery 2020; the contribution is the *dissociation*
-  (reconfiguration does not predict) with a measurement-reliability explanation.
+  Objective 2 (resting-state) dropped from the MVP scope (kept as a possible extension; dataset B does
+  include resting-state runs).
+- **Named target and numbers**: 2-back accuracy (d′ on measurement grounds), 336 subjects, held-out
+  CV, permutation null — reads as a study, not a review.
+- **Honest framing**: the prediction is consistent with Avery 2020 (conceptual replication); the
+  contribution is the *dissociation* (reconfiguration does not predict) with a reliability explanation.
 - Terminology fixed to *low/high working-memory load*; "salience" → Cingulo-Opercular.
 
 ---
 
-## Previous snapshot — 2026-07-10 (preserved for comparison)
+## Previous snapshot — 2026-07-10 (preserved unchanged)
 
 > **Historical snapshot — not a current team decision.** Captured from the shared Google Doc on
 > **2026-07-10**, before Valeria Moraga's [research proposal](research-proposal.md).
@@ -73,9 +74,11 @@ whether these network properties **predict individual working-memory performance
 
 ### Open flags recorded with this snapshot
 
+See the [living project plan](../docs/project-plan.md#open-now) for current decisions.
+
 - **Objective 2 (resting-state / intrinsic organization):** the task dataset has no clean resting
-  state. Recommended narrowing: objectives **1 + 3** (task reconfiguration + prediction). *(Resolved in
-  the current proposal: dropped.)*
-- **Concretize:** a single falsifiable hypothesis, a named prediction target, the graph metrics, and
-  the prediction model. *(Resolved in the current proposal.)*
+  state. Decide whether to drop objective 2, reframe it as a caveat, or use a different loader.
+  Recommended narrowing: objectives **1 + 3** (task reconfiguration + prediction).
+- **Concretize:** a single falsifiable hypothesis, the named prediction target (from `Stats.txt`),
+  the graph metrics, and the prediction model — the abstract should read as a study, not a review.
 - **Terminology:** use *low / high working-memory load* (standard), avoid vague wording.

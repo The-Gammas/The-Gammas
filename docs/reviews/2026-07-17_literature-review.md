@@ -11,8 +11,8 @@ that survived verification are kept. Provenance is tagged per item:
 
 ## Bottom line
 
-- Our headline (out-of-sample r≈0.35 predicting 2-back accuracy from N-back FC) is **a replication of
-  Avery 2020 (r=0.36)**, not a discovery. Own it as replication.
+- Our headline (out-of-sample r≈0.35 predicting 2-back accuracy from N-back FC) is **consistent with
+  Avery 2020 (r=0.36)** — a conceptual replication (different model), not a discovery. Own it as such.
 - Our genuine, distinct contribution is the **dissociation**: the load-driven reconfiguration
   change-score does **not** predict WM (r≈0.04) while trait/baseline FC does (r≈0.29) — with a
   mechanistic reason (difference-score unreliability). Frame the study around this, not around "FC
@@ -45,7 +45,8 @@ that survived verification are kept. Provenance is tagged per item:
 
 ### Gap 1 — Same-task circularity & the correct WM-specific benchmark
 - **Avery 2020** predicts 2-back accuracy from same-task N-back FC in novel HCP subjects at **r=0.36**
-  (rest FC r=0.20). This is our exact design; **our r≈0.35 replicates it.** **[verified]**
+  (rest FC r=0.20). This is the closest same-task/target design (their leave-one-out CPM vs our 5-fold
+  RidgeCV); **our r≈0.35 is consistent with it** — a conceptual replication, not exact. **[verified]**
   <https://pmc.ncbi.nlm.nih.gov/articles/PMC8004893/>
 - Other WM-specific out-of-sample benchmarks: out-of-scanner List-Sorting from N-back FC **r=0.24**
   (rest 0.10) **[verified]** <https://pmc.ncbi.nlm.nih.gov/articles/PMC8413720/>; dynamic-FC CPM WM
@@ -58,7 +59,7 @@ that survived verification are kept. Provenance is tagged per item:
   studies) **[verified]** <https://www.biorxiv.org/content/10.1101/2023.11.14.566767.full.pdf>.
   Rigorous guards: predict out-of-scanner / cross-task behaviour (PMC8413720; PMC12439485).
 - **Verdict — CHANGE (cheap):** re-anchor calibration to Avery 2020 (r=0.36); declare same-context
-  inflation as a limitation. Our d′ (net of ability) is a partial guard.
+  inflation as a limitation. Our d′ (net of response bias) is a partial guard.
 
 ### Gap 2 — Novelty of the reconfiguration change-score null
 - A reconfiguration **magnitude** score *can* predict cognition (Thiele 2022, *Cereb Cortex*: more
@@ -86,9 +87,10 @@ that survived verification are kept. Provenance is tagged per item:
 ### Gap 4 — d′ vs accuracy as the HCP-WM target
 - The canonical FC→WM paper (Avery 2020) uses **raw 2-back accuracy**, not d′. The verified pass found
   no surviving evidence on HCP-WM d′ reliability (thin — treat with caution).
-- **Verdict — matiz:** lead with **accuracy** (comparable to Avery 0.36); keep **d′ as a
-  net-of-ability robustness target** (our audit shows d′ retains signal under the acc_0bk control).
-  Note the ~16 target / ~64 non-target trial count as a d′ reliability caveat.
+- **Verdict — NUANCE:** lead with **accuracy** (comparable to Avery 0.36); keep **d′ as the
+  measurement-clean primary target** (separates sensitivity from response bias). Under the acc_0bk
+  control, d′ and accuracy retain comparable partial signal (~0.24 vs ~0.22) — d′ is **not** more
+  robust here. Note the ~16 target / ~64 non-target trial count as a d′ reliability caveat.
 
 ---
 
@@ -109,7 +111,7 @@ that survived verification are kept. Provenance is tagged per item:
 | 2 | Reframe the null via difference-score reliability (+ Thiele 2022 contrast) | ADD | yes | ~20 min |
 | 3 | Optional: compute split-half reliability of the 2bk−0bk fingerprint (direct evidence) | ADD | yes | ~2–3 h |
 | 4 | Family leakage → one limitation sentence (Rosenblatt bound); drop A2/A3 | CONFIRM | yes | ~10 min |
-| 5 | Abstract: lead with accuracy; d′ as net-of-ability robustness | CHANGE | yes | ~15 min |
+| 5 | Abstract: lead with accuracy; d′ as measurement-clean primary target | CHANGE | yes | ~15 min |
 | 6 | Co-activation confound (Cole/Masharipov): declare; block-mean/6-s trim only if CV refactor stable | IMPROVE | declare: yes / re-run: maybe | 2 h – 2 d |
 
 **Out of scope this week:** feature reduction (78 features / 336 subj is fine for RidgeCV), dynamic-FC
