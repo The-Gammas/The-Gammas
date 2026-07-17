@@ -1,49 +1,45 @@
 # Abstract (draft)
 
 > Two dated snapshots are kept side by side **for comparison**. The **current proposal (2026-07-17)**
-> reflects an automated literature review + a reliability analysis on dataset B; the **previous
-> snapshot (2026-07-10)** is preserved **unchanged** below. Neither replaces the live editing surface —
-> the shared [Google Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
+> merges Valeria Moraga's abstract draft with the dataset-B results and reliability analysis, structured
+> to NMA's ABC…G; the **previous snapshot (2026-07-10)** is preserved **unchanged** below. Neither
+> replaces the live editing surface — the shared
+> [Google Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
 > Abstract tab (drafted by Arefeh). The current proposal is offered for team discussion, not a decision.
 
-## Current proposal — 2026-07-17 (dissociation framing)
+## Current proposal — 2026-07-17 (merge: Valeria's draft + dataset-B results)
 
-> Does load-driven functional-connectivity reconfiguration (0-back → 2-back) predict working-memory
-> performance in held-out subjects, over and above baseline connectivity?
+**Merge of Valeria Moraga's abstract draft** ([`sandbox/valeria/Abstract_v1.pdf`](../sandbox/valeria/Abstract_v1.pdf))
+**and the 17 Jul dataset-B results**, structured to NMA's ABC…G (246 words). <u>Underlined</u> = added in
+the merge; everything else is Valeria's prose, kept deliberately. Full rationale, authorship tiers and
+the ABC…G check: [`sandbox/jaime/docs/05_abstract_proposal.md`](../sandbox/jaime/docs/05_abstract_proposal.md).
 
-Working-memory (WM) load reconfigures functional connectivity (FC), but it is unclear whether that
-reconfiguration carries individual predictive signal beyond baseline FC. Using the HCP N-back dataset
-(336 subjects, Glasser 360 ROIs, 12 Cole-Anticevic networks), we test whether the 0-back→2-back FC
-change predicts WM performance in held-out subjects. We compute per-condition FC, a subject-level
-reconfiguration matrix (2-back−0-back), a 78-dimensional 12-network fingerprint, and 5-fold
-cross-validated RidgeCV prediction, evaluated against a permutation null (N=1000). Working-memory task
-FC predicts 2-back accuracy out-of-sample: the undifferenced network fingerprint reaches repeated-CV
-r≈0.28 (p<0.001; robust to a DVARS motion proxy), consistent with connectome-based WM prediction
-(Avery et al. 2020, r=0.36, 10-fold CV — same task and target, different model; a conceptual
-replication). The *multivariate* load reconfiguration pattern (2-back−0-back, 78-dimensional) also
-predicts (repeated-CV r≈0.37; leakage-free cross-run r≈0.28). What does NOT predict are the *scalar
-directional summaries* of reconfiguration — net between-network integration change (r≈0.04) and mean
-modularity change — a pattern-vs-scalar dissociation consistent with difference-score psychometrics
-(Hedge et al. 2018): subtracting two correlated conditions destroys the shared true-score variance a
-single scalar contrast needs, while a multivariate model can still aggregate weak-but-consistent signal
-across edges. The predictive signal is largely trait/general ability (single-condition 0-back FC alone
-predicts, repeated-CV r≈0.27; controlling 0-back accuracy attenuates to a comparable partial r≈0.22–0.24
-for accuracy and d′) and requires large n (at n≈100 the 78-feature fingerprint is unstable, r≈0.08). d′
-is the primary target on measurement grounds (separating sensitivity from response bias), not because it
-is more robust. For direction, individual integration change does not predict; only baseline 0-back
-modularity does, weakly (r≈0.18). We report an honest dissociation: the multivariate reconfiguration
-pattern predicts WM in unseen subjects, but its scalar directional summaries do not.
+> Cognitive demands reconfigure the brain's functional connectivity, and working-memory load is a
+> strong driver of this reorganisation. Whether that reconfiguration carries information about an
+> individual's ability, beyond what connectivity already shows at low load, remains unclear.
+> <u>We hypothesised that the change from low to high load would predict performance in unseen
+> individuals, and that it would be captured by directional summaries of network integration and
+> segregation.</u> Using Human Connectome Project N-back data from 336 participants, we estimated
+> connectivity for each condition across 360 cortical regions grouped into 12 networks, defined
+> reconfiguration as the difference between conditions, and summarised both as a 78-feature
+> fingerprint. We predicted 2-back performance using cross-validated ridge regression against a
+> permutation null. Task connectivity predicted performance out of sample (r ≈ 0.28), and so did the
+> multivariate reconfiguration pattern (r ≈ 0.37; r ≈ 0.28 across independent runs). <u>The
+> directional scalar summaries we expected to carry the effect did not (r ≈ 0.04). This
+> pattern-versus-scalar dissociation is what difference-score reliability predicts: subtracting two
+> highly correlated conditions removes the shared variance a single contrast depends on, while a
+> multivariate model can still pool weak but consistent signal across edges.</u> Load-driven
+> reconfiguration therefore carries individual predictive signal, but only when it is read as a
+> distributed pattern. Much of that signal is trait-general, since low-load connectivity alone
+> predicts nearly as well. <u>These task data cannot establish causality, and whether scalar
+> reorganisation indices are simply too unreliable for individual prediction is directly testable
+> with repeated sessions.</u>
 
-**What changed vs the 2026-07-10 snapshot (and why):**
-- **One falsifiable, non-directional question** (does reconfiguration predict?), not three objectives.
-  Objective 2 (resting-state) dropped from the MVP scope (kept as a possible extension; dataset B does
-  include resting-state runs).
-- **Named target and numbers**: 2-back accuracy (d′ on measurement grounds), 336 subjects, held-out
-  CV, permutation null — reads as a study, not a review.
-- **Honest framing**: the prediction is consistent with Avery 2020 (conceptual replication); the
-  contribution is the *pattern-vs-scalar dissociation* (the multivariate reconfiguration pattern
-  predicts; its scalar directional summaries do not) with a difference-score-reliability explanation.
-- Terminology fixed to *low/high working-memory load*; "salience" → Cingulo-Opercular.
+**Status — proposal for team discussion, not a decision.** As of 17 Jul the "scalar" framing here is
+flagged for revision: Azman (Project TA) reads pattern-versus-scalar as a feature-count comparison
+rather than the *meaning* of integration/segregation, and the reliability argument as over-weighted. To
+be reframed at Monday's workshop (W3D1), pending Goutham's read on the method — see the
+[17 Jul minutes](../docs/meetings/2026-07-17.md).
 
 ---
 
