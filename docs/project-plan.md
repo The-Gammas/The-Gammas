@@ -85,7 +85,7 @@ If B + d′ still show nothing above the permutation null, a clean negative is i
 a **different, still-untried** feature family — the negative so far is on FC reconfiguration and
 triple-network features only.
 
-## Pilot follow-up on dataset B (audited 15 Jul)
+## Pilot follow-up on dataset B (audited 15 Jul; reframed 17 Jul post-audit)
 
 B + d′ were run through the **same pipeline** (port validated — A reproduces exactly: fingerprint
 r = −0.0150, triple r = 0.0760). The result is a **genuine positive, but weaker and more specific**
@@ -98,14 +98,19 @@ than the raw number suggests.
 | Triple-network → `acc_2bk` | 0.37 (seed 42) | 0.14 | adds little over the fingerprint |
 
 - **Beats the permutation null** decisively (p < 0.001; null centred below 0 → no leakage) and is
-  **not driven by motion** (FC barely encodes DVARS, r = 0.04; survives residualising it out, r = 0.35).
+  **robust to a DVARS motion proxy** (FC barely encodes DVARS, r = 0.04; survives residualising it out,
+  r = 0.35; FD unavailable in the curated set).
 - **For `acc_2bk`, much of the signal is general cognitive ability.** Controlling `acc_0bk`, partial
   r falls to **0.22** and the fingerprint adds ~no R² over ability alone. **d′ retains signal** under
   the same control — an argument for **d′ as the primary target**.
-- **Mostly trait FC, not reconfiguration.** Single-state FC already predicts (0bk-only r = 0.29);
-  reconfiguration adds over that, it is not the whole effect.
-- **Report as** *"FC predicts WM performance in unseen subjects, r ≈ 0.35 out-of-sample, p < 0.001,
-  not explained by motion"* — **not** as *"reconfiguration predicts at r = 0.40"*.
+- **A pattern-vs-scalar dissociation (post-audit reframe, 17 Jul).** The *multivariate* reconfiguration
+  pattern predicts (repeated-CV r ≈ 0.37; leakage-free cross-run r ≈ 0.28) and adds over single-state
+  trait FC (0bk-only repeated-CV r ≈ 0.27); only the *scalar* directional summaries of reconfiguration
+  (net integration index r ≈ 0.04, mean modularity change) do not.
+- **Report as** a pattern-vs-scalar dissociation: *"the multivariate load-reconfiguration pattern
+  predicts WM in unseen subjects (repeated-CV r ≈ 0.37, leakage-free cross-run r ≈ 0.28, p < 0.001,
+  robust to a DVARS proxy), consistent with Avery 2020; its scalar directional summaries do not"* —
+  **not** as the seed-42-optimistic *"reconfiguration predicts at r = 0.40"*.
 
 Detail, code and the full check: [`sandbox/jaime/04_goutham_pipeline_on_B.ipynb`](../sandbox/jaime/04_goutham_pipeline_on_B.ipynb).
 
