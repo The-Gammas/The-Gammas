@@ -24,6 +24,10 @@ so that they do not silently become interchangeable:
   and open decisions; dated meeting notes preserve when the team accepts or rejects a proposal.
 - **Supporting record:** [`references.md`](references.md) is the annotated bibliography and
   [`prior-work.md`](prior-work.md) documents internal explorations.
+- **Writing criteria:** [`writing-guide.md`](writing-guide.md) holds the shared standard for the
+  abstract (NMA's **ABC…G** structure), Abstract Writing Day, source use and the W3D5 slides
+  (1 slide / 1 min per person). NMA course guidance is canonical there; UW–Madison material is
+  supplementary. Review drafts against it rather than against personal taste.
 
 The Google Doc tabs map to the repository as follows:
 
