@@ -142,7 +142,9 @@ claim level. **Pending team discussion — not a team decision.***
   reliable individual differences** — *Behavior Research Methods* 50:1166–1186, 2018.
   Difference/contrast scores subtract away the true-score variance shared between conditions, leaving
   mostly error, so a robust within-subject contrast can have near-zero between-subject reliability,
-  which severely attenuates (rather than logically precludes) prediction. Consistent with our 2bk−0bk
-  fingerprint (between-run reliability ~0.02 vs ~0.33 per condition) barely predicting individual
-  differences. *[verified]*
+  which severely attenuates (rather than logically precludes) prediction. In our case it bites the
+  **scalar** reconfiguration summary — the 2bk−0bk integration index barely predicts (r≈0.04), and the
+  raw difference features are low-reliability (feature-wise ~0.02 vs ~0.33 per condition) — but **not**
+  the multivariate pattern, which still predicts out-of-sample (leakage-free cross-run r≈0.28) by
+  aggregating weak-but-consistent signal across edges. *[verified]*
   https://doi.org/10.3758/s13428-017-0935-1
