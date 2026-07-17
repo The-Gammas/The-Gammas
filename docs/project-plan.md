@@ -139,6 +139,7 @@ Detail, code and the full check: [`sandbox/jaime/04_goutham_pipeline_on_B.ipynb`
 ## Sources
 
 - Meeting notes: [10 July](meetings/2026-07-10.md) · [14 July](meetings/2026-07-14.md) · [15 July](meetings/2026-07-15.md).
+- Literature reviews → [`reviews/`](reviews/): e.g. the [2026-07-17 automated review](reviews/2026-07-17_literature-review.md) (WM-prediction benchmarks, same-task calibration, change-score reliability).
 - The shared **"Ideas" Google Doc** (owner: Valeria) — its *Main Tasks* tab maps to the working stages;
   see [`../manuscript/README.md`](../manuscript/README.md) for how its tabs map into the repo.
 
