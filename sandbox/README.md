@@ -3,6 +3,10 @@
 Each team member has one folder for notebooks, scripts and notes that are still being explored.
 Everything here is visible to the group, but it is not yet part of the shared pipeline.
 
+Some sandboxes already contain working prototypes. Before rebuilding a stage, check the root
+[`README`](../README.md), the [living project plan](../docs/project-plan.md) and the originating
+sandbox, then share partial work so the team can compare implementations.
+
 ```text
 sandbox/
 ├── jaime/
@@ -23,4 +27,3 @@ sandbox/
 When an exploration is ready for the whole group, make a clean explanatory copy in
 [`pipeline/`](../pipeline/) and preserve a link to the original sandbox work. The sandbox copy
 stays as the record of how the idea developed.
-

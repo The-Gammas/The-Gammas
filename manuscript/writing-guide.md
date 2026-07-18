@@ -26,9 +26,9 @@ Canonical NMA sources, all in the course clone:
 24 Jul)**, via [Airtable](https://airtable.com/shrvoz2N9UulAVqqU).
 
 > Note on dates: NMA's own record of the abstract is explicitly **"not used for matching or
-> evaluation"** and its day is W3D1. Our **Fri 17 Jul** date is Azman's, not NMA's. That is a real
-> deadline for us, but it is not the course's — and W3D1 is a full workshop day *for revising it*.
-> The abstract we send today is not final.
+> evaluation"** and its day is W3D1. **Fri 17 Jul** was Azman's progress-check date; W3D1 is the full
+> workshop for revising the abstract. Confirm the authoritative submission status with Azman or the
+> portal rather than treating the 17 July snapshot as final.
 
 ---
 

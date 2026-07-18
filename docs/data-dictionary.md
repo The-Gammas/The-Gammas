@@ -4,8 +4,9 @@ Where the data come from, how they sit on disk, and **what is inside every file*
 gitignored in both repos — only this document travels. Read top to bottom: it funnels from
 *provenance* → *loaders* → *layout* → *file-by-file variables* → *what the code hands you*.
 
-> **One idea to hold:** **4 folders + 1 atlas = 2 datasets, not 4.** Finalist A is one folder;
-> Finalist B is one loader (`load_hcp`) that unpacks into 3 folders + an atlas. Everything is an
+> **One idea to hold:** **4 folders + 1 atlas = 2 cohorts, not 4.** Cohort A is one folder;
+> cohort B is one loader (`load_hcp`) that unpacks into 3 folders + an atlas. B is the current
+> primary analysis cohort; A is the independent external-validation cohort. Everything is an
 > official NMA/OSF download; the only local convention is renaming B's task folder to
 > `hcp_task_339` so it can coexist with A's `hcp_task/`.
 
@@ -23,12 +24,12 @@ gitignored in both repos — only this document travels. Read top to bottom: it 
 
 ---
 
-## 2 · The two finalists — one loader each, what each delivers
+## 2 · The two cohorts — one loader each, what each delivers
 
 Both are NMA-curated HCP subsets with the **same** task, parcellation and network logic. They are
 **different cohorts** (see §7), packaged differently, and reached by **different official loaders**.
 
-| | **Finalist A** | **Finalist B** |
+| | **Cohort A · external validation** | **Cohort B · primary MVP** |
 |---|---|---|
 | Official loader | [`load_hcp_task_with_behaviour`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) | [`load_hcp`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp.ipynb) |
 | Subjects | 100 | 339 (**336 analytic**, see §6) |
@@ -40,7 +41,7 @@ Both are NMA-curated HCP subsets with the **same** task, parcellation and networ
 | Delivers → folder(s) | `hcp_task/` | `hcp_task_339/` · `hcp_rest/` · `hcp/` · `hcp_atlas_339.npz` |
 
 > **Name trap (stated once).** Two official loaders read the **same 339-subject task archive**:
-> `load_hcp_task` exposes *only* the task time series (no behaviour); **`load_hcp` is Finalist B** and
+> `load_hcp_task` exposes *only* the task time series (no behaviour); **`load_hcp` is cohort B** and
 > adds rest + behaviour + atlas. The official B task folder is called `hcp_task/`; we rename it
 > **`hcp_task_339`** locally so it does not collide with A's different 100-subject `hcp_task/`.
 > `load_hcp_retino` (retinotopy) is unrelated and never downloaded.
@@ -51,9 +52,9 @@ Both are NMA-curated HCP subsets with the **same** task, parcellation and networ
 
 ```text
 data/                                        ≈9.1 GB · all gitignored (except data/README.md + this doc)
-├── A_load_hcp_task_with_behaviour/          Finalist A
+├── A_load_hcp_task_with_behaviour/          Cohort A · external validation
 │   └── hcp_task/            1.1 GB            task time series + EVs + per-subject Stats.txt
-├── B_load_hcp/                              Finalist B  (8.1 GB)
+├── B_load_hcp/                              Cohort B · primary MVP  (8.1 GB)
 │   ├── hcp_task_339/        3.7 GB            task time series (timeseries/) + EVs (EVs/), split apart
 │   ├── hcp_rest/            4.4 GB            resting-state, 4 runs
 │   ├── hcp/                  17 MB            behaviour CSVs + demographics + pseudo→real ID map
@@ -115,7 +116,7 @@ metadata; not used directly by the pipeline.
 
 ---
 
-### 4.2 · Finalist A — `hcp_task/`
+### 4.2 · Cohort A — `hcp_task/`
 
 Task time series, EVs and behaviour live **together** under each run folder.
 
@@ -169,7 +170,7 @@ categories × 2 runs into `acc_0bk`, `acc_2bk`, `rt_0bk`, `rt_2bk`.
 
 ---
 
-### 4.3 · Finalist B — `B_load_hcp/`
+### 4.3 · Cohort B — `B_load_hcp/`
 
 Same task, but **time series and EVs are split into separate branches**, and behaviour is moved to
 central CSVs. Pseudo-IDs `0…338` throughout.
@@ -261,8 +262,8 @@ Enables painting any per-ROI value onto a brain surface (e.g. where 0→2-back r
 ## 5 · What the code hands you (derived layer)
 
 A newcomer usually consumes these **DataFrames / arrays**, not the raw files above. All sit behind the
-shared A/B interface in [`sandbox/jaime/`](../sandbox/jaime/) — `datasets.py` (I/O) ←
-`preprocessing.py` (transforms) ← `evaluation.py` (split + QC). Switch dataset with `spec_a` / `spec_b`;
+shared A/B interface in [`sandbox/jaime/`](../sandbox/jaime/) — `datasets.py` (I/O) →
+`preprocessing.py` (transforms) → `evaluation.py` (split + QC). Switch dataset with `spec_a` / `spec_b`;
 nothing downstream branches.
 
 | Function | Returns | Notes |
@@ -293,18 +294,20 @@ targets exposed by `behaviour_table`:
 | Target | Definition | Note |
 |---|---|---|
 | `acc_0bk` | mean 0-back accuracy | near-ceiling (≈0.93) → little variance |
-| **`acc_2bk`** | mean 2-back accuracy | **primary**: A ≈ 0.54–0.99; B ≈ 0.41–1.00 (336 analytic) |
+| **`acc_2bk`** | mean 2-back accuracy | **reporting/validation anchor**: A ≈ 0.54–0.99; B ≈ 0.41–1.00 (336 analytic) |
 | `acc_cost` | `acc_2bk − acc_0bk` | load cost (mostly < 0) |
 | `rt_2bk`, `rt_cost` | median RT (ms) | speed alternatives |
 
-**d′ (B only).** A cleaner sensitivity measure than raw accuracy (separates it from response bias),
-built from `wm.csv`: `hit = ACC_TARGET`, `fa = 1 − ACC_NONTARGET`, `d′ = z(hit) − z(fa)`. Needs an
-extreme-rate correction (hit=1 / fa=0 blow up z) — a prespecified team choice. A cannot supply it
-(§4.2). Caveat for either target: bounded proportion with a ceiling — consider a logit transform.
+**d′ (B only).** A measurement-focused companion to raw accuracy (it separates sensitivity from
+response bias), built from `wm.csv`: `hit = ACC_TARGET`, `fa = 1 − ACC_NONTARGET`,
+`d′ = z(hit) − z(fa)`. The extreme-rate correction is implemented and checked in notebook `04` §5:
+loglinear and 1/2N clipping give near-identical results. A cannot supply clean d′ (§4.2). Caveat for
+either target: bounded proportion with a ceiling; a logit transform remains a possible sensitivity
+analysis.
 
 ---
 
-## 7 · A vs B decision + cohort overlap
+## 7 · A/B roles + cohort overlap
 
 | | **A** | **B** |
 |---|---|---|
@@ -317,9 +320,11 @@ extreme-rate correction (hit=1 / fa=0 blow up z) — a prespecified team choice.
 > **Cohorts are mostly independent, not nested:** only **35 subjects are shared** (404 unique people
 > across A∪B), verified by mapping A's real IDs against B's `orig_ids.txt`. Pooling A∪B would add only
 > ~65 subjects over B while forcing two heterogeneous pipelines and deduplicating the overlap to avoid
-> leakage — so **B alone is the clean path**. Reproduced in
-> [`sandbox/jaime/03` §6](../sandbox/jaime/03_dataset_comparison.ipynb). Full A/B/C costing:
-> [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb).
+> leakage — so **B alone is the clean primary training cohort**. A remains useful as a separate
+> external-validation cohort: train on the 301 B-only participants and test on all 100 A participants,
+> as implemented in [`sandbox/jaime/05`](../sandbox/jaime/05_dataset_A_external_validation.ipynb).
+> Overlap analysis: [`sandbox/jaime/03` §6](../sandbox/jaime/03_dataset_comparison.ipynb). Original
+> A/B/C costing: [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb).
 
 ---
 

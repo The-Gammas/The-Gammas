@@ -2,6 +2,10 @@
 
 Running bibliography, collected by the team. Annotations note why each is relevant.
 
+> **Status (18 Jul):** evidence record, not a task tracker. The verified numerical findings remain
+> valid; the final project framing is still under team review. Current decisions live in the
+> [project plan](../docs/project-plan.md) and [17 July minutes](../docs/meetings/2026-07-17.md).
+
 ## Core anchors
 
 - **Flexible adaptation of task-positive brain networks predicts efficiency of evidence
@@ -19,8 +23,8 @@ Running bibliography, collected by the team. Annotations note why each is releva
 
 - **Wang R. et al., Segregation, integration, and balance of large-scale resting brain networks
   configure different cognitive abilities** — *PNAS* 118(23), 2021.
-  Balance of segregation/integration relates to cognitive ability. *(Resting-state — see the
-  resting-state caveat in the [living project plan](../docs/project-plan.md#open-now).)*
+  Balance of segregation/integration relates to cognitive ability. *(Resting-state — out of the
+  current MVP; see the [living project plan](../docs/project-plan.md#confirmed-direction).)*
   https://doi.org/10.1073/pnas.2022288118
 - **Chan M.Y., Park D.C., Savalia N.K., Petersen S.E., Wig G.S., Decreased segregation of brain
   systems across the healthy adult lifespan** — *PNAS* 111(46):E4997–E5006, 2014.

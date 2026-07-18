@@ -14,6 +14,23 @@ interface; command-line Git is equally welcome.
 Files shared by everyone — `README.md`, `docs/`, `pipeline/` and future common helpers — should be
 changed by the agreed integrator or through a small pull request.
 
+## Keeping status coherent
+
+When work changes the project state:
+
+1. Preserve the evidence in the relevant notebook or dated meeting note.
+2. Update [`docs/project-plan.md`](docs/project-plan.md), the detailed living status.
+3. Update the short table in [`README.md`](README.md).
+4. Leave historical minutes, proposals and transcriptions intact; add a pointer to the living plan if
+   their old status could now mislead a reader.
+
+Record TA/reviewer comments as attributed feedback until the team evaluates them against the analysis.
+Do not turn one person's preference into a method change or discarded finding without supporting
+evidence and an explicit team decision.
+
+Before reimplementing an existing stage, share the partial work and compare it with the linked
+prototype. A sandbox result is not automatically the final pipeline, but it is also not invisible.
+
 ## Everyday flow
 
 1. **Pull** or sync the latest `main`.
@@ -58,5 +75,4 @@ To keep the `main` branch stable (and prevent our group chat from devolving into
 2. Review the work with at least one teammate.
 3. Copy only the clear, reproducible story into `pipeline/`.
 4. Preserve authorship and link back to the originating sandbox notebook.
-5. Update the status table in the main README.
-
+5. Update the living project plan, then the status table in the main README.

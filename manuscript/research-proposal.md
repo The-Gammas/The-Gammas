@@ -1,6 +1,9 @@
 # Research proposal — synthesis for team review
 
 > **Status:** Proposal for team discussion; **not an accepted project decision**.
+> **18 Jul pointer:** the proposal remains the attributable source of the original hypothesis, but
+> implementation and results have moved beyond it. Use the [living project plan](../docs/project-plan.md)
+> for the current cohorts, tested method and open decisions.
 >
 > **Source contribution:** Valeria Moraga, *Research Question Development*, received via Discord
 > ([source PDF](../sandbox/valeria/Research%20Question%20Development.pdf) ·
