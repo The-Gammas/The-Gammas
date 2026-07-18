@@ -1,7 +1,8 @@
 # Manuscript
 
-The scientific write-up: from the abstract (due **Fri Jul 17**) toward the final report /
-presentation (week 3).
+The scientific write-up: the abstract enters its NMA workshop on **Mon 20 Jul**, followed by the final
+presentation on **Fri 24 Jul**. The 17 July deliverable was Azman's progress check, not a frozen final
+abstract.
 
 ## Source and status model
 
@@ -9,7 +10,7 @@ This folder separates source contributions, proposals, accepted decisions and ma
 so that they do not silently become interchangeable:
 
 - **Live abstract:** the shared multi-tab Google Doc titled **“Ideas”** remains the single editing
-  surface for the submitted abstract (owner: Valeria Moraga; the *Abstract* tab was drafted by
+  surface for the team abstract (owner: Valeria Moraga; the *Abstract* tab was drafted by
   Arefeh) — [open Doc](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit).
 - **Proposal for team review:** [`research-proposal.md`](research-proposal.md) condenses Valeria
   Moraga's *Research Question Development* contribution into the
@@ -17,11 +18,12 @@ so that they do not silently become interchangeable:
   explicitly a proposal, not a record of team agreement; the
   [PDF](../sandbox/valeria/Research%20Question%20Development.pdf) and
   [Markdown transcription](../sandbox/valeria/research-question-development.md) remain unchanged.
-- **Historical abstract snapshot:** [`abstract.md`](abstract.md) preserves the 10 July Google Doc
-  text for provenance. Its content predates the research proposal and is not the current team
-  decision.
-- **Accepted direction:** [`../docs/project-plan.md`](../docs/project-plan.md) records the living plan
-  and open decisions; dated meeting notes preserve when the team accepts or rejects a proposal.
+- **Dated abstract snapshots:** [`abstract.md`](abstract.md) contains the 17 July merge proposal and
+  preserves the 10 July Google Doc text unchanged below it. The current proposal is queued for
+  Monday's evidence-based review; neither snapshot replaces the live Google Doc.
+- **Current direction:** [`../docs/project-plan.md`](../docs/project-plan.md) records the living plan,
+  verified results and open decisions; dated meeting notes preserve why a proposal was accepted,
+  rejected or deferred.
 - **Supporting record:** [`references.md`](references.md) is the annotated bibliography and
   [`prior-work.md`](prior-work.md) documents internal explorations.
 - **Writing criteria:** [`writing-guide.md`](writing-guide.md) holds the shared standard for the
@@ -35,6 +37,11 @@ The Google Doc tabs map to the repository as follows:
 - *Main Tasks* → [`../docs/project-plan.md`](../docs/project-plan.md)
 - *Literature Related* → [`references.md`](references.md)
 - *Abstract* → dated snapshots such as [`abstract.md`](abstract.md)
+
+**Current next step:** on Monday, review the 78-feature method and compare the pattern-vs-scalar,
+integration/segregation and B→A-validation framings. Retain, refine or combine them according to the
+evidence and team judgment, then record the selected story in the living plan before capturing
+another snapshot.
 
 ## Attribution and review workflow
 

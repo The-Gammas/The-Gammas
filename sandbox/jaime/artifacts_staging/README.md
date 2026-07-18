@@ -8,9 +8,10 @@ Current local outputs:
 - `regions.csv` — ROI, network and hemisphere table
 - `behaviour.csv` — per-subject behavioural summaries
 - `splits.json` — exploratory subject-level train/test and development folds
-- `network_roi_counts.csv` — aggregate ROI count created during exploration; the current notebooks
-  calculate the same table but do not yet export this file
 
-Do not edit the subject-level outputs by hand. The first three files can be regenerated from the
-ingestion notebook; add an explicit export for `network_roi_counts.csv` before promoting it. Keep
-all subject-level files outside the public repository.
+Other ignored personal notes may appear here locally (for example, a teach-back speech); they are not
+analysis deliverables. The notebooks calculate network ROI counts but do not currently export a
+`network_roi_counts.csv` file.
+
+Do not edit the subject-level outputs by hand. The three listed data files can be regenerated from
+the ingestion notebook. Keep all subject-level files outside the public repository.

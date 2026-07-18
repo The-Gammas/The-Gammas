@@ -1,5 +1,9 @@
 # Abstract (draft)
 
+> **Status checked 18 Jul:** the 17 July merge remains the current repository proposal and is queued
+> for Monday's team workshop. It is not a final decision; the shared Google Doc remains the live
+> editing surface.
+>
 > Two dated snapshots are kept side by side **for comparison**. The **current proposal (2026-07-17)**
 > merges Valeria Moraga's abstract draft with the dataset-B results and reliability analysis, structured
 > to NMA's ABC…G; the **previous snapshot (2026-07-10)** is preserved **unchanged** below. Neither
@@ -35,10 +39,12 @@ the ABC…G check: [`sandbox/jaime/docs/05_abstract_proposal.md`](../sandbox/jai
 > reorganisation indices are simply too unreliable for individual prediction is directly testable
 > with repeated sessions.</u>
 
-**Status — proposal for team discussion, not a decision.** As of 17 Jul the "scalar" framing here is
-flagged for revision: Azman (Project TA) reads pattern-versus-scalar as a feature-count comparison
-rather than the *meaning* of integration/segregation, and the reliability argument as over-weighted. To
-be reframed at Monday's workshop (W3D1), pending Goutham's read on the method — see the
+**Status — proposal for team discussion, not a decision.** On 17 Jul Azman (Project TA) commented that
+pattern-versus-scalar could read as a feature-count comparison rather than the *meaning* of
+integration/segregation, and that the reliability argument may be over-weighted. That is one framing
+comment, not a veto of the finding. At Monday's workshop the team will evaluate this wording against
+the method, robustness checks and competing B→A-validation story, then retain, refine or replace it
+based on the evidence. Goutham's read on the method is still pending — see the
 [17 Jul minutes](../docs/meetings/2026-07-17.md).
 
 ---

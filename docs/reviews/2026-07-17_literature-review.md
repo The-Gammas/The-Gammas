@@ -11,6 +11,12 @@ that survived verification are kept. Provenance is tagged per item:
 > and [`../../sandbox/jaime/04_goutham_pipeline_on_B.ipynb`](../../sandbox/jaime/04_goutham_pipeline_on_B.ipynb)
 > (post-audit pattern-vs-scalar reframe). This file is the **evidence base**; the citation list lives in
 > [`../../manuscript/references.md`](../../manuscript/references.md).
+>
+> **18 Jul pointer:** the evidence and numbers remain useful. "Pattern vs scalar" is an active
+> candidate finding, neither a settled headline nor discarded because of one framing comment. The
+> team will decide its weight from the method and robustness evidence; current options and next
+> actions live in the [project plan](../project-plan.md) and
+> [17 July minutes](../meetings/2026-07-17.md).
 
 ---
 

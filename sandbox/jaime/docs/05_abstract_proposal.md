@@ -3,6 +3,13 @@
 **Author:** Jaime Pineda · **Version:** v2 · **Date:** 2026-07-17 · **Status:** proposal for group
 review, not a team decision, and not a replacement for the shared Google Doc.
 
+> **Status update, 18 Jul:** preserved as the pre-workshop merge. The cohort discrepancy noted below
+> is resolved (B = primary analysis, A = external validation). The scientific framing is still open:
+> Azman questioned whether "pattern vs scalar" communicates scientific meaning and suggested
+> considering external validation as the headline. This is feedback, not a veto; the team will retain,
+> refine or replace the framing according to the method and evidence. See the
+> [living plan](../../../docs/project-plan.md).
+
 **Question it answers:** can Valeria's corrected draft and the 17 Jul results draft be merged into one
 abstract that meets NMA's required structure inside the word limit?
 
@@ -23,7 +30,7 @@ at 246 words.
 
 | Source | What it contributed |
 |---|---|
-| [`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf) (Valeria Moraga, 17 Jul, via Slack) | The corrected prose, the neutral register, the methods sentences, the trait caveat, and the bibliography. Her §3 opener is the seed of **A**, and her closing question of §3 is **B** almost verbatim |
+| [`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf) (Valeria Moraga, 17 Jul, via Discord) | The corrected prose, the neutral register, the methods sentences, the trait caveat, and the bibliography. Her §3 opener is the seed of **A**, and her closing question of §3 is **B** almost verbatim |
 | [`manuscript/abstract.md`](../../../manuscript/abstract.md), current proposal, 17 Jul | The results, the numbers, and the difference-score mechanism |
 | [`04_goutham_pipeline_on_B.ipynb`](../04_goutham_pipeline_on_B.ipynb) | Every number below. Goutham's FC pipeline on dataset B, with one p-value detail noted in the notebook |
 | NMA [`projects/docs/project_guidance.md`](../../../../../../official/course-content/nma_course_content/projects/docs/project_guidance.md) and [`TrainIllusionDataProject.ipynb`](../../../../../../official/course-content/nma_course_content/projects/modelingsteps/TrainIllusionDataProject.ipynb) Step 10 | The **ABC…G** structure, which is canonical, and the reason C and G are now present |
@@ -31,8 +38,8 @@ at 246 words.
 | The 10 Jul snapshot in [`manuscript/abstract.md`](../../../manuscript/abstract.md) | The team's **original** segregation and integration framing, which is what makes C honest |
 
 Bibliography is **not duplicated here**, see [`manuscript/references.md`](../../../manuscript/references.md).
-Valeria's refs 6 (Calder 2026) and 7 (Finc 2020) are new to our list and should be folded in. Finc is
-close enough to our topic that it deserves more than a passing cite.
+Valeria's refs 6 (Calder 2026) and 7 (Finc 2020) were folded into the team bibliography on 17 July.
+Finc is close enough to our topic that it still deserves a full team read before the abstract lock.
 
 ---
 
@@ -144,10 +151,10 @@ r ≈ 0.22 to 0.24). Those belong in Results. Every number that survived changes
 
 ## Open, needs the group rather than me
 
-1. **N discrepancy, unresolved.** This says 336 (dataset B). [`docs/project-plan.md`](../../../docs/project-plan.md)
-   still records `load_hcp_task_with_behaviour` (100 subjects). Either B is decided and the plan is
-   stale, or the abstract is ahead of the decision. **This must be settled before submission**, it is
-   the one error a reader would catch immediately.
+1. **N discrepancy, resolved after this draft.** The current MVP uses B (336 analytic participants)
+   for the primary analysis and A (100 participants) for external validation; the cohorts are not
+   merged. Formal team confirmation remains part of Monday's method lock. See
+   [`docs/project-plan.md`](../../../docs/project-plan.md).
 2. **The last sentence is the most attackable.** Claiming scalar reorganisation indices may be too
    unreliable for individual prediction is a real claim about metrics the field uses. The hedge is
    kept and the test that would settle it is named. **Goutham should sign it off**, this is his side

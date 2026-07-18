@@ -5,10 +5,10 @@
 **Neuromatch Academy · CompNeuro 2026 · Pod Ifrit Ras el Hanout · Group 1**
 
 [![Neuromatch CompNeuro 2026](https://img.shields.io/badge/Neuromatch-CompNeuro_2026-5e35b1)](https://compneuro.neuromatch.io/tutorials/intro.html)
-[![Course week 2](https://img.shields.io/badge/course-week_2-1e88e5)](https://compneuro.neuromatch.io/tutorials/Schedule/daily_schedules.html)
+[![Course weeks 2–3](https://img.shields.io/badge/course-between_weeks_2--3-1e88e5)](https://compneuro.neuromatch.io/tutorials/Schedule/daily_schedules.html)
 [![Dataset HCP N-back](https://img.shields.io/badge/dataset-HCP_N--back_(A%2FB)-c62828)](data/README.md)
 [![Atlas Glasser 360](https://img.shields.io/badge/atlas-Glasser_360_·_Cole--Anticevic-00897b)](sandbox/jaime/02_eda_and_data_dictionary.ipynb)
-[![Abstract due Fri 17 Jul](https://img.shields.io/badge/abstract_due-Fri_17_Jul-fb8c00)](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
+[![Abstract workshop Mon 20 Jul](https://img.shields.io/badge/abstract_workshop-Mon_20_Jul-fb8c00)](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
 [![Pod Zoom](https://img.shields.io/badge/pod_Zoom-join_room-2d8cff?logo=zoom&logoColor=white)](https://zoom.us/j/7944834775?pwd=M016NlExWm44ZDhRSEk0ZmROaURSZz09)
 
 </div>
@@ -21,13 +21,17 @@
 >
 > *The Project TA's north star is **prediction on unseen subjects**. Functional connectivity and graph metrics are candidate **features**, not the goal — and the hypothesis stays falsifiable.*
 
-**Status — Week 2 (13–17 Jul):** building the pipeline toward the **abstract, due Fri 17 Jul**. Personal exploration lives in `sandbox/`; only group-reviewed notebooks move into `pipeline/`.
+**Status — 18 Jul:** the FC/prediction pilot is verified on `main`; the method and scientific story
+remain under team review. On **Mon 20 Jul** we will align the open work and turn it into the sprint for
+the final week (20–24 Jul). Personal exploration lives in `sandbox/`; only group-reviewed notebooks
+move into `pipeline/`.
 
 ---
 
 ## 🔬 The pipeline
 
-Six steps from raw BOLD to a tested prediction. Data hands off sequentially — steps 1–2 unblock everyone, so they go first.
+Five steps from raw BOLD to a tested prediction. This is the conceptual workflow; the table below
+records what currently exists, not a fixed assignment for the final week.
 
 ```mermaid
 flowchart LR
@@ -41,21 +45,25 @@ flowchart LR
 
 | Stage | State | Lead(s) | Working location |
 |---|---|---|---|
-| 1 · Ingestion + EV segmentation | 🟢 In progress | Jaime | [`sandbox/jaime/`](sandbox/jaime/) · [framing](sandbox/jaime/00_framing_and_dataset_choice.ipynb) · [EDA + dictionary](sandbox/jaime/02_eda_and_data_dictionary.ipynb) |
-| 2 · Functional connectivity | ⚪ Planned | Valeria · Arefeh | sandbox first |
-| 3 · Matrices → graphs | ⚪ Planned | Goutham | sandbox first |
-| 4 · Graph metrics | ⚪ Planned | Kerem · Arefeh | sandbox first |
-| 5 · Prediction / testing | ⚪ Planned | Valeria · Arefeh | sandbox first |
+| 1 · Ingestion + EV segmentation | ✅ Done | Jaime | Shared A/B layer + [`pipeline/01`](pipeline/01_explore_dataset_b.ipynb) |
+| 2 · Functional connectivity | 🟡 Prototype exists; review/generalise | Valeria · Arefeh | [Goutham on A](sandbox/goutham/per_analysis.ipynb) · [audited port to B](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
+| 3 · Matrices → graphs | ⚪ Not yet built as a shared stage | Goutham | Scope with the team on Monday |
+| 4 · Graph metrics | 🟡 Exploratory only; full layer deferred | Kerem · Arefeh | Integration/modularity checks in [`04`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
+| 5 · Prediction / testing | 🟡 Pilot verified; team review pending | Valeria · Arefeh | [B pilot](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) · [B→A external validation](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
 
-> The stages describe the working direction; they do **not** imply the notebooks or outputs already exist.
+> **Before duplicating work, share what you have.** Existing pilots are evidence, not yet the final
+> group pipeline. On Monday the team will review the method, agree the MVP and assign the remaining
+> work as a one-week sprint.
 
 ---
 
 ## ▶️ Start here
 
 1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
-2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-15.md).
-3. **Get the data.** Two finalists (A ≈ 100 subjects, B = 339) sit behind one loader interface; we're currently leaning **B** (see the [project plan](docs/project-plan.md)). [`data/README.md`](data/README.md) is the canonical guide to **download, place and load** either one.
+2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-17.md).
+3. **Get the data.** Two cohorts sit behind one loader interface: the current MVP analysis runs on B
+   (339 subjects; 336 analytic), while A (100 subjects) is used for external validation. See the
+   [project plan](docs/project-plan.md) and [`data/README.md`](data/README.md).
 4. Work inside your own `sandbox/<name>/` folder, starting from [`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](pipeline/00_NOTEBOOK_TEMPLATE.ipynb) — its setup cells wire the data path and import the shared A/B loader for you.
 5. Read the short [contribution guide](CONTRIBUTING.md) before opening a PR.
 
@@ -64,7 +72,7 @@ flowchart LR
 ## 🗂️ How the repo is organised
 
 ```text
-pipeline/      group-reviewed, explanatory notebooks; currently only the template
+pipeline/      group-reviewed notebooks; template + dataset-B onboarding EDA
 sandbox/       iterative work, one folder per person
 data/          local HCP data — gitignored except its README, never committed
 docs/          the living project plan and dated meeting notes
@@ -85,7 +93,7 @@ Short working profiles, not fixed job descriptions — each member can update th
 
 | Member | Background / interest | Current focus |
 |---|---|---|
-| **Jaime** | Medical doctor + data scientist; Python and methodological rigor | Ingestion, EV segmentation, data dictionary |
+| **Jaime** | Medical doctor + data scientist; Python, pipelines and data analysis | Method audit, external validation and abstract merge |
 | **Pratik Bhandari** | *Profile to complete with Pratik* | Contribution to define |
 | **Goutham Arcod** | HCP data exploration and initial proof of concept | Graph construction |
 | **Valeria Moraga** | Functional connectivity and literature review | FC and prediction/testing |

@@ -2,6 +2,10 @@
 
 > Markdown transcription of Valeria's contribution, received via Discord.
 > Source: [`Research Question Development.pdf`](Research%20Question%20Development.pdf)
+>
+> **Source record, preserved unchanged.** This captures Valeria's proposal at the time it was shared;
+> it is not the current task tracker. Accepted results and open decisions live in the
+> [project plan](../../docs/project-plan.md).
 
 ## Step 1. Identify the phenomenon and formulate the research question
 

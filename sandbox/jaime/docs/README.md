@@ -16,11 +16,11 @@ for people rather than for an interpreter.
 
 | File | Purpose | State |
 |---|---|---|
-| [`05_abstract_proposal.md`](05_abstract_proposal.md) | Merge of Valeria's corrected draft ([`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf)) with the 17 Jul results draft, restructured to NMA's **ABC…G**. Recovers the missing **C** (hypothesis) and **G** (limitations); marks with underline what is new versus Valeria's text; includes a clean version for pasting | v2, 2026-07-17. Proposal for group review |
+| [`05_abstract_proposal.md`](05_abstract_proposal.md) | Merge of Valeria's corrected draft ([`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf)) with the 17 Jul results draft, restructured to NMA's **ABC…G**. Preserved as the pre-workshop proposal; its dataset discrepancy is resolved, while its framing remains an evidence-based team choice for Monday | v2, 2026-07-17; status updated 2026-07-18 |
 
 ## Conventions
 
-- Numbering continues the sandbox sequence (`00`–`04` are the notebooks), so the reading order of the
+- Numbering continues the sandbox sequence (`00`–`05` are the notebooks), so the reading order of the
   whole sandbox stays linear.
 - Every document states **author, version, date and status** in its header, and a **changelog** once
   it has more than one version.
