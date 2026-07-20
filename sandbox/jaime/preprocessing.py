@@ -20,15 +20,19 @@ import datasets as ds
 # --------------------------------------------------------------------------- #
 # EV segmentation
 # --------------------------------------------------------------------------- #
-def condition_frames(spec: ds.DatasetSpec, subject: str, run: int, level: str) -> np.ndarray:
+def condition_frames(spec: ds.DatasetSpec, subject: str, run: int, level: str,
+                     delay: float = 0.0) -> np.ndarray:
     """Sorted, unique frame indices for a load level in one run.
 
     Reimplements the official loader's ``load_evs``: pools the 4 stimulus categories of
-    ``level``; onset/duration -> frames via ``floor(onset/TR)`` / ``ceil(duration/TR)``. A
-    reads EVs inside ``WM/tfMRI_WM_{run}/EVs``; B reads ``EVs/tfMRI_WM_{['RL','LR'][run]}``.
+    ``level``; onset/duration -> frames via ``floor((onset + delay)/TR)`` /
+    ``ceil(duration/TR)``. A reads EVs inside ``WM/tfMRI_WM_{run}/EVs``; B reads
+    ``EVs/tfMRI_WM_{['RL','LR'][run]}``.
 
     Args:
         level: ``"0back"`` or ``"2back"``.
+        delay: haemodynamic shift in seconds. Default ``0.0`` is the official timing;
+            notebook ``06`` uses ``4.0`` so windows track the BOLD response, not the stimulus.
     """
     if level not in ("0back", "2back"):
         raise ValueError(f'level must be "0back" or "2back", got {level!r}')
@@ -43,14 +47,14 @@ def condition_frames(spec: ds.DatasetSpec, subject: str, run: int, level: str) -
     for cond in conditions:
         ev = np.loadtxt(ev_dir / f"{cond}.txt", ndmin=2)  # (onset, duration, amplitude)
         for onset, duration, _amp in ev:
-            start = int(np.floor(onset / ds.TR))
+            start = int(np.floor((onset + delay) / ds.TR))
             n_frames = int(np.ceil(duration / ds.TR))
             frames.append(np.arange(start, start + n_frames))
     return np.unique(np.concatenate(frames))
 
 
 def condition_timeseries(spec: ds.DatasetSpec, subject: str, level: str,
-                         runs: tuple[int, ...] = (0, 1)) -> np.ndarray:
+                         runs: tuple[int, ...] = (0, 1), delay: float = 0.0) -> np.ndarray:
     """BOLD restricted to one load level, ``(N_PARCELS, n_frames)``.
 
     The object step 3 (functional connectivity) consumes, one FC matrix per condition.
@@ -60,11 +64,12 @@ def condition_timeseries(spec: ds.DatasetSpec, subject: str, level: str,
             gives 312 frames; pass ``(0,)`` or ``(1,)`` for a single run (156 frames) —
             the per-run access an LR/RL reliability check needs. Direction of a run:
             ``ds.RUN_LABELS[spec.kind][run]``.
+        delay: haemodynamic shift in seconds, forwarded to :func:`condition_frames`.
     """
     mats: list[np.ndarray] = []
     for run in runs:
         ts = ds.load_timeseries(spec, subject, run)
-        frames = condition_frames(spec, subject, run, level)
+        frames = condition_frames(spec, subject, run, level, delay)
         frames = frames[frames < ts.shape[1]]  # guard against rounding past scan end
         mats.append(ts[:, frames])
     return np.concatenate(mats, axis=1)

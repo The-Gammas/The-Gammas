@@ -1,8 +1,9 @@
 # Jaime's sandbox — data layer, modelling audit and validation
 
-**Status (18 Jul):** six executed notebooks. The data onboarding is represented in shared
-`pipeline/01`; the modelling/audit notebooks `04` and `05` remain exploratory until the team reviews
-the method and final-week scope on Monday.
+**Status (20 Jul):** seven notebooks. The data onboarding is represented in shared `pipeline/01`; the
+modelling/audit notebooks `04`–`06` remain exploratory until the team reviews the method and
+final-week scope on Monday. Notebook `06` (tangent-space method candidate) is the newest and is the
+only one whose outputs are currently cleared.
 
 This folder began as Jaime's data-ingestion contribution and now records the full evidence path:
 choose and understand the HCP cohorts, prepare 0-back/2-back inputs, port and audit Goutham's model on
@@ -25,15 +26,23 @@ NMA loaders referenced as the code-style base.
 | [`03_dataset_comparison.ipynb`](03_dataset_comparison.ipynb) | **the A/B decision** | Both cohorts on one shared code layer: side-by-side QC, target distribution, an example FC reconfiguration map, and the evidence for their current roles. | Executed with real outputs |
 | [`04_goutham_pipeline_on_B.ipynb`](04_goutham_pipeline_on_B.ipynb) | **the experiment (dataset B)** | Goutham's FC pipeline on B (336 subj): per-condition FC → 2bk−0bk reconfiguration → 78-dim fingerprint → RidgeCV + permutation null. Prediction, specificity (trait vs reconfiguration, general ability, motion), direction, `d′` correction, multiple comparisons. | Executed with real outputs |
 | [`05_dataset_A_external_validation.ipynb`](05_dataset_A_external_validation.ipynb) | **using dataset A** | Same experiment, A as an independent cohort: A/B subject-overlap constraint, four train/test designs, and the recommended one — train on B-only (301), test on A (100), leakage-free external validation (r≈0.40, p<0.001). | Executed with real outputs |
+| [`06_tangent_fc_benchmark.ipynb`](06_tangent_fc_benchmark.ipynb) | **method candidate** | Does a log-Euclidean tangent representation beat the 78-network fingerprint? One estimator, three feature sets, 4 s HRF-delayed windows; audited reproduction gate → d′ robustness → development-only CV → identity-disjoint B→A transfer. | Code reorganised 20 Jul; **outputs cleared, needs a re-run** (cache makes it cheap) |
 | [`datasets.py`](datasets.py) | **loaders / I-O** | Config + raw loaders (A **and** B): `DatasetSpec`, `spec_a`/`spec_b`, constants, `load_subjects`, `load_timeseries` (`bold7`=RL/`bold8`=LR for B), `list_rest_runs`/`load_rest_timeseries` (B) | Regression-verified vs. the old A helpers |
-| [`preprocessing.py`](preprocessing.py) | **preprocessing** | Raw → analysis-ready: `condition_frames`/`condition_timeseries`, `behaviour_table`, `signal_detection_table`, `region_table` | A+B; B yields 339→336 analytic subjects |
-| [`evaluation.py`](evaluation.py) | **split + QC** | `make_split` (leakage-safe, N-agnostic) + `validate_dataset` (aggregate A/B QC) | A/B verified |
+| [`preprocessing.py`](preprocessing.py) | **preprocessing** | Raw → analysis-ready: `condition_frames`/`condition_timeseries` (both take `delay=` for the HRF shift), `behaviour_table`, `signal_detection_table`, `region_table` | A+B; B yields 339→336 analytic subjects |
+| [`connectivity.py`](connectivity.py) | **FC representations** | BOLD → features: `subject_covariances` (Ledoit-Wolf), `matrix_logarithms`, `log_triangles`, `TangentCentering` (train-only reference), `network_fingerprint` (78-dim baseline) | Used by `06`; synthetic tests green |
+| [`evaluation.py`](evaluation.py) | **split + QC + statistics** | `make_split` (leakage-safe, N-agnostic), `validate_dataset` (aggregate A/B QC), plus the shared `ridge_pipeline`, `correlation`, `permutation_p`, `bootstrap_ci`, `partial_correlation` | A/B verified |
+| [`test_connectivity.py`](test_connectivity.py) | **checks** | Synthetic tests for the leakage-critical tangent reference, paired reconfiguration, chunked log extraction, fingerprint layout and the delayed EV conversion | `python -m unittest discover -s .` — 7 green |
 | [`artifacts_staging/`](artifacts_staging/) | staged outputs | Local generated tables and exploratory split | Ignored by Git; not part of the initial public scaffold |
 | [`docs/`](docs/README.md) | **writing** | Prose deliverables, kept apart from the notebooks and code layer. [`05_abstract_proposal.md`](docs/05_abstract_proposal.md) is the pre-workshop Valeria + results merge, restructured to NMA's **ABC…G** | v2, 2026-07-17; status checked 2026-07-18; evidence-based review Monday |
 
 The reusable code layer is organised **by data-science category, not by dataset** — `datasets` (I/O)
-→ `preprocessing` (transforms) → `evaluation` (split + QC) — so A and B live behind one interface.
-The modelling notebooks `04`/`05` consume that layer but are not themselves a shared API.
+→ `preprocessing` (transforms) → `connectivity` (FC representations) → `evaluation` (split + QC +
+statistics) — so A and B live behind one interface. The modelling notebooks `04`–`06` consume that
+layer but are not themselves a shared API.
+
+Tangent geometry in `connectivity` is **log-Euclidean** (reference = arithmetic mean of training
+matrix logs). `nilearn`'s `ConnectivityMeasure(kind="tangent")` is *not* a drop-in — it uses the
+affine-invariant geometric mean, so swapping it in would silently move every benchmark number.
 
 Figures live **embedded** in the notebooks (no loose `fig*.png` in the folder; they are gitignored).
 

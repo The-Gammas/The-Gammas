@@ -7,7 +7,7 @@ analysis do not get mixed. Nothing here executes.
 for people rather than for an interpreter.
 
 **What does not:** notebooks (`../0*.ipynb`), the code layer (`../datasets.py`, `../preprocessing.py`,
-`../evaluation.py`), and generated outputs (`../artifacts_staging/`).
+`../connectivity.py`, `../evaluation.py`), and generated outputs (`../artifacts_staging/`).
 
 > Not to be confused with the team repo's [`docs/`](../../../docs/), which holds the shared living
 > plan and meeting notes. This folder is personal and proposal-stage.
@@ -17,10 +17,11 @@ for people rather than for an interpreter.
 | File | Purpose | State |
 |---|---|---|
 | [`05_abstract_proposal.md`](05_abstract_proposal.md) | Merge of Valeria's corrected draft ([`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf)) with the 17 Jul results draft, restructured to NMA's **ABC…G**. Preserved as the pre-workshop proposal; its dataset discrepancy is resolved, while its framing remains an evidence-based team choice for Monday | v2, 2026-07-17; status updated 2026-07-18 |
+| [`06_tangent_benchmark_report.md`](06_tangent_benchmark_report.md) | Findings and adoption recommendation of the tangent-space FC benchmark. **Generated** by [`../06_tangent_fc_benchmark.ipynb`](../06_tangent_fc_benchmark.ipynb): edit the notebook, never this file | 2026-07-19 run; awaiting a re-run after the 20 Jul reorganisation |
 
 ## Conventions
 
-- Numbering continues the sandbox sequence (`00`–`05` are the notebooks), so the reading order of the
+- Numbering continues the sandbox sequence (`00`–`06` are the notebooks), so the reading order of the
   whole sandbox stays linear.
 - Every document states **author, version, date and status** in its header, and a **changelog** once
   it has more than one version.
