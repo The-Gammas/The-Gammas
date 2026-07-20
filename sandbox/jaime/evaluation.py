@@ -12,6 +12,10 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy.stats import bootstrap, permutation_test
+from sklearn.linear_model import RidgeCV
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.preprocessing import StandardScaler
 
 import datasets as ds
 import preprocessing as pp
@@ -134,3 +138,66 @@ def validate_dataset(spec: ds.DatasetSpec) -> dict:
         "acc_2bk_max": round(float(acc2.max()), 3),
         "behaviour_missing_2bk": int(beh["acc_2bk"].isna().sum()),
     }
+
+
+# --------------------------------------------------------------------------- #
+# Prediction + association statistics (modelling notebooks)
+# --------------------------------------------------------------------------- #
+RIDGE_ALPHAS = np.logspace(-3, 5, 100)
+
+
+def ridge_pipeline(*feature_steps) -> Pipeline:
+    """Train-fitted scaling + RidgeCV, optionally behind feature transformers.
+
+    Ours — the estimator every method in notebook ``06`` shares, so comparisons differ only
+    in their features. Passing the whole pipeline to ``cross_val_predict`` is what keeps the
+    scaler, the selected alpha and any ``feature_steps`` fitted on training rows only.
+    """
+    return make_pipeline(*feature_steps, StandardScaler(), RidgeCV(alphas=RIDGE_ALPHAS))
+
+
+def correlation(first: np.ndarray, second: np.ndarray) -> float:
+    """Pearson correlation between two vectors."""
+    return float(np.corrcoef(first, second)[0, 1])
+
+
+def permutation_p(prediction: np.ndarray, target: np.ndarray, n_perm: int = 1000,
+                  seed: int = 0) -> float:
+    """One-sided permutation p-value against a fixed prediction vector.
+
+    Shuffles ``target`` without refitting, so on out-of-fold predictions this tests the
+    association and is a weaker null than a full model-refit permutation. It is a clean
+    null only where the target never fitted the model — i.e. the B-to-A transfer.
+    """
+    return float(permutation_test(
+        (prediction, target), correlation, permutation_type="pairings",
+        alternative="greater", n_resamples=n_perm, rng=np.random.default_rng(seed),
+    ).pvalue)
+
+
+def bootstrap_ci(*samples: np.ndarray, statistic, n_boot: int = 2000,
+                 seed: int = 1) -> tuple[float, float]:
+    """Percentile 95% CI over subjects resampled together.
+
+    Args:
+        samples: vectors resampled with shared indices, so a paired delta between two
+            methods is the same call with three samples and a difference ``statistic``.
+    """
+    interval = bootstrap(samples, statistic, paired=True, method="percentile",
+                         n_resamples=n_boot, rng=np.random.default_rng(seed)).confidence_interval
+    return float(interval.low), float(interval.high)
+
+
+def partial_correlation(prediction: np.ndarray, target: np.ndarray,
+                        control: np.ndarray) -> float:
+    """Pearson correlation after regressing one control out of both vectors.
+
+    Ours — the specificity check that asks whether prediction survives baseline ability
+    (``acc_0bk``) rather than merely tracking it.
+    """
+    design = np.column_stack((np.ones(len(control)), control))
+
+    def residual(values: np.ndarray) -> np.ndarray:
+        return values - design @ np.linalg.lstsq(design, values, rcond=None)[0]
+
+    return correlation(residual(prediction), residual(target))
