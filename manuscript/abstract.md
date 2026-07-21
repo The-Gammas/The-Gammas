@@ -74,8 +74,10 @@ code before they go on a slide unqualified:
 
 > **What this is.** The submitted abstract's closing overstates the evidence: *"complementary
 > information beyond static FC"* was never tested before submission, and the 21 Jul re-check does not
-> support it. Below is the submitted text with only the **closing revised** (in bold) to say what the
-> data actually support. Offered for the presentation framing and team discussion, not resubmitted.
+> support it. Below is the submitted text with **our changes marked in bold**. The bold is a change
+> marker, not emphasis: a clean version drops it, since the [writing guide](writing-guide.md) bars
+> typographic emphasis in the final abstract. Offered for the presentation framing and team
+> discussion, not resubmitted.
 
 > Cognitive performance depends on the ability of large-scale brain networks to dynamically
 > reorganize their functional architecture in response to changing task demands (5). Functional
@@ -95,30 +97,30 @@ code before they go on a slide unqualified:
 > into a 78-feature connectivity fingerprint (12 within-network and 66 between-network
 > interactions), and load-dependent reconfiguration was quantified as the difference between 2-back
 > and 0-back connectivity. Predictive performance was evaluated using cross-validated ridge
-> regression against a permutation null, while graph-theoretical system segregation characterized
-> global network reorganization. Results indicate that both condition-specific connectivity and
-> load-dependent reconfiguration predict 2-back performance in unseen individuals. The multivariate
-> reconfiguration fingerprint significantly predicted task accuracy (r ≈ 0.37, p < 0.001), while
-> condition-specific connectivity also demonstrated predictive performance (r ≈ 0.28). Graph-theoretical
+> regression **against a permutation null**, while graph-theoretical system segregation was used to
+> characterize global network reorganization. Results indicate that both condition-specific
+> connectivity and load-dependent reconfiguration predict 2-back performance in unseen individuals.
+> The multivariate reconfiguration fingerprint significantly predicted task accuracy
+> (**r ≈ 0.37, p < 0.001**), while condition-specific connectivity also demonstrated predictive
+> performance (r ≈ 0.28). Graph-theoretical
 > analysis revealed a significant reduction in global system segregation from 0-back to 2-back
 > (ΔSegregation = −0.048, p < 0.005), consistent with increased cross-network communication under
 > higher cognitive load. **These findings show that individual working-memory performance can be
 > predicted from distributed within- and between-network connectivity, and that global network
-> organization shifts from segregation toward integration under higher load. On a nested, same-fold
-> comparison, however, load reconfiguration did not clearly add predictive information beyond
-> single-condition (0-back) connectivity (ΔR² = +0.03, under 2 sd), and a simpler task-activation
-> contrast predicted performance at least as well (r ≈ 0.60). We therefore read load reconfiguration
-> as a real but not connectivity-specific predictor of working-memory ability, and the observational
-> design does not support causal claims.**
+> organization shifts from segregation toward integration under higher load. Load reconfiguration,
+> however, did not clearly add predictive information beyond single-condition (0-back) connectivity,
+> and a simpler task-activation contrast predicted performance at least as well (r ≈ 0.60). Load
+> reconfiguration may therefore be a real but not connectivity-specific predictor of working-memory
+> ability; the observational, single-task design does not support causal claims.**
 
-**What changed vs the submitted text**
+**What changed vs the submitted text** (each marked in bold above)
 
 | Change | Why |
 |---|---|
-| Closing "complementary information beyond static FC" → the bold revision | Overclaim. The incremental test was not run before submission; [nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb) shows ΔR² ≈ +0.03 (under 2 sd) and a simpler activation contrast (r ≈ 0.60) predicts at least as well. |
-| fingerprint "r ≈ 0.35, p < 0.0001" → "r ≈ 0.37, p < 0.001" | Use our reproducible repeated-CV number (nb04) and the null we actually ran, rather than Goutham's single-split value. |
-| "against a permutation null" added to methods | The nulls are complete (p < 0.001); naming the arbiter is honest and standard. |
-| causal caveat added | The submitted closing had no limitation sentence; the design is observational. |
+| Methods: added **"against a permutation null"** | Names the success criterion the project set; the nulls were run (p < 0.001). |
+| Results: **r ≈ 0.35, p < 0.0001 → r ≈ 0.37, p < 0.001** | Our reproducible repeated-CV number (nb04), not Goutham's single-split value. |
+| Closing rewritten, dropping **"complementary information beyond static FC"** | Overclaim: [nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb) shows reconfiguration does not clearly add over 0-back FC (nested ΔR² +0.034, under 2 sd) and a task-activation contrast predicts better (r ≈ 0.60). The ΔR² itself stays out of the abstract body (a robustness stat belongs in Results per the writing guide). |
+| Closing: added the limitation sentence (letter **G**), calibrated to "may" with no causal verdict | The submitted closing had no limitation; the design is observational and single-task. |
 
 *Still not reproducible from `main`:* ΔSegregation = −0.048 (Goutham's Colab). Kept here as the team's
 agreed graph result but flagged for the presentation until his code lands.
