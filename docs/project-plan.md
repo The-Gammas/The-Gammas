@@ -43,10 +43,10 @@ features, not the final goal. The hypothesis stays falsifiable.
 - The numbers are verified; the story is not locked. Azman's 17 July comment was that the current
   wording could read as a feature-count comparison rather than the scientific meaning of integration
   and segregation, and that external validation might be a stronger headline. This is framing
-  feedback, not a methodological veto. The pattern-vs-scalar framing was superseded on 21 July by
-  notebook 08 (see the follow-up section): reconfiguration does not clearly add over single-condition
-  0-back FC, a task-activation contrast predicts better, and the predictive signal is not specific to
-  connectivity reconfiguration.
+  feedback, not a methodological veto. The pattern-vs-scalar dissociation still holds, but nb08 (21
+  July) showed it is no longer sufficient as the headline: reconfiguration does not clearly add over
+  single-condition 0-back FC, a task-activation contrast predicts better, and the predictive signal is
+  not specific to connectivity reconfiguration.
 
 Source: Arefeh's proposal, refined 15 July → [research-proposal](../manuscript/research-proposal.md).
 
@@ -63,10 +63,10 @@ Source: Arefeh's proposal, refined 15 July → [research-proposal](../manuscript
 - **d′ is computable only on B** — d′ needs hit / false-alarm rates; B's `wm.csv` has
   `ACC_TARGET` / `ACC_NONTARGET`, A's `Stats.txt` fields are internally inconsistent (HCP WM bug).
 
-**A is the independent external-validation cohort**, not merged into B. Only ~35 subjects overlap;
-the leakage-free design trains on 301 B-only participants and tests on all 100 A participants. A
-cannot yield clean d′, so external validation uses accuracy. These are the operational roles already
-implemented; the team will formally reconfirm the MVP on Monday. Detail: [data dictionary](data-dictionary.md)
+**A is the held-out transfer cohort** (same HCP source, disjoint identities), not merged into B. Only
+~35 subjects overlap; the leakage-free design trains on 301 B-only participants and tests on all 100 A
+participants. A cannot yield clean d′, so the transfer test uses accuracy. These operational roles were
+carried into the 20 Jul team sync and remain in force. Detail: [data dictionary](data-dictionary.md)
 · [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb) ·
 [`sandbox/jaime/05`](../sandbox/jaime/05_dataset_A_external_validation.ipynb).
 
@@ -84,7 +84,7 @@ implemented; the team will formally reconfirm the MVP on Monday. Detail: [data d
   for independent external validation, not pooled training.
 - **Objective 2 (resting-state / intrinsic organisation) is out of the MVP** — a possible extension
   on B, not a final-week goal.
-- The full graph-metric layer is post-MVP unless the team explicitly restores it to Monday's sprint.
+- The full graph-metric layer is post-MVP unless the team explicitly restores it to the final-week sprint.
 
 ## Pilot signal check (dataset A)
 
@@ -113,9 +113,10 @@ Three non-exclusive reasons it could be flat, each with a lever we can test:
 B + d′ were then run (next section): the reconfiguration **pattern did beat the null**, and an n = 100
 subsampling of B reproduces A's flat r (≈ 0.08 ± 0.15), so **A's null was underpowered, not a true
 absence** — the power lever was the right one. A clean negative would still have counted (per the
-Project TA). The full graph layer remains unbuilt: notebook `04` contains exploratory within/between
-FC and Newman modularity, while system segregation, efficiency, clustering, thresholding and signed
-edge handling remain untried.
+Project TA). The full graph layer is still not a shared `pipeline/` stage: notebook `04` covers
+within/between FC and Newman modularity, and [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)
+now also runs Chan-style system segregation and K-Means/FCM clustering in Jaime's sandbox (both weak);
+efficiency, thresholding and signed-edge handling remain untried.
 
 ## Pilot follow-up on dataset B (audited 15 Jul; reframed 17 Jul post-audit)
 
@@ -164,25 +165,26 @@ remains **POSTPONE ADOPTION**.
 |---|---|---|---|
 | 1. Ingestion + EV segmentation | Separate low/high load frames; shared A/B loader | Jaime | **Done** — shared layer + `pipeline/01_explore_dataset_b` |
 | 2. Functional connectivity | FC per load condition | Valeria + Arefeh | **Prototype exists** on A and B; compare, review and generalise |
-| 3. Graph construction | FC as weighted, undirected graphs | Goutham | Not yet built as a shared stage; scope Monday |
-| 4. Graph metrics | Segregation / integration | Kerem + Arefeh | Exploratory integration/modularity only; full layer post-MVP unless restored Monday |
+| 3. Graph construction | FC as weighted, undirected graphs | Goutham | Reproduced in nb09 (sandbox), not yet a shared `pipeline/` stage |
+| 4. Graph metrics | Segregation / integration | Kerem + Arefeh | Exploratory only: modularity (nb04), Chan segregation + clustering (nb09); full layer post-MVP |
 | 5. Prediction / testing | Predict WM performance in unseen subjects + permutation null | Valeria + Arefeh | **Pilot verified on B + B→A external validation**; team review done 20 Jul (see [meetings/2026-07-20.md](meetings/2026-07-20.md)) |
 
-Owners above are the prior working allocation, not the final-week sprint. Reassign after the Monday
-method/story discussion and then update this table and the root README together.
+Owners above are the prior working allocation, not the final-week sprint. Reassign as the W3D5
+presentation split is agreed and then update this table and the root README together.
 
 ## Open now
 
 - ❗ **Goutham's read on the 78-feature method** — why average 360 ROIs into 12 networks and retain
   the 12 within-network diagonal summaries alongside 66 between-network edges.
-- ✅ **Goutham's numbers reconciled (22 Jul, [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)).**
+- ✅ **Goutham's numbers reconciled (21 Jul, [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)).**
   His analysis functions run verbatim on our data layer. The fingerprint reconfiguration comes out
   r ≈ 0.366 (repeated CV) / 0.405 (single seed), so his committed 0.2376 was a data-loading artifact,
   not a method problem: the canonical **r ≈ 0.366** is what to present. The ΔSegregation direction
-  reproduces (segregation drops 0-back → 2-back, p = 3e-05) but its magnitude is about −0.024, not the
-  abstract's −0.048, and individual-difference prediction is weak (corr ≈ −0.10); present segregation
-  qualitatively, not as the number −0.048. His 3D visualizations remain the presentable extra once he
-  shares or regenerates them.
+  reproduces (segregation drops 0-back → 2-back, p = 3.45e-05) but its magnitude is about −0.024, not the
+  abstract's −0.048, and individual-difference prediction is weak (corr ≈ −0.10, p = 0.05); present
+  segregation qualitatively, not as the number −0.048. nb09 also regenerates his brain maps in-notebook
+  (static maps + an interactive 3D map with a semi-transparent cortex), so those no longer wait on his
+  loose Colab HTML exports.
 - **FC estimator/preprocessing:** decide how to handle task-evoked coactivation and document the
   Pearson-FC limitation.
 - **Graph scope:** if graph metrics return to the MVP, prespecify thresholding, negative edges,
@@ -199,11 +201,12 @@ the curated data and should be limitations, not open implementation promises.
 | **17 July** | ✅ Project TA progress check; verified results + framing comments for team review |
 | **20 July** (W3D1) | ✅ Team method/story sync held ([meetings/2026-07-20.md](meetings/2026-07-20.md)); abstract submitted 22:12 |
 | **21 July** | ✅ nb08 re-check: reconfiguration does not clearly add over 0-back FC; task-activation contrast predicts better; signal not connectivity-specific |
+| **21 July** | ✅ nb09: Goutham's pipeline replicated on our data; numbers reconciled (fingerprint 0.366; his 0.2376 a data-loading artifact); segregation direction reproduced (magnitude −0.024, not −0.048); brain maps regenerated |
 | **24 July** (W3D5) | Final presentation: 1 slide / 1 minute per person |
 
 ## Sources
 
-- Meeting notes: [10 July](meetings/2026-07-10.md) · [14 July](meetings/2026-07-14.md) · [15 July](meetings/2026-07-15.md) · [17 July](meetings/2026-07-17.md).
+- Meeting notes: [10 July](meetings/2026-07-10.md) · [14 July](meetings/2026-07-14.md) · [15 July](meetings/2026-07-15.md) · [17 July](meetings/2026-07-17.md) · [20 July](meetings/2026-07-20.md).
 - Literature reviews → [`reviews/`](reviews/): e.g. the [2026-07-17 automated review](reviews/2026-07-17_literature-review.md) (WM-prediction benchmarks, same-task calibration, change-score reliability).
 - The shared **"Ideas" Google Doc** (owner: Valeria) — its *Main Tasks* tab maps to the working stages;
   see [`../manuscript/README.md`](../manuscript/README.md) for how its tabs map into the repo.
