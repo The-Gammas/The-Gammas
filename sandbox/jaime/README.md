@@ -1,7 +1,7 @@
 # Jaime's sandbox — data layer, modelling audit and validation
 
-**Status (21 Jul):** eight notebooks. The data onboarding is represented in shared `pipeline/01`; the
-modelling/audit notebooks `04`–`08` were the exploration the team reviewed at the 20 Jul sync (abstract
+**Status (22 Jul):** nine notebooks. The data onboarding is represented in shared `pipeline/01`; the
+modelling/audit notebooks `04`–`09` were the exploration the team reviewed at the 20 Jul sync (abstract
 submitted that day). **Current headline: [`08_activation_vs_reconfiguration.ipynb`](08_activation_vs_reconfiguration.ipynb)**
 (21 Jul, peer-reviewed) is the newest notebook and refines the reconfiguration story below: reconfiguration
 does not clearly add over single-condition 0-back FC, and a task-activation contrast predicts better.
@@ -11,7 +11,7 @@ choose and understand the HCP cohorts, prepare 0-back/2-back inputs, port and au
 B, and validate it externally on A. The notebooks are evidence for team review, not unilateral method
 decisions.
 
-The eight notebooks are a **narrated path, one per role**, and are written in the **four-step modelling frame** taught
+The nine notebooks are a **narrated path, one per role**, and are written in the **four-step modelling frame** taught
 in W2D1 ([Blohm et al., 2019](https://doi.org/10.1523/ENEURO.0352-19.2019); the tutorial is pulled to
 `coursework/W2D1/`), so the reasoning is replicable and shares the vocabulary the whole group uses. Read them in order.
 Each is an EXPLORE log: clean code, tables and focused plots, every decision tied to its evidence, and the official
@@ -29,6 +29,7 @@ NMA loaders referenced as the code-style base.
 | [`05_dataset_A_external_validation.ipynb`](05_dataset_A_external_validation.ipynb) | **using dataset A** | Same experiment, A as an independent cohort: A/B subject-overlap constraint, four train/test designs, and the recommended one — train on B-only (301), test on A (100), leakage-free external validation (r≈0.40, p<0.001). | Executed with real outputs |
 | [`06_tangent_fc_benchmark.ipynb`](06_tangent_fc_benchmark.ipynb) | **method candidate** | Does a log-Euclidean tangent representation beat the 78-network fingerprint? One estimator, three feature sets, 4 s HRF-delayed windows; audited reproduction gate → d′ robustness → development-only CV → identity-disjoint B→A transfer. | Code reorganised 20 Jul; **outputs cleared, needs a re-run** (cache makes it cheap) |
 | [`08_activation_vs_reconfiguration.ipynb`](08_activation_vs_reconfiguration.ipynb) | **current headline** | Re-check of the reconfiguration story (21 Jul, peer-reviewed): reconfiguration does not clearly add over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd); a task-activation contrast (2bk−0bk mean BOLD) predicts better (r ≈ 0.60 pooled, ≈ 0.48 held-out people and runs) and FC adds nothing over it (delta-R2 -0.003); per-run centering makes 0bk/2bk/contrast collinear, so it is not a load-independent trait; the predictive signal is not specific to connectivity reconfiguration. | Executed; peer-reviewed 21 Jul |
+| [`09_goutham_pipeline_replication.ipynb`](09_goutham_pipeline_replication.ipynb) | **reconcile Goutham** | His `FCM_entropy` functions run verbatim on our data layer (dataset B): fingerprint reproduces r ≈ 0.366 (his committed 0.2376 was a data-loading artifact); node strength weakly positive (~0.16), not null; system-segregation direction reproduces (drops 0bk→2bk, p=3e-05) but not the −0.048 magnitude; K-Means/FCM weak. Plus organized brain maps (network heatmap, connectome, node strength) on real MNI coords. | Executed 22 Jul |
 | [`datasets.py`](datasets.py) | **loaders / I-O** | Config + raw loaders (A **and** B): `DatasetSpec`, `spec_a`/`spec_b`, constants, `load_subjects`, `load_timeseries` (`bold7`=RL/`bold8`=LR for B), `list_rest_runs`/`load_rest_timeseries` (B) | Regression-verified vs. the old A helpers |
 | [`preprocessing.py`](preprocessing.py) | **preprocessing** | Raw → analysis-ready: `condition_frames`/`condition_timeseries` (both take `delay=` for the HRF shift), `behaviour_table`, `signal_detection_table`, `region_table` | A+B; B yields 339→336 analytic subjects |
 | [`connectivity.py`](connectivity.py) | **FC representations** | BOLD → features: `subject_covariances` (Ledoit-Wolf), `matrix_logarithms`, `log_triangles`, `TangentCentering` (train-only reference), `network_fingerprint` (78-dim baseline) | Used by `06`; synthetic tests green |
