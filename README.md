@@ -66,6 +66,26 @@ flowchart LR
 
 ---
 
+## 📊 Evidence map: which notebooks hold what
+
+The findings live in Jaime's audited, executed sandbox notebooks. Each result has one home; the
+project is **not** contained in a single notebook.
+
+| Result | Number | Notebook |
+|---|---|---|
+| Reconfiguration predicts WM (canonical; reproduction gate for the rest) | r ≈ 0.366 repeated-CV, permutation p < 0.001 | [`04_goutham_pipeline_on_B`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
+| External validation (train B, test held-out A, disjoint identities) | r ≈ 0.398 | [`05_dataset_A_external_validation`](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
+| Tangent-space representation (method candidate) | POSTPONE ADOPTION | [`06_tangent_fc_benchmark`](sandbox/jaime/06_tangent_fc_benchmark.ipynb) |
+| **Current headline:** activation predicts better; reconfiguration adds nothing over 0-back FC | r ≈ 0.60 vs 0.37 | [`08_activation_vs_reconfiguration`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb) |
+| Goutham's pipeline reconciled on our data + brain maps | fingerprint 0.366; ΔSeg direction only | [`09_goutham_pipeline_replication`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
+
+**08 is the headline but rests on 04 and 05:** it re-checks against 04's canonical 0.366 and cites
+05's external validation. Foundation (framing, ingestion, EDA, A/B choice): notebooks 00-03. Full
+read-in-order guide: [`sandbox/jaime/README.md`](sandbox/jaime/README.md). The abstract and research
+proposal intentionally cite no notebooks (an abstract describes the work, not its files).
+
+---
+
 ## ▶️ Start here
 
 1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
