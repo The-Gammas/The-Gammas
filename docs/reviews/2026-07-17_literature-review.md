@@ -19,12 +19,14 @@ that survived verification are kept. Provenance is tagged per item:
 > [17 July minutes](../meetings/2026-07-17.md).
 >
 > **21 Jul update:** notebook 08 ([`../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb),
-> peer-reviewed) supersedes pattern-vs-scalar as the headline. Reconfiguration does not clearly add
-> over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd); a task-activation
-> contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out people and runs) and
-> FC adds nothing over it (delta-R2 -0.003). The predictive signal is not specific to connectivity
-> reconfiguration. Reconfiguration repeated-CV r ~ 0.366 still stands as a number; the 17 Jul
-> analysis below is kept unchanged as the original context.
+> executed 21 Jul) refines pattern-vs-scalar as the headline. Reconfiguration does not clearly add
+> over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd); a 360-region
+> task-activation contrast predicts more strongly than the 78-feature network FC summary (r ~ 0.60
+> pooled, ~0.48 held-out people and runs), while adding FC shows no clear gain (delta-R2 -0.003).
+> Because the representations are unmatched, this does not establish biological equivalence or
+> FC-specific predictive value. Reconfiguration repeated-CV r ~ 0.366 still stands; the 17 Jul
+> analysis below is kept unchanged as its original context. The consolidated presentation evidence
+> is in [`../../pipeline/02_canonical_analysis_and_slides.ipynb`](../../pipeline/02_canonical_analysis_and_slides.ipynb).
 
 ---
 

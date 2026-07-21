@@ -24,6 +24,9 @@ so that they do not silently become interchangeable:
 - **Current direction:** [`../docs/project-plan.md`](../docs/project-plan.md) records the living plan,
   verified results and open decisions; dated meeting notes preserve why a proposal was accepted,
   rejected or deferred.
+- **Canonical evidence:** [`../pipeline/02_canonical_analysis_and_slides.ipynb`](../pipeline/02_canonical_analysis_and_slides.ipynb)
+  reproduces the calculations and figures proposed for the presentation while linking back to each
+  source notebook.
 - **Supporting record:** [`references.md`](references.md) is the annotated bibliography and
   [`prior-work.md`](prior-work.md) documents internal explorations.
 - **Writing criteria:** [`writing-guide.md`](writing-guide.md) holds the shared standard for the
@@ -39,11 +42,13 @@ The Google Doc tabs map to the repository as follows:
 - *Abstract* → dated snapshots such as [`abstract.md`](abstract.md)
 
 **Current next step:** the abstract is submitted, so the focus is the **W3D5 presentation (Fri 24 Jul)**.
-The pattern-vs-scalar framing is superseded by nb08 (21 Jul, peer-reviewed): reconfiguration does not
-clearly add over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd), a
-task-activation contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out people
-and runs), FC adds nothing over it, and the predictive signal is not specific to connectivity
-reconfiguration. Record the presentation story in the living plan before capturing another snapshot.
+The pattern-vs-scalar framing is refined by nb08 (21 Jul): reconfiguration does not clearly add over
+single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd), while a task-activation
+contrast (2bk-0bk mean BOLD) predicts more strongly (r ~ 0.60 pooled, ~0.48 held-out people and runs)
+under the current unmatched representations. Adding FC shows no clear gain (delta-R2 ~ -0.003), so
+the evidence does not establish FC-specific predictive value. The proposed resolution in
+[`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb) keeps FC as the primary analysis
+and activation as an unexpected benchmark; its main-slide placement remains a team decision.
 
 ## Attribution and review workflow
 

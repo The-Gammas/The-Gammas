@@ -1,14 +1,15 @@
 # Pipeline — group-reviewed notebooks
 
 This folder contains the **shared story of the analysis**, not every experiment the team tries.
-It currently contains the reusable template plus the reviewed dataset-B onboarding/EDA notebook.
-FC, prediction and external-validation results exist in `sandbox/jaime/`, but have not yet been
-promoted as the group's final modelling pipeline.
+It contains the reusable template, the dataset-B onboarding/EDA notebook and a canonical evidence
+notebook that consolidates the analyses proposed for the W3D5 presentation. The underlying source
+notebooks remain in `sandbox/jaime/` so the full audit trail is preserved.
 
 | File | Shared status |
 |---|---|
 | [`00_NOTEBOOK_TEMPLATE.ipynb`](00_NOTEBOOK_TEMPLATE.ipynb) | Reusable starting point for personal sandboxes |
 | [`01_explore_dataset_b.ipynb`](01_explore_dataset_b.ipynb) | Dataset-B onboarding and EDA on the shared data layer |
+| [`02_canonical_analysis_and_slides.ipynb`](02_canonical_analysis_and_slides.ipynb) | Executed canonical evidence path: FC prediction, identity-disjoint B→A transfer, activation robustness benchmark, segregation direction and presentation figures. Evidence complete; narrative proposal pending team approval. |
 
 The working direction is:
 
@@ -18,11 +19,11 @@ The working direction is:
 4. Graph metrics
 5. Prediction and testing
 
-These are conceptual stages, not a claim that five shared notebooks already exist. Work begins in
-`sandbox/<name>/`; a notebook is added here only after the group can run it, understand it and agree
-that it represents the current method. The team decided the final-week promotion scope and sprint
-at the 20 July sync (see [`../docs/meetings/2026-07-20.md`](../docs/meetings/2026-07-20.md)); current
-status lives in [`../docs/project-plan.md`](../docs/project-plan.md).
+These are conceptual stages, not a claim that five separate shared notebooks exist. `02` consolidates
+the evidence into one reproducible path while linking every block to its source notebook. Its
+recommended narrative keeps FC reconfiguration as the primary analysis and presents regional
+activation as an unexpected benchmark; that placement remains a proposal until the team approves it.
+Current status lives in [`../docs/project-plan.md`](../docs/project-plan.md).
 
 A promoted notebook should:
 

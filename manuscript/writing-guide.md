@@ -114,8 +114,9 @@ the whole method.
 
 **Explicitly fine per NMA:** most groups won't have a result, and a negative result is a real result
 — report it and say what it does to the hypothesis. The goal is to communicate the *logic* of the
-project. This matters for us: our honest finding is that the predictive signal is not specific to connectivity
-reconfiguration (a task-activation contrast predicts better, r ~ 0.60), not a clean win.
+project. For us, the honest result is that FC reconfiguration predicts performance, but does not show
+a clear incremental gain over 0-back FC; regional activation predicts more strongly under the current
+unmatched representations. This refines the conclusion without erasing the original result.
 
 Content compression, from UW's poster guide (its layout advice is for physical posters — ignore it):
 

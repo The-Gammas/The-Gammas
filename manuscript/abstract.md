@@ -64,7 +64,7 @@ them:
 | fingerprint **r ≈ 0.35, p < 0.0001** | **Reconciled.** His committed 0.2376 was a data-loading artifact; nb09 reproduces **repeated-CV r ≈ 0.366** / 0.405 single-seed on our data. Present the canonical **r ≈ 0.366** and state which CV. |
 | condition-specific **r ≈ 0.28** | Still the ambiguous token: undifferenced whole-task FC = 0.278 (nb04 c18), 0-back alone = 0.274 (c31). Name the protocol on the slide. |
 | **ΔSegregation = −0.048, p < 0.005** | **Reconciled in direction, not magnitude.** nb09 reproduces the drop 0-back → 2-back (paired t p = 3.45e-05) but the magnitude is ≈ **−0.024**, not −0.048, and the individual ΔSeg → accuracy link is weak (r ≈ −0.10, p = 0.05). Present segregation qualitatively, not as −0.048. |
-| *"complementary information beyond static FC"* | **Now tested ([nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb), 21 Jul): the claim is NOT supported.** Nested, same-fold: reconfig over 0-back FC gives ΔR² = +0.034 (sd 0.023, under 2 sd), and 0-back + reconfig (r 0.333) is *worse* than reconfig alone (0.366). A **regional activation** contrast (2bk−0bk) predicts far better (**r 0.60** pooled, ≈0.48 across held-out people and runs, partial\|acc_0bk 0.41, perm p ≈ 0.001 corrected null) and **FC adds nothing over it** (ΔR² −0.003). The predictive signal is not connectivity-specific (we cannot separate baseline level from load change: per-run centering makes them collinear). Team decision for W3D5. |
+| *"complementary information beyond static FC"* | **Now tested ([nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb), 21 Jul): the claim is not supported by the current comparison.** Nested, same-fold: reconfiguration over 0-back FC gives ΔR² = +0.034 (sd 0.023, under 2 sd), and 0-back + reconfiguration (r 0.333) is not better than reconfiguration alone (0.366). A 360-region **activation** contrast (2bk−0bk) predicts more strongly than the 78-feature network FC summary (**r 0.60** pooled, ≈0.48 across held-out people and runs, partial\|acc_0bk 0.41, perm p ≈ 0.001 corrected null), while adding FC shows no clear gain (ΔR² −0.003). Because the representations are unmatched and per-run centering couples baseline and contrast, this does not establish either biological equivalence or FC-specific predictive value. Team decision for W3D5. |
 
 </details>
 
@@ -110,9 +110,10 @@ them:
 > predicted from distributed within- and between-network connectivity, and that global network
 > organization shifts from segregation toward integration under higher load. Load reconfiguration,
 > however, did not clearly add predictive information beyond single-condition (0-back) connectivity,
-> and a simpler task-activation contrast predicted performance at least as well (r ≈ 0.60). Load
-> reconfiguration may therefore be a real but not connectivity-specific predictor of working-memory
-> ability; the observational, single-task design does not support causal claims.**
+> and a regional task-activation contrast predicted more strongly under the current unmatched
+> comparison (r ≈ 0.60). Load reconfiguration therefore remains a real predictor, but the current
+> evidence does not establish connectivity-specific predictive value; the observational,
+> single-task design does not support causal claims.**
 
 **What changed vs the submitted text** (each marked in bold above)
 

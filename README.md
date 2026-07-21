@@ -22,15 +22,18 @@
 
 **Status (21 Jul):** the abstract was **submitted 20 Jul** (22:12) and the team sync happened that day
 (see [meeting notes](docs/meetings/2026-07-20.md)); focus is now the **W3D5 presentation** (Fri 24 Jul).
-The FC/prediction pilot is verified on `main`. Personal exploration lives in `sandbox/`; only
-group-reviewed notebooks move into `pipeline/`.
+The full presentation evidence path is now consolidated in
+[`pipeline/02_canonical_analysis_and_slides.ipynb`](pipeline/02_canonical_analysis_and_slides.ipynb).
+Its calculations and figures are reproducible; the recommended presentation narrative still awaits
+team approval. Source analyses remain in `sandbox/` so their provenance is preserved.
 
-> **nb08 update (21 Jul, peer-reviewed):** the "reconfiguration predicts WM" framing below is refined.
+> **nb08 update (21 Jul):** the "reconfiguration predicts WM" framing below is refined.
 > A task-activation contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out
 > people and runs), FC showed no clear incremental gain over it in the tested comparison (nested
 > delta-R2 -0.003; note activation uses 360 regional features vs FC's 78 network summaries), and
 > reconfiguration does not clearly add over single-condition 0-back FC (nested delta-R2 +0.034, sd
-> 0.023, under 2 sd). The predictive signal is not specific to connectivity reconfiguration. Full check:
+> 0.023, under 2 sd). Under these unmatched representations, the evidence does not establish that
+> the predictive signal is specific to connectivity reconfiguration. Full check:
 > [`sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb).
 
 ---
@@ -40,7 +43,8 @@ group-reviewed notebooks move into `pipeline/`.
 Five steps from raw BOLD to a tested prediction. This is the conceptual workflow; the table below
 records what currently exists, not a fixed assignment for the final week. The reconfiguration-predicts-WM
 direction is **refined by nb08** (see the status note above): a task-activation contrast predicts better
-and FC adds nothing over it.
+under the current comparison, while FC shows no clear incremental gain. The proposed final narrative
+keeps FC reconfiguration primary and presents activation as an unexpected benchmark.
 
 ```mermaid
 flowchart LR
@@ -55,10 +59,10 @@ flowchart LR
 | Stage | State | Lead(s) | Working location |
 |---|---|---|---|
 | 1 · Ingestion + EV segmentation | ✅ Done | Jaime | Shared A/B layer + [`pipeline/01`](pipeline/01_explore_dataset_b.ipynb) |
-| 2 · Functional connectivity | 🟡 Prototype exists; review/generalise | Valeria · Arefeh | [Goutham on A](sandbox/goutham/per_analysis.ipynb) · [audited port to B](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
-| 3 · Matrices → graphs | 🟡 Reproduced in sandbox (nb09), not a shared stage | Goutham | [Goutham on A](sandbox/goutham/per_analysis.ipynb) · [reconciled on B](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
-| 4 · Graph metrics | 🟡 Exploratory only; full layer deferred | Kerem · Arefeh | Modularity in [`04`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb); segregation + clustering in [`09`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
-| 5 · Prediction / testing | 🟡 Pilot verified; team review pending | Valeria · Arefeh | [B pilot](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) · [B→A external validation](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
+| 2 · Functional connectivity | ✅ Canonical evidence consolidated; method caveat retained | Valeria · Arefeh | [`pipeline/02`](pipeline/02_canonical_analysis_and_slides.ipynb) · sources [`04`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) / [`08`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb) |
+| 3 · Matrices → graphs | 🟡 Descriptive network view included; extended graph work remains exploratory | Goutham | [`pipeline/02`](pipeline/02_canonical_analysis_and_slides.ipynb) · source [`09`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
+| 4 · Graph metrics | 🟡 Segregation direction included; clustering and full graph layer deferred | Kerem · Arefeh | [`pipeline/02`](pipeline/02_canonical_analysis_and_slides.ipynb) · source [`09`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
+| 5 · Prediction / testing | ✅ Canonical internal and B→A evidence consolidated | Valeria · Arefeh | [`pipeline/02`](pipeline/02_canonical_analysis_and_slides.ipynb) · sources [`04`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) / [`05`](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
 
 > **Before duplicating work, share what you have.** Existing pilots are evidence, not yet the final
 > group pipeline. The method/story sync happened on 20 Jul (W3D1, abstract submitted); the remaining
@@ -66,30 +70,33 @@ flowchart LR
 
 ---
 
-## 📊 Evidence map: which notebooks hold what
+## 📊 Evidence map: canonical result and source notebooks
 
-The findings live in Jaime's audited, executed sandbox notebooks. Each result has one home; the
-project is **not** contained in a single notebook.
+The presentation evidence and figures are consolidated in one canonical notebook. The executed
+sandbox notebooks remain the source record for each analysis and make the chronology auditable.
 
 | Result | Number | Notebook |
 |---|---|---|
+| **Canonical presentation evidence** | FC prediction, B→A transfer, activation benchmark and segregation direction | [`pipeline/02_canonical_analysis_and_slides`](pipeline/02_canonical_analysis_and_slides.ipynb) |
 | Reconfiguration predicts WM (canonical; reproduction gate for the rest) | r ≈ 0.366 repeated-CV, permutation p < 0.001 | [`04_goutham_pipeline_on_B`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
 | External validation (train B, test held-out A, disjoint identities) | r ≈ 0.398 | [`05_dataset_A_external_validation`](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
 | Tangent-space representation (method candidate) | POSTPONE ADOPTION | [`06_tangent_fc_benchmark`](sandbox/jaime/06_tangent_fc_benchmark.ipynb) |
-| **Current headline:** activation predicts better; reconfiguration does not clearly add over 0-back FC | r ≈ 0.60 vs 0.37 | [`08_activation_vs_reconfiguration`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb) |
+| **Robustness question:** activation predicts more strongly under unmatched representations; reconfiguration does not clearly add over 0-back FC | r ≈ 0.60 vs 0.37 | [`08_activation_vs_reconfiguration`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb) |
 | Goutham's pipeline reconciled on our data + brain maps | fingerprint 0.366; ΔSeg direction only (−0.024, not −0.048) | [`09_goutham_pipeline_replication`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
 
-**08 is the headline but rests on 04 and 05:** it re-checks against 04's canonical 0.366 and cites
-05's external validation. Foundation (framing, ingestion, EDA, A/B choice): notebooks 00-03. Full
-read-in-order guide: [`sandbox/jaime/README.md`](sandbox/jaime/README.md). The abstract and research
-proposal intentionally cite no notebooks (an abstract describes the work, not its files).
+`pipeline/02` is the place to reproduce the final evidence path; `08` is the clearest place to audit
+the post-submission comparison that changed the conclusion. Foundation (framing, ingestion, EDA,
+A/B choice): notebooks 00-03. Full read-in-order guide:
+[`sandbox/jaime/README.md`](sandbox/jaime/README.md).
 
 ---
 
 ## ▶️ Start here
 
 1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
-2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-20.md).
+2. Read the [project plan](docs/project-plan.md), then open the
+   [canonical evidence notebook](pipeline/02_canonical_analysis_and_slides.ipynb). The latest dated
+   context remains in the [20 July meeting notes](docs/meetings/2026-07-20.md).
 3. **Get the data.** Two cohorts sit behind one loader interface: the current MVP analysis runs on B
    (339 subjects; 336 analytic), while A (100 subjects) is used for external validation. See the
    [project plan](docs/project-plan.md) and [`data/README.md`](data/README.md).
@@ -101,7 +108,7 @@ proposal intentionally cite no notebooks (an abstract describes the work, not it
 ## 🗂️ How the repo is organised
 
 ```text
-pipeline/      group-reviewed notebooks; template + dataset-B onboarding EDA
+pipeline/      shared notebooks; template + onboarding + canonical presentation evidence
 sandbox/       iterative work, one folder per person
 data/          local HCP data — gitignored except its README, never committed
 docs/          the living project plan and dated meeting notes
