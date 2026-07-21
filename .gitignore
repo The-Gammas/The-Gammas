@@ -41,5 +41,13 @@ AGENTS.local.md
 sandbox/**/fig*.png
 **/_view_*.png
 
+# Standalone interactive 3D brain HTML exports are heavy viewer artifacts
+# (nb09 regenerates these in-notebook). Keep any kept copy local, out of git.
+sandbox/goutham/*.html
+
+# The submitted abstract PDF is kept local only (it carries author emails on its
+# title page); manuscript/abstract.md is the versioned source of the text.
+manuscript/*.pdf
+
 # Local scratch / temp (throwaway files, chat figures) — never commit.
 tmp/
