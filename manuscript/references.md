@@ -42,7 +42,8 @@ Running bibliography, collected by the team. Annotations note why each is releva
   (r ~0.18) sits inside. *(Caveat: resting-state, **not** an HCP 0→2-back template; our 0-back Newman
   modularity is only a task analogue, and Calder's age-dependence is itself why a young-adult-only effect
   need not match. Also reports adding SS gave no incremental predictive value over cognition — a direct
-  parallel to our "mostly general ability / trait FC" caveat.)*
+  parallel to our own no-incremental-value caveat (nb08, 21 Jul: reconfiguration does not clearly add
+  over single-condition 0-back FC).)*
   https://doi.org/10.1162/NETN.a.542
 - **Cohen & D'Esposito, The Segregation and Integration of Distinct Brain Networks and Their
   Relationship to Cognition** — *J. Neurosci.* 36(48):12083–12094, 2016.
@@ -123,7 +124,7 @@ claim level. **Pending team discussion — not a team decision.***
   working memory performance in novel healthy and memory-impaired individuals** — *Journal of Cognitive
   Neuroscience* 32(2):241–255, 2020.
   HCP N-back: predicts **2-back accuracy** out-of-sample from task FC at **r=0.36** (rest r=0.20) —
-  **the closest same-task/target WM benchmark and our calibration anchor; our r≈0.35 is consistent
+  **the closest same-task/target WM benchmark and our calibration anchor; our r≈0.37 is consistent
   with it** — a conceptual replication (their 10-fold-CV CPM vs our 5-fold RidgeCV over network
   summaries), not an exact replication. *[verified]*
   https://pmc.ncbi.nlm.nih.gov/articles/PMC8004893/
@@ -146,9 +147,12 @@ claim level. **Pending team discussion — not a team decision.***
   reliable individual differences** — *Behavior Research Methods* 50:1166–1186, 2018.
   Difference/contrast scores subtract away the true-score variance shared between conditions, leaving
   mostly error, so a robust within-subject contrast can have near-zero between-subject reliability,
-  which severely attenuates (rather than logically precludes) prediction. In our case it bites the
+  which severely attenuates (rather than logically precludes) prediction. In our earlier reading it bit the
   **scalar** reconfiguration summary — the 2bk−0bk integration index barely predicts (r≈0.04), and the
   raw difference features are low-reliability (feature-wise ~0.02 vs ~0.33 per condition) — but **not**
   the multivariate pattern, which still predicts out-of-sample (leakage-free cross-run r≈0.28) by
-  aggregating weak-but-consistent signal across edges. *[verified]*
+  aggregating weak-but-consistent signal across edges. *[verified]* *Refined by nb08 (21 Jul):
+  the multivariate pattern does not clearly add over single-condition 0-back FC and the predictive
+  signal is not connectivity-specific, so the pattern-vs-scalar dissociation is weaker than this
+  gloss implies.*
   https://doi.org/10.3758/s13428-017-0935-1

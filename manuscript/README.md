@@ -1,8 +1,8 @@
 # Manuscript
 
-The scientific write-up: the abstract enters its NMA workshop on **Mon 20 Jul**, followed by the final
-presentation on **Fri 24 Jul**. The 17 July deliverable was Azman's progress check, not a frozen final
-abstract.
+The scientific write-up: the abstract was **submitted on Mon 20 Jul** (22:12); focus is now the
+**W3D5 presentation on Fri 24 Jul**. The 17 July deliverable was Azman's progress check, an intermediate
+snapshot on the way to that submitted abstract (NMA does not grade the abstract).
 
 ## Source and status model
 
@@ -18,9 +18,9 @@ so that they do not silently become interchangeable:
   explicitly a proposal, not a record of team agreement; the
   [PDF](../sandbox/valeria/Research%20Question%20Development.pdf) and
   [Markdown transcription](../sandbox/valeria/research-question-development.md) remain unchanged.
-- **Dated abstract snapshots:** [`abstract.md`](abstract.md) contains the 17 July merge proposal and
-  preserves the 10 July Google Doc text unchanged below it. The current proposal is queued for
-  Monday's evidence-based review; neither snapshot replaces the live Google Doc.
+- **Dated abstract snapshots:** [`abstract.md`](abstract.md) leads with the **submitted version
+  (20 Jul)** plus a 21 Jul corrected draft, and preserves the earlier 17 July merge proposal and
+  10 July Google Doc text as history below. Neither snapshot replaces the live Google Doc.
 - **Current direction:** [`../docs/project-plan.md`](../docs/project-plan.md) records the living plan,
   verified results and open decisions; dated meeting notes preserve why a proposal was accepted,
   rejected or deferred.
@@ -38,10 +38,12 @@ The Google Doc tabs map to the repository as follows:
 - *Literature Related* → [`references.md`](references.md)
 - *Abstract* → dated snapshots such as [`abstract.md`](abstract.md)
 
-**Current next step:** on Monday, review the 78-feature method and compare the pattern-vs-scalar,
-integration/segregation and B→A-validation framings. Retain, refine or combine them according to the
-evidence and team judgment, then record the selected story in the living plan before capturing
-another snapshot.
+**Current next step:** the abstract is submitted, so the focus is the **W3D5 presentation (Fri 24 Jul)**.
+The pattern-vs-scalar framing is superseded by nb08 (21 Jul, peer-reviewed): reconfiguration does not
+clearly add over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd), a
+task-activation contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out people
+and runs), FC adds nothing over it, and the predictive signal is not specific to connectivity
+reconfiguration. Record the presentation story in the living plan before capturing another snapshot.
 
 ## Attribution and review workflow
 

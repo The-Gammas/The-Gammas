@@ -5,10 +5,10 @@
 **Neuromatch Academy · CompNeuro 2026 · Pod Ifrit Ras el Hanout · Group 1**
 
 [![Neuromatch CompNeuro 2026](https://img.shields.io/badge/Neuromatch-CompNeuro_2026-5e35b1)](https://compneuro.neuromatch.io/tutorials/intro.html)
-[![Course weeks 2–3](https://img.shields.io/badge/course-between_weeks_2--3-1e88e5)](https://compneuro.neuromatch.io/tutorials/Schedule/daily_schedules.html)
+[![Course Week 3](https://img.shields.io/badge/course-Week_3_·_W3D5_Fri_24_Jul-1e88e5)](https://compneuro.neuromatch.io/tutorials/Schedule/daily_schedules.html)
 [![Dataset HCP N-back](https://img.shields.io/badge/dataset-HCP_N--back_(A%2FB)-c62828)](data/README.md)
 [![Atlas Glasser 360](https://img.shields.io/badge/atlas-Glasser_360_·_Cole--Anticevic-00897b)](sandbox/jaime/02_eda_and_data_dictionary.ipynb)
-[![Abstract workshop Mon 20 Jul](https://img.shields.io/badge/abstract_workshop-Mon_20_Jul-fb8c00)](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
+[![Abstract submitted 20 Jul](https://img.shields.io/badge/abstract-submitted_20_Jul-43a047)](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
 [![Pod Zoom](https://img.shields.io/badge/pod_Zoom-join_room-2d8cff?logo=zoom&logoColor=white)](https://zoom.us/j/7944834775?pwd=M016NlExWm44ZDhRSEk0ZmROaURSZz09)
 
 </div>
@@ -21,17 +21,26 @@
 >
 > *The Project TA's north star is **prediction on unseen subjects**. Functional connectivity and graph metrics are candidate **features**, not the goal — and the hypothesis stays falsifiable.*
 
-**Status — 18 Jul:** the FC/prediction pilot is verified on `main`; the method and scientific story
-remain under team review. On **Mon 20 Jul** we will align the open work and turn it into the sprint for
-the final week (20–24 Jul). Personal exploration lives in `sandbox/`; only group-reviewed notebooks
-move into `pipeline/`.
+**Status (21 Jul):** the abstract was **submitted 20 Jul** (22:12) and the team sync happened that day
+(see [meeting notes](docs/meetings/2026-07-20.md)); focus is now the **W3D5 presentation** (Fri 24 Jul).
+The FC/prediction pilot is verified on `main`. Personal exploration lives in `sandbox/`; only
+group-reviewed notebooks move into `pipeline/`.
+
+> **nb08 update (21 Jul, peer-reviewed):** the "reconfiguration predicts WM" framing below is refined.
+> A task-activation contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out
+> people and runs), FC adds nothing over it (delta-R2 -0.003), and reconfiguration does not clearly add
+> over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd). The predictive signal
+> is not specific to connectivity reconfiguration. Full check:
+> [`sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb).
 
 ---
 
 ## 🔬 The pipeline
 
 Five steps from raw BOLD to a tested prediction. This is the conceptual workflow; the table below
-records what currently exists, not a fixed assignment for the final week.
+records what currently exists, not a fixed assignment for the final week. The reconfiguration-predicts-WM
+direction is **refined by nb08** (see the status note above): a task-activation contrast predicts better
+and FC adds nothing over it.
 
 ```mermaid
 flowchart LR
@@ -60,7 +69,7 @@ flowchart LR
 ## ▶️ Start here
 
 1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
-2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-17.md).
+2. Read the [project plan](docs/project-plan.md) and the latest [meeting notes](docs/meetings/2026-07-20.md).
 3. **Get the data.** Two cohorts sit behind one loader interface: the current MVP analysis runs on B
    (339 subjects; 336 analytic), while A (100 subjects) is used for external validation. See the
    [project plan](docs/project-plan.md) and [`data/README.md`](data/README.md).

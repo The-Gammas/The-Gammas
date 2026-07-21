@@ -1,5 +1,12 @@
 # Abstract: merge proposal
 
+> **SUPERSEDED by nb08 (21 Jul).** The predictive signal is NOT specific to reconfiguration; a
+> task-activation contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60); per-run centering shows it
+> is not a load-independent trait. The "pattern-versus-scalar dissociation" and "trait-general"
+> framing in the body below is refined or reversed by that re-check. The body is kept unchanged as the
+> historical pre-workshop record (its value is the merge rationale and the three-tier authorship
+> table). Headline notebook: [`08_activation_vs_reconfiguration.ipynb`](../08_activation_vs_reconfiguration.ipynb).
+
 **Author:** Jaime Pineda · **Version:** v2 · **Date:** 2026-07-17 · **Status:** proposal for group
 review, not a team decision, and not a replacement for the shared Google Doc.
 
@@ -151,6 +158,12 @@ r ≈ 0.22 to 0.24). Those belong in Results. Every number that survived changes
 
 ## Open, needs the group rather than me
 
+> **Closed (21 Jul).** These were open questions "for Monday" (20 Jul). That workshop day has passed
+> and the abstract was submitted 20 Jul 22:12, so they are closed as pre-submission items; "Goutham
+> should sign it off" and "before Monday" below are past. nb08 (21 Jul) also supersedes the
+> pattern-vs-scalar framing these items assume (see the top banner). Left intact as the pre-workshop
+> record.
+
 1. **N discrepancy, resolved after this draft.** The current MVP uses B (336 analytic participants)
    for the primary analysis and A (100 participants) for external validation; the cohorts are not
    merged. Formal team confirmation remains part of Monday's method lock. See
@@ -175,6 +188,9 @@ everyone. Two independent drafts already exist, which is why this merge was poss
 doing properly on Monday rather than converging early. Also worth remembering: NMA's own abstract
 record is explicitly *not used for evaluation*, and Monday is a full workshop day, so today's
 submission is not final.
+
+> **Update (21 Jul):** Monday 20 Jul has passed and the abstract was submitted 20 Jul 22:12. This
+> section is kept as the pre-workshop process rationale.
 
 **House style note.** Em dashes are removed throughout, deliberately. They are legitimate punctuation,
 but they read as machine-written to some readers, and Arefeh has already raised that concern about our

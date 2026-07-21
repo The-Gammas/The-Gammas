@@ -20,8 +20,9 @@ The working direction is:
 
 These are conceptual stages, not a claim that five shared notebooks already exist. Work begins in
 `sandbox/<name>/`; a notebook is added here only after the group can run it, understand it and agree
-that it represents the current method. The team will decide the final-week promotion scope and sprint
-on Monday 20 July; current status lives in [`../docs/project-plan.md`](../docs/project-plan.md).
+that it represents the current method. The team decided the final-week promotion scope and sprint
+at the 20 July sync (see [`../docs/meetings/2026-07-20.md`](../docs/meetings/2026-07-20.md)); current
+status lives in [`../docs/project-plan.md`](../docs/project-plan.md).
 
 A promoted notebook should:
 
