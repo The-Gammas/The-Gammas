@@ -39,6 +39,7 @@ AGENTS.local.md
 # Notebook figures live embedded in the .ipynb, not as loose files.
 # Ignore both savefig outputs and viewer/preview render duplicates.
 sandbox/**/fig*.png
+pipeline/*.png
 **/_view_*.png
 
 # Standalone interactive 3D brain HTML exports are heavy viewer artifacts
