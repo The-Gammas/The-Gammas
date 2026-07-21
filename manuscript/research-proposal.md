@@ -5,6 +5,12 @@
 > implementation and results have moved beyond it. Use the [living project plan](../docs/project-plan.md)
 > for the current cohorts, tested method and open decisions.
 >
+> **21 Jul pointer:** the abstract was submitted 20 Jul (predictive hypothesis primary). A follow-up
+> test ([nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb)) found that load
+> reconfiguration does **not** clearly add over single-condition connectivity, and that a task-activation
+> contrast predicts working memory better (r ≈ 0.60) than any connectivity feature. This affects
+> Step 4's predictive extension and the framing, not the proposal's attribution. For team discussion.
+>
 > **Source contribution:** Valeria Moraga, *Research Question Development*, received via Discord
 > ([source PDF](../sandbox/valeria/Research%20Question%20Development.pdf) ·
 > [repository transcription](../sandbox/valeria/research-question-development.md)).
