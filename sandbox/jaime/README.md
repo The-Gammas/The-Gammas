@@ -2,9 +2,12 @@
 
 **Status (21 Jul):** nine notebooks. The data onboarding is represented in shared `pipeline/01`; the
 modelling/audit notebooks `04`–`09` were the exploration the team reviewed at the 20 Jul sync (abstract
-submitted that day). **Inferential headline: [`08_activation_vs_reconfiguration.ipynb`](08_activation_vs_reconfiguration.ipynb)**
-(21 Jul, peer-reviewed) refines the reconfiguration story below: reconfiguration does not clearly add
-over single-condition 0-back FC, and a task-activation contrast predicts better. The newest notebook is
+submitted that day). Their presentation evidence is now consolidated in
+[`pipeline/02_canonical_analysis_and_slides.ipynb`](../../pipeline/02_canonical_analysis_and_slides.ipynb).
+**Focused robustness analysis: [`08_activation_vs_reconfiguration.ipynb`](08_activation_vs_reconfiguration.ipynb)**
+(21 Jul) refines the reconfiguration story below: reconfiguration does not clearly add over
+single-condition 0-back FC, and a task-activation contrast predicts more strongly under the current
+unmatched representations. The newest source notebook is
 [`09_goutham_pipeline_replication.ipynb`](09_goutham_pipeline_replication.ipynb) (21 Jul), which
 reconciles Goutham's pipeline on our data and adds the organized brain maps.
 
@@ -30,7 +33,7 @@ NMA loaders referenced as the code-style base.
 | [`04_goutham_pipeline_on_B.ipynb`](04_goutham_pipeline_on_B.ipynb) | **the experiment (dataset B)** | Goutham's FC pipeline on B (336 subj): per-condition FC → 2bk−0bk reconfiguration → 78-dim fingerprint → RidgeCV + permutation null. Prediction, specificity (reconfiguration vs single-condition FC, general ability, motion), direction, `d′` correction, multiple comparisons. | Executed with real outputs |
 | [`05_dataset_A_external_validation.ipynb`](05_dataset_A_external_validation.ipynb) | **using dataset A** | Same experiment, A as a held-out transfer cohort (same HCP source, disjoint identities): A/B subject-overlap constraint, four train/test designs, and the recommended one — train on B-only (301), test on A (100), leakage-free identity-disjoint transfer (r≈0.40, p<0.001). | Executed with real outputs |
 | [`06_tangent_fc_benchmark.ipynb`](06_tangent_fc_benchmark.ipynb) | **method candidate** | Does a log-Euclidean tangent representation beat the 78-network fingerprint? One estimator, three feature sets, 4 s HRF-delayed windows; audited reproduction gate → d′ robustness → development-only CV → identity-disjoint B→A transfer. | Executed (10/10 cells, no errors); reorganised 20 Jul. Verdict stands: POSTPONE ADOPTION |
-| [`08_activation_vs_reconfiguration.ipynb`](08_activation_vs_reconfiguration.ipynb) | **current headline** | Re-check of the reconfiguration story (21 Jul, peer-reviewed): reconfiguration does not clearly add over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd); a task-activation contrast (2bk−0bk mean BOLD) predicts better (r ≈ 0.60 pooled, ≈ 0.48 held-out people and runs) and FC adds nothing over it (delta-R2 -0.003); per-run centering makes 0bk/2bk/contrast collinear, so it is not a load-independent trait; the predictive signal is not specific to connectivity reconfiguration. | Executed; peer-reviewed 21 Jul |
+| [`08_activation_vs_reconfiguration.ipynb`](08_activation_vs_reconfiguration.ipynb) | **robustness question** | Re-check of the reconfiguration story (21 Jul): reconfiguration does not clearly add over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd); a task-activation contrast (2bk−0bk mean BOLD) predicts more strongly (r ≈ 0.60 pooled, ≈ 0.48 held-out people and runs), while adding FC shows no clear gain (delta-R2 -0.003). The comparison is unmatched (360 regional activation vs 78 network FC features), and per-run centering makes 0bk/2bk/contrast collinear, so current evidence does not establish FC-specific predictive value or a load-independent activation trait. Includes paired OOF scatterplots beside the method-comparison bars. | Executed 21 Jul; framing carried into `pipeline/02` as a proposal |
 | [`09_goutham_pipeline_replication.ipynb`](09_goutham_pipeline_replication.ipynb) | **reconcile Goutham** | His `FCM_entropy` functions run verbatim on our data layer (dataset B): fingerprint reproduces r ≈ 0.366 (his committed 0.2376 was a data-loading artifact); node strength weakly positive (~0.16), not null; system-segregation direction reproduces (drops 0bk→2bk, p=3e-05) but not the −0.048 magnitude; K-Means/FCM weak. Plus organized brain maps (network heatmap, connectome, node strength) on real MNI coords, and an interactive 3D map with a semi-transparent cortex. | Executed 21 Jul |
 | [`datasets.py`](datasets.py) | **loaders / I-O** | Config + raw loaders (A **and** B): `DatasetSpec`, `spec_a`/`spec_b`, constants, `load_subjects`, `load_timeseries` (`bold7`=RL/`bold8`=LR for B), `list_rest_runs`/`load_rest_timeseries` (B) | Regression-verified vs. the old A helpers |
 | [`preprocessing.py`](preprocessing.py) | **preprocessing** | Raw → analysis-ready: `condition_frames`/`condition_timeseries` (both take `delay=` for the HRF shift), `behaviour_table`, `signal_detection_table`, `region_table` | A+B; B yields 339→336 analytic subjects |
@@ -100,5 +103,5 @@ estimation, the 78-feature summary and the final reporting hierarchy remain team
 2. Review the FC method, 78-feature summary and hand-off format with the group.
 3. Reconcile the sandbox function signatures with whatever shared API the team actually needs.
 4. Remove subject identifiers and keep only safe, useful outputs in the promoted notebook.
-5. Promote only the modelling story selected for the final-week sprint; do not overwrite this
-   exploratory record.
+5. Keep this exploratory record intact; presentation-facing synthesis belongs in `pipeline/02` and
+   narrative changes remain proposals until the team agrees them.

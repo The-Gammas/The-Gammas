@@ -12,18 +12,27 @@ from the data.
 
 ## Current snapshot
 
-**Verified on `main`:** shared A/B ingestion layer, dataset-B onboarding, Goutham's FC/prediction
-pipeline reproduced on A and ported to B, permutation testing, corrected d′, and leakage-free B→A
-external validation.
+**Verified:** shared A/B ingestion layer, dataset-B onboarding, Goutham's FC/prediction pipeline
+reproduced on A and ported to B, permutation testing, corrected d′, leakage-free B→A external
+validation, and the complete presentation evidence path in
+[`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb).
 
-**Not yet locked by the group:** the 78-feature network summary, FC preprocessing/estimation choices,
-and the interpretation of integration/segregation. (The abstract was submitted 20 July; see the
-milestones below.)
+**Not yet locked by the group:** whether the activation benchmark belongs in the five main slides or
+in backup/Q&A, the presenter/figure allocation, the FC preprocessing/estimation caveat, and the final
+interpretation of integration/segregation. The evidence is consolidated; the narrative choice remains
+a proposal. (The abstract was submitted 20 July; see the milestones below.)
 
 ## Working question
 
 > Does functional connectivity reconfigure between low and high working-memory load
 > (0-back → 2-back), and can that reconfiguration predict individual working-memory performance?
+
+The post-submission robustness question is:
+
+> Does reconfiguration add predictive information beyond single-condition 0-back FC, and how does
+> it compare with the simpler regional activation signal?
+
+This second question refines the interpretation of the original hypothesis; it does not replace it.
 
 The Project TA's north star is **prediction on unseen subjects**. FC and graph metrics are candidate
 features, not the final goal. The hypothesis stays falsifiable.
@@ -44,9 +53,10 @@ features, not the final goal. The hypothesis stays falsifiable.
   wording could read as a feature-count comparison rather than the scientific meaning of integration
   and segregation, and that external validation might be a stronger headline. This is framing
   feedback, not a methodological veto. The pattern-vs-scalar dissociation still holds, but nb08 (21
-  July) showed it is no longer sufficient as the headline: reconfiguration does not clearly add over
-  single-condition 0-back FC, a task-activation contrast predicts better, and the predictive signal is
-  not specific to connectivity reconfiguration.
+  July) showed it is no longer sufficient as the whole conclusion: reconfiguration does not clearly
+  add over single-condition 0-back FC, and a task-activation contrast predicts more strongly under
+  the current unmatched representations. The evidence therefore does not establish that the
+  predictive signal is specific to connectivity reconfiguration.
 
 Source: Arefeh's proposal, refined 15 July → [research-proposal](../manuscript/research-proposal.md).
 
@@ -145,16 +155,19 @@ than the raw number suggests.
   (net integration index r ≈ 0.04, mean modularity change) remain flat, as before.
 - **Verified numerical statement (revised 21 Jul, nb08).** The multivariate load-reconfiguration
   pattern predicts WM in unseen subjects (repeated-CV r ≈ 0.366, p ≈ 0.001 against a corrected
-  permutation null, robust to a DVARS proxy); the one-number directional summaries do not. nb08's
-  current headline is that this predictive signal is **not specific to connectivity reconfiguration**:
-  a task-activation contrast (2bk − 0bk mean BOLD) predicts better (r ≈ 0.60 pooled, ≈ 0.48 held out
-  over both people and runs), FC adds nothing over that activation contrast (nested delta-R² ≈ −0.003),
-  and per-run centering makes 0bk/2bk/contrast collinear (contrast vs 0bk ≈ −0.86), so the contrast is
-  not a load-independent trait. Do not use the seed-42-optimistic *"reconfiguration predicts at r =
-  0.40"*; the current headline notebook is 08.
+  permutation null, robust to a DVARS proxy); the one-number directional summaries do not. Under the
+  current unmatched representations, a task-activation contrast (2bk − 0bk mean BOLD; 360 regional
+  features) predicts more strongly than the 78-feature network FC summary (r ≈ 0.60 pooled, ≈ 0.48
+  held out over both people and runs), and adding FC shows no clear gain (nested delta-R² ≈ −0.003).
+  This comparison does not establish FC-specific predictive value, but it is not a feature-matched
+  biological contest. Per-run centering also makes 0bk/2bk/contrast collinear (contrast vs 0bk ≈
+  −0.86), so the contrast is not a load-independent trait. Do not use the seed-42-optimistic
+  *"reconfiguration predicts at r = 0.40"*.
 
 Detail, code and the reproduction gate: [`sandbox/jaime/04_goutham_pipeline_on_B.ipynb`](../sandbox/jaime/04_goutham_pipeline_on_B.ipynb)
-(still valid; it is nb08's reproduction gate). **Current headline notebook (21 Jul, peer-reviewed):**
+(still valid; it is nb08's reproduction gate). **Canonical evidence notebook:**
+[`pipeline/02_canonical_analysis_and_slides.ipynb`](../pipeline/02_canonical_analysis_and_slides.ipynb).
+**Focused robustness notebook:**
 [`sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb).
 The tangent-space benchmark [`sandbox/jaime/06_tangent_fc_benchmark.ipynb`](../sandbox/jaime/06_tangent_fc_benchmark.ipynb)
 remains **POSTPONE ADOPTION**.
@@ -164,16 +177,22 @@ remains **POSTPONE ADOPTION**.
 | Stage | Purpose | Lead(s) | Status |
 |---|---|---|---|
 | 1. Ingestion + EV segmentation | Separate low/high load frames; shared A/B loader | Jaime | **Done** — shared layer + `pipeline/01_explore_dataset_b` |
-| 2. Functional connectivity | FC per load condition | Valeria + Arefeh | **Prototype exists** on A and B; compare, review and generalise |
-| 3. Graph construction | FC as weighted, undirected graphs | Goutham | Reproduced in nb09 (sandbox), not yet a shared `pipeline/` stage |
-| 4. Graph metrics | Segregation / integration | Kerem + Arefeh | Exploratory only: modularity (nb04), Chan segregation + clustering (nb09); full layer post-MVP |
-| 5. Prediction / testing | Predict WM performance in unseen subjects + permutation null | Valeria + Arefeh | **Pilot verified on B + B→A external validation**; team review done 20 Jul (see [meetings/2026-07-20.md](meetings/2026-07-20.md)) |
+| 2. Functional connectivity | FC per load condition | Valeria + Arefeh | **Canonical evidence consolidated in `pipeline/02`**; estimator caveat retained |
+| 3. Graph construction | FC as weighted, undirected graphs | Goutham | Descriptive network view included in `pipeline/02`; extended graph work remains exploratory in nb09 |
+| 4. Graph metrics | Segregation / integration | Kerem + Arefeh | Segregation direction included in `pipeline/02`; clustering and full graph layer remain post-MVP |
+| 5. Prediction / testing | Predict WM performance in unseen subjects + permutation null | Valeria + Arefeh | **Internal and B→A evidence consolidated in `pipeline/02`**; final presentation framing pending team approval |
 
 Owners above are the prior working allocation, not the final-week sprint. Reassign as the W3D5
 presentation split is agreed and then update this table and the root README together.
 
 ## Open now
 
+- ❗ **Team presentation decision:** review the canonical notebook and approve or revise its proposed
+  story: keep FC reconfiguration primary, show activation as the unexpected benchmark, remove the
+  unsupported *beyond static FC* claim, and avoid opening new clustering/FCM experiments. A narrower
+  fallback puts activation in backup/Q&A while retaining the corrected conclusion.
+- **Presentation allocation:** choose the final FC figure and one-minute interpretation, then assign
+  one slide / one minute per presenter.
 - ❗ **Goutham's read on the 78-feature method** — why average 360 ROIs into 12 networks and retain
   the 12 within-network diagonal summaries alongside 66 between-network edges.
 - ✅ **Goutham's numbers reconciled (21 Jul, [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)).**
@@ -200,8 +219,9 @@ the curated data and should be limitations, not open implementation promises.
 |---|---|
 | **17 July** | ✅ Project TA progress check; verified results + framing comments for team review |
 | **20 July** (W3D1) | ✅ Team method/story sync held ([meetings/2026-07-20.md](meetings/2026-07-20.md)); abstract submitted 22:12 |
-| **21 July** | ✅ nb08 re-check: reconfiguration does not clearly add over 0-back FC; task-activation contrast predicts better; signal not connectivity-specific |
+| **21 July** | ✅ nb08 re-check: reconfiguration does not clearly add over 0-back FC; regional activation predicts more strongly under the current unmatched representations; FC specificity is not established |
 | **21 July** | ✅ nb09: Goutham's pipeline replicated on our data; numbers reconciled (fingerprint 0.366; his 0.2376 a data-loading artifact); segregation direction reproduced (magnitude −0.024, not −0.048); brain maps regenerated |
+| **21 July** | ✅ `pipeline/02`: canonical evidence and presentation figures consolidated; recommended narrative documented as a proposal pending team approval |
 | **24 July** (W3D5) | Final presentation: 1 slide / 1 minute per person |
 
 ## Sources

@@ -152,7 +152,8 @@ claim level. **Pending team discussion — not a team decision.***
   raw difference features are low-reliability (feature-wise ~0.02 vs ~0.33 per condition) — but **not**
   the multivariate pattern, which still predicts out-of-sample (leakage-free cross-run r≈0.28) by
   aggregating weak-but-consistent signal across edges. *[verified]* *Refined by nb08 (21 Jul):
-  the multivariate pattern does not clearly add over single-condition 0-back FC and the predictive
-  signal is not connectivity-specific, so the pattern-vs-scalar dissociation is weaker than this
-  gloss implies.*
+  the multivariate pattern does not clearly add over single-condition 0-back FC, while regional
+  activation predicts more strongly under the current unmatched representations. The evidence does
+  not establish FC-specific predictive value, so the pattern-vs-scalar dissociation is weaker than
+  this gloss implies.*
   https://doi.org/10.3758/s13428-017-0935-1
