@@ -175,13 +175,14 @@ method/story discussion and then update this table and the root README together.
 
 - ❗ **Goutham's read on the 78-feature method** — why average 360 ROIs into 12 networks and retain
   the 12 within-network diagonal summaries alongside 66 between-network edges.
-- ❗ **Reconcile Goutham's numbers before any W3D5 slide.** His fingerprint r is inconsistent across the
-  repo: the 20 Jul minutes cite r ≈ 0.35 (single 5-fold CV, Colab only), his committed
-  [`sandbox/goutham/FCM_entropy.ipynb`](../sandbox/goutham/FCM_entropy.ipynb) reports r = 0.2376 (single
-  split), and the canonical repeated-CV is r ≈ 0.366. His ΔSegregation = −0.048 (Chan-style) is not
-  reproducible from the repo (nb04 has only Newman modularity). Present the reproducible r ≈ 0.366 and
-  ask Goutham to reconcile the 0.35 and the ΔSegregation before they reach a slide. Teammate files:
-  flag only, do not edit.
+- ✅ **Goutham's numbers reconciled (22 Jul, [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)).**
+  His analysis functions run verbatim on our data layer. The fingerprint reconfiguration comes out
+  r ≈ 0.366 (repeated CV) / 0.405 (single seed), so his committed 0.2376 was a data-loading artifact,
+  not a method problem: the canonical **r ≈ 0.366** is what to present. The ΔSegregation direction
+  reproduces (segregation drops 0-back → 2-back, p = 3e-05) but its magnitude is about −0.024, not the
+  abstract's −0.048, and individual-difference prediction is weak (corr ≈ −0.10); present segregation
+  qualitatively, not as the number −0.048. His 3D visualizations remain the presentable extra once he
+  shares or regenerates them.
 - **FC estimator/preprocessing:** decide how to handle task-evoked coactivation and document the
   Pearson-FC limitation.
 - **Graph scope:** if graph metrics return to the MVP, prespecify thresholding, negative edges,
