@@ -1,9 +1,9 @@
 # Living project plan
 
-**Last reviewed:** 18 July 2026
-**Stage:** Weekend between Weeks 2 and 3. The FC/prediction pilot and external validation are verified
-on `main`; the method, scientific framing and final-week ownership remain open for the team sync on
-**Monday 20 July**.
+**Last reviewed:** 21 July 2026
+**Stage:** Week 3 (W3D1 was Mon 20 July). The FC/prediction pilot and external validation are verified
+on `main`; the Monday 20 July team sync happened (see [meetings/2026-07-20.md](meetings/2026-07-20.md))
+and the abstract was submitted 20 July 22:12. Focus is now the **W3D5 presentation (Fri 24 July)**.
 
 This is the canonical detailed status. [`../README.md`](../README.md) is its short snapshot; dated
 meeting notes preserve the discussion behind changes. A working plan is not a claim that every stage
@@ -17,7 +17,8 @@ pipeline reproduced on A and ported to B, permutation testing, corrected d′, a
 external validation.
 
 **Not yet locked by the group:** the 78-feature network summary, FC preprocessing/estimation choices,
-the interpretation of integration/segregation, the final abstract story and the 20–24 July sprint.
+and the interpretation of integration/segregation. (The abstract was submitted 20 July; see the
+milestones below.)
 
 ## Working question
 
@@ -42,8 +43,10 @@ features, not the final goal. The hypothesis stays falsifiable.
 - The numbers are verified; the story is not locked. Azman's 17 July comment was that the current
   wording could read as a feature-count comparison rather than the scientific meaning of integration
   and segregation, and that external validation might be a stronger headline. This is framing
-  feedback, not a methodological veto. The pattern-vs-scalar result remains a live candidate finding;
-  robustness, replication and team judgment determine whether it is retained, refined or deprioritized.
+  feedback, not a methodological veto. The pattern-vs-scalar framing was superseded on 21 July by
+  notebook 08 (see the follow-up section): reconfiguration does not clearly add over single-condition
+  0-back FC, a task-activation contrast predicts better, and the predictive signal is not specific to
+  connectivity reconfiguration.
 
 Source: Arefeh's proposal, refined 15 July → [research-proposal](../manuscript/research-proposal.md).
 
@@ -133,18 +136,27 @@ than the raw number suggests.
   r falls to **0.22** and the fingerprint adds ~no R² over ability alone. **d′ retains signal** under
   the same control — support for keeping d′ as the measurement-focused companion, not evidence that
   it is more robust than accuracy.
-- **A pattern-vs-scalar dissociation (post-audit reframe, 17 Jul).** The *multivariate* reconfiguration
-  pattern predicts (repeated-CV r ≈ 0.37; leakage-free cross-run r ≈ 0.28) and adds over single-state
-  trait FC (0bk-only repeated-CV r ≈ 0.27); only the *scalar* directional summaries of reconfiguration
-  (net integration index r ≈ 0.04, mean modularity change) do not.
-- **Verified numerical statement:** the multivariate load-reconfiguration pattern predicts WM in
-  unseen subjects (repeated-CV r ≈ 0.37, leakage-free cross-run r ≈ 0.28, p < 0.001, robust to a
-  DVARS proxy); the one-number directional summaries do not. **How to frame that result remains open.**
-  Pattern-vs-scalar is neither settled nor discarded: it stays in scope while the team tests the
-  method and interpretation. Do not use the seed-42-optimistic *"reconfiguration predicts at r =
-  0.40"*; choose the final headline from the evidence, not from any single person's preference.
+- **Reconfiguration pattern vs single-condition FC (revised 21 Jul, nb08).** The multivariate
+  reconfiguration pattern predicts held-out performance (repeated-CV r ≈ 0.366), and single-condition
+  0-back FC alone predicts at r ≈ 0.274. The 17 Jul reading that reconfiguration *adds* over
+  single-condition FC did not survive re-check: nb08's nested delta-R² is only +0.034 (sd 0.023, under
+  2 sd), so reconfiguration does not clearly add over 0-back FC. Only the scalar directional summaries
+  (net integration index r ≈ 0.04, mean modularity change) remain flat, as before.
+- **Verified numerical statement (revised 21 Jul, nb08).** The multivariate load-reconfiguration
+  pattern predicts WM in unseen subjects (repeated-CV r ≈ 0.366, p ≈ 0.001 against a corrected
+  permutation null, robust to a DVARS proxy); the one-number directional summaries do not. nb08's
+  current headline is that this predictive signal is **not specific to connectivity reconfiguration**:
+  a task-activation contrast (2bk − 0bk mean BOLD) predicts better (r ≈ 0.60 pooled, ≈ 0.48 held out
+  over both people and runs), FC adds nothing over that activation contrast (nested delta-R² ≈ −0.003),
+  and per-run centering makes 0bk/2bk/contrast collinear (contrast vs 0bk ≈ −0.86), so the contrast is
+  not a load-independent trait. Do not use the seed-42-optimistic *"reconfiguration predicts at r =
+  0.40"*; the current headline notebook is 08.
 
-Detail, code and the full check: [`sandbox/jaime/04_goutham_pipeline_on_B.ipynb`](../sandbox/jaime/04_goutham_pipeline_on_B.ipynb).
+Detail, code and the reproduction gate: [`sandbox/jaime/04_goutham_pipeline_on_B.ipynb`](../sandbox/jaime/04_goutham_pipeline_on_B.ipynb)
+(still valid; it is nb08's reproduction gate). **Current headline notebook (21 Jul, peer-reviewed):**
+[`sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb).
+The tangent-space benchmark [`sandbox/jaime/06_tangent_fc_benchmark.ipynb`](../sandbox/jaime/06_tangent_fc_benchmark.ipynb)
+remains **POSTPONE ADOPTION**.
 
 ## Working stages
 
@@ -154,7 +166,7 @@ Detail, code and the full check: [`sandbox/jaime/04_goutham_pipeline_on_B.ipynb`
 | 2. Functional connectivity | FC per load condition | Valeria + Arefeh | **Prototype exists** on A and B; compare, review and generalise |
 | 3. Graph construction | FC as weighted, undirected graphs | Goutham | Not yet built as a shared stage; scope Monday |
 | 4. Graph metrics | Segregation / integration | Kerem + Arefeh | Exploratory integration/modularity only; full layer post-MVP unless restored Monday |
-| 5. Prediction / testing | Predict WM performance in unseen subjects + permutation null | Valeria + Arefeh | **Pilot verified on B + B→A external validation**; team review pending |
+| 5. Prediction / testing | Predict WM performance in unseen subjects + permutation null | Valeria + Arefeh | **Pilot verified on B + B→A external validation**; team review done 20 Jul (see [meetings/2026-07-20.md](meetings/2026-07-20.md)) |
 
 Owners above are the prior working allocation, not the final-week sprint. Reassign after the Monday
 method/story discussion and then update this table and the root README together.
@@ -163,17 +175,17 @@ method/story discussion and then update this table and the root README together.
 
 - ❗ **Goutham's read on the 78-feature method** — why average 360 ROIs into 12 networks and retain
   the 12 within-network diagonal summaries alongside 66 between-network edges.
-- **Monday team lock + sprint:** agree the MVP, the scientific headline, owners and hand-offs for
-  20–24 July; compare Valeria/Arefeh's FC work with the existing prototype before duplicating it.
+- ❗ **Reconcile Goutham's numbers before any W3D5 slide.** His fingerprint r is inconsistent across the
+  repo: the 20 Jul minutes cite r ≈ 0.35 (single 5-fold CV, Colab only), his committed
+  [`sandbox/goutham/FCM_entropy.ipynb`](../sandbox/goutham/FCM_entropy.ipynb) reports r = 0.2376 (single
+  split), and the canonical repeated-CV is r ≈ 0.366. His ΔSegregation = −0.048 (Chan-style) is not
+  reproducible from the repo (nb04 has only Newman modularity). Present the reproducible r ≈ 0.366 and
+  ask Goutham to reconcile the 0.35 and the ΔSegregation before they reach a slide. Teammate files:
+  flag only, do not edit.
 - **FC estimator/preprocessing:** decide how to handle task-evoked coactivation and document the
   Pearson-FC limitation.
-- **Abstract:** compare three evidence-backed framings — the pattern-vs-scalar dissociation, the
-  scientific meaning of integration/segregation, and B→A validation. Retain, refine or combine them
-  according to methodological support and explanatory value.
 - **Graph scope:** if graph metrics return to the MVP, prespecify thresholding, negative edges,
   metrics and aggregation. Otherwise keep the full layer explicitly post-MVP.
-- **Logistics:** confirm the authoritative abstract submission status; 17 July was Azman's progress
-  check, while 20 July is NMA Abstract Writing Day.
 
 **Settled/implemented:** corrected d′ extreme rates; B permutation null; DVARS-proxy sensitivity
 analysis; B→A external validation. Age, sex, family IDs and framewise displacement are unavailable in
@@ -184,7 +196,8 @@ the curated data and should be limitations, not open implementation promises.
 | Date | Milestone |
 |---|---|
 | **17 July** | ✅ Project TA progress check; verified results + framing comments for team review |
-| **20 July** (W3D1) | Team method/story lock, Abstract Writing workshop and final-week sprint assignment |
+| **20 July** (W3D1) | ✅ Team method/story sync held ([meetings/2026-07-20.md](meetings/2026-07-20.md)); abstract submitted 22:12 |
+| **21 July** | ✅ nb08 re-check: reconfiguration does not clearly add over 0-back FC; task-activation contrast predicts better; signal not connectivity-specific |
 | **24 July** (W3D5) | Final presentation: 1 slide / 1 minute per person |
 
 ## Sources

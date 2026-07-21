@@ -17,6 +17,14 @@ that survived verification are kept. Provenance is tagged per item:
 > team will decide its weight from the method and robustness evidence; current options and next
 > actions live in the [project plan](../project-plan.md) and
 > [17 July minutes](../meetings/2026-07-17.md).
+>
+> **21 Jul update:** notebook 08 ([`../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb),
+> peer-reviewed) supersedes pattern-vs-scalar as the headline. Reconfiguration does not clearly add
+> over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd); a task-activation
+> contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out people and runs) and
+> FC adds nothing over it (delta-R2 -0.003). The predictive signal is not specific to connectivity
+> reconfiguration. Reconfiguration repeated-CV r ~ 0.366 still stands as a number; the 17 Jul
+> analysis below is kept unchanged as the original context.
 
 ---
 

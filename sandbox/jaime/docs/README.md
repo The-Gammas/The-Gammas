@@ -16,13 +16,13 @@ for people rather than for an interpreter.
 
 | File | Purpose | State |
 |---|---|---|
-| [`05_abstract_proposal.md`](05_abstract_proposal.md) | Merge of Valeria's corrected draft ([`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf)) with the 17 Jul results draft, restructured to NMA's **ABC…G**. Preserved as the pre-workshop proposal; its dataset discrepancy is resolved, while its framing remains an evidence-based team choice for Monday | v2, 2026-07-17; status updated 2026-07-18 |
-| [`06_tangent_benchmark_report.md`](06_tangent_benchmark_report.md) | Findings and adoption recommendation of the tangent-space FC benchmark. **Generated** by [`../06_tangent_fc_benchmark.ipynb`](../06_tangent_fc_benchmark.ipynb): edit the notebook, never this file | 2026-07-19 run; awaiting a re-run after the 20 Jul reorganisation |
+| [`05_abstract_proposal.md`](05_abstract_proposal.md) | Merge of Valeria's corrected draft ([`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf)) with the 17 Jul results draft, restructured to NMA's **ABC…G**. Preserved as the pre-workshop proposal; its dataset discrepancy is resolved, while its framing was an evidence-based team choice; the abstract was submitted 20 Jul | v2, 2026-07-17; status updated 2026-07-21 |
+| [`06_tangent_benchmark_report.md`](06_tangent_benchmark_report.md) | Findings and adoption recommendation of the tangent-space FC benchmark. **Generated** by [`../06_tangent_fc_benchmark.ipynb`](../06_tangent_fc_benchmark.ipynb): edit the notebook, never this file | 2026-07-19 run; POSTPONE-ADOPTION verdict stands |
 
 ## Conventions
 
-- Numbering continues the sandbox sequence (`00`–`06` are the notebooks), so the reading order of the
-  whole sandbox stays linear.
+- Numbering continues the sandbox sequence (`00`–`06` and `08` are the notebooks, with a gap at `07`,
+  which was deleted), so the reading order of the whole sandbox stays linear.
 - Every document states **author, version, date and status** in its header, and a **changelog** once
   it has more than one version.
 - Sources are recorded in a "what this is based on" table. Claims about a text (word counts, missing
