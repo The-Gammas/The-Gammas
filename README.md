@@ -9,7 +9,6 @@
 [![Dataset HCP N-back](https://img.shields.io/badge/dataset-HCP_N--back_(A%2FB)-c62828)](data/README.md)
 [![Atlas Glasser 360](https://img.shields.io/badge/atlas-Glasser_360_·_Cole--Anticevic-00897b)](sandbox/jaime/02_eda_and_data_dictionary.ipynb)
 [![Abstract submitted 20 Jul](https://img.shields.io/badge/abstract-submitted_20_Jul-43a047)](https://docs.google.com/document/d/1mRC-UZhOGJ_ovPqXBudEBEPUyIp_AzjkJqvoIsAyouk/edit)
-[![Pod Zoom](https://img.shields.io/badge/pod_Zoom-join_room-2d8cff?logo=zoom&logoColor=white)](https://zoom.us/j/7944834775?pwd=M016NlExWm44ZDhRSEk0ZmROaURSZz09)
 
 </div>
 
@@ -28,9 +27,10 @@ group-reviewed notebooks move into `pipeline/`.
 
 > **nb08 update (21 Jul, peer-reviewed):** the "reconfiguration predicts WM" framing below is refined.
 > A task-activation contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out
-> people and runs), FC adds nothing over it (delta-R2 -0.003), and reconfiguration does not clearly add
-> over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd). The predictive signal
-> is not specific to connectivity reconfiguration. Full check:
+> people and runs), FC showed no clear incremental gain over it in the tested comparison (nested
+> delta-R2 -0.003; note activation uses 360 regional features vs FC's 78 network summaries), and
+> reconfiguration does not clearly add over single-condition 0-back FC (nested delta-R2 +0.034, sd
+> 0.023, under 2 sd). The predictive signal is not specific to connectivity reconfiguration. Full check:
 > [`sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb).
 
 ---
@@ -56,13 +56,13 @@ flowchart LR
 |---|---|---|---|
 | 1 · Ingestion + EV segmentation | ✅ Done | Jaime | Shared A/B layer + [`pipeline/01`](pipeline/01_explore_dataset_b.ipynb) |
 | 2 · Functional connectivity | 🟡 Prototype exists; review/generalise | Valeria · Arefeh | [Goutham on A](sandbox/goutham/per_analysis.ipynb) · [audited port to B](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
-| 3 · Matrices → graphs | ⚪ Not yet built as a shared stage | Goutham | Scope with the team on Monday |
-| 4 · Graph metrics | 🟡 Exploratory only; full layer deferred | Kerem · Arefeh | Integration/modularity checks in [`04`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
+| 3 · Matrices → graphs | 🟡 Reproduced in sandbox (nb09), not a shared stage | Goutham | [Goutham on A](sandbox/goutham/per_analysis.ipynb) · [reconciled on B](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
+| 4 · Graph metrics | 🟡 Exploratory only; full layer deferred | Kerem · Arefeh | Modularity in [`04`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb); segregation + clustering in [`09`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
 | 5 · Prediction / testing | 🟡 Pilot verified; team review pending | Valeria · Arefeh | [B pilot](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) · [B→A external validation](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
 
 > **Before duplicating work, share what you have.** Existing pilots are evidence, not yet the final
-> group pipeline. On Monday the team will review the method, agree the MVP and assign the remaining
-> work as a one-week sprint.
+> group pipeline. The method/story sync happened on 20 Jul (W3D1, abstract submitted); the remaining
+> work is the W3D5 presentation split.
 
 ---
 
@@ -76,8 +76,8 @@ project is **not** contained in a single notebook.
 | Reconfiguration predicts WM (canonical; reproduction gate for the rest) | r ≈ 0.366 repeated-CV, permutation p < 0.001 | [`04_goutham_pipeline_on_B`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) |
 | External validation (train B, test held-out A, disjoint identities) | r ≈ 0.398 | [`05_dataset_A_external_validation`](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
 | Tangent-space representation (method candidate) | POSTPONE ADOPTION | [`06_tangent_fc_benchmark`](sandbox/jaime/06_tangent_fc_benchmark.ipynb) |
-| **Current headline:** activation predicts better; reconfiguration adds nothing over 0-back FC | r ≈ 0.60 vs 0.37 | [`08_activation_vs_reconfiguration`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb) |
-| Goutham's pipeline reconciled on our data + brain maps | fingerprint 0.366; ΔSeg direction only | [`09_goutham_pipeline_replication`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
+| **Current headline:** activation predicts better; reconfiguration does not clearly add over 0-back FC | r ≈ 0.60 vs 0.37 | [`08_activation_vs_reconfiguration`](sandbox/jaime/08_activation_vs_reconfiguration.ipynb) |
+| Goutham's pipeline reconciled on our data + brain maps | fingerprint 0.366; ΔSeg direction only (−0.024, not −0.048) | [`09_goutham_pipeline_replication`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
 
 **08 is the headline but rests on 04 and 05:** it re-checks against 04's canonical 0.366 and cites
 05's external validation. Foundation (framing, ingestion, EDA, A/B choice): notebooks 00-03. Full
@@ -122,7 +122,7 @@ Short working profiles, not fixed job descriptions — each member can update th
 
 | Member | Background / interest | Current focus |
 |---|---|---|
-| **Jaime** | Medical doctor + data scientist; Python, pipelines and data analysis | Method audit, external validation and abstract merge |
+| **Jaime** | Medical doctor + data scientist; Python, pipelines and data analysis | Method audit, reconciling Goutham's pipeline, brain-map visualization, W3D5 presentation |
 | **Pratik Bhandari** | *Profile to complete with Pratik* | Contribution to define |
 | **Goutham Arcod** | HCP data exploration and initial proof of concept | Graph construction |
 | **Valeria Moraga** | Functional connectivity and literature review | FC and prediction/testing |
@@ -135,7 +135,7 @@ Short working profiles, not fixed job descriptions — each member can update th
 
 | Resource | Link |
 |---|---|
-| 🎥 Pod Zoom room | [Join](https://zoom.us/j/7944834775?pwd=M016NlExWm44ZDhRSEk0ZmROaURSZz09) |
+| 🎥 Pod Zoom room | Shared in the pod's private channel (kept out of the public repo) |
 | 📦 Group repository | [The-Gammas/The-Gammas](https://github.com/The-Gammas/The-Gammas) |
 | 🤖 Agent & contributor guide | [AGENTS.md](AGENTS.md) · [CONTRIBUTING.md](CONTRIBUTING.md) |
 | 🧪 Shared Colab (initial POC) | [Open in Colab](https://colab.research.google.com/drive/1Wu9Ke8bqr_UQp8_ZmtLTus-l0Xja3oIq) |

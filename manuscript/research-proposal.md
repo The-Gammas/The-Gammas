@@ -8,8 +8,11 @@
 > **21 Jul pointer:** the abstract was submitted 20 Jul (predictive hypothesis primary). A follow-up
 > test ([nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb)) found that load
 > reconfiguration does **not** clearly add over single-condition connectivity, and that a task-activation
-> contrast predicts working memory better (r ≈ 0.60) than any connectivity feature. This affects
-> Step 4's predictive extension and the framing, not the proposal's attribution. For team discussion.
+> contrast predicts working memory better (r ≈ 0.60) than any connectivity feature. A separate
+> replication ([nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)) reproduced the
+> group-level direction of system segregation (it drops 0-back → 2-back) but not the −0.048 magnitude
+> (≈ −0.024) nor a clear individual-difference link. This affects Step 4's predictive extension and the
+> framing, not the proposal's attribution. For team discussion.
 >
 > **Source contribution:** Valeria Moraga, *Research Question Development*, received via Discord
 > ([source PDF](../sandbox/valeria/Research%20Question%20Development.pdf) ·

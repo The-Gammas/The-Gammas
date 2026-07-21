@@ -53,16 +53,17 @@
 > adaptive transitions from more segregated toward more integrated network organization provide
 > complementary information beyond static FC.
 
-**Provenance flags for the presentation (verified 20 Jul against `main`)**
+**Provenance flags for the presentation (updated 21 Jul; [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb) now reconciles Goutham's pipeline on `main`)**
 
-Three claims in the submitted text are **not reproducible from the shared repo** and need Goutham's
-code before they go on a slide unqualified:
+At submission (20 Jul) three of the submitted numbers came from Goutham's Colab and were not
+reproducible from the repo. nb09 (21 Jul) runs his functions verbatim on our data layer and reconciles
+them:
 
 | Claim in the abstract | Status vs repo |
 |---|---|
-| fingerprint **r ≈ 0.35, p < 0.0001** | Goutham's single 5-fold CV. Our canonical number is **repeated-CV r ≈ 0.366** (nb04 §4/§10). Consistent, but the slide should state which CV. |
+| fingerprint **r ≈ 0.35, p < 0.0001** | **Reconciled.** His committed 0.2376 was a data-loading artifact; nb09 reproduces **repeated-CV r ≈ 0.366** / 0.405 single-seed on our data. Present the canonical **r ≈ 0.366** and state which CV. |
 | condition-specific **r ≈ 0.28** | Still the ambiguous token: undifferenced whole-task FC = 0.278 (nb04 c18), 0-back alone = 0.274 (c31). Name the protocol on the slide. |
-| **ΔSegregation = −0.048, p < 0.005** | Goutham's **Chan-style system segregation**, computed in his Colab, **not in the repo**. nb04 (c30) has only **Newman modularity** (baseline 0-back r ≈ 0.18), flagged as a task *analogue*, not Chan SS. Cannot be reproduced from `main` yet. |
+| **ΔSegregation = −0.048, p < 0.005** | **Reconciled in direction, not magnitude.** nb09 reproduces the drop 0-back → 2-back (paired t p = 3.45e-05) but the magnitude is ≈ **−0.024**, not −0.048, and the individual ΔSeg → accuracy link is weak (r ≈ −0.10, p = 0.05). Present segregation qualitatively, not as −0.048. |
 | *"complementary information beyond static FC"* | **Now tested ([nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb), 21 Jul): the claim is NOT supported.** Nested, same-fold: reconfig over 0-back FC gives ΔR² = +0.034 (sd 0.023, under 2 sd), and 0-back + reconfig (r 0.333) is *worse* than reconfig alone (0.366). A **regional activation** contrast (2bk−0bk) predicts far better (**r 0.60** pooled, ≈0.48 across held-out people and runs, partial\|acc_0bk 0.41, perm p ≈ 0.001 corrected null) and **FC adds nothing over it** (ΔR² −0.003). The predictive signal is not connectivity-specific (we cannot separate baseline level from load change: per-run centering makes them collinear). Team decision for W3D5. |
 
 </details>
@@ -122,8 +123,10 @@ code before they go on a slide unqualified:
 | Closing rewritten, dropping **"complementary information beyond static FC"** | Overclaim: [nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb) shows reconfiguration does not clearly add over 0-back FC (nested ΔR² +0.034, under 2 sd) and a task-activation contrast predicts better (r ≈ 0.60). The ΔR² itself stays out of the abstract body (a robustness stat belongs in Results per the writing guide). |
 | Closing: added the limitation sentence (letter **G**), calibrated to "may" with no causal verdict | The submitted closing had no limitation; the design is observational and single-task. |
 
-*Still not reproducible from `main`:* ΔSegregation = −0.048 (Goutham's Colab). Kept here as the team's
-agreed graph result but flagged for the presentation until his code lands.
+*Segregation, reconciled ([nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb), 21 Jul):* the
+draft keeps the submitted **−0.048** so it mirrors the sent text, but nb09 reproduces only the
+**direction** (segregation drops 0-back → 2-back, paired t p = 3.45e-05); the magnitude is ≈ −0.024 and
+the individual link is weak. For the presentation, report segregation qualitatively, not as −0.048.
 
 </details>
 
