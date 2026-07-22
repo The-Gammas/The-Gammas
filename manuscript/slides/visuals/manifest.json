@@ -1,0 +1,280 @@
+{
+  "schema_version": 2,
+  "generated_at_utc": "2026-07-22T22:23:38.597446+00:00",
+  "evidence_policy": "pipeline/02 is the sole numerical source; both storyboards reuse one chart library",
+  "canonical_notebook": {
+    "path": "pipeline/02_canonical_analysis_and_slides.ipynb",
+    "sha256": "3b6e85013d2808ede7ebbae028f62379a7871f6b9905ee92b21e3b361d53a11f",
+    "analytical_cells_executed": [
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22
+    ]
+  },
+  "runtime": {
+    "numpy": "2.5.1",
+    "matplotlib": "3.11.0",
+    "pillow": "12.3.0",
+    "nilearn": "0.13.1",
+    "scikit_learn": "1.9.0"
+  },
+  "font": {
+    "family": "Poppins",
+    "source": "https://github.com/google/fonts/tree/main/ofl/poppins",
+    "license": "SIL Open Font License 1.1",
+    "files": {
+      "Poppins-Medium.ttf": "90373e7d838d32468438fc3e152dca0bdb12edcab99ea639f158790b1ba1fd05",
+      "Poppins-Regular.ttf": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba",
+      "Poppins-SemiBold.ttf": "d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286"
+    }
+  },
+  "privacy": "No participant IDs or participant-level numerical tables are written to the package.",
+  "charts": [
+    {
+      "slug": "condition-fc-contrast",
+      "question": "Which condition contrast enters the predictor?",
+      "takeaway": "The predictor is the signed 2-back minus 0-back network-FC difference.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        6,
+        8
+      ],
+      "visible_metrics": [
+        "cohort B n=336",
+        "12 network summaries"
+      ],
+      "limitations": [
+        "Condition-aggregated Pearson FC is not dynamic or causal connectivity."
+      ],
+      "png": "charts/condition-fc-contrast.png",
+      "svg": "charts/condition-fc-contrast.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "f2c4f6a9058e3d24b60ee80f3867a6096da21a879602e13067e5166b5e513e63",
+      "sha256_svg": "7e7f4aea75ef2018245be7001ca9c501307547f230592433563e275097543b32",
+      "qa": "PASS"
+    },
+    {
+      "slug": "feature-construction",
+      "question": "How is the 78-feature FC predictor constructed?",
+      "takeaway": "Each 360-region FC matrix is summarized into 12 within- and 66 between-network values.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        6,
+        8
+      ],
+      "visible_metrics": [
+        "360 ROIs",
+        "12 networks",
+        "78 FC features"
+      ],
+      "limitations": [
+        "Task FC can include task-evoked coactivation and does not prove communication."
+      ],
+      "png": "charts/feature-construction.png",
+      "svg": "charts/feature-construction.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "e6f7bdba6642e83f15cdaeedee8de536d54586cd28758c6ace3cab427ee6dfc5",
+      "sha256_svg": "8d4f5d469d6489e538ceb3c1d64fe4bfcdcdc69ad763c8092aa9974a231f67c2",
+      "qa": "PASS"
+    },
+    {
+      "slug": "primary-repeated-cv",
+      "question": "Is primary prediction stable across repeated participant partitions?",
+      "takeaway": "The mean out-of-fold correlation is 0.366 across 20 partitions.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        10
+      ],
+      "visible_metrics": [
+        "repeated-CV r=0.366",
+        "split SD=0.024",
+        "n=336"
+      ],
+      "limitations": [
+        "The plus/minus value is split SD, not a confidence interval."
+      ],
+      "png": "charts/primary-repeated-cv.png",
+      "svg": "charts/primary-repeated-cv.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "e8623a985fa44f41091e59c1b5e8d211ef24eb345614ed65ae1ca864e56f81cd",
+      "sha256_svg": "3a22b3a8dde4d4cba9abe25991e5356d04b92cbafa51dd284addbbe86e92de64",
+      "qa": "PASS"
+    },
+    {
+      "slug": "null-and-holdout",
+      "question": "What do the full-refit null and fixed holdout each test?",
+      "takeaway": "The seed-42 permutation and fixed holdout support distinct validation checks.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        12
+      ],
+      "visible_metrics": [
+        "seed-42 r=0.405",
+        "full-refit p=1/1001",
+        "holdout r=0.312; n=67"
+      ],
+      "limitations": [
+        "The permutation p belongs only to seed-42 r=0.405; the holdout is a separate split."
+      ],
+      "png": "charts/null-and-holdout.png",
+      "svg": "charts/null-and-holdout.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "7424091fa98929cdf5e2a43a8e4771bef0005ae5201d985c3e2c01a483ff465e",
+      "sha256_svg": "2b6142ff68b9454649f31008a84a1616998ee0ac729bffc01f019f0ffceee031",
+      "qa": "PASS"
+    },
+    {
+      "slug": "identity-disjoint-transfer",
+      "question": "Does the fixed B model transfer to unseen A identities?",
+      "takeaway": "B-only training transfers to A with r=0.398 and bootstrap 95% CI [0.25, 0.53].",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        14
+      ],
+      "visible_metrics": [
+        "transfer r=0.398",
+        "bootstrap 95% CI [0.25, 0.53]",
+        "A-label permutation p=1/1001",
+        "B-only train n=301; A test n=100"
+      ],
+      "limitations": [
+        "Kinship is unmodelled and same-HCP transfer is not independent-site validation."
+      ],
+      "png": "charts/identity-disjoint-transfer.png",
+      "svg": "charts/identity-disjoint-transfer.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "bc087ea34a2353c5c1b60945d7ff115c02e6022f09cd638b972dedac467f7802",
+      "sha256_svg": "b48db5d8758d45e86672d831e49c74730f080b9e3d57ab6c1552d53b2fe9f8e2",
+      "qa": "PASS"
+    },
+    {
+      "slug": "segregation-refinement",
+      "question": "Does the mean segregation direction explain individual differences?",
+      "takeaway": "Segregation falls at group level, while the individual accuracy association is weak.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        22
+      ],
+      "visible_metrics": [
+        "segregation 0.3271 to 0.3035",
+        "paired change=-0.0236; p=3.45e-05",
+        "individual r=-0.105; p=0.054"
+      ],
+      "limitations": [
+        "A reliable paired mean shift does not establish individual predictive relevance."
+      ],
+      "png": "charts/segregation-refinement.png",
+      "svg": "charts/segregation-refinement.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "2164bc12deb470bbb49341e04a125b465618c327fbe594a29a52863e25843268",
+      "sha256_svg": "9a245563c1f9c1cf63d54f405c4727d4bda229879d2eaf889810ed92c44d2d84",
+      "qa": "PASS"
+    },
+    {
+      "slug": "anatomical-context",
+      "question": "Where does mean cortical coupling change?",
+      "takeaway": "Network and cortical views show the same descriptive group-mean FC difference scale.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        6,
+        8
+      ],
+      "visible_metrics": [
+        "78 unique network FC-change values",
+        "360 ROI descriptive values"
+      ],
+      "limitations": [
+        "Color encodes mean change, not predictive importance."
+      ],
+      "png": "charts/anatomical-context.png",
+      "svg": "charts/anatomical-context.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "54348904b7c2143f7334627809086e331b6090834e74ed8eede7f71c84d47feb",
+      "sha256_svg": "fecd17c8a78104af74d4c9a850ada405e21ada34b4a4a2da54864a4f8dc7f85c",
+      "qa": "PASS"
+    },
+    {
+      "slug": "incremental-fc-test",
+      "question": "Does reconfiguration add beyond 0-back FC?",
+      "takeaway": "The matched-fold incremental mean is positive but not clear under the 2-SD heuristic.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        18
+      ],
+      "visible_metrics": [
+        "0-back r=0.274",
+        "reconfiguration r=0.366",
+        "combined r=0.333",
+        "incremental R2=+0.0344 \u00b1 0.0225 split SD"
+      ],
+      "limitations": [
+        "The 2-SD rule is split-sensitive and is not a formal superiority or equivalence test."
+      ],
+      "png": "charts/incremental-fc-test.png",
+      "svg": "charts/incremental-fc-test.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "766579f8c0b71dbdb277844c41cb8ffb47b739e288d0a9fda0c01c790ba79687",
+      "sha256_svg": "be2b832204a64febd65d21d0d81ccaa829cfc3c37cf26edb0a2f0b7d261a9bff",
+      "qa": "PASS"
+    },
+    {
+      "slug": "activation-robustness",
+      "question": "Is the predictive signal specific to FC?",
+      "takeaway": "A post hoc regional-activation representation predicts more strongly in the current benchmark.",
+      "source_notebook": "pipeline/02_canonical_analysis_and_slides.ipynb",
+      "source_cells": [
+        18,
+        20
+      ],
+      "visible_metrics": [
+        "activation r=0.600",
+        "FC over activation incremental R2=-0.0030 \u00b1 0.0065 split SD",
+        "360 activation vs 78 FC features"
+      ],
+      "limitations": [
+        "Activation and FC are unmatched 360- versus 78-feature spaces; no biological winner is claimed."
+      ],
+      "png": "charts/activation-robustness.png",
+      "svg": "charts/activation-robustness.svg",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "sha256_png": "6afa3f6a97e630ba54cb85d675f46ae083789000931b72873d9677d41e07cbcd",
+      "sha256_svg": "54728e2883d9e05d3367c1b43827d3bc20d08b87e55a291910a6a8819d378781",
+      "qa": "PASS"
+    }
+  ]
+}

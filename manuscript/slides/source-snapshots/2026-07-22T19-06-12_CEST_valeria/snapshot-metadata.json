@@ -1,0 +1,43 @@
+{
+  "snapshot_status": "frozen_source_reference",
+  "source": {
+    "title": "The Gammas - NMA project",
+    "google_drive_file_id": "1A-FC-Hs29PhzQ4ZID4hKFMMbXgLh2YIlnMQiUirDk9E",
+    "url": "https://docs.google.com/presentation/d/1A-FC-Hs29PhzQ4ZID4hKFMMbXgLh2YIlnMQiUirDk9E/edit",
+    "mime_type": "application/vnd.google-apps.presentation",
+    "revision_id": "5WzMQw07HQsNgA",
+    "created_at_utc": "2026-07-17T11:44:25.490Z",
+    "created_at_cest": "2026-07-17T13:44:25.490+02:00",
+    "modified_at_utc": "2026-07-22T15:24:40.927Z",
+    "modified_at_cest": "2026-07-22T17:24:40.927+02:00",
+    "locale": "en",
+    "slide_count": 15,
+    "page_size_points": {
+      "width": 720,
+      "height": 405
+    }
+  },
+  "download": {
+    "downloaded_at_utc": "2026-07-22T17:06:12Z",
+    "downloaded_at_cest": "2026-07-22T19:06:12+02:00",
+    "exports": [
+      {
+        "filename": "the-gammas-nma-project.pdf",
+        "mime_type": "application/pdf",
+        "bytes": 967002,
+        "sha256": "19d91f096b7c07d60b137381904310b77a7c8a8f98c4ea55786b4e9896154cb3"
+      },
+      {
+        "filename": "the-gammas-nma-project.pptx",
+        "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "bytes": 3294475,
+        "sha256": "68d91f8b1d6cde232d9e3018e849920a8004e3596a867e094e35f8e7f83dede4"
+      }
+    ]
+  },
+  "usage": {
+    "role": "Visual and layout reference for the condensed presentation storyboard",
+    "scientific_source_of_truth": "pipeline/02_canonical_analysis_and_slides.ipynb",
+    "warning": "The source deck contains unfinished placeholders and older figures; its text and numbers are not canonical evidence."
+  }
+}

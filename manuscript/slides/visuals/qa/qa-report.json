@@ -1,0 +1,153 @@
+{
+  "generated_at_utc": "2026-07-22T22:23:38.597446+00:00",
+  "visual_count": 9,
+  "file_count": 18,
+  "scientific_invariant_gate": "PASS",
+  "automated_file_qa": "PASS",
+  "manual_visual_review": "REQUIRED_AFTER_GENERATION",
+  "automated_all_pass": true,
+  "checks": [
+    {
+      "path": "charts/condition-fc-contrast.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/condition-fc-contrast.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/feature-construction.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/feature-construction.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/primary-repeated-cv.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/primary-repeated-cv.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/null-and-holdout.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/null-and-holdout.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/identity-disjoint-transfer.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/identity-disjoint-transfer.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/segregation-refinement.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/segregation-refinement.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/anatomical-context.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/anatomical-context.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/incremental-fc-test.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/incremental-fc-test.svg",
+      "valid": true,
+      "under_50_mb": true
+    },
+    {
+      "path": "charts/activation-robustness.png",
+      "dimensions": [
+        2560,
+        1440
+      ],
+      "valid": true,
+      "under_50_mb": true,
+      "dimensions_pass": true
+    },
+    {
+      "path": "charts/activation-robustness.svg",
+      "valid": true,
+      "under_50_mb": true
+    }
+  ],
+  "contact_sheets": {
+    "charts": {
+      "path": "qa/charts-contact-sheet.png",
+      "sha256": "2c80a0ba58b5ca0db5b029de1dd11708760716187dc004c967204fdcb3e4e5d0"
+    }
+  },
+  "manifest_sha256": "7b7a404b96ed116adf8e3485b569035bae0c77a10d9455a3d8e55780d2382ea8"
+}

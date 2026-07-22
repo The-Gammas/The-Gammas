@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1152pt" height="648pt" viewBox="0 0 1152 648" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-23T00:23:38.573682</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>The Gammas evidence-first visual generator</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 648 
+L 1152 648 
+L 1152 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 161.28 518.4 
+L 806.4 518.4 
+L 806.4 155.52 
+L 161.28 155.52 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 209.968302 518.4 
+L 209.968302 155.52 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #ead6b8; stroke-opacity: 0.55; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m2cfbf3e4f2" d="M 0 0 
+L 0 3.5 
+" style="stroke: #202729; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m2cfbf3e4f2" x="209.968302" y="518.4" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: middle; fill: #202729" x="209.968302" y="543.25" transform="rotate(-0 209.968302 543.25)">0.2</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 331.689057 518.4 
+L 331.689057 155.52 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #ead6b8; stroke-opacity: 0.55; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m2cfbf3e4f2" x="331.689057" y="518.4" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: middle; fill: #202729" x="331.689057" y="543.25" transform="rotate(-0 331.689057 543.25)">0.3</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 453.409811 518.4 
+L 453.409811 155.52 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #ead6b8; stroke-opacity: 0.55; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m2cfbf3e4f2" x="453.409811" y="518.4" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: middle; fill: #202729" x="453.409811" y="543.25" transform="rotate(-0 453.409811 543.25)">0.4</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 575.130566 518.4 
+L 575.130566 155.52 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #ead6b8; stroke-opacity: 0.55; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m2cfbf3e4f2" x="575.130566" y="518.4" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: middle; fill: #202729" x="575.130566" y="543.25" transform="rotate(-0 575.130566 543.25)">0.5</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 696.851321 518.4 
+L 696.851321 155.52 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #ead6b8; stroke-opacity: 0.55; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m2cfbf3e4f2" x="696.851321" y="518.4" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: middle; fill: #202729" x="696.851321" y="543.25" transform="rotate(-0 696.851321 543.25)">0.6</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 20px; font-family: 'Poppins'; text-anchor: middle; fill: #202729" x="483.84" y="574.2" transform="rotate(-0 483.84 574.2)">Cross-validated Pearson r</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_11">
+      <defs>
+       <path id="mfff59bc4ab" d="M 0 0 
+L -3.5 0 
+" style="stroke: #202729; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#mfff59bc4ab" x="161.28" y="172.014545" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(65.949063 168.614545)">0-back FC</text>
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(59.284531 194.114545)">78 features</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#mfff59bc4ab" x="161.28" y="281.978182" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(53.435469 278.578182)">dFC pattern</text>
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(59.284531 304.078182)">78 features</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#mfff59bc4ab" x="161.28" y="391.941818" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(37.949531 388.541818)">Combined FC</text>
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(52.380938 414.041818)">156 features</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#mfff59bc4ab" x="161.28" y="501.905455" style="fill: #202729; stroke: #202729; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(68.974531 498.505455)">Activation</text>
+      <text style="font-size: 17px; font-family: 'Poppins'; fill: #202729" transform="translate(47.806875 524.005455)">360 features</text>
+     </g>
+    </g>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="mcf14e6f26f" d="M -5.700877 5.700877 
+L 5.700877 5.700877 
+L 5.700877 -5.700877 
+L -5.700877 -5.700877 
+z
+" style="stroke: #202729; stroke-width: 2.2"/>
+    </defs>
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#mcf14e6f26f" x="265.405969" y="281.978182" style="fill: #ffffff; stroke: #202729; stroke-width: 2.2"/>
+     <use xlink:href="#mcf14e6f26f" x="545.280687" y="501.905455" style="fill: #ffffff; stroke: #202729; stroke-width: 2.2"/>
+    </g>
+   </g>
+   <g id="LineCollection_1">
+    <path d="M 261.534856 172.014545 
+L 339.763525 172.014545 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #0072b2; stroke-width: 3"/>
+   </g>
+   <g id="line2d_15">
+    <defs>
+     <path id="m2fd550a80d" d="M 0 7 
+L 0 -7 
+" style="stroke: #0072b2; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m2fd550a80d" x="261.534856" y="172.014545" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_16">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m2fd550a80d" x="339.763525" y="172.014545" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="LineCollection_2">
+    <path d="M 383.722385 281.978182 
+L 441.422487 281.978182 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #0072b2; stroke-width: 3"/>
+   </g>
+   <g id="line2d_17">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m2fd550a80d" x="383.722385" y="281.978182" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_18">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m2fd550a80d" x="441.422487" y="281.978182" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="LineCollection_3">
+    <path d="M 339.942877 391.941818 
+L 403.609877 391.941818 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #0072b2; stroke-width: 3"/>
+   </g>
+   <g id="line2d_19">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m2fd550a80d" x="339.942877" y="391.941818" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_20">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m2fd550a80d" x="403.609877" y="391.941818" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="LineCollection_4">
+    <path d="M 677.612459 501.905455 
+L 716.01723 501.905455 
+" clip-path="url(#pbfa3bfeb45)" style="fill: none; stroke: #d55e00; stroke-width: 3"/>
+   </g>
+   <g id="line2d_21">
+    <defs>
+     <path id="m3d2e60809c" d="M 0 7 
+L 0 -7 
+" style="stroke: #d55e00; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m3d2e60809c" x="677.612459" y="501.905455" style="fill: #d55e00; stroke: #d55e00; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_22">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#m3d2e60809c" x="716.01723" y="501.905455" style="fill: #d55e00; stroke: #d55e00; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_23">
+    <defs>
+     <path id="ma6fd8c3ffd" d="M 0 6 
+C 1.591219 6 3.117479 5.367802 4.242641 4.242641 
+C 5.367802 3.117479 6 1.591219 6 0 
+C 6 -1.591219 5.367802 -3.117479 4.242641 -4.242641 
+C 3.117479 -5.367802 1.591219 -6 0 -6 
+C -1.591219 -6 -3.117479 -5.367802 -4.242641 -4.242641 
+C -5.367802 -3.117479 -6 -1.591219 -6 0 
+C -6 1.591219 -5.367802 3.117479 -4.242641 4.242641 
+C -3.117479 5.367802 -1.591219 6 0 6 
+z
+" style="stroke: #0072b2; stroke-width: 2.5"/>
+    </defs>
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#ma6fd8c3ffd" x="300.649191" y="172.014545" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_24">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#ma6fd8c3ffd" x="412.572436" y="281.978182" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_25">
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#ma6fd8c3ffd" x="371.776377" y="391.941818" style="fill: #0072b2; stroke: #0072b2; stroke-width: 2.5"/>
+    </g>
+   </g>
+   <g id="line2d_26">
+    <defs>
+     <path id="ma5a9918d02" d="M -0 8.485281 
+L 8.485281 0 
+L 0 -8.485281 
+L -8.485281 -0 
+z
+" style="stroke: #d55e00; stroke-width: 2.5; stroke-linejoin: miter"/>
+    </defs>
+    <g clip-path="url(#pbfa3bfeb45)">
+     <use xlink:href="#ma5a9918d02" x="696.814844" y="501.905455" style="fill: #ffffff; stroke: #d55e00; stroke-width: 2.5; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 161.28 518.4 
+L 161.28 155.52 
+" style="fill: none; stroke: #202729; stroke-width: 1.2; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 161.28 518.4 
+L 806.4 518.4 
+" style="fill: none; stroke: #202729; stroke-width: 1.2; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: start; fill: #202729" x="358.021638" y="177.964545" transform="rotate(-0 358.021638 177.964545)">0.274 ± 0.032</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: start; fill: #202729" x="459.680601" y="287.928182" transform="rotate(-0 459.680601 287.928182)">0.366 ± 0.024</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: start; fill: #202729" x="421.86799" y="397.891818" transform="rotate(-0 421.86799 397.891818)">0.333 ± 0.026</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 17px; font-family: 'Poppins'; text-anchor: middle; fill: #202729" x="696.814844" y="473.962727" transform="rotate(-0 696.814844 473.962727)">0.600 ± 0.016</text>
+   </g>
+   <g id="text_15">
+    <g id="patch_5">
+     <path d="M 582.873225 216.0552 
+L 800.5176 216.0552 
+L 800.5176 163.0152 
+L 582.873225 163.0152 
+z
+" style="fill: #ffffff; stroke: #ead6b8; stroke-linejoin: miter"/>
+    </g>
+    <text style="font-size: 13px; font-family: 'Poppins'; fill: #705c40" transform="translate(634.639631 184.3352)">open squares: cross-run</text>
+    <text style="font-size: 13px; font-family: 'Poppins'; fill: #705c40" transform="translate(589.893225 203.8352)">feature generalization · seed 42</text>
+   </g>
+  </g>
+  <g id="line2d_27">
+   <path d="M 63.36 93.96 
+L 1088.64 93.96 
+" style="fill: none; stroke: #ead6b8; stroke-width: 2; stroke-linecap: square"/>
+  </g>
+  <g id="text_16">
+   <text style="font-weight: 600; font-size: 14px; font-family: 'Poppins'; text-anchor: start; fill: #705c40" x="63.36" y="56.82" transform="rotate(-0 63.36 56.82)">FIGURE 09  ·  POST HOC ROBUSTNESS BENCHMARK</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 16px; font-family: 'Poppins'; text-anchor: start; fill: #202729" x="63.36" y="86.784" transform="rotate(-0 63.36 86.784)">Repeated five-fold CV · mean ± split SD across 20 partitions</text>
+  </g>
+  <g id="text_18">
+   <text style="font-weight: 600; font-size: 17px; font-family: 'Poppins'; text-anchor: start; fill: #705c40" x="864" y="181.44" transform="rotate(-0 864 181.44)">MATCHED-FOLD INCREMENTS</text>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729" transform="translate(864 272.281484)">Reconfiguration over 0-back</text>
+   <!-- incremental $R^2$ = +0.0344 ± 0.0225 -->
+   <g style="fill: #202729" transform="translate(864 307.125)">
+    <text>
+     <tspan x="0" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">i</tspan>
+     <tspan x="3.813019" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">n</tspan>
+     <tspan x="13.733063" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">c</tspan>
+     <tspan x="23.141602" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">r</tspan>
+     <tspan x="28.923126" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">e</tspan>
+     <tspan x="38.533173" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">m</tspan>
+     <tspan x="54.498245" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">e</tspan>
+     <tspan x="64.108292" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">n</tspan>
+     <tspan x="74.028336" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">t</tspan>
+     <tspan x="79.670364" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">a</tspan>
+     <tspan x="90.148407" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">l</tspan>
+     <tspan x="93.961426" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="117.283746" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="121.422265" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">=</tspan>
+     <tspan x="132.628808" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="136.767327" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">+</tspan>
+     <tspan x="147.353875" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="157.087914" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">.</tspan>
+     <tspan x="160.342934" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="170.076974" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">3</tspan>
+     <tspan x="179.206521" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">4</tspan>
+     <tspan x="188.956063" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">4</tspan>
+     <tspan x="198.705605" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="202.844125" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">±</tspan>
+     <tspan x="213.477166" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="217.615685" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="227.349725" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">.</tspan>
+     <tspan x="230.604745" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="240.338784" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">2</tspan>
+     <tspan x="249.251321" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">2</tspan>
+     <tspan x="258.163857" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">5</tspan>
+     <tspan x="98.099945" y="-0.5485" style="font-style: oblique; font-size: 15.5px; font-family: 'DejaVu Sans'; fill: #202729">R</tspan>
+     <tspan x="109.956817" y="-6.95" style="font-size: 10.85px; font-family: 'DejaVu Sans'; fill: #202729">2</tspan>
+    </text>
+   </g>
+   <text style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729" transform="translate(864 335.187266)">2-SD heuristic: no clear gain</text>
+  </g>
+  <g id="text_20">
+   <text style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729" transform="translate(864 410.359531)">FC over activation</text>
+   <!-- incremental $R^2$ = -0.0030 ± 0.0065 -->
+   <g style="fill: #202729" transform="translate(864 443.205)">
+    <text>
+     <tspan x="0" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">i</tspan>
+     <tspan x="3.813019" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">n</tspan>
+     <tspan x="13.733063" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">c</tspan>
+     <tspan x="23.141602" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">r</tspan>
+     <tspan x="28.923126" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">e</tspan>
+     <tspan x="38.533173" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">m</tspan>
+     <tspan x="54.498245" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">e</tspan>
+     <tspan x="64.108292" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">n</tspan>
+     <tspan x="74.028336" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">t</tspan>
+     <tspan x="79.670364" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">a</tspan>
+     <tspan x="90.148407" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">l</tspan>
+     <tspan x="93.961426" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="117.283746" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="121.422265" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">=</tspan>
+     <tspan x="132.628808" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="136.767327" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">-</tspan>
+     <tspan x="145.30787" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="155.041909" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">.</tspan>
+     <tspan x="158.296929" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="168.030968" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="177.765008" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">3</tspan>
+     <tspan x="186.894555" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="196.628594" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="200.767113" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">±</tspan>
+     <tspan x="211.400155" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729"> </tspan>
+     <tspan x="215.538674" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="225.272713" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">.</tspan>
+     <tspan x="228.527734" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="238.261773" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">0</tspan>
+     <tspan x="247.995812" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">6</tspan>
+     <tspan x="257.838357" y="-0.5485" style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729">5</tspan>
+     <tspan x="98.099945" y="-0.5485" style="font-style: oblique; font-size: 15.5px; font-family: 'DejaVu Sans'; fill: #202729">R</tspan>
+     <tspan x="109.956817" y="-6.95" style="font-size: 10.85px; font-family: 'DejaVu Sans'; fill: #202729">2</tspan>
+    </text>
+   </g>
+   <text style="font-size: 15.5px; font-family: 'Poppins'; fill: #202729" transform="translate(864 471.267266)">2-SD heuristic: no clear gain</text>
+  </g>
+  <g id="text_21">
+   <text style="font-size: 15px; font-family: 'Poppins'; fill: #d55e00" transform="translate(864 538.214062)">Activation = mean BOLD</text>
+   <text style="font-size: 15px; font-family: 'Poppins'; fill: #d55e00" transform="translate(864 566.407031)">2-back - 0-back</text>
+  </g>
+  <g id="text_22">
+   <text style="font-size: 13px; font-family: 'Poppins'; text-anchor: start; fill: #705c40" x="63.36" y="620.77" transform="rotate(-0 63.36 620.77)">Post hoc and unmatched: 360 regional activation features vs 78 network FC features; no biological winner claim.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pbfa3bfeb45">
+   <rect x="161.28" y="155.52" width="645.12" height="362.88"/>
+  </clipPath>
+ </defs>
+</svg>

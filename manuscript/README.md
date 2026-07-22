@@ -33,6 +33,9 @@ so that they do not silently become interchangeable:
   abstract (NMA's **ABC…G** structure), Abstract Writing Day, source use and the W3D5 slides
   (1 slide / 1 min per person). NMA course guidance is canonical there; UW–Madison material is
   supplementary. Review drafts against it rather than against personal taste.
+- **Presentation storyboards:** [`slides/`](slides/) contains the detailed internal-review narrative,
+  the condensed `5+4` plan and dated frozen exports of the shared Google Slides source. Scientific
+  claims still come from the canonical notebook, not from the template deck.
 
 The Google Doc tabs map to the repository as follows:
 
