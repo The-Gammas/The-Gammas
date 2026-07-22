@@ -20,12 +20,15 @@
 >
 > *The Project TA's north star is **prediction on unseen subjects**. Functional connectivity and graph metrics are candidate **features**, not the goal — and the hypothesis stays falsifiable.*
 
-**Status (21 Jul):** the abstract was **submitted 20 Jul** (22:12) and the team sync happened that day
-(see [meeting notes](docs/meetings/2026-07-20.md)); focus is now the **W3D5 presentation** (Fri 24 Jul).
-The full presentation evidence path is now consolidated in
+**Status (22 Jul):** the abstract was **submitted 20 Jul** (22:12) and focus is now the **W3D5
+presentation** (Fri 24 Jul). At the [22 July Zoom sync](docs/meetings/2026-07-22.md), Jaime, Kerem and
+Valeria agreed to close the scientific scope at the evidence already consolidated in
 [`pipeline/02_canonical_analysis_and_slides.ipynb`](pipeline/02_canonical_analysis_and_slides.ipynb).
-Its calculations and figures are reproducible; the recommended presentation narrative still awaits
-team approval. Source analyses remain in `sandbox/` so their provenance is preserved.
+Its calculations and figures are reproducible; Goutham's additional proposals are follow-up ideas,
+not presentation blockers. Jaime and Valeria are preparing the first slide version for review with
+Andrea and the full team on Thu 23 Jul afternoon. This is the attendees' working baseline; final
+story, figure and presenter approval still belongs to the full-team review. Source analyses remain
+in `sandbox/` so their provenance is preserved.
 
 > **nb08 update (21 Jul):** the "reconfiguration predicts WM" framing below is refined.
 > A task-activation contrast (2bk-0bk mean BOLD) predicts better (r ~ 0.60 pooled, ~0.48 held-out
@@ -64,9 +67,9 @@ flowchart LR
 | 4 · Graph metrics | 🟡 Segregation direction included; clustering and full graph layer deferred | Kerem · Arefeh | [`pipeline/02`](pipeline/02_canonical_analysis_and_slides.ipynb) · source [`09`](sandbox/jaime/09_goutham_pipeline_replication.ipynb) |
 | 5 · Prediction / testing | ✅ Canonical internal and B→A evidence consolidated | Valeria · Arefeh | [`pipeline/02`](pipeline/02_canonical_analysis_and_slides.ipynb) · sources [`04`](sandbox/jaime/04_goutham_pipeline_on_B.ipynb) / [`05`](sandbox/jaime/05_dataset_A_external_validation.ipynb) |
 
-> **Before duplicating work, share what you have.** Existing pilots are evidence, not yet the final
-> group pipeline. The method/story sync happened on 20 Jul (W3D1, abstract submitted); the remaining
-> work is the W3D5 presentation split.
+> **W3D5 scope lock (22 Jul Zoom attendees):** start from `pipeline/02`; use notebooks 04, 05, 08 and
+> 09 to audit results or reuse figure code, not to open competing stories. Align on the first slide
+> draft before adding individual slides or visualisations. Full-team and Andrea review is Thu 23 Jul.
 
 ---
 
@@ -96,7 +99,7 @@ A/B choice): notebooks 00-03. Full read-in-order guide:
 1. Read [AGENTS.md](AGENTS.md) — the working contract for agents and humans (setup, rules, style).
 2. Read the [project plan](docs/project-plan.md), then open the
    [canonical evidence notebook](pipeline/02_canonical_analysis_and_slides.ipynb). The latest dated
-   context remains in the [20 July meeting notes](docs/meetings/2026-07-20.md).
+   context is in the [22 July meeting notes](docs/meetings/2026-07-22.md).
 3. **Get the data.** Two cohorts sit behind one loader interface: the current MVP analysis runs on B
    (339 subjects; 336 analytic), while A (100 subjects) is used for external validation. See the
    [project plan](docs/project-plan.md) and [`data/README.md`](data/README.md).
@@ -129,12 +132,12 @@ Short working profiles, not fixed job descriptions — each member can update th
 
 | Member | Background / interest | Current focus |
 |---|---|---|
-| **Jaime** | Medical doctor + data scientist; Python, pipelines and data analysis | Method audit, reconciling Goutham's pipeline, brain-map visualization, W3D5 presentation |
+| **Jaime** | Medical doctor + data scientist; Python, pipelines and data analysis | Lead the first W3D5 story and co-build the slide draft with Valeria |
 | **Pratik Bhandari** | *Profile to complete with Pratik* | Contribution to define |
 | **Goutham Arcod** | HCP data exploration and initial proof of concept | Graph construction |
-| **Valeria Moraga** | Functional connectivity and literature review | FC and prediction/testing |
+| **Valeria Moraga** | Functional connectivity and literature review | Co-build the first W3D5 slide draft with Jaime |
 | **Arefeh Lali Dehadhi** | Graph-theory framing and scientific writing | FC, graph metrics and testing |
-| **Kerem Akyurt** | Previous graph-theory work in cognitive neuroscience | Graph metrics |
+| **Kerem Akyurt** | Previous graph-theory work in cognitive neuroscience | Review the shared interpretation and slide story |
 
 ---
 

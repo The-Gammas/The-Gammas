@@ -1,9 +1,11 @@
 # Living project plan
 
-**Last reviewed:** 21 July 2026
-**Stage:** Week 3 (W3D1 was Mon 20 July). The FC/prediction pilot and external validation are verified
-on `main`; the Monday 20 July team sync happened (see [meetings/2026-07-20.md](meetings/2026-07-20.md))
-and the abstract was submitted 20 July 22:12. Focus is now the **W3D5 presentation (Fri 24 July)**.
+**Last reviewed:** 22 July 2026
+**Stage:** Week 3. The FC/prediction pilot, external validation and complete presentation evidence
+path are verified on `main`; the abstract was submitted 20 July 22:12. At the 22 July Zoom sync,
+Jaime, Kerem and Valeria agreed to close the W3D5 scientific scope at `pipeline/02` and treat new
+proposals as follow-up work. Jaime and Valeria are preparing a first slide version for review with
+Andrea and the team on Thu 23 July afternoon. Focus is the **W3D5 presentation (Fri 24 July)**.
 
 This is the canonical detailed status. [`../README.md`](../README.md) is its short snapshot; dated
 meeting notes preserve the discussion behind changes. A working plan is not a claim that every stage
@@ -17,10 +19,16 @@ reproduced on A and ported to B, permutation testing, corrected d′, leakage-fr
 validation, and the complete presentation evidence path in
 [`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb).
 
-**Not yet locked by the group:** whether the activation benchmark belongs in the five main slides or
-in backup/Q&A, the presenter/figure allocation, the FC preprocessing/estimation caveat, and the final
-interpretation of integration/segregation. The evidence is consolidated; the narrative choice remains
-a proposal. (The abstract was submitted 20 July; see the milestones below.)
+**Working scope accepted by the 22 July Zoom attendees:** `pipeline/02` is the final scientific
+boundary for W3D5; source notebooks 04, 05, 08 and 09 explain provenance and provide reusable figure
+code, not competing analysis paths. Additional proposals from Goutham or anyone else are possible
+follow-up work and do not block the presentation.
+
+**Not yet locked by the full group:** whether the activation benchmark belongs in the five main
+slides or in backup/Q&A, the final slide and presenter allocation, the wording of the FC
+preprocessing/estimation caveat, and the interpretation of integration/segregation. The remaining
+members and Andrea will review the first slide version on Thu 23 July afternoon. See the
+[22 July meeting note](meetings/2026-07-22.md).
 
 ## Working question
 
@@ -180,21 +188,26 @@ remains **POSTPONE ADOPTION**.
 | 2. Functional connectivity | FC per load condition | Valeria + Arefeh | **Canonical evidence consolidated in `pipeline/02`**; estimator caveat retained |
 | 3. Graph construction | FC as weighted, undirected graphs | Goutham | Descriptive network view included in `pipeline/02`; extended graph work remains exploratory in nb09 |
 | 4. Graph metrics | Segregation / integration | Kerem + Arefeh | Segregation direction included in `pipeline/02`; clustering and full graph layer remain post-MVP |
-| 5. Prediction / testing | Predict WM performance in unseen subjects + permutation null | Valeria + Arefeh | **Internal and B→A evidence consolidated in `pipeline/02`**; final presentation framing pending team approval |
+| 5. Prediction / testing | Predict WM performance in unseen subjects + permutation null | Valeria + Arefeh | **Internal and B→A evidence consolidated in `pipeline/02`**; this is now the W3D5 working baseline, pending full-team/Andrea slide review |
 
-Owners above are the prior working allocation, not the final-week sprint. Reassign as the W3D5
-presentation split is agreed and then update this table and the root README together.
+Owners above are the prior analysis allocation, not the final-week slide sprint. Jaime and Valeria
+own the first coherent slide version; the final presenter split remains to be agreed after the Thu 23
+July review.
 
 ## Open now
 
-- ❗ **Team presentation decision:** review the canonical notebook and approve or revise its proposed
-  story: keep FC reconfiguration primary, show activation as the unexpected benchmark, remove the
-  unsupported *beyond static FC* claim, and avoid opening new clustering/FCM experiments. A narrower
-  fallback puts activation in backup/Q&A while retaining the corrected conclusion.
-- **Presentation allocation:** choose the final FC figure and one-minute interpretation, then assign
-  one slide / one minute per presenter.
-- ❗ **Goutham's read on the 78-feature method** — why average 360 ROIs into 12 networks and retain
-  the 12 within-network diagonal summaries alongside 66 between-network edges.
+- ❗ **First slide version:** Jaime leads the initial storytelling pass and builds the draft with
+  Valeria from `pipeline/02`; share it with Andrea and the team on Thu 23 July afternoon.
+- **Team read-in:** begin with `pipeline/02`; use source notebooks 04, 05, 08 and 09 only to audit a
+  result or reuse its code. Members should flag interpretation questions before or during the Thu
+  review rather than wait for another experiment.
+- **Full-team review and allocation:** confirm or revise the working story, choose the final figures,
+  and assign one slide / one minute per presenter. Members may propose specific slides or
+  visualisations after the shared story is understood.
+- ✅ **Goutham is not a W3D5 blocker:** his additional proposals are follow-up ideas. The canonical
+  notebook already contains the reconciled FC, segregation and brain-map evidence needed for the
+  presentation. His explanation of the 78-feature compression remains useful context, not a required
+  new deliverable.
 - ✅ **Goutham's numbers reconciled (21 Jul, [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)).**
   His analysis functions run verbatim on our data layer. The fingerprint reconfiguration comes out
   r ≈ 0.366 (repeated CV) / 0.405 (single seed), so his committed 0.2376 was a data-loading artifact,
@@ -204,10 +217,10 @@ presentation split is agreed and then update this table and the root README toge
   segregation qualitatively, not as the number −0.048. nb09 also regenerates his brain maps in-notebook
   (static maps + an interactive 3D map with a semi-transparent cortex), so those no longer wait on his
   loose Colab HTML exports.
-- **FC estimator/preprocessing:** decide how to handle task-evoked coactivation and document the
-  Pearson-FC limitation.
-- **Graph scope:** if graph metrics return to the MVP, prespecify thresholding, negative edges,
-  metrics and aggregation. Otherwise keep the full layer explicitly post-MVP.
+- **Presentation wording:** retain the task-evoked coactivation / Pearson-FC limitation and explain
+  the group-level segregation direction without presenting it as individual predictive evidence.
+- **No new analysis required:** FCM, clustering, tangent-space FC and extended graph metrics remain
+  post-MVP unless the full team explicitly reopens scope.
 
 **Settled/implemented:** corrected d′ extreme rates; B permutation null; DVARS-proxy sensitivity
 analysis; B→A external validation. Age, sex, family IDs and framewise displacement are unavailable in
@@ -222,11 +235,13 @@ the curated data and should be limitations, not open implementation promises.
 | **21 July** | ✅ nb08 re-check: reconfiguration does not clearly add over 0-back FC; regional activation predicts more strongly under the current unmatched representations; FC specificity is not established |
 | **21 July** | ✅ nb09: Goutham's pipeline replicated on our data; numbers reconciled (fingerprint 0.366; his 0.2376 a data-loading artifact); segregation direction reproduced (magnitude −0.024, not −0.048); brain maps regenerated |
 | **21 July** | ✅ `pipeline/02`: canonical evidence and presentation figures consolidated; recommended narrative documented as a proposal pending team approval |
+| **22 July** | ✅ Zoom sync: Jaime, Kerem and Valeria accepted `pipeline/02` as the W3D5 scope; Goutham's further proposals moved to follow-up; Jaime + Valeria took ownership of the first slide version for Thu review |
+| **23 July** | First slide version reviewed with Andrea and the full team; settle story, figures and presenter allocation |
 | **24 July** (W3D5) | Final presentation: 1 slide / 1 minute per person |
 
 ## Sources
 
-- Meeting notes: [10 July](meetings/2026-07-10.md) · [14 July](meetings/2026-07-14.md) · [15 July](meetings/2026-07-15.md) · [17 July](meetings/2026-07-17.md) · [20 July](meetings/2026-07-20.md).
+- Meeting notes: [10 July](meetings/2026-07-10.md) · [14 July](meetings/2026-07-14.md) · [15 July](meetings/2026-07-15.md) · [17 July](meetings/2026-07-17.md) · [20 July](meetings/2026-07-20.md) · [22 July](meetings/2026-07-22.md).
 - Literature reviews → [`reviews/`](reviews/): e.g. the [2026-07-17 automated review](reviews/2026-07-17_literature-review.md) (WM-prediction benchmarks, same-task calibration, change-score reliability).
 - The shared **"Ideas" Google Doc** (owner: Valeria) — its *Main Tasks* tab maps to the working stages;
   see [`../manuscript/README.md`](../manuscript/README.md) for how its tabs map into the repo.
