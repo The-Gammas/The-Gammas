@@ -1,0 +1,68 @@
+{
+  "snapshot_status": "frozen_source_reference",
+  "source": {
+    "title": "The Gammas - NMA project",
+    "google_drive_file_id": "1A-FC-Hs29PhzQ4ZID4hKFMMbXgLh2YIlnMQiUirDk9E",
+    "url": "https://docs.google.com/presentation/d/1A-FC-Hs29PhzQ4ZID4hKFMMbXgLh2YIlnMQiUirDk9E/edit",
+    "mime_type": "application/vnd.google-apps.presentation",
+    "revision_id": null,
+    "revision_id_note": "Not captured: the Drive connector exposes file metadata but not the revisions collection. Identify this snapshot by modified_at_utc plus the export hashes below.",
+    "created_at_utc": "2026-07-17T11:44:25.490Z",
+    "created_at_cest": "2026-07-17T13:44:25.490+02:00",
+    "modified_at_utc": "2026-07-23T15:05:07.964Z",
+    "modified_at_cest": "2026-07-23T17:05:07.964+02:00",
+    "locale": "en",
+    "slide_count": 19,
+    "page_size_points": {
+      "width": 720,
+      "height": 405
+    }
+  },
+  "download": {
+    "downloaded_at_utc": "2026-07-23T15:42:40Z",
+    "downloaded_at_cest": "2026-07-23T17:42:40+02:00",
+    "exports": [
+      {
+        "filename": "the-gammas-nma-project.pdf",
+        "mime_type": "application/pdf",
+        "bytes": 3495613,
+        "sha256": "de3305eba65eb1fc7661a7a7b359adda8902b6be540d481a77c58c300feaaac0"
+      },
+      {
+        "filename": "the-gammas-nma-project.pptx",
+        "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "bytes": 6221286,
+        "sha256": "6bce0743f3aa12b8f8389ef98a9bcde91fa8a89b79026f959839953df4d8dcbc"
+      }
+    ],
+    "export_consistency": "Verified: 19 pages in the PDF, 19 slides in the PPTX, both 720x405 pt, and both carry the slide-3 label edit ('Segregation <-> integration') that an earlier PDF export missed. That earlier export was discarded.",
+    "concurrent_editing_warning": "The deck is under active multi-person editing. modified_at advanced five times during the 23 Jul session (12:26:42Z, 13:20:29Z, 13:35:54Z, and again before 15:05:07Z). Re-export and diff before treating any snapshot as current."
+  },
+  "supersedes": {
+    "folder": "2026-07-23T15-39-22_CEST_valeria",
+    "reason": "Deleted rather than kept. It froze an 18-slide state that lived about an hour, and two snapshots of the same afternoon of an actively edited deck are noise. The retained pair is one pre-transcription baseline (22 Jul, 15 slides) and this current state (19 slides)."
+  },
+  "delta_since_the_22_jul_baseline": {
+    "slide_count": "15 -> 19",
+    "summary": "Jaime Pineda transcribed the final storyboard into the deck (slides 3-7 spoken, 9-12 backup) and a 'Backup' divider was inserted at slide 8. Valeria Moraga's original placeholder slides survive as the legacy tail at 13-16, followed by two 'Complementary Slides' dividers (17-18) and an internal compression map (19). Slide 2 is mid-edit: Arefeh, Valeria and Jaime now have real photographs, while Kerem and Goutham still carry template stock portraits, and the dummy roles are only partly replaced.",
+    "review": "manuscript/slides/final-storyboard-5-plus-4.md -> 'Google deck reconciliation - review of 23 Jul'"
+  },
+  "format_contract": {
+    "note": "Measured from this PPTX. It is the visual grammar every slide we add must follow so edits paste in cleanly. Canvas 720 x 405 pt.",
+    "footer_band": "Full-width rounded shape at y=380.5, height 24.5. Left text 'FC Reconfiguration in Working-Memory' at L=7.5 T=386.2 W=322.5 H=15, 9 pt. Right text 'The Gammas' at L=390.0, same box size, 9 pt. NMA logo picture centred at L~349, T=380.5, 24.7 x 24.5.",
+    "slide_title": "Text box at L=24 T=18 W=672, height 30-42, 16 pt.",
+    "section_label": "11 pt, e.g. 'Key Literature & References'.",
+    "body_text": "8-9 pt.",
+    "two_column_grid": "Left column L=24 W=326.2; right column L=369.8 W=326.2; gutter 19.6; page margin 24.",
+    "card_block": "Rounded group, W=326.2, H=55.5, stacked on a 63 pt pitch.",
+    "content_top": "Charts and cards start at T=82.5 or below; T=60 for a section label.",
+    "chart_widths_in_use": "slide 5: 360.0, slide 6: 350.9, slide 9: 451.4, slide 10: 371.7 pt. All below the 460 pt minimum the storyboard asks for; see the storyboard note.",
+    "theme": "theme1.xml declares Arial for major and minor fonts, but no run sets a font name, so the rendered face comes from the Google Slides theme. Palette: dk1 #202729, lt1 #FFFFFF, dk2 #4BA173, lt2 #63D297, accents #353744 #424242 #616161 #999999 #FF5252 #FFF176. The cream page and sand footer are shape fills, not theme colours."
+  },
+  "usage": {
+    "role": "Current state of the shared team deck, and the format reference for any slide we add",
+    "scientific_source_of_truth": "pipeline/02_canonical_analysis_and_slides.ipynb",
+    "numerical_verdict": "Every value on the spoken and backup slides matches canonical_evidence.EXPECTED; the transcription introduced no numeric error.",
+    "warning": "Known defects still present: stock portraits and partial dummy roles on slide 2, personal email addresses on a deck that gets archived publicly, and the legacy tail on 13-19. This is a record of what was reviewed, not a corrected deck."
+  }
+}

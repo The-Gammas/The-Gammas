@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-07-23T12:35:59.163081+00:00",
+  "generated_at_utc": "2026-07-23T15:38:31.633913+00:00",
   "evidence_policy": "pipeline/02 is the sole numerical source; both storyboards reuse one chart library",
   "canonical_notebook": {
     "path": "pipeline/02_canonical_analysis_and_slides.ipynb",
@@ -48,8 +48,9 @@
         8
       ],
       "visible_metrics": [
-        "cohort B n=336",
-        "12 network summaries"
+        "three 12-network panels: 2-back FC, 0-back FC and their signed difference",
+        "difference colorbar in mean network FC-change units",
+        "cohort size and caption carried as slide text, not baked into the image"
       ],
       "limitations": [
         "Condition-aggregated Pearson FC is not dynamic or causal connectivity."
@@ -60,8 +61,8 @@
         2560,
         1440
       ],
-      "sha256_png": "f2c4f6a9058e3d24b60ee80f3867a6096da21a879602e13067e5166b5e513e63",
-      "sha256_svg": "7f829a2473ef32e14d7addabbd000b6b0ceaec53563de328020bbbcf812f1134",
+      "sha256_png": "92baee06b9c5a377d4fd1acad9355060993a717b8bc24d434b7d94fe947b4008",
+      "sha256_svg": "d1859c3bd0aebfbb916f87b3063e19b67471ccf87b913de202df4b1607b29503",
       "qa": "PASS"
     },
     {
@@ -88,7 +89,7 @@
         1440
       ],
       "sha256_png": "8bd57ed3e176786d35424745dcb44d47ef95dfbf2ae918e6dbe03d6c2fa3b1fa",
-      "sha256_svg": "c349e8aa06fe67feacef72a8b44409b401ade28e728ce6dc9ff9915485c1becc",
+      "sha256_svg": "af54fce63efa2f592e88b9b6e34d428f2f2c372b595328b2983683b5ad8f50cd",
       "qa": "PASS"
     },
     {
@@ -114,7 +115,7 @@
         1440
       ],
       "sha256_png": "e8623a985fa44f41091e59c1b5e8d211ef24eb345614ed65ae1ca864e56f81cd",
-      "sha256_svg": "c5daeb722f7de05d433d360587c85d24d71397c525e5c4ee5f7cac4ddd23ae1d",
+      "sha256_svg": "8fd6ed18185cb10f853747f507e3d7c77391071cfcb63d77ff0f9182d38ff5c7",
       "qa": "PASS"
     },
     {
@@ -140,7 +141,7 @@
         1440
       ],
       "sha256_png": "bbf65049ca3d587690191578b7f0bfc1d60bf2cfe012f5fa17c5bb98d9f5ed9a",
-      "sha256_svg": "6024c870958b7bd92be3b7c3635d3ab3969e8d6523185f0b07d7ddaad5e7e825",
+      "sha256_svg": "2490e287361b7674e8c55970e589a1cc1e0939451ebabd8482173e59612eb0cc",
       "qa": "PASS"
     },
     {
@@ -165,7 +166,7 @@
         1440
       ],
       "sha256_png": "816d35f65695df9065ac33a635028d652ca82bd7f6f0f9d1448dac0ac0dac67c",
-      "sha256_svg": "73d8e3d77f2b85caf7052e2950aed30e5441fb1933643649e9f7e77a9e016291",
+      "sha256_svg": "774de42f80cebf767aa193130c3c8a0b363d133cca98c47f92586e2c623359fa",
       "qa": "PASS"
     },
     {
@@ -190,7 +191,7 @@
         1440
       ],
       "sha256_png": "3505221a4877a7c3dd2b17c1477a0814236d959cd76da1431c7fadd0f3184bf4",
-      "sha256_svg": "6706b4afc541deeb0593a193db8427a47874f3cb724b5ea2f8fbbda4d68c316f",
+      "sha256_svg": "f0e1597b72569c7cc57bc602b119dc41535670cfaeaf247d7049a4a3b8413242",
       "qa": "PASS"
     },
     {
@@ -216,7 +217,7 @@
         1440
       ],
       "sha256_png": "4ecc3114d397b69990fbbf38c689af9e51de121e33696dbf1cfeb3b48f93af08",
-      "sha256_svg": "8f9acc738a306c0c59dcbaa029f686ebae0ee63cd712e62e9e2b52299428ac22",
+      "sha256_svg": "6cf758a089a4e6c0c0848055db5cefa249d56a70bc8d812b2f4b9cf84b3d93d1",
       "qa": "PASS"
     },
     {
@@ -243,7 +244,7 @@
         1440
       ],
       "sha256_png": "aba1df7e53d0db6e2560fa66ccd0b72fe715de7d594737dc0b46c4ccab15d666",
-      "sha256_svg": "f688a494364d7d2bbab0290b3bfc8ef4dc98063b970caedc49909eac645a2ec6",
+      "sha256_svg": "1a3784ff9205a8c2041a57304633cd53a9a04c78c7d60aca97ed09df8608ee6e",
       "qa": "PASS"
     },
     {
@@ -270,7 +271,7 @@
         1440
       ],
       "sha256_png": "a1006ba9c7cd498326ba20a354aeb587abbdff343fced28318a1adf265cfa650",
-      "sha256_svg": "dfc8a5f243697175820cdcd3df1212b6654969e264d3f075531423a38752ba90",
+      "sha256_svg": "5545440f0fce11c2db8c1c9d72694e85e700d286d5712d9b2c0c41f86e3922d3",
       "qa": "PASS"
     }
   ]

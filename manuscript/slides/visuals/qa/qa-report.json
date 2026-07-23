@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-23T12:35:59.163081+00:00",
+  "generated_at_utc": "2026-07-23T15:38:31.633913+00:00",
   "visual_count": 9,
   "file_count": 18,
   "scientific_invariant_gate": "PASS",
@@ -146,8 +146,8 @@
   "contact_sheets": {
     "charts": {
       "path": "qa/charts-contact-sheet.png",
-      "sha256": "6f809e857f6807d5f1755bcc20cdaae1c4ec67c7b7ebb4db7b9c14d9acc784bb"
+      "sha256": "9eec4458561a39599cc2bcd574cc25748d801c70ee24e41dfa4dfe960ea42afd"
     }
   },
-  "manifest_sha256": "78dccbe9e673914b8808cb4dbadb2a52bf4cea3ec48e0d8e80bfcebc16e13ddf"
+  "manifest_sha256": "d37377fef1746484b30eb96cbb926bdf9af192af5f6f0267caee21a440e922c5"
 }

@@ -92,9 +92,12 @@ def _package_version(name: str) -> str:
 def _visible_metrics(bundle: Mapping[str, object]) -> dict[str, list[str]]:
     metrics = bundle["metrics"]
     return {
+        # Promoted to spoken Slide 4 on 23 Jul, so it is now drawn as a PURE PLOT
+        # like the other slide charts: three equal panels, no header, no caveat.
         "condition-fc-contrast": [
-            f"cohort B n={metrics['n_b']}",
-            f"{metrics['n_networks']} network summaries",
+            f"three {metrics['n_networks']}-network panels: 2-back FC, 0-back FC and their signed difference",
+            "difference colorbar in mean network FC-change units",
+            "cohort size and caption carried as slide text, not baked into the image",
         ],
         "feature-construction": [
             f"{metrics['n_rois']} ROIs",

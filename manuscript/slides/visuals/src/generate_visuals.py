@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.figure import Figure
+from matplotlib.ticker import MaxNLocator
 from nilearn import plotting
 from PIL import Image
 
@@ -133,40 +134,48 @@ def _linear_trend(ax: Any, observed: np.ndarray, predicted: np.ndarray, color: s
 
 
 def render_master_01(bundle: Mapping[str, object], _: Path) -> Figure:
-    """Show the two condition summaries and their signed difference."""
+    """Show the two condition summaries and their signed difference, as a slide chart."""
     fig = _figure()
-    _header(fig, 1, "The predictive contrast", "Group-mean network FC; cohort B, n=336")
-    grid = fig.add_gridspec(1, 3, left=0.055, right=0.94, bottom=0.12, top=0.81, wspace=0.18)
     matrices = [bundle[key] for key in QUESTION_MATRIX_KEYS]
-    titles = QUESTION_MATRIX_TITLES
-    limits = [
-        max(np.abs(matrices[0]).max(), np.abs(matrices[1]).max()),
-        max(np.abs(matrices[0]).max(), np.abs(matrices[1]).max()),
-        np.abs(matrices[2]).max(),
-    ]
-    for index, (matrix, title, limit) in enumerate(zip(matrices, titles, limits)):
-        ax = fig.add_subplot(grid[0, index])
+    condition_limit = max(np.abs(matrices[0]).max(), np.abs(matrices[1]).max())
+    limits = [condition_limit, condition_limit, np.abs(matrices[2]).max()]
+
+    # Explicit geometry: three equal squares plus a detached colorbar. A gridspec
+    # would shrink the third panel to make room for the bar, and three matrices of
+    # visibly different size read as three different things.
+    # The right margin is reserved for the colorbar plus its tick labels and its
+    # rotated title; at SLIDE_TICK/SLIDE_AXIS sizes that needs ~0.11 of the width,
+    # and anything less clips the ticks off the canvas.
+    side = 0.228
+    height = side * FIGSIZE[0] / FIGSIZE[1]
+    bottom = 0.5 - height / 2 - 0.03
+    gap = 0.044
+    lefts = [0.025, 0.025 + side + gap, 0.025 + 2 * (side + gap)]
+
+    for index, (matrix, title, limit) in enumerate(zip(matrices, QUESTION_MATRIX_TITLES, limits)):
+        ax = fig.add_axes([lefts[index], bottom, side, height])
         image = ax.imshow(matrix, cmap=FC_DIVERGING, vmin=-limit, vmax=limit)
-        ax.set_title(title, pad=18)
+        ax.set_title(title, fontsize=SLIDE_PANEL, pad=22)
         ax.set_xticks([])
         ax.set_yticks([])
         if index < 2:
-            ax.text(
-                1.03,
-                0.5,
+            fig.text(
+                lefts[index] + side + gap / 2,
+                bottom + height / 2,
                 r"$-$" if QUESTION_OPERATORS[index] == "minus" else "=",
-                transform=ax.transAxes,
-                fontsize=38,
+                fontsize=64,
                 fontweight=600,
                 color=COLORS["brown"],
                 ha="center",
                 va="center",
             )
         if index == 2:
-            colorbar = fig.colorbar(image, ax=ax, fraction=0.05, pad=0.04)
-            colorbar.set_label(r"Mean $\Delta$FC", fontsize=16)
-            colorbar.ax.tick_params(labelsize=14)
-    _caveat(fig, "Condition-aggregated Pearson FC difference; not dynamic or causal connectivity.")
+            bar_axis = fig.add_axes([lefts[index] + side + 0.020, bottom, 0.016, height])
+            colorbar = fig.colorbar(image, cax=bar_axis)
+            colorbar.set_label(r"Mean $\Delta$FC", fontsize=SLIDE_AXIS, labelpad=16)
+            colorbar.ax.tick_params(labelsize=SLIDE_TICK)
+            colorbar.locator = MaxNLocator(nbins=4)
+            colorbar.update_ticks()
     return fig
 
 
