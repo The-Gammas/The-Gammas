@@ -37,6 +37,12 @@
   reducing type.
 - **Empirical assets:** reuse only the evidence in `visuals/charts/`. The method schematic is the one
   sanctioned non-data figure: it is a conceptual pipeline drawn as native shapes, not a chart.
+- **The live deliverable is the team Google deck**
+  ([`1A-FC-Hs2…Dk9E`](https://docs.google.com/presentation/d/1A-FC-Hs29PhzQ4ZID4hKFMMbXgLh2YIlnMQiUirDk9E/edit)),
+  owned by Valeria Moraga. This file is its **spec**, not a copy of it; the two drift and must be
+  reconciled by hand — see *Google deck reconciliation* at the end. `source-snapshots/` holds frozen
+  PDF/PPTX exports of that deck and is only refreshed when someone runs an export, so it lags the
+  live file. Verify against a fresh export, never against the newest snapshot on disk.
 
 ## Structure rationale (why this shape)
 
@@ -134,6 +140,16 @@ Unresolved conclusion that answers the opening hypotheses instead of recapping b
 
 - **Status:** Spoken · Presenter 2.
 - **Audience-facing title:** *We evaluated a 78-feature FC difference in held-out people*
+- **Definition line — required, set directly under the title:**
+
+  `FC reconfiguration = how much each network pair changes its coupling when memory load goes from 0-back to 2-back.`
+
+  Added 23 Jul. The deck's own title word was never defined in plain language on any spoken slide;
+  the schematic supplied only the formula, which is not the same thing for an audience seeing the
+  design for the first time. Raised by **Valeria Moraga** on her source slide 7 (“FC Reconfiguration
+  Explanation???”), and she was right — the gap was real. The sentence is a plain restatement of
+  `pipeline/02` §4, so it adds no claim.
+
 - **Visible copy — seven schematic boxes, left to right:**
 
   `1 · Cohort` — `336 participants · HCP N-back · 2 WM runs · 360 Glasser ROIs · TR 0.72 s`
@@ -365,13 +381,19 @@ Opened only if a question requires them. Styled as a distinct block, as in the p
 
   `3. Test independent-site, repeat-session, family-aware generalization.`
 
-  `4. Control the activation contrast for vascular reactivity (CVR).`
+  `4. Run the activation model on resting-state amplitude: if rest predicts 2-back accuracy as well as task frames, the signal is task-independent.`
 
   `Decision criterion: FC must add reliable held-out value beyond activation and single-condition FC.`
 
 - **Chart:** No pre-rendered chart. Native numbered list plus the decision criterion.
 - **Speaker note:** “Cada experimento ataca respectivamente comparabilidad, coactivación,
-  generalización y confusión vascular (CVR, señalada por Goutham el 22 jul).”
+  generalización e independencia de tarea. El cuarto es **propuesta de Goutham Arcod (23 jul)** y es
+  **ejecutable con lo que ya tenemos**: cohorte B trae 4 runs de reposo (4,4 GB descargados) y
+  `datasets.py` expone `load_rest_timeseries()`. Si alguien pregunta: un resultado positivo
+  probaría que la señal es **independiente de la tarea**, no que sea vascular — un rasgo estable
+  puede ser materia gris o arousal basal. Referencia para calibrar: Avery 2020 predice acc_2bk
+  desde FC de reposo a r=0.20, así que que el reposo prediga algo es lo esperado; lo llamativo
+  sería acercarse a 0.57.”
 - **Evidence / provenance:** `pipeline/02` §12 claim–result–limitation table.
 - **Scientific caveat:** These are proposed experiments, not completed analyses.
 
@@ -403,6 +425,16 @@ Opened only if a question requires them. Styled as a distinct block, as in the p
 - **Layout:** Two columns — references left, guardrail definitions right. This slide is where the
   statistical definitions live now that the spoken slides carry only one label each.
 - **Chart:** No pre-rendered chart.
+- **Open team decision — two parallel bibliographies (23 Jul).** The Google deck currently carries
+  **two** reference slides: this one and Valeria's original (Shine 2016, Finc 2020, Zhang 2023,
+  Shen 2017, Ray 2020). They are not competing versions — hers are *framing* citations (why the
+  question matters), these are *claim-backing* citations (each one supports a sentence we say out
+  loud). Only **Finc 2020** appears in both; Shine 2016, Zhang 2023, Shen 2017 and Ray 2020 are
+  **not** in `manuscript/references.md` at all. Merge to a single slide, and if framing citations are
+  kept, annotate them in `references.md` first. **Caution:** Shine 2016 and Zhang 2023 are
+  *dynamic*-FC papers. Presenting them beside our condition-aggregated static difference invites the
+  exact conflation the `dFC` label already caused — if they stay, say out loud that they are
+  motivation, not our method.
 - **Evidence / provenance:** `manuscript/references.md`; `pipeline/02` §5, §6, §8 and §12.
 - **Scientific caveat:** References frame or limit the work; they do not turn it into an exact
   replication or a causal validation. Logothetis frames the CVR gap on Slide 6 as a cited limitation,
@@ -431,6 +463,65 @@ Internal-review Slide 10 (anatomical context) stays out of both decks: it does n
 `incremental-fc-test` remain in the chart library as unassigned assets, still referenced by the
 internal-review storyboard.
 
+## Google deck reconciliation — review of 23 Jul
+
+Reviewed against **fresh PDF exports** of the live team deck (Drive file `1A-FC-Hs2…Dk9E`,
+**18 slides**), text extracted and all pages rasterised. The frozen copy in
+`source-snapshots/2026-07-22T19-06-12_CEST_valeria/` predates this content — it is the 15-slide
+version from 22 Jul and does **not** contain the transcribed spoken slides. Today's state is frozen
+in `source-snapshots/2026-07-23T15-39-22_CEST_valeria/`.
+
+The deck was being **edited live during the review**: `modifiedTime` advanced three times within the
+hour (12:26:42Z → 13:20:29Z → 13:35:54Z), and six of the corrections below were applied by Jaime
+while the review was still running. Re-export and diff before trusting any row here.
+
+**Numerical verdict: clean.** Every value on Google slides 3–11 matches `canonical_evidence.EXPECTED`
+— cohort and pipeline counts, `0.398`/CI, `0.366 ± 0.024`, the four method means and SDs, `0.571`,
+the segregation block, the holdout, the seed-42 null and both `ΔR²` values. The transcription from
+this file into Slides introduced no numeric error. Everything below is text, layout or leftovers.
+
+### Corrections (live deck numbering; status as of the 13:35:54Z revision)
+
+| # | Slide | Fix | Severity | Status |
+|---|---|---|---|---|
+| 1 | 2 (Team) | Remove five stock portraits and the dummy roles *Actor / Doctor / Accountant / Chef / Journalist*; add the pod/TA line | Blocker | **Open** |
+| 2 | 5 (Primary) | Image was left-cropped: y-axis title and the `0.` of every tick were cut. Reinsert `identity-disjoint-transfer.png` uncropped | Blocker | Done |
+| 3 | 6 (Turn) | Replace the chart with the regenerated `activation-robustness.png` (label fix, below) | Blocker | Done |
+| 4 | 3 (Intro) | “…as a different claims” → **“are different claims”** | Text | Done |
+| 5 | 7 (Conclusion) | Title needs the semicolon: “Predictive signal survives**;** connectivity-specific…” | Text | Done |
+| 6 | 6 (Turn) | Add the missing legend line `Open squares = held-out cross-run generalization.` — two open squares were unexplained | Text | Done |
+| 7 | 4 (Method) | Add the definition line (see Slide 4 above) | Content gap | Done |
+| 8 | 6 (Turn) | `Activation contrast: 0.600 ± 0.016` is pale sand on a pale ground; darken it | Legibility | **Open** |
+| 9 | 17, 18 | Delete the empty duplicate divider and the internal compression map | Hygiene | **Open** |
+| 10 | 12–15 | Valeria Moraga's legacy slides — agree with her before removing or merging, they are her contribution | Team decision | **Open** |
+| 11 | 11 vs 15 | Resolve the two parallel bibliographies (see Slide 11 above) | Team decision | **Open** |
+
+### Legacy slides to delete, and why
+
+- **12** — Valeria's `Our study aims to… / FC Reconfiguration Explanation???`. Both questions are now
+  answered: the aims by Slide 3, the definition by the new Slide 4 line. It also still carries the
+  superseded nb08 figures, whose labels render at 3–4 pt and whose rounding (`0.27 / 0.37 / 0.33 /
+  0.60`) visually contradicts Slide 6.
+- **13** — `Conclusion 1 / 2 / etc` and `L1 / L2` placeholders; superseded by Slide 7.
+- **14** — `IMPORTANT CONCEPTS`. **Delete on content grounds, not just tidiness:** it says the result
+  *“substantially changes our conclusion,”* which contradicts the narrative framing rule at the top
+  of this file. We pre-specified two hypotheses; one held and one was refined. Nothing changed.
+- **15** — Valeria's reference slide; fold into Slide 11 per the decision above.
+- **17** — empty duplicate of the “Complementary Slides” divider on 16.
+- **18** — `INTERNAL SLIDE: Compression map`. A working artefact of this storyboard; it must not
+  travel in a deck that gets projected or shared outside the pod.
+
+### Chart label defect found and fixed (23 Jul)
+
+`activation-robustness` shipped the reconfiguration predictor as **`dFC pattern`**. In the fMRI
+literature `dFC` reads as *dynamic* FC — a claim the delivery checklist explicitly forbids and that
+our design cannot support, since we subtract two condition-aggregated **static** matrices. The risk
+was live: Valeria's reference slide cites two dynamic-FC papers, so the deck was one question away
+from a conflation we had no clean answer for. Renamed to **`FC reconfiguration`** across the five
+occurrences in `visuals/src/generate_visuals.py` (`activation-robustness`, `incremental-fc-test`,
+`anatomical-context`, `feature-construction`), library regenerated, 18/18 contract tests pass. Of the
+four charts used in the deck, only `activation-robustness.png` changes visually.
+
 ## Delivery checklist
 
 - **Five presenters, five spoken slides (3–7), one each.** Cover, team and backup carry no timed
@@ -443,7 +534,10 @@ internal-review storyboard.
 - Say “split SD,” never “confidence interval,” for repeated-CV `±` values.
 - Pair the full-refit permutation only with seed-42 `r = .405`; label the B→A permutation separately.
 - Say “we predicted two things; one held, one was refined.” Never “our hypothesis evolved/changed.”
-- Do not claim causality, dynamic FC, adaptive benefit, or an FC-specific mechanism.
+- Do not claim causality, dynamic FC, adaptive benefit, or an FC-specific mechanism. This applies to
+  **chart axis labels too**: never abbreviate the reconfiguration predictor as `dFC`, which reads as
+  *dynamic* FC. Say “FC reconfiguration” or “FC change” (fixed 23 Jul; the activation chart shipped
+  the wrong label to the shared Google deck).
 - State the activation caveats out loud on Slide 6: post hoc, unmatched 360 vs 78, and CVR
   uncontrolled.
 - Keep Slide 7 visible during Q&A; open backup slides only on demand.

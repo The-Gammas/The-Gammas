@@ -1,0 +1,70 @@
+{
+  "snapshot_status": "frozen_source_reference",
+  "source": {
+    "title": "The Gammas - NMA project",
+    "google_drive_file_id": "1A-FC-Hs29PhzQ4ZID4hKFMMbXgLh2YIlnMQiUirDk9E",
+    "url": "https://docs.google.com/presentation/d/1A-FC-Hs29PhzQ4ZID4hKFMMbXgLh2YIlnMQiUirDk9E/edit",
+    "mime_type": "application/vnd.google-apps.presentation",
+    "revision_id": null,
+    "revision_id_note": "Not captured: the Drive connector exposes file metadata but not the revisions collection. Identify this snapshot by modified_at_utc plus the export hashes below.",
+    "created_at_utc": "2026-07-17T11:44:25.490Z",
+    "created_at_cest": "2026-07-17T13:44:25.490+02:00",
+    "modified_at_utc": "2026-07-23T13:35:54.841Z",
+    "modified_at_cest": "2026-07-23T15:35:54.841+02:00",
+    "locale": "en",
+    "slide_count": 18,
+    "page_size_points": {
+      "width": 720,
+      "height": 405
+    }
+  },
+  "download": {
+    "downloaded_at_utc": "2026-07-23T13:40:00Z",
+    "downloaded_at_cest": "2026-07-23T15:40:00+02:00",
+    "exports": [
+      {
+        "filename": "the-gammas-nma-project.pdf",
+        "mime_type": "application/pdf",
+        "bytes": 2654874,
+        "sha256": "a6891f7c478837aa20736062eaa801e982fcbd5824bd0792dada2570e7ef333f"
+      },
+      {
+        "filename": "the-gammas-nma-project.pptx",
+        "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "bytes": 3842055,
+        "sha256": "9a2ce7d5921b44491cf33f7e7b66903e9ab435f3a7f697e177bdfd33e8857e6d"
+      }
+    ],
+    "export_consistency": "Both exports were taken after the 13:35:54Z edit and before any later one, so they render the same revision: 18 pages in the PDF, 18 slides in the PPTX, both 720x405 pt.",
+    "concurrent_editing_warning": "The deck was being edited live while this snapshot was taken; modified_at advanced three times within the hour (12:26:42Z, 13:20:29Z, 13:35:54Z). A first PDF export at 13:22Z was discarded because it predated the 13:35:54Z edit. Always re-read modified_at after exporting: a snapshot of a shared Google file is only as frozen as the minute it was pulled."
+  },
+  "delta_since_previous_snapshot": {
+    "previous": "2026-07-22T19-06-12_CEST_valeria",
+    "slide_count": "15 -> 18",
+    "summary": "Jaime Pineda transcribed the final storyboard into the deck. Slides 3-11 are now the spoken core (intro, method schematic, primary result, the turn, conclusion) plus four backup slides and a references/guardrails slide. Valeria Moraga's original placeholder slides were pushed down and survive as the legacy tail: 12 (aims + 'FC Reconfiguration Explanation???'), 13 (Conclusion 1/2, L1/L2), 14 (IMPORTANT CONCEPTS), 15 (her reference list). Slide 18 is an internal compression map that must not ship.",
+    "review": "manuscript/slides/final-storyboard-5-plus-4.md -> 'Google deck reconciliation - review of 23 Jul'"
+  },
+  "review_state_at_snapshot": {
+    "numerical_verdict": "Every value on slides 3-11 matches canonical_evidence.EXPECTED; the transcription introduced no numeric error.",
+    "already_applied": [
+      "Slide 3: 'as a different claims' corrected to 'are different claims'",
+      "Slide 4: plain-language FC-reconfiguration definition added under the title, answering Valeria Moraga's source-slide-7 question",
+      "Slide 5: the left-cropped transfer scatter was reinserted uncropped; the y-axis title and tick labels are legible again",
+      "Slide 6: the regenerated activation-robustness chart is in place, so the predictor now reads 'FC reconfiguration' instead of the misleading 'dFC pattern'",
+      "Slide 6: the missing 'Open squares' legend line was added",
+      "Slide 7: the title semicolon was restored"
+    ],
+    "still_open": [
+      "Slide 2 (blocker): five stock portraits and the dummy roles Actor / Doctor / Accountant / Chef / Journalist are still present; the pod and TA line is still missing",
+      "Slide 6: 'Activation contrast: 0.600 +/- 0.016' is pale sand on a pale ground",
+      "Slides 12-15: Valeria Moraga's legacy slides, pending her agreement before removal or merge",
+      "Slides 17-18: empty duplicate divider and the internal compression map, both safe to delete",
+      "Slide 11 vs 15: two parallel bibliographies, pending a team decision"
+    ]
+  },
+  "usage": {
+    "role": "Frozen state of the shared team deck during the 23 Jul content review",
+    "scientific_source_of_truth": "pipeline/02_canonical_analysis_and_slides.ipynb",
+    "warning": "This is a record of what was reviewed, not a corrected deck. See review_state_at_snapshot.still_open."
+  }
+}

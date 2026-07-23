@@ -200,7 +200,7 @@ def render_master_04(bundle: Mapping[str, object], _: Path) -> Figure:
     delta_limit = np.abs(bundle["network_delta"]).max()
     ax_delta = fig.add_subplot(grid[0, 2])
     ax_delta.imshow(delta, cmap=FC_DIVERGING, vmin=-delta_limit, vmax=delta_limit)
-    ax_delta.set_title("Unique network dFC\n12 + 66 blocks", fontsize=18, pad=14)
+    ax_delta.set_title("Unique network FC change\n12 + 66 blocks", fontsize=18, pad=14)
     ax_delta.set_xticks([])
     ax_delta.set_yticks([])
     ax_vector = fig.add_subplot(grid[0, 3])
@@ -336,7 +336,7 @@ def render_master_10(bundle: Mapping[str, object], _: Path) -> Figure:
     labels = bundle["network_labels"]
     ax_matrix.set_xticks(range(12), labels=labels, rotation=52, ha="right", fontsize=11.5)
     ax_matrix.set_yticks(range(12), labels=labels, fontsize=11.5)
-    ax_matrix.set_title("78 unique network dFC values", fontsize=20, pad=14)
+    ax_matrix.set_title("78 unique network FC-change values", fontsize=20, pad=14)
     colorbar = fig.colorbar(image, ax=ax_matrix, fraction=0.046, pad=0.04)
     colorbar.set_label(r"Mean $\Delta$FC", fontsize=15)
     ax_brain = fig.add_subplot(grid[0, 1])
@@ -352,7 +352,7 @@ def render_master_10(bundle: Mapping[str, object], _: Path) -> Figure:
         colorbar=True,
         title=None,
     )
-    ax_brain.set_title("Mean dFC per Glasser ROI", fontsize=22, pad=14)
+    ax_brain.set_title("Mean FC change per Glasser ROI", fontsize=22, pad=14)
     _header(fig, 7, "Where mean cortical coupling changed", "Same symmetric scale across network and cortical views")
     _caveat(fig, "Descriptive group mean only; color does not encode regional predictive importance.")
     return fig
@@ -362,7 +362,7 @@ def render_master_11(bundle: Mapping[str, object], _: Path) -> Figure:
     """Compare FC representations and matched-fold incremental value."""
     means = np.asarray(bundle["method_means"])[:3]
     sds = np.asarray(bundle["method_sds"])[:3]
-    labels = ["0-back FC", "FC reconfiguration", "Combined FC\n(0-back + dFC)"]
+    labels = ["0-back FC", "FC reconfiguration", "Combined FC\n(0-back + reconfig)"]
     delta = np.asarray(bundle["delta_reconfig"])
     fig = _figure()
     _header(fig, 8, "Does reconfiguration add beyond 0-back FC?", "Same estimator and repeated participant folds")
@@ -406,7 +406,7 @@ def render_master_12(bundle: Mapping[str, object], _: Path) -> Figure:
     sds = np.asarray(bundle["method_sds"])
     labels = [
         "0-back FC\n78 features",
-        "dFC pattern\n78 features",
+        "FC reconfiguration\n78 features",
         "Combined FC\n156 features",
         "Activation\n360 features",
     ]
