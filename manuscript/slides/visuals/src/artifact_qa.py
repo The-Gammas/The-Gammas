@@ -106,21 +106,22 @@ def _visible_metrics(bundle: Mapping[str, object]) -> dict[str, list[str]]:
             f"split SD={metrics['repeated_cv_sd']:.3f}",
             f"n={metrics['n_b']}",
         ],
+        # The four slide charts are drawn as PURE PLOTS: no header, caveat or
+        # annotation block. Their metrics are spoken and printed as native pptx
+        # text, which stays sharp at projection size. What remains visible in the
+        # image itself is only axes, marks and direct data labels.
         "null-and-holdout": [
-            f"seed-42 r={metrics['seed42_r']:.3f}",
-            "full-refit p=1/1001",
-            f"holdout r={metrics['holdout_r']:.3f}; n={metrics['holdout_n']}",
+            f"seed-42 refit r={metrics['seed42_r']:.3f} marked against the permutation null",
+            f"fixed holdout scatter, n={metrics['holdout_n']}",
+            "numeric values carried as slide text, not baked into the image",
         ],
         "identity-disjoint-transfer": [
-            f"transfer r={metrics['transfer_r']:.3f}",
-            f"bootstrap 95% CI [{metrics['transfer_ci_low']:.2f}, {metrics['transfer_ci_high']:.2f}]",
-            "A-label permutation p=1/1001",
-            f"B-only train n={metrics['transfer_train_n']}; A test n={metrics['transfer_test_n']}",
+            f"observed vs predicted 2-back accuracy, cohort A n={metrics['transfer_test_n']}",
+            "numeric values carried as slide text, not baked into the image",
         ],
         "segregation-refinement": [
-            f"segregation {metrics['segregation_0']:.4f} to {metrics['segregation_2']:.4f}",
-            f"paired change={metrics['segregation_delta']:.4f}; p={metrics['segregation_p']:.2e}",
-            f"individual r={metrics['segregation_individual_r']:.3f}; p={metrics['segregation_individual_p']:.3f}",
+            "paired 0-back/2-back segregation distributions and the individual scatter",
+            "numeric values carried as slide text, not baked into the image",
         ],
         "anatomical-context": [
             "78 unique network FC-change values",
@@ -133,9 +134,9 @@ def _visible_metrics(bundle: Mapping[str, object]) -> dict[str, list[str]]:
             f"incremental R2={metrics['increment_reconfig_mean']:+.4f} ± {metrics['increment_reconfig_sd']:.4f} split SD",
         ],
         "activation-robustness": [
-            f"activation r={metrics['method_activation_r']:.3f}",
-            f"FC over activation incremental R2={metrics['increment_fc_mean']:+.4f} ± {metrics['increment_fc_sd']:.4f} split SD",
-            "360 activation vs 78 FC features",
+            f"four feature sets with mean ± split SD, activation r={metrics['method_activation_r']:.3f}",
+            "open squares mark held-out cross-run generalization",
+            "increments and caveats carried as slide text, not baked into the image",
         ],
     }
 

@@ -7,6 +7,18 @@ Al terminar, la audiencia de NMA debe entender que el patrón multivariado de ca
 compartidas, pero que la hipótesis direccional y la especificidad de conectividad no quedan
 establecidas; el benchmark regional de activación obliga a refinar la conclusión.
 
+> **Relación con el deck hablado.** Este documento es la versión **larga de revisión interna** (15
+> slides). El deck que se presenta el viernes es
+> [`final-storyboard-5-plus-4.md`](final-storyboard-5-plus-4.md): **5 slides habladas + 4 de
+> backup**, alineado con la estructura de los decks de equipos NMA 2025 en
+> [`../../../references/nma_project_examples_2025/`](../../../references/nma_project_examples_2025/).
+> Los cambios estructurales que ese deck aplica sobre este: el título deja de ser pre-roll mudo y se
+> funde con la intro y la línea de equipo (slides 1–2 → 1); las slides 9–12 se comprimen en **una
+> sola slide bisagra** con el dot plot de activación como única figura, y la figura de segregación
+> baja a backup; el null y el holdout fijo bajan a backup para que la slide de resultado primario
+> lleve una figura dominante; y la conclusión nombra en voz alta las dos hipótesis de apertura.
+> Mapa completo → sección *Compression map* del deck final.
+
 ## Global production rules
 
 - **Audiencia visible:** participantes y tutores de NMA; la redacción que aparece en pantalla va en
@@ -21,6 +33,11 @@ establecidas; el benchmark regional de activación obliga a refinar la conclusi�
 - **Guardrail de inferencia:** no describir la FC de tarea como dinámica, causal, adaptativa ni
   específica de conectividad. “Reconfiguration” nombra aquí una diferencia entre dos matrices FC
   agregadas por condición.
+- **Framing del relato (obligatorio en cualquier texto hablado):** no cambiamos la hipótesis al ver
+  los datos. Pre-especificamos **dos** hipótesis; la evidencia **confirmó una y matizó la otra**.
+  Decir *“predijimos dos cosas: una se sostuvo, la otra resultó más estrecha de lo esperado”*. Nunca
+  decir que la hipótesis *evolucionó*, *cambió* o *fue reemplazada* — describiría mal la secuencia
+  inferencial real.
 - **Densidad:** una afirmación central por slide; máximo tres unidades visuales; toda limitación que
   cambie la lectura debe verse en pantalla, no quedar solo en las notas.
 - **Charts:** usar únicamente los nueve assets empíricos de `visuals/charts/`. Cuando una slide no
@@ -425,7 +442,10 @@ entre condiciones, no un beta GLM, y fue un benchmark de robustez posterior a la
 La cifra cross-run es una única estimación seed 42: entrena con features de un run y se aplica a las
 features del otro en personas held-out para predecir el mismo `acc_2bk` agregado por participante.
 La activación también conserva asociación tras controles de accuracy 0-back
-(partial r=.412) y DVARS (partial r=.580), pero esos controles no prueban ausencia de artefacto.
+(partial r=.412) y DVARS (partial r=.580), pero esos controles no prueban ausencia de artefacto:
+en particular, ninguno de los dos captura reactividad cerebrovascular (CVR), y el dataset actual no
+tiene proxy de CVR — punto señalado por Goutham Arcod (22 jul, Discord), con apoyo en Logothetis
+(2008): el BOLD es un proxy hemodinámico, no una medida directa de disparo neural.
 Transición: “La sorpresa no borra la predicción FC; limita lo que podemos afirmar sobre su
 especificidad.”
 
@@ -436,26 +456,28 @@ especificidad.”
 fuertemente colineales; el contraste no es un rasgo independiente de carga. La comparación no está
 igualada en número ni escala de características. La cifra cross-run demuestra separación de
 features/runs y de personas con un outcome compartido, no un test conductual completamente
-independiente entre runs.
+independiente entre runs. Los controles de habilidad y movimiento no capturan reactividad
+cerebrovascular (CVR); el contraste de activación podría reflejar en parte variación vascular
+entre sujetos, no solo señal neural — hueco no testeado, no descartado.
 
 ## Slide 13 — Refined conclusion
 
-**Purpose:** Resolver la pregunta inicial con tres niveles explícitos: qué sobrevive, qué falla y qué
-queda sin resolver.
+**Purpose:** Resolver la pregunta inicial con tres niveles explícitos: qué sobrevive, qué se matiza y
+qué queda sin resolver, nombrando las dos hipótesis pre-especificadas de la apertura.
 
 **Audience-facing title:** Prediction survives; connectivity-specific mechanism remains unresolved
 
 **Visible copy:**
 
-**What survives**
+**What survives — the pattern hypothesis**
 
 - A 78-feature FC difference predicts 2-back accuracy in unseen participants.
 - The model transfers across identity-disjoint same-HCP cohorts.
-- Mean system segregation decreases at higher load.
 
-**What failed**
+**What was refined — the directional hypothesis**
 
-- Larger segregation reductions did not convincingly predict better performance.
+- Mean system segregation does decrease at higher load, as predicted.
+- But larger segregation reductions did not convincingly predict better performance.
 - Reconfiguration showed no clear incremental gain over 0-back FC.
 
 **What remains unresolved**
@@ -463,8 +485,9 @@ queda sin resolver.
 - Whether the predictive information is connectivity-specific rather than shared with task
   activation.
 
-**Layout:** Tres zonas verticales “survives / failed / unresolved”; la tercera ocupa algo más de
+**Layout:** Tres zonas verticales “survives / refined / unresolved”; la tercera ocupa algo más de
 espacio para preparar los experimentos. Evitar estilo de dashboard; usar jerarquía tipográfica plana.
+Las dos primeras cabeceras nombran explícitamente las hipótesis de la Slide 1 para cerrar el bucle.
 
 **Chart:** No pre-rendered chart. Resolver después con tres bloques tipográficos nativos —Survives,
 Refined, Unresolved— y sin reutilizar miniaturas de resultados.
@@ -484,7 +507,7 @@ especificidad biológica.
 **Purpose:** Cerrar el relato científico con pruebas que cambien la conclusión, no con una lista
 genérica de extensiones.
 
-**Audience-facing title:** Three experiments could resolve the remaining question
+**Audience-facing title:** Four experiments could resolve the remaining question
 
 **Visible copy:**
 
@@ -494,22 +517,25 @@ genérica de extensiones.
    same target, folds and null.
 3. **Test real generalization:** repeat the model in an independent-site cohort with repeat-session
    and family-aware evaluation.
+4. **Control for vascular reactivity (CVR):** regress a CVR proxy (or scanner-gain covariate) out of
+   the activation contrast before re-testing whether it still predicts performance.
 
 Closing line: `Decision criterion: FC must add reliable held-out value beyond activation and single-condition FC.`
 
-**Layout:** Tres pasos numerados con una pregunta decisiva debajo de cada uno: fairness, estimator,
-generalization. La closing line queda visible mientras empieza el Q&A.
+**Layout:** Cuatro pasos numerados con una pregunta decisiva debajo de cada uno: fairness, estimator,
+generalization, vascular confound. La closing line queda visible mientras empieza el Q&A.
 
-**Chart:** No pre-rendered chart. Presentar las tres pruebas como una lista numerada nativa y cerrar
+**Chart:** No pre-rendered chart. Presentar las cuatro pruebas como una lista numerada nativa y cerrar
 con el criterio de decisión; no generar un diagrama de flujo.
 
 **Speaker notes and transition:** Explicar que cada experimento ataca una limitación distinta: no
-equivalencia de representaciones, contaminación por coactivación y falta de generalización de sitio.
+equivalencia de representaciones, contaminación por coactivación, falta de generalización de sitio y
+confusión vascular no controlada (CVR, señalada por Goutham el 22 jul).
 Transición a referencias: “Hasta entonces, la conclusión calibrada es predictiva y asociacional.”
 
 **Evidence/provenance:** `pipeline/02`, tabla claim→result→limitation; `manuscript/references.md`,
-Masharipov 2024 para el problema de FC de tarea y Hedge 2018 para fiabilidad de diferencias;
-`docs/project-plan.md`, limitaciones de cohortes.
+Masharipov 2024 para el problema de FC de tarea, Hedge 2018 para fiabilidad de diferencias y
+Logothetis 2008 para el proxy hemodinámico del BOLD; `docs/project-plan.md`, limitaciones de cohortes.
 
 **Scientific caveat:** Son experimentos propuestos, no resultados del pipeline adoptado; no deben
 aparecer en pasado ni como trabajo ya realizado.
@@ -530,6 +556,7 @@ preguntas.
 - Murphy et al. (2020), *Nature Communications* — selective, not uniformly beneficial, integration.
 - Masharipov et al. (2024), *Communications Biology* — task coactivation can inflate condition FC.
 - Hedge et al. (2018), *Behavior Research Methods* — reliability limits of difference scores.
+- Logothetis (2008), *Nature* — BOLD is a hemodynamic proxy, confounded by vascular variables.
 
 **Backup labels**
 
@@ -550,7 +577,8 @@ definición de segregación o diferencia SD/CI. No leerla en la exposición prin
 **Evidence/provenance:** `manuscript/references.md`; `pipeline/02`, celdas 12, 16, 22 y 30.
 
 **Scientific caveat:** Avery es calibración conceptual, no réplica exacta; Chan/Murphy aportan marco,
-no validación directa del pipeline; Masharipov justifica una limitación metodológica.
+no validación directa del pipeline; Masharipov justifica una limitación metodológica; Logothetis
+enmarca la confusión vascular (CVR) de la Slide 12 como hueco citado, no resultado propio.
 
 ## QA checklist
 
@@ -570,7 +598,10 @@ no validación directa del pipeline; Masharipov justifica una limitación metodo
   network FC features), se define como contraste de mean BOLD y no beta GLM; cross-run se etiqueta
   seed 42, held-out people y outcome conductual compartido; no se afirma especificidad de conectividad.
 - [x] **Narrative continuity:** cada transición abre la pregunta de la slide siguiente y el cierre
-  responde la hipótesis con survives / failed / unresolved / decisive experiments.
+  responde las dos hipótesis pre-especificadas con survives / refined / unresolved / decisive
+  experiments.
+- [x] **Framing del relato:** ningún texto hablado describe la hipótesis como evolucionada, cambiada
+  o reemplazada; el cierre nombra la hipótesis de patrón (se sostiene) y la direccional (se matiza).
 - [x] **Slide density:** una afirmación central por slide; las slides 7, 11, 12 y 15 son las únicas
   deliberadamente densas y funcionan como evidencia o backup, no como texto corrido.
 - [x] **Scope and language:** no se incorporan análisis fuera del pipeline adoptado; no se describe

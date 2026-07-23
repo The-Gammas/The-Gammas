@@ -28,7 +28,7 @@ from canonical_evidence import (
     chart_bundle,
     execute_canonical,
 )
-from visual_theme import COLORS, PNG_SIZE, configure_matplotlib
+from visual_theme import COLORS, DPI, FIGSIZE, PNG_SIZE, configure_matplotlib
 
 VISUALS = Path(__file__).resolve().parents[1]
 REPOSITORY = VISUALS.parents[2]
@@ -67,7 +67,7 @@ def metric_labels(namespace: Mapping[str, object]) -> dict[str, str]:
 
 def _figure() -> Figure:
     configure_matplotlib()
-    return plt.figure(figsize=(16, 9), constrained_layout=False)
+    return plt.figure(figsize=FIGSIZE, constrained_layout=False)
 
 
 def _header(
@@ -96,6 +96,16 @@ def _header(
             linewidth=2.0,
         )
     )
+
+
+# Type sizes for the four charts that are projected on a slide. They are placed
+# ~470pt wide on a 1152pt canvas, so a source point lands at 0.41x on screen:
+# 26pt -> 10.6pt, 30pt -> 12.2pt. These charts carry NO header, caveat or side
+# annotation -- that text is native pptx text, which stays sharp and legible.
+SLIDE_TICK = 26
+SLIDE_VALUE = 26
+SLIDE_AXIS = 30
+SLIDE_PANEL = 28
 
 
 def _caveat(fig: Figure, text: str) -> None:
@@ -241,27 +251,24 @@ def render_master_07(bundle: Mapping[str, object], _: Path) -> Figure:
     observed = np.asarray(bundle["holdout_observed"])
     predicted = np.asarray(bundle["holdout_predicted"])
     fig = _figure()
-    _header(fig, 4, "Null and fixed holdout", "Two checks; two distinct estimands")
-    grid = fig.add_gridspec(1, 2, left=0.07, right=0.94, bottom=0.18, top=0.76, wspace=0.28)
+    grid = fig.add_gridspec(1, 2, left=0.09, right=0.97, bottom=0.16, top=0.88, wspace=0.28)
     ax_null = fig.add_subplot(grid[0, 0])
     ax_null.hist(null, bins=28, color=COLORS["neutral"], edgecolor="white", linewidth=0.8)
-    ax_null.axvline(metrics["seed42_r"], color=COLORS["fc"], linewidth=4)
-    ax_null.text(0.03, 0.95, "Full model refit ×1000", transform=ax_null.transAxes,
-                 fontsize=18, fontweight=600, va="top")
-    ax_null.text(0.03, 0.83, "seed 42 r = 0.405\np = 1/1001 ≈ .001",
-                 transform=ax_null.transAxes, fontsize=18, va="top")
-    ax_null.set_xlabel("Permutation-null Pearson r")
-    ax_null.set_ylabel("Permutations")
+    ax_null.axvline(metrics["seed42_r"], color=COLORS["fc"], linewidth=5)
+    ax_null.set_xlabel("Permutation-null Pearson r", fontsize=SLIDE_AXIS, labelpad=12)
+    ax_null.set_ylabel("Permutations", fontsize=SLIDE_AXIS, labelpad=12)
+    ax_null.set_title("Full model refit ×1000", fontsize=SLIDE_PANEL, pad=16)
+    ax_null.tick_params(labelsize=SLIDE_TICK)
     _clean_axis(ax_null, grid="y")
     ax_holdout = fig.add_subplot(grid[0, 1])
-    ax_holdout.scatter(observed, predicted, s=85, color=COLORS["fc"], alpha=0.68,
-                       edgecolor="white", linewidth=0.8)
+    ax_holdout.scatter(observed, predicted, s=150, color=COLORS["fc"], alpha=0.62,
+                       edgecolor="white", linewidth=1.3)
     _linear_trend(ax_holdout, observed, predicted, COLORS["fc"])
-    ax_holdout.set_xlabel("Observed 2-back accuracy")
-    ax_holdout.set_ylabel("Predicted 2-back accuracy")
-    ax_holdout.set_title("Fixed holdout · n=67 · r=0.312", fontsize=22, pad=14)
+    ax_holdout.set_xlabel("Observed 2-back accuracy", fontsize=SLIDE_AXIS, labelpad=12)
+    ax_holdout.set_ylabel("Predicted 2-back accuracy", fontsize=SLIDE_AXIS, labelpad=12)
+    ax_holdout.set_title("Fixed holdout", fontsize=SLIDE_PANEL, pad=16)
+    ax_holdout.tick_params(labelsize=SLIDE_TICK)
     _clean_axis(ax_holdout, grid="both")
-    _caveat(fig, "The full-refit permutation p belongs only to seed-42 r=0.405; the holdout is a separate fixed split.")
     return fig
 
 
@@ -271,21 +278,14 @@ def render_master_08(bundle: Mapping[str, object], _: Path) -> Figure:
     observed = np.asarray(bundle["transfer_observed"])
     predicted = np.asarray(bundle["transfer_predicted"])
     fig = _figure()
-    _header(fig, 5, "Identity-disjoint transfer B to A", "Train: 301 B-only · Test: 100 A · 35 shared identities removed")
-    ax = fig.add_axes([0.10, 0.15, 0.60, 0.64])
-    ax.scatter(observed, predicted, s=92, color=COLORS["fc"], alpha=0.67,
-               edgecolor="white", linewidth=0.9)
+    ax = fig.add_axes([0.13, 0.16, 0.83, 0.80])
+    ax.scatter(observed, predicted, s=170, color=COLORS["fc"], alpha=0.62,
+               edgecolor="white", linewidth=1.4)
     _linear_trend(ax, observed, predicted, COLORS["fc"])
-    ax.set_xlabel("Observed 2-back accuracy · cohort A")
-    ax.set_ylabel("Predicted 2-back accuracy")
+    ax.set_xlabel("Observed 2-back accuracy · cohort A", fontsize=SLIDE_AXIS, labelpad=14)
+    ax.set_ylabel("Predicted 2-back accuracy", fontsize=SLIDE_AXIS, labelpad=14)
+    ax.tick_params(labelsize=SLIDE_TICK)
     _clean_axis(ax, grid="both")
-    fig.text(0.75, 0.68, f"r = {metrics['transfer_r']:.3f}", fontsize=34, fontweight=600)
-    fig.text(0.75, 0.56,
-             f"bootstrap 95% CI\n[{metrics['transfer_ci_low']:.2f}, {metrics['transfer_ci_high']:.2f}]",
-             fontsize=22, linespacing=1.4)
-    fig.text(0.75, 0.40, "A-label permutation\nfixed B prediction\np = 1/1001 ≈ .001",
-             fontsize=19, linespacing=1.35, color=COLORS["brown"])
-    _caveat(fig, "Same task and HCP source; kinship is unmodelled. This is not independent-site validation.")
     return fig
 
 
@@ -297,8 +297,7 @@ def render_master_09(bundle: Mapping[str, object], _: Path) -> Figure:
     accuracy = np.asarray(bundle["accuracy_2back"])
     metrics = bundle["metrics"]
     fig = _figure()
-    _header(fig, 6, "Group direction ≠ individual differences", "Chan-style system segregation; cohort B, n=336")
-    grid = fig.add_gridspec(1, 2, left=0.07, right=0.94, bottom=0.17, top=0.77, wspace=0.30)
+    grid = fig.add_gridspec(1, 2, left=0.09, right=0.97, bottom=0.16, top=0.88, wspace=0.28)
     ax_group = fig.add_subplot(grid[0, 0])
     parts = ax_group.violinplot([seg0, seg2], positions=[0, 1], widths=0.72,
                                 showmeans=False, showmedians=False, showextrema=False)
@@ -309,26 +308,20 @@ def render_master_09(bundle: Mapping[str, object], _: Path) -> Figure:
     ax_group.plot([0, 1], [seg0.mean(), seg2.mean()], color=COLORS["ink"], linewidth=3, marker="o",
                   markersize=11, markerfacecolor="white", markeredgewidth=2)
     ax_group.set_xticks([0, 1], ["0-back", "2-back"])
-    ax_group.set_ylabel("System segregation")
-    ax_group.set_title("Group mean fell under load", pad=14)
-    ax_group.text(0.5, 0.07, "0.3271 to 0.3035\ndelta = −0.0236 · paired p = 3.45e-05",
-                  transform=ax_group.transAxes, ha="center", fontsize=18, fontweight=600)
+    ax_group.set_ylabel("System segregation", fontsize=SLIDE_AXIS, labelpad=12)
+    ax_group.set_title("Group mean fell under load", fontsize=SLIDE_PANEL, pad=16)
+    ax_group.tick_params(labelsize=SLIDE_TICK)
     _clean_axis(ax_group, grid="y")
     ax_individual = fig.add_subplot(grid[0, 1])
     ax_individual.scatter(delta, accuracy, s=70, color=COLORS["fc"], alpha=0.55,
                           edgecolor="white", linewidth=0.7)
     _linear_trend(ax_individual, delta, accuracy, COLORS["fc"])
     ax_individual.axvline(0, color=COLORS["ink"], linestyle=":", linewidth=1.8)
-    ax_individual.set_xlabel("Segregation change · 2-back − 0-back")
-    ax_individual.set_ylabel("2-back accuracy")
-    ax_individual.set_title(
-        f"Individual link was weak · r={metrics['segregation_individual_r']:.3f}, "
-        f"p={metrics['segregation_individual_p']:.3f}",
-        fontsize=20,
-        pad=14,
-    )
+    ax_individual.set_xlabel("Segregation change", fontsize=SLIDE_AXIS, labelpad=12)
+    ax_individual.set_ylabel("2-back accuracy", fontsize=SLIDE_AXIS, labelpad=12)
+    ax_individual.set_title("Individual link was weak", fontsize=SLIDE_PANEL, pad=16)
+    ax_individual.tick_params(labelsize=SLIDE_TICK)
     _clean_axis(ax_individual, grid="both")
-    _caveat(fig, "A reliable mean shift does not establish that larger shifts predict better individual performance.")
     return fig
 
 
@@ -419,64 +412,27 @@ def render_master_12(bundle: Mapping[str, object], _: Path) -> Figure:
     ]
     colors = [COLORS["fc"], COLORS["fc"], COLORS["fc"], COLORS["activation"]]
     fig = _figure()
-    _header(fig, 9, "Post hoc robustness benchmark", "Repeated five-fold CV · mean ± split SD across 20 partitions")
-    ax = fig.add_axes([0.14, 0.20, 0.56, 0.56])
+    ax = fig.add_axes([0.24, 0.16, 0.73, 0.80])
     positions = np.arange(4)
     for position, mean, sd, color in zip(positions, means, sds, colors):
         marker = "D" if color == COLORS["activation"] else "o"
         face = "white" if marker == "D" else color
         ax.errorbar(mean, position, xerr=sd, fmt=marker, color=color, markerfacecolor=face,
-                    markeredgewidth=2.5, markersize=12, capsize=7, elinewidth=3)
+                    markeredgewidth=3.5, markersize=20, capsize=11, elinewidth=4.5)
         if color == COLORS["activation"]:
-            ax.text(mean, position - 0.20, f"{mean:.3f} ± {sd:.3f}",
-                    va="bottom", ha="center", fontsize=17)
+            ax.text(mean, position - 0.22, f"{mean:.3f} ± {sd:.3f}",
+                    va="bottom", ha="center", fontsize=SLIDE_VALUE, fontweight=600)
         else:
-            ax.text(mean + sd + 0.015, position, f"{mean:.3f} ± {sd:.3f}",
-                    va="center", fontsize=17)
+            ax.text(mean + sd + 0.018, position, f"{mean:.3f} ± {sd:.3f}",
+                    va="center", fontsize=SLIDE_VALUE, fontweight=600)
     ax.scatter([bundle["cross_run_reconfig"], bundle["cross_run_activation"]], [1, 3],
-               marker="s", s=130, facecolor="white", edgecolor=COLORS["ink"], linewidth=2.2,
-               label="Cross-run feature generalization · seed 42")
+               marker="s", s=280, facecolor="white", edgecolor=COLORS["ink"], linewidth=3.0)
     ax.set_yticks(positions, labels)
-    ax.invert_yaxis()
-    ax.set_xlim(0.16, 0.69)
-    ax.set_xlabel("Cross-validated Pearson r")
-    ax.text(
-        0.98,
-        0.96,
-        "open squares: cross-run\nfeature generalization · seed 42",
-        transform=ax.transAxes,
-        ha="right",
-        va="top",
-        fontsize=13,
-        color=COLORS["brown"],
-        bbox={"facecolor": "white", "edgecolor": COLORS["pale_sand"], "pad": 7},
-    )
+    ax.tick_params(labelsize=SLIDE_TICK)
+    ax.set_ylim(3.6, -0.6)          # descending = inverted, with room for the end labels
+    ax.set_xlim(0.16, 0.72)
+    ax.set_xlabel("Cross-validated Pearson r", fontsize=SLIDE_AXIS, labelpad=14)
     _clean_axis(ax, grid="x")
-    fig.text(0.75, 0.72, "MATCHED-FOLD INCREMENTS", fontsize=17, fontweight=600,
-             color=COLORS["brown"])
-    fig.text(
-        0.75,
-        0.61,
-        "Reconfiguration over 0-back\n"
-        r"incremental $R^2$ = +0.0344 ± 0.0225" "\n"
-        "2-SD heuristic: no clear gain",
-        fontsize=15.5,
-        linespacing=1.45,
-        va="top",
-    )
-    fig.text(
-        0.75,
-        0.40,
-        "FC over activation\n"
-        r"incremental $R^2$ = -0.0030 ± 0.0065" "\n"
-        "2-SD heuristic: no clear gain",
-        fontsize=15.5,
-        linespacing=1.45,
-        va="top",
-    )
-    fig.text(0.75, 0.20, "Activation = mean BOLD\n2-back - 0-back", fontsize=15,
-             color=COLORS["activation"], linespacing=1.35, va="top")
-    _caveat(fig, "Post hoc and unmatched: 360 regional activation features vs 78 network FC features; no biological winner claim.")
     return fig
 
 
@@ -498,7 +454,7 @@ def _save_figure(fig: Figure, base: Path) -> tuple[Path, Path]:
     png = base.with_suffix(".png")
     svg = base.with_suffix(".svg")
     png.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(png, dpi=160, metadata={"Software": "The Gammas evidence-first visual generator"})
+    fig.savefig(png, dpi=DPI, metadata={"Software": "The Gammas evidence-first visual generator"})
     fig.savefig(svg, format="svg", metadata={"Creator": "The Gammas evidence-first visual generator"})
     plt.close(fig)
     with Image.open(png) as image:

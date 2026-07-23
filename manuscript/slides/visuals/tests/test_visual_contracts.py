@@ -184,8 +184,8 @@ class StoryboardContractTests(unittest.TestCase):
         final = FINAL_STORYBOARD.read_text(encoding="utf-8")
         self.assertEqual(internal.count("\n## Slide "), 15)
         self.assertEqual(internal.count("\n**Chart:**"), 15)
-        self.assertEqual(final.count("\n## Slide "), 9)
-        self.assertEqual(final.count("\n- **Chart:**"), 9)
+        self.assertEqual(final.count("\n## Slide "), 11)
+        self.assertEqual(final.count("\n- **Chart:**"), 11)
         self.assertNotIn("**Visualization:**", internal)
         self.assertNotIn("**Visualization:**", final)
 

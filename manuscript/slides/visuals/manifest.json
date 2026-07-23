@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-07-22T22:23:38.597446+00:00",
+  "generated_at_utc": "2026-07-23T11:35:17.293266+00:00",
   "evidence_policy": "pipeline/02 is the sole numerical source; both storyboards reuse one chart library",
   "canonical_notebook": {
     "path": "pipeline/02_canonical_analysis_and_slides.ipynb",
-    "sha256": "3b6e85013d2808ede7ebbae028f62379a7871f6b9905ee92b21e3b361d53a11f",
+    "sha256": "ee37271b66410803b0dafe1a07c12d50b8ecdd68cd10e1adf8b24a50ec26f2ea",
     "analytical_cells_executed": [
       2,
       4,
@@ -61,7 +61,7 @@
         1440
       ],
       "sha256_png": "f2c4f6a9058e3d24b60ee80f3867a6096da21a879602e13067e5166b5e513e63",
-      "sha256_svg": "7e7f4aea75ef2018245be7001ca9c501307547f230592433563e275097543b32",
+      "sha256_svg": "6c2e046dc24988262d1d669179498a025081f3bf5eb670d6f64d3aa20cf4ae18",
       "qa": "PASS"
     },
     {
@@ -88,7 +88,7 @@
         1440
       ],
       "sha256_png": "e6f7bdba6642e83f15cdaeedee8de536d54586cd28758c6ace3cab427ee6dfc5",
-      "sha256_svg": "8d4f5d469d6489e538ceb3c1d64fe4bfcdcdc69ad763c8092aa9974a231f67c2",
+      "sha256_svg": "d0e74642c36d3c2196424e2455ac52e086b1122a820236943bfe25621c3f7394",
       "qa": "PASS"
     },
     {
@@ -114,7 +114,7 @@
         1440
       ],
       "sha256_png": "e8623a985fa44f41091e59c1b5e8d211ef24eb345614ed65ae1ca864e56f81cd",
-      "sha256_svg": "3a22b3a8dde4d4cba9abe25991e5356d04b92cbafa51dd284addbbe86e92de64",
+      "sha256_svg": "f9583349fc1fb32034d68efa24e4b27e1b2127971a9d88a1ce5d8e1c52a810d6",
       "qa": "PASS"
     },
     {
@@ -126,9 +126,9 @@
         12
       ],
       "visible_metrics": [
-        "seed-42 r=0.405",
-        "full-refit p=1/1001",
-        "holdout r=0.312; n=67"
+        "seed-42 refit r=0.405 marked against the permutation null",
+        "fixed holdout scatter, n=67",
+        "numeric values carried as slide text, not baked into the image"
       ],
       "limitations": [
         "The permutation p belongs only to seed-42 r=0.405; the holdout is a separate split."
@@ -139,8 +139,8 @@
         2560,
         1440
       ],
-      "sha256_png": "7424091fa98929cdf5e2a43a8e4771bef0005ae5201d985c3e2c01a483ff465e",
-      "sha256_svg": "2b6142ff68b9454649f31008a84a1616998ee0ac729bffc01f019f0ffceee031",
+      "sha256_png": "bbf65049ca3d587690191578b7f0bfc1d60bf2cfe012f5fa17c5bb98d9f5ed9a",
+      "sha256_svg": "3db535473409d3400e000d51c85ec9ba934e6b7638caf206487d8444fc5e5b08",
       "qa": "PASS"
     },
     {
@@ -152,10 +152,8 @@
         14
       ],
       "visible_metrics": [
-        "transfer r=0.398",
-        "bootstrap 95% CI [0.25, 0.53]",
-        "A-label permutation p=1/1001",
-        "B-only train n=301; A test n=100"
+        "observed vs predicted 2-back accuracy, cohort A n=100",
+        "numeric values carried as slide text, not baked into the image"
       ],
       "limitations": [
         "Kinship is unmodelled and same-HCP transfer is not independent-site validation."
@@ -166,8 +164,8 @@
         2560,
         1440
       ],
-      "sha256_png": "bc087ea34a2353c5c1b60945d7ff115c02e6022f09cd638b972dedac467f7802",
-      "sha256_svg": "b48db5d8758d45e86672d831e49c74730f080b9e3d57ab6c1552d53b2fe9f8e2",
+      "sha256_png": "816d35f65695df9065ac33a635028d652ca82bd7f6f0f9d1448dac0ac0dac67c",
+      "sha256_svg": "4399cf0fda8684fd0f71d4f8e678f1c594c65e6dd9407cf9dd916c3e62338dc8",
       "qa": "PASS"
     },
     {
@@ -179,9 +177,8 @@
         22
       ],
       "visible_metrics": [
-        "segregation 0.3271 to 0.3035",
-        "paired change=-0.0236; p=3.45e-05",
-        "individual r=-0.105; p=0.054"
+        "paired 0-back/2-back segregation distributions and the individual scatter",
+        "numeric values carried as slide text, not baked into the image"
       ],
       "limitations": [
         "A reliable paired mean shift does not establish individual predictive relevance."
@@ -192,8 +189,8 @@
         2560,
         1440
       ],
-      "sha256_png": "2164bc12deb470bbb49341e04a125b465618c327fbe594a29a52863e25843268",
-      "sha256_svg": "9a245563c1f9c1cf63d54f405c4727d4bda229879d2eaf889810ed92c44d2d84",
+      "sha256_png": "3505221a4877a7c3dd2b17c1477a0814236d959cd76da1431c7fadd0f3184bf4",
+      "sha256_svg": "315065c153d8e4c80290e9fcc2b1b5aef3c1388fa5bae6914159b19e07e33654",
       "qa": "PASS"
     },
     {
@@ -219,7 +216,7 @@
         1440
       ],
       "sha256_png": "54348904b7c2143f7334627809086e331b6090834e74ed8eede7f71c84d47feb",
-      "sha256_svg": "fecd17c8a78104af74d4c9a850ada405e21ada34b4a4a2da54864a4f8dc7f85c",
+      "sha256_svg": "ae11eb3e5c23cafcdb2a4cf961316b017442afffe88801ea6bb15544f6033046",
       "qa": "PASS"
     },
     {
@@ -246,7 +243,7 @@
         1440
       ],
       "sha256_png": "766579f8c0b71dbdb277844c41cb8ffb47b739e288d0a9fda0c01c790ba79687",
-      "sha256_svg": "be2b832204a64febd65d21d0d81ccaa829cfc3c37cf26edb0a2f0b7d261a9bff",
+      "sha256_svg": "82896d86d3c6cdfce770c35b0b0090384a0d76b993894b67739d9a6d897106ca",
       "qa": "PASS"
     },
     {
@@ -259,9 +256,9 @@
         20
       ],
       "visible_metrics": [
-        "activation r=0.600",
-        "FC over activation incremental R2=-0.0030 \u00b1 0.0065 split SD",
-        "360 activation vs 78 FC features"
+        "four feature sets with mean \u00b1 split SD, activation r=0.600",
+        "open squares mark held-out cross-run generalization",
+        "increments and caveats carried as slide text, not baked into the image"
       ],
       "limitations": [
         "Activation and FC are unmatched 360- versus 78-feature spaces; no biological winner is claimed."
@@ -272,8 +269,8 @@
         2560,
         1440
       ],
-      "sha256_png": "6afa3f6a97e630ba54cb85d675f46ae083789000931b72873d9677d41e07cbcd",
-      "sha256_svg": "54728e2883d9e05d3367c1b43827d3bc20d08b87e55a291910a6a8819d378781",
+      "sha256_png": "c305fcebab20725c1992fdcdfad209d6d21cd2bfdf92cd579ed6ef51ed042e67",
+      "sha256_svg": "f0971a29fc5b88468963533989e8ef2e6cb18b7bbbe46234f41d164552f65e9a",
       "qa": "PASS"
     }
   ]

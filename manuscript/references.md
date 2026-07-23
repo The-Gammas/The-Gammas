@@ -157,3 +157,11 @@ claim level. **Pending team discussion — not a team decision.***
   not establish FC-specific predictive value, so the pattern-vs-scalar dissociation is weaker than
   this gloss implies.*
   https://doi.org/10.3758/s13428-017-0935-1
+- **Logothetis N.K., What we can do and what we cannot do with fMRI** — *Nature* 453:869–878, 2008.
+  BOLD is a hemodynamic (blood-flow) proxy, not a direct measure of neural firing, and is confounded
+  by vascular variables. Backs the vascular-reactivity (CVR) caveat on the regional-activation
+  benchmark (nb08 / `pipeline/02` §7): raised by Goutham Arcod (22 Jul, Discord); DVARS and acc_0bk
+  control motion and ability only, not CVR, and the current dataset has no CVR proxy.
+- **CVR reliability reference — pending full citation.** Shared by Goutham Arcod (22 Jul, Discord) as
+  "Reliable quantification of BOLD fMRI cerebrovascular reactivity (CVR) and resting-state amplitude,"
+  no author/year/journal given yet. Get the full citation from Goutham before replacing this entry.

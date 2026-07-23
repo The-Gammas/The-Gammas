@@ -21,6 +21,13 @@ COLORS = {
 }
 
 PNG_SIZE = (2560, 1440)
+# Do NOT shrink this canvas to make type bigger relative to the frame. Every
+# renderer positions text in FIGURE FRACTIONS while font sizes are absolute
+# points, so a smaller canvas overflows every layout: tried (10.0, 5.625)/256
+# on 23 Jul and all nine charts came back with clipped axis labels and
+# overlapping captions, while the whole test suite still passed (nothing
+# measures rendered text position). Legibility has to come from simplifying
+# chart content, not from rescaling the canvas.
 FIGSIZE = (16.0, 9.0)
 DPI = 160
 

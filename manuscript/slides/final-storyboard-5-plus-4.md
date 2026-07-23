@@ -1,123 +1,313 @@
-# The Gammas — condensed final storyboard (9 slides)
+# The Gammas — final storyboard (cover + team + 5 spoken + 4 backup)
 
 ## Production-wide rules
 
-- **Document status:** presentation-ready scientific flow for Friday. Slides 3–7 are the five core
-  content slides; Slides 8–9 remain hidden support.
+- **Document status:** presentation-ready flow for Friday. **Slides 3–7 are the five spoken content
+  slides**, one slide and roughly one minute per presenter. Slides 1–2 (cover, team) are structural
+  and carry no speaking beat beyond a greeting. Slides 8–11 are **backup**, opened only in Q&A.
 - **Visible language:** concise English. **Production language:** Spanish.
-- **Visual system:** 16:9 (720 × 405 pt), Poppins, restrained taupe/brown/pale-mint Neuromatch palette, generous margins, large takeaway titles, a simple footer/page marker, and one principal evidence visual per slide.
-- **Template hygiene:** the template supplies visual grammar only. Remove every placeholder, old result image, fake biography, stock portrait, source comment, comment-author record, speaker note and hidden review artifact; do not invent people, figures, or results. Keep the frozen snapshot unchanged.
-- **Statistical guardrail:** repeated-CV `±` is SD across 20 overlapping split partitions, never a confidence interval. The seed-42 full-refit permutation and the B→A fixed-prediction label permutation are distinct tests.
-- **Density fallback:** never shrink narrative type to force a layout. On Slide 4, move the fixed
-  holdout and null details to notes/backup before reducing type. On Slide 6, let the dot plot carry
-  the four model values and keep only the two ΔR² decisions plus the unmatched/mean-BOLD guardrail
-  as prose.
-- **Empirical assets:** reuse only the evidence in `visuals/charts/`. Slides without an assigned chart
-  are built later with native text/layout; no separate diagram image is required.
+- **Visual system:** 16:9 (720 × 405 pt), Poppins, restrained taupe/brown/pale-mint Neuromatch
+  palette, generous margins, large takeaway titles, a simple footer/page marker, and **one dominant
+  evidence visual per spoken slide**.
+- **Charts carry no text (hard rule).** A slide chart is a **pure plot**: axes, marks, tick labels,
+  axis titles and direct data labels. No figure header, no footnote caveat, no side annotation block.
+  Every number, caveat and legend belongs in **native pptx text**, which stays sharp at any
+  projection size. The four slide charts are drawn at 26–30 pt on the 1152 pt canvas and placed
+  **470 pt wide**, so their type lands at **≈ 10.6 pt on screen** — never two charts on one slide,
+  never an inset.
+- **Do not shrink the chart canvas to enlarge type.** Every renderer positions text in figure
+  fractions while font sizes are absolute points, so a smaller canvas overflows all nine layouts.
+  This was tried on 23 Jul (`FIGSIZE=(10, 5.625)`) and produced clipped axis labels and overlapping
+  captions on every chart **while the whole test suite still passed** — nothing measures rendered
+  text position. Legibility comes from removing chart text and raising font sizes, never from
+  rescaling. Regenerating always requires a visual pass over `visuals/qa/charts-contact-sheet.png`.
+- **Template hygiene:** the template supplies visual grammar only. Remove every placeholder, old
+  result image, fake biography, stock portrait, source comment, comment-author record and hidden
+  review artifact; do not invent people, figures, or results. Keep the frozen snapshot unchanged.
+- **Statistical guardrail:** repeated-CV `±` is SD across 20 overlapping split partitions, never a
+  confidence interval. The seed-42 full-refit permutation and the B→A fixed-prediction label
+  permutation are distinct tests. **Full definitions live on backup Slide 11**; each spoken slide
+  carries only the one label its own figure needs.
+- **Narrative framing — read this before writing any speaker text.** We did **not** change our
+  hypothesis in response to the data. We pre-specified **two** hypotheses; the evidence **confirmed
+  one and refined the other**. Say *"we predicted two things: one held, one turned out narrower than
+  we expected."* Never say the hypothesis *evolved*, *shifted* or *was replaced* — that would
+  misdescribe the actual inferential sequence.
+- **Density fallback:** never shrink narrative type to force a layout. Move detail to backup before
+  reducing type.
+- **Empirical assets:** reuse only the evidence in `visuals/charts/`. The method schematic is the one
+  sanctioned non-data figure: it is a conceptual pipeline drawn as native shapes, not a chart.
 
-## Slide 1 — Title
+## Structure rationale (why this shape)
 
-- **Status:** Pre-roll; no allocated speaking beat.
-- **Audience-facing title:** *Does load-related brain connectivity predict working-memory performance?*
+Benchmarked against five 2025 NMA project decks in
+[`../../../references/nma_project_examples_2025/`](../../../references/nma_project_examples_2025/).
+Their shared spine: a cover carrying the project name and authors → a framing beat with an explicit
+labelled hypothesis → one methods beat → a primary result carried by one dominant figure → **a
+dedicated honest negative/surprise slide as the narrative hinge** → a synthesis conclusion → a
+non-spoken backup tail. Three of the five also give the team its own slide.
+
+Kept from our own work, not traded away for familiarity: charts bound to canonical evidence with
+provenance in [`visuals/manifest.json`](visuals/manifest.json), and the Survives / Refined /
+Unresolved conclusion that answers the opening hypotheses instead of recapping bullets.
+
+> Prior decks did **not** compress to five spoken slides (their spoken cores run about 6 / 5 / 9 / 7 /
+> 9). Five is the NMA rule, and this deck meets it: cover, team and backup carry no speaking slot.
+
+---
+
+## Slide 1 — Cover
+
+- **Status:** Structural; no speaking beat.
+- **Audience-facing title:** *Functional Connectivity Reconfiguration in N-back Working Memory*
 - **Visible copy:**
 
-  `THE GAMMAS · NMA COMPUTATIONAL NEUROSCIENCE 2026`
+  `Arefeh Lali Dehaghi · Goutham Arcod · Jaime Pineda · Kerem Akyurt · Valeria Moraga`
+
+  `Ifrit Ras el Hanout — The Gammas · NMA Computational Neuroscience 2026`
 
   `HCP N-back · participant-level prediction`
 
-- **Layout:** Título grande sobre fondo limpio; un único subtítulo pequeño y pie discreto.
-- **Chart:** No pre-rendered chart. Mantener la portada tipográfica y mínima; no convertir la
-  pregunta en un diagrama.
-- **Template mapping:** Valeria source slide 1 (title composition), shortened substantially.
-- **Speaker note / transition:** “Abrimos con una pregunta predictiva, no causal.” Dejarla como pre-roll y pasar directamente a la pregunta e hipótesis.
-- **Evidence / provenance:** Detailed internal-review storyboard, Slides 1–2; canonical pipeline framing cited there.
-- **Scientific caveat:** “Reconfiguration” es una diferencia entre dos FC agregadas por condición, no conectividad dinámica.
+- **Layout:** Two-line large title, left-aligned, with the author line and pod line beneath. Reuses
+  the teammate template's cover typography and hierarchy.
+- **Chart:** No pre-rendered chart. Typographic cover; do **not** bleed an evidence chart in as
+  decoration — a data figure used ornamentally reads as a result.
+- **Template mapping:** Valeria source slide 1. **Drop** its gears-in-a-head clip art and strip the
+  leftover comment artifact.
+- **Speaker note / transition:** “Portada. No consume minuto; se muestra mientras se presenta el
+  equipo.”
+- **Evidence / provenance:** Project title as submitted; author list per `manuscript/abstract.md`.
+- **Scientific caveat:** The title names the measure, not a mechanism. “Reconfiguration” is a
+  difference between two condition-aggregated FC matrices.
 
-## Slide 2 — Introduction
+## Slide 2 — Team
 
-- **Status:** Spoken introduction.
-- **Audience-facing title:** *A distributed pattern and a directional shift are different hypotheses*
+- **Status:** Structural; brief greeting only.
+- **Audience-facing title:** *Meet our team*
 - **Visible copy:**
 
-  **Question**  `Can 2-back − 0-back FC predict 2-back accuracy in unseen participants?`
+  `Arefeh Lali Dehaghi · Goutham Arcod · Jaime Pineda · Kerem Akyurt · Valeria Moraga`
 
-  **Pattern hypothesis**  `A 78-feature FC fingerprint predicts performance.`
+  `Pod 884 “Ifrit Ras el Hanout” · Megapod Lotus · TA Andrea Buccellato · Project TA Azman Akhter`
 
-  **Directional hypothesis**  `Higher load shifts networks toward integration; larger shifts accompany better performance.`
+- **Layout:** Staggered 3-over-2 grid of five member tiles, name beneath each, following the
+  template's rhythm.
+- **Chart:** No pre-rendered chart. Initial-monogram circles in the deck palette stand in for photos.
+- **Template mapping:** Valeria source slide 2. **Two hard blockers, both must be removed:** the five
+  stock studio portraits (they depict strangers and imply they are us) and the filler role labels
+  *Actor / Doctor / Accountant / Chef / Journalist*, which are template dummy text.
+- **Speaker note / transition:** “Solo nombres. **Pendiente de decisión del equipo:** si añadimos rol
+  real por persona o dejamos únicamente los nombres. No inventar roles.”
+- **Evidence / provenance:** Roster per `course-ops/pod/group-1-info.md`; pod and TA names per
+  `course-ops/pod/pod-info.md`.
+- **Scientific caveat:** Not applicable.
 
-  `Distributed pattern ≠ one-number direction.`
+## Slide 3 — Intro: the question and the two things we predicted
 
-- **Layout:** Izquierda, pregunta y vector de 78 rasgos; derecha, eje único `segregation ↔ integration`; frase final uniendo ambos.
-- **Chart:** No pre-rendered chart. Resolver la distinción pattern/scalar con texto y formas nativas
-  simples; no generar una ilustración independiente.
-- **Template mapping:** Valeria source slides 3–4: balance text/right-space plus sparse hypothesis composition; remove unfinished bullet.
-- **Speaker note / transition:** “La predicción multivariada puede sobrevivir aunque el escalar direccional falle. Ahora fijamos cómo representamos y evaluamos esa diferencia.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slides 1–2; `pipeline/02_canonical_analysis_and_slides.ipynb` cells 0, 11, 21 and `docs/project-plan.md` as cited there.
-- **Scientific caveat:** La hipótesis direccional es más restrictiva: exige un signo y comprime una estructura multivariada a un escalar.
+- **Status:** Spoken · Presenter 1.
+- **Audience-facing title:** *Does load-related brain connectivity predict working-memory performance?*
+- **Visible copy:**
 
-## Slide 3 — Core 1: Method
+  **We predicted two things**
 
-- **Status:** Spoken core.
+  **Pattern**  `A 78-feature FC fingerprint of the 2-back − 0-back change predicts performance.`
+
+  **Direction**  `Higher load shifts networks toward integration; larger shifts accompany better performance.`
+
+  `A distributed pattern and a one-number direction are different claims.`
+
+- **Layout:** Large question, then the two predictions as two labelled blocks with the reconciling
+  line beneath. The team roster is **not** here — it lives on Slide 2, which frees the vertical space
+  the two hypotheses need.
+- **Chart:** No pre-rendered chart. Resolve the pattern/direction distinction with type and simple
+  native shapes.
+- **Template mapping:** Valeria source slides 3–4; remove the unfinished bullet.
+- **Speaker note / transition:** “Decir las **dos** predicciones al principio: una se confirma y la
+  otra se matiza, y el relato solo se entiende si la audiencia oyó ambas antes de ver resultados. No
+  decir que la hipótesis cambió.”
+- **Evidence / provenance:** Internal-review storyboard, Slides 1–2; `pipeline/02` cell 0 framing;
+  `docs/project-plan.md`.
+- **Scientific caveat:** The directional hypothesis is the more restrictive one: it demands a sign
+  and compresses a multivariate structure into a scalar.
+
+## Slide 4 — Method: one pipeline, from scans to a held-out prediction
+
+- **Status:** Spoken · Presenter 2.
 - **Audience-facing title:** *We evaluated a 78-feature FC difference in held-out people*
-- **Visible copy:**
+- **Visible copy — seven schematic boxes, left to right:**
 
-  `Cohort B: 336 complete participants → primary model`
+  `1 · Cohort` — `336 participants · HCP N-back · 2 WM runs · 360 Glasser ROIs · TR 0.72 s`
 
-  `Two pooled WM runs · 312 HRF-shifted frames / condition`
+  `2 · Condition frames` — `4 s HRF shift · 312 frames per load · no 0-back/2-back overlap`
 
-  `Pearson FC: 360 regions → 12 networks → 78 features`
+  `3 · FC per condition` — `360 × 360 Pearson correlation, computed for 0-back and 2-back`
 
-  `FC reconfiguration = fingerprint(2-back) − fingerprint(0-back)`
+  `4 · Network fingerprint` — `12 within + 66 between = 78 values over Cole-Anticevic networks`
 
-  `Repeated 5-fold CV · fixed holdout · full-refit permutation · B→A transfer`
+  `5 · Reconfiguration` — `fingerprint(2-back) − fingerprint(0-back) → 336 × 78`
+
+  `6 · Model` — `StandardScaler + RidgeCV, fitted inside each training fold`
+
+  `7 · Held-out evaluation` — `repeated 5-fold CV · fixed holdout · 1000-permutation null · B→A transfer (301 → 100, identity-disjoint)`
 
   `All splits hold out participants; “±” = split SD, not CI.`
 
-- **Layout:** Flujo horizontal compacto: B cohort → 0/2-back matrices → 12-network triangle/vector → cuatro esquemas de evaluación. La banda inferior lleva el guardrail estadístico.
-- **Chart:** [`visuals/charts/feature-construction.png`](visuals/charts/feature-construction.png).
-  Usarlo como único visual empírico. Cohortes y evaluación se presentan como texto lateral, sin
-  pictogramas ni diagrama de flujo.
-- **Template mapping:** Native 16:9 process role, borrowing the rhythm of Valeria source slide 5 but replacing every graph-construction/graph-metric stage.
-- **Speaker note / transition:** “Scaler y RidgeCV se ajustan dentro de cada fold; nunca se separan runs o frames de la misma persona. B estima el modelo; A nos permite comprobar transferencia sin identidades compartidas.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slides 3–5: B=339 / 336 complete, A=100, 360 regions, 12 networks, 78 features, 4-s HRF shift, 312 frames; `pipeline/02` and sandbox modules cited there.
-- **Scientific caveat:** FC de tarea basada en Pearson puede reflejar coactivación evocada por tarea; no demuestra comunicación interregional ni causalidad.
+- **Layout:** Boxes 1–4 across the top row, boxes 5–6 on a second row, box 7 as a full-width terminal
+  band. Rounded rectangles with connectors; box label in semibold, detail line beneath in a lighter
+  weight.
+- **Chart:** No pre-rendered chart. **Native pptx shapes** — this is deliberate. The chart library
+  validates every visible number against the live notebook namespace and admits only data-derived
+  evidence; a conceptual box-and-arrow pipeline has no array to validate. Native vector text is also
+  immune to the downscale that makes generated charts illegible. The previously assigned
+  `feature-construction` chart is **removed from the deck**: it covered only step 4 and rendered its
+  labels at ~3.6 pt. It remains in the library, referenced by the internal-review storyboard.
+- **Template mapping:** The pipeline flow proposed on Valeria source slide 5, with every
+  graph-construction and graph-metric stage replaced by what we actually ran.
+- **Speaker note / transition:** “Un solo recorrido: de los escáneres a una predicción en personas no
+  vistas. Scaler y RidgeCV se ajustan **dentro** de cada fold; nunca se separan runs o frames de la
+  misma persona. B estima el modelo; A comprueba transferencia sin identidades compartidas.”
+- **Evidence / provenance:** `pipeline/02` §3–§4 and §5–§6. `TR = 0.72 s` from
+  [`datasets.py:37`](../../sandbox/jaime/datasets.py); HRF delay, frame counts and the 78-block
+  summary from `preprocessing.py` and `connectivity.py`. Counts must be copied from
+  `visuals/manifest.json`, not retyped from memory — this schematic is the one place in the deck
+  where a number has no automated test behind it.
+- **Scientific caveat:** Pearson task FC can reflect task-evoked coactivation; it does not
+  demonstrate interregional communication or causality.
 
-## Slide 4 — Core 2: Primary prediction and transfer
+## Slide 5 — Primary result: the FC pattern predicts, and it transfers
 
-- **Status:** Spoken core.
-- **Audience-facing title:** *The FC pattern predicted performance—and transferred across identity-disjoint cohorts*
+- **Status:** Spoken · Presenter 3.
+- **Audience-facing title:** *The FC pattern predicted performance—and transferred to a separate cohort*
 - **Visible copy:**
-
-  **Primary repeated CV**  `r = 0.366 ± 0.024`
-
-  `336 participants · 78 FC features · 2-back accuracy`
-
-  **Fixed holdout**  `r = 0.312 in 67 unseen participants`
-
-  **Full-refit null (seed 42)**  `r = 0.405; p = 1/1001 ≈ .001`
 
   **B→A transfer**  `r = 0.398; bootstrap 95% CI [0.25, 0.53]`
 
   `301 B-only → 100 A · 35 shared identities removed`
 
+  **Primary repeated CV**  `r = 0.366 ± 0.024 · 336 participants · 78 FC features`
+
   `Identity-disjoint same-HCP transfer—not independent-site validation.`
 
-- **Layout:** Un campo de evidencia con transferencia dominante e inset de repeated-CV; holdout y
-  null quedan como comprobaciones compactas y subordinadas, con etiquetas de estimando distintas.
+- **Layout:** One dominant evidence field. The transfer scatter is placed at ≥ 460 pt wide; the two
+  metric blocks sit beside or beneath it as slide text.
 - **Chart:** [`visuals/charts/identity-disjoint-transfer.png`](visuals/charts/identity-disjoint-transfer.png)
-  como panel dominante y [`visuals/charts/primary-repeated-cv.png`](visuals/charts/primary-repeated-cv.png)
-  como inset compacto. Mantener
-  [`visuals/charts/null-and-holdout.png`](visuals/charts/null-and-holdout.png) como backup: si no cabe
-  a tipografía legible, mostrar sus cifras en texto y no insertar el tercer chart.
-- **Template mapping:** Valeria source slide 7 (evidence chart + explanation), con gráfico antiguo y placeholders sustituidos por evidencia canónica.
-- **Speaker note / transition:** “El efecto primario es la media CV, `.366 ± .024`; el p de refit completo pertenece solo al seed-42 `.405`. La transferencia usa modelos B-only y A sin identidades compartidas; no es validación en otro sitio. Con la predicción establecida, examinamos la dirección que habíamos propuesto.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slides 6–8; canonical `pipeline/02` cells 9–16 and panel 9C as cited there.
-- **Scientific caveat:** La SD resume sensibilidad a 20 particiones solapadas, no incertidumbre poblacional. La CI bootstrap cuantifica A; cohortes HCP hermanas no constituyen generalización entre sitios.
+  alone. **The `primary-repeated-cv` inset is removed** — at 108 pt its internal text rendered at
+  1–2 pt and it duplicated a number already printed as slide text. The fixed holdout and the
+  full-refit null are on backup Slide 9.
+- **Template mapping:** Valeria source slide 7 (evidence chart + explanation), with the old graph and
+  placeholders replaced by canonical evidence.
+- **Speaker note / transition:** “El efecto primario es la media de CV repetida, `.366 ± .024`. La
+  transferencia usa modelos entrenados solo en B y aplicados a A sin identidades compartidas: no es
+  validación en otro sitio. Si preguntan por el holdout fijo o por el null, están en backup.
+  Transición: establecida la predicción, toca revisar lo que **no** salió como esperábamos.”
+- **Evidence / provenance:** `pipeline/02` §5–§6 and panels 9B/9C; `manifest.json` →
+  `identity-disjoint-transfer` (cell 14).
+- **Scientific caveat:** The SD summarizes sensitivity across 20 overlapping partitions, not
+  population uncertainty. Sibling HCP cohorts are not cross-site generalization; kinship is
+  unmodelled.
 
-## Slide 5 — Core 3: Directional refinement
+## Slide 6 — The turn: the signal survives, but it is not specific to connectivity
 
-- **Status:** Spoken core.
-- **Audience-facing title:** *Segregation fell under load, but the individual link was weak*
+- **Status:** Spoken core; required to support the refined final conclusion. Presenter 4 — this is
+  the hinge of the talk.
+- **Audience-facing title:** *The prediction held—but a simpler regional signal predicted better*
+- **Visible copy:**
+
+  `Repeated-CV correlation (mean ± split SD across 20 partitions)`
+
+  `0-back FC  0.274 ± 0.032    ·    FC reconfiguration  0.366 ± 0.024`
+
+  `0-back + reconfiguration  0.333 ± 0.026    ·    Activation contrast  0.600 ± 0.016`
+
+  **Direction, as predicted—but only at group level**
+  `Segregation fell under load (0.3271 → 0.3035; Δ = −0.0236; p = 3.45 × 10⁻⁵), yet larger shifts did not predict better performance (r = −0.105; p = .054).`
+
+  `Open squares = held-out cross-run generalization.`
+
+  `0-back activation alone predicts as well (0.571) — the benchmark is not load-specific.`
+
+  `No biological winner is claimed. Post hoc, unmatched: 360 regional activation vs 78 network FC features.`
+
+  `Activation = mean BOLD(2-back) − mean BOLD(0-back), not a GLM beta. Vascular reactivity (CVR) not controlled.`
+
+- **Layout:** The activation comparison chart is the **only** figure. The directional result is a
+  single highlighted text block, not a second figure. Caveats occupy a compact lower band. If it does
+  not fit at legible type, cut caveat wording — never add a second chart.
+- **Chart:** [`visuals/charts/activation-robustness.png`](visuals/charts/activation-robustness.png)
+  only, placed at ≥ 460 pt. Do **not** add `incremental-fc-test.png` (duplicates the numbers) and do
+  **not** add `segregation-refinement.png` here — that figure is backup Slide 8.
+- **Template mapping:** Valeria source slide 8 (sparse unexpected finding), rebuilt for the benchmark
+  and its guardrails.
+- **Speaker note / transition:** “El giro en dos tiempos. **Uno:** la dirección que predijimos
+  existe — la segregación baja con la carga — pero como predictor individual es débil, así que la
+  hipótesis direccional queda **matizada**, no confirmada. **Dos:** al probar si la señal era
+  específica de conectividad, un contraste de activación regional mucho más simple predijo mejor. Es
+  una prueba **post hoc**, no una competición biológica justa: 360 rasgos frente a 78, sin igualar
+  dimensionalidad. La activación **no borra** el resultado FC; impide afirmar que el mecanismo sea
+  específico de conectividad. Y nuestros controles (DVARS, acc_0bk) no capturan reactividad
+  cerebrovascular, así que ese hueco queda declarado.”
+- **Evidence / provenance:** `pipeline/02` §7, the activation-controls block, and §8;
+  `manifest.json` → `activation-robustness` (cells 18 and 20). Segregation figures quoted here come
+  from `segregation-refinement` (cell 22), shown on backup Slide 8. The single-condition breakdown
+  (activation 0-back alone **0.571**, 2-back alone **0.569**, contrast **0.600**) is canonical: it is
+  computed in the `pipeline/02` §7 panel and stored as `res["load_specificity"]`. It was first found
+  in [`nb08`](../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb) cell 8 and raised by
+  Goutham Arcod (23 Jul).
+- **Scientific caveat:** Activation and FC are not feature-count matched (360 vs 78). Per-run
+  centering makes 0-back, 2-back and their contrast strongly collinear — one activation axis seen
+  three ways. **The benchmark is not load-specific:** a single-condition 0-back map predicts as well
+  as the contrast, so the activation advantage cannot be attributed to the load manipulation. Its
+  origin (efficiency, anatomy, vasculature) is not resolvable in this design; DVARS is controlled
+  (partial 0.58) but no CVR proxy exists in this dataset. Claim no biological superiority, no
+  FC-specific mechanism and no adaptive benefit.
+
+## Slide 7 — Conclusion: what we predicted, and what the evidence did to it
+
+- **Status:** Spoken · Presenter 5. **Keep projected during Q&A.**
+- **Audience-facing title:** *Predictive signal survives; connectivity-specific mechanism remains unresolved*
+- **Visible copy:**
+
+  **Survives — the pattern hypothesis**
+
+  `A 78-feature FC difference predicts unseen 2-back accuracy.`
+
+  `The model transfers across identity-disjoint same-HCP cohorts.`
+
+  **Refined — the directional hypothesis**
+
+  `Segregation fell under load, but larger shifts did not predict better performance.`
+
+  `Reconfiguration showed no clear gain beyond 0-back FC.`
+
+  `FC added no clear gain over activation under the current unmatched comparison.`
+
+  **Unresolved**
+
+  `Is the predictive information connectivity-specific, or shared with task activation?`
+
+  `Vascular reactivity (CVR) is not controlled in the activation benchmark.`
+
+- **Layout:** Three typographic columns — Survives / Refined / Unresolved — the third slightly wider.
+  The first two headers name the two opening hypotheses so the loop closes. No figure.
+- **Chart:** No pre-rendered chart.
+- **Template mapping:** Valeria source slide 9 (conclusion/limitations), replacing L1/L2 and every
+  placeholder.
+- **Speaker note / transition:** “Cerrar nombrando las dos predicciones de la Slide 3: la de patrón
+  **se sostiene**, la direccional **se matiza**. Frase final: *predictive signal survives;
+  connectivity-specific mechanism remains unresolved.*”
+- **Evidence / provenance:** `pipeline/02` §11–§12 (claim → result → figure → limitation table).
+- **Scientific caveat:** Single-task observational study: it identifies neither causality, nor
+  dynamic connectivity, nor adaptive benefit, nor biological specificity.
+
+---
+
+# Backup slides (not spoken)
+
+Opened only if a question requires them. Styled as a distinct block, as in the prior-team decks.
+
+## Slide 8 — Backup: the directional result in full
+
+- **Audience-facing title:** *Group direction was real; the individual link was weak*
 - **Visible copy:**
 
   `Group mean: 0-back 0.3271 → 2-back 0.3035`
@@ -126,88 +316,47 @@
 
   `Across participants: r = −0.105; p = .054`
 
-  `A mean load effect did not convincingly predict who performed better.`
+  `A reliable mean shift does not establish individual predictive relevance.`
 
-- **Layout:** Izquierda, distribución emparejada 0-back/2-back; derecha, scatter individual y las dos estadísticas; conclusión a todo el ancho en el pie.
-- **Chart:** [`visuals/charts/segregation-refinement.png`](visuals/charts/segregation-refinement.png).
-  Usarlo completo: la coexistencia del cambio grupal y el vínculo individual débil es la evidencia
-  central de la slide.
-- **Template mapping:** Native sparse-result role using Valeria source slide 8’s unexpected-finding composition.
-- **Speaker note / transition:** “Separar el cambio medio pareado de la asociación entre personas. La dirección media existe, pero no respalda el mecanismo individual simple que esperábamos. Probamos entonces si el patrón FC aporta algo inequívocamente específico.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slide 9; `pipeline/02` cells 21–22 and figure 9D as cited there.
-- **Scientific caveat:** System segregation es un resumen escalar tipo Chan, no modularidad de Newman; no sustituye el patrón multivariado de 78 rasgos.
+- **Chart:** [`visuals/charts/segregation-refinement.png`](visuals/charts/segregation-refinement.png)
+  at ≥ 460 pt — the coexistence of a group shift and a weak individual link is the whole point.
+- **Purpose:** Demoted from the spoken deck so Slide 6 keeps one dominant figure. Open this if anyone
+  asks what "the directional hypothesis was refined" actually means.
+- **Evidence / provenance:** `pipeline/02` §8; `manifest.json` → `segregation-refinement` (cell 22).
+- **Scientific caveat:** System segregation is a Chan-style scalar summary, not Newman modularity,
+  and does not substitute for the 78-feature multivariate pattern. Do not reuse the submitted −0.048
+  magnitude.
 
-## Slide 6 — Core 4: Robustness surprise
+## Slide 9 — Backup: validation detail
 
-- **Status:** Spoken core; required to support the refined final conclusion.
-- **Audience-facing title:** *A post hoc regional activation benchmark predicted more strongly*
+- **Audience-facing title:** *The checks behind the primary result*
 - **Visible copy:**
 
-  `Repeated-CV correlation (mean ± split SD across 20 partitions)`
+  `Fixed holdout: r = 0.312 in 67 unseen participants`
 
-  `0-back FC                         r = 0.274 ± 0.032`
+  `Full-refit null (seed 42): r = 0.405; p = 1/1001 ≈ .001`
 
-  `FC reconfiguration                r = 0.366 ± 0.024`
+  `B→A A-label permutation, fixed B predictions: p = 1/1001 ≈ .001`
 
-  `0-back + reconfiguration          r = 0.333 ± 0.026`
+  `Reconfiguration over 0-back FC: ΔR² = +0.0344 ± 0.0225 → no clear gain`
 
-  `Activation contrast                r = 0.600 ± 0.016`
+  `FC over activation: ΔR² = −0.0030 ± 0.0065 → no clear gain`
 
-  `Matched-fold increments (split-sensitive 2-SD heuristic; no formal superiority test)`
+  `The permutation p belongs only to seed-42 r = 0.405; the holdout is a separate split.`
 
-  `Reconfiguration over 0-back  ΔR² = +0.0344 ± 0.0225 → no clear gain`
+- **Chart:** [`visuals/charts/null-and-holdout.png`](visuals/charts/null-and-holdout.png) at ≥ 460 pt.
+  [`visuals/charts/incremental-fc-test.png`](visuals/charts/incremental-fc-test.png) stays in the
+  library for a question specifically about incremental value.
+- **Purpose:** Demoted from spoken Slide 5. Open for "how do you know it is not chance?" or "what
+  about the holdout?"
+- **Evidence / provenance:** `pipeline/02` §5–§7; `manifest.json` → `null-and-holdout` (cell 12),
+  `incremental-fc-test` (cell 18).
+- **Scientific caveat:** The 2-SD decision rule is a split-sensitivity heuristic, not a formal
+  superiority or equivalence test.
 
-  `FC over activation                ΔR² = −0.0030 ± 0.0065 → no clear gain`
+## Slide 10 — Backup: future work
 
-  `Post hoc, unmatched comparison: 360 regional activation vs 78 network FC features.`
-
-  `Activation = mean BOLD(2-back) − mean BOLD(0-back), not a GLM beta.`
-
-- **Layout:** Una comparativa de cuatro filas; debajo, dos anotaciones ΔR² emparejadas. Activation y FC se distinguen solo con color sobrio; los caveats visibles ocupan el tercio inferior.
-- **Chart:** [`visuals/charts/activation-robustness.png`](visuals/charts/activation-robustness.png).
-  Es el único chart de la slide y ya contiene la comparación de cuatro modelos y los dos checks
-  incrementales. No añadir `incremental-fc-test.png`, porque duplicaría cifras en el formato final.
-- **Template mapping:** Valeria source slide 8 (sparse unexpected finding), reconstruida para el benchmark y sus guardrails.
-- **Speaker note / transition:** “Es una prueba post hoc de robustez, no una competición biológica justa: las representaciones difieren en número y escala de rasgos. Los dos ΔR² se calculan por folds emparejados y su regla 2-SD es una heurística de sensibilidad al split, no un test formal de superioridad. La activación no borra el hallazgo predictivo FC; impide afirmar que el mecanismo sea específico de conectividad.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slides 11–12; `pipeline/02` cells 17–20 and `sandbox/jaime/08_activation_vs_reconfiguration.ipynb` as cited there.
-- **Scientific caveat:** Activación y FC no están igualadas (360 vs 78); el contraste está fuertemente ligado a condiciones de la misma tarea. Los incrementos emparejados solo muestran sensibilidad entre particiones, no superioridad formal. No afirmar superioridad biológica, mecanismo FC-específico ni beneficio adaptativo.
-
-## Slide 7 — Core 5: Final spoken conclusion
-
-- **Status:** Spoken core; **keep visible for Q&A**.
-- **Audience-facing title:** *Predictive signal survives; connectivity-specific mechanism remains unresolved*
-- **Visible copy:**
-
-  **Survives**
-
-  `A 78-feature FC difference predicts unseen 2-back accuracy.`
-
-  `The model transfers across identity-disjoint same-HCP cohorts.`
-
-  **Refined**
-
-  `Larger segregation reductions did not convincingly predict better performance.`
-
-  `Reconfiguration showed no clear gain beyond 0-back FC.`
-
-  `FC added no clear gain over activation under the current unmatched comparison.`
-
-  **Unresolved**
-
-  `Is predictive information connectivity-specific rather than shared with task activation?`
-
-- **Layout:** Tres columnas tipográficas “Survives / Refined / Unresolved”, con la última ligeramente más ancha. No añadir una figura nueva.
-- **Chart:** No pre-rendered chart. La conclusión se resuelve con tres bloques tipográficos nativos;
-  no reutilizar miniaturas de resultados.
-- **Template mapping:** Valeria source slide 9 (conclusion/limitations), sustituyendo L1/L2 y todo placeholder.
-- **Speaker note / transition:** “Esta es la frase final: *predictive signal survives; connectivity-specific mechanism remains unresolved.* Mantener esta slide durante preguntas; las dos siguientes solo se abren como soporte.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slide 13; synthesis of canonical `pipeline/02` cells 27–30 and `docs/project-plan.md` as cited there.
-- **Scientific caveat:** Estudio observacional de una única tarea: no identifica causalidad, conectividad dinámica, beneficio adaptativo ni especificidad biológica.
-
-## Slide 8 — Future work (support)
-
-- **Status:** Hidden/support; open only if discussion needs next steps.
-- **Audience-facing title:** *Three tests could resolve the remaining question*
+- **Audience-facing title:** *Four tests could resolve the remaining question*
 - **Visible copy:**
 
   `1. Match activation and FC dimensionality in nested participant-level CV.`
@@ -216,19 +365,18 @@
 
   `3. Test independent-site, repeat-session, family-aware generalization.`
 
+  `4. Control the activation contrast for vascular reactivity (CVR).`
+
   `Decision criterion: FC must add reliable held-out value beyond activation and single-condition FC.`
 
-- **Layout:** Tres pasos numerados convergen en una pregunta final sí/no de valor incremental FC.
-- **Chart:** No pre-rendered chart. Usar una lista numerada nativa y una línea final con el criterio
-  de decisión; no generar un diagrama de flujo.
-- **Template mapping:** Native process/support layout, retaining Valeria palette and footer; do not use a blank/placeholder source slide.
-- **Speaker note / transition:** “No leer en la exposición principal. Cada experimento ataca respectivamente comparabilidad, coactivación y generalización.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slide 14; its cited `pipeline/02` claim–result–limitation table and selected literature anchors.
-- **Scientific caveat:** Son propuestas futuras, no análisis ya realizados; la conectividad de tarea puede contener coactivación y la transferencia actual depende de la misma tarea/HCP.
+- **Chart:** No pre-rendered chart. Native numbered list plus the decision criterion.
+- **Speaker note:** “Cada experimento ataca respectivamente comparabilidad, coactivación,
+  generalización y confusión vascular (CVR, señalada por Goutham el 22 jul).”
+- **Evidence / provenance:** `pipeline/02` §12 claim–result–limitation table.
+- **Scientific caveat:** These are proposed experiments, not completed analyses.
 
-## Slide 9 — References and guardrails (support)
+## Slide 11 — Backup: references and statistical guardrails
 
-- **Status:** Hidden/support; Q&A only.
 - **Audience-facing title:** *References and statistical guardrails*
 - **Visible copy:**
 
@@ -242,6 +390,8 @@
 
   `Hedge et al. (2018) · The reliability paradox · Behavior Research Methods · 10.3758/s13428-017-0935-1`
 
+  `Logothetis (2008) · What we can do and what we cannot do with fMRI · Nature`
+
   `Full annotated bibliography: manuscript/references.md`
 
   `r = 0.366 ± 0.024 = mean ± split SD across 20 repeated-CV partitions.`
@@ -250,33 +400,52 @@
 
   `B→A r = 0.398; 95% CI [0.25, 0.53] = identity-disjoint same-HCP transfer.`
 
-- **Layout:** Dos columnas: referencias seleccionadas a la izquierda, guardrails estadísticos a la derecha; tamaño menor pero legible.
-- **Chart:** No pre-rendered chart. Mantener referencias y guardrails como texto; no añadir
-  miniaturas que dupliquen evidencia.
-- **Template mapping:** Valeria source slide 11 (dense references), limitado a anclas seleccionadas y marcado como backup.
-- **Speaker note / transition:** “Mantener oculta; usarla para procedencia, definición de segregación, SD vs CI o tipos de null.”
-- **Evidence / provenance:** Detailed internal-review storyboard, Slide 15; `manuscript/references.md` and canonical pipeline cells listed there.
-- **Scientific caveat:** Las referencias proporcionan marco o limitaciones; no convierten el análisis en réplica exacta ni validación causal.
+- **Layout:** Two columns — references left, guardrail definitions right. This slide is where the
+  statistical definitions live now that the spoken slides carry only one label each.
+- **Chart:** No pre-rendered chart.
+- **Evidence / provenance:** `manuscript/references.md`; `pipeline/02` §5, §6, §8 and §12.
+- **Scientific caveat:** References frame or limit the work; they do not turn it into an exact
+  replication or a causal validation. Logothetis frames the CVR gap on Slide 6 as a cited limitation,
+  not a result of ours.
 
-## Compression map: detailed 15-slide internal-review version → final 9 slides
+---
 
-| Final slide | Internal slides compressed | Reason |
+## Compression map: 15-slide internal-review version → this deck
+
+| This deck | Internal slides | Reason |
 |---|---|---|
-| 1 | 1 | Title held as pre-roll. |
-| 2 | 1–2 | Question and two-part hypothesis form one introduction beat. |
-| 3 | 3–5 | Cohorts, feature construction, and participant-level evaluation are one method story. |
-| 4 | 6–8 | Primary CV, null/holdout, and transfer are one prediction-evidence story with labels kept distinct. |
-| 5 | 9–10 | Directional refinement is retained; anatomy is omitted because it does not change the claim. |
-| 6 | 11–12 | Incremental FC and activation benchmark combine into the specificity/robustness surprise. |
-| 7 | 13 | Final spoken conclusion remains projected for Q&A. |
-| 8 | 14 | Future work becomes hidden support. |
-| 9 | 15 | References and statistical guardrails become hidden support. |
+| 1 (cover) | — | Structural; project name and authors, per prior-team convention. |
+| 2 (team) | — | Structural; absorbs the roster formerly fused into the intro. |
+| 3 (spoken) | 1–2 | Question and both hypotheses form one opening beat. |
+| 4 (spoken) | 3–5 | Cohorts, feature construction and evaluation become one native pipeline schematic. |
+| 5 (spoken) | 6, 8 | Primary CV and transfer; sub-checks demoted to backup 9. |
+| 6 (spoken) | 9–12 | Directional refinement and the activation benchmark form one hinge; the segregation figure is demoted to backup 8. |
+| 7 (spoken) | 13 | Conclusion, now naming both opening hypotheses. |
+| 8 (backup) | 9–10 | Directional figure and full statistics. |
+| 9 (backup) | 7, 11 | Null, fixed holdout and the incremental test. |
+| 10 (backup) | 14 | Future work, now four tests. |
+| 11 (backup) | 15 | References and the statistical guardrail definitions. |
+
+Internal-review Slide 10 (anatomical context) stays out of both decks: it does not change any claim.
+`condition-fc-contrast`, `anatomical-context`, `feature-construction`, `primary-repeated-cv` and
+`incremental-fc-test` remain in the chart library as unassigned assets, still referenced by the
+internal-review storyboard.
 
 ## Delivery checklist
 
-- **Six presenters:** Slide 1 is silent pre-roll. Presenter 1 owns only the visible spoken introduction on Slide 2; Presenters 2–6 each own exactly one scientific slide (Slides 3–7). Slides 8–9 are not allocated in the timed talk.
-- **Five presenters:** Slide 1 remains silent and Slide 2 is not shown. Build a visible five-person variant of Slide 3 titled *Can a 78-feature FC difference predict unseen performance?* Add the question and `pattern ≠ one-number direction` as its top introduction band, with the method pipeline below. Presenter 1 owns this single Introduction + Method slide; Presenters 2–5 own Slides 4–7. Thus both the introduction and final conclusion remain visible while every presenter owns exactly one projected spoken slide.
+- **Five presenters, five spoken slides (3–7), one each.** Cover, team and backup carry no timed
+  slot.
+- **Six presenters:** split Slide 6 across two people — presenter A takes the directional bridge,
+  presenter B takes the activation benchmark and the caveats — keeping one slide projected. Do not
+  promote a backup slide to create a sixth slot.
+- No chart below 460 pt wide; no insets; never two charts on one slide.
 - Say “identity-disjoint same-HCP transfer,” never “independent external validation.”
 - Say “split SD,” never “confidence interval,” for repeated-CV `±` values.
-- Pair the full-refit permutation only with seed-42 `r = .405`; label B→A permutation separately if asked.
-- Do not claim causality, dynamic FC, adaptive benefit, or FC-specific mechanism. Keep Slide 7 visible; leave Slides 8–9 hidden unless discussion requires them.
+- Pair the full-refit permutation only with seed-42 `r = .405`; label the B→A permutation separately.
+- Say “we predicted two things; one held, one was refined.” Never “our hypothesis evolved/changed.”
+- Do not claim causality, dynamic FC, adaptive benefit, or an FC-specific mechanism.
+- State the activation caveats out loud on Slide 6: post hoc, unmatched 360 vs 78, and CVR
+  uncontrolled.
+- Keep Slide 7 visible during Q&A; open backup slides only on demand.
+- Rehearse Slide 6 against the clock — it carries two beats and is the likeliest overrun.
+- Export a PDF fallback: Poppins may not be installed on the presenting machine.
