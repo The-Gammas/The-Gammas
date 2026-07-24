@@ -12,7 +12,10 @@
 - **Charts carry no text (hard rule).** A slide chart is a **pure plot**: axes, marks, tick labels,
   axis titles and direct data labels. No figure header, no footnote caveat, no side annotation block.
   Every number, caveat and legend belongs in **native pptx text**, which stays sharp at any
-  projection size. Slide charts are drawn at 26–30 pt on the 1152 pt canvas; placed `W` pt wide they
+  projection size. **Tie-breaker (added 24 Jul):** a number already printed as a *direct data label
+  on the chart* is **not** repeated as slide text — the "every number in native text" rule covers
+  only numbers the chart does not itself show. Repeating a chart's own labels in a side block is the
+  redundancy this rule exists to prevent; it happened on Slide 6 and inverted the slide's hierarchy. Slide charts are drawn at 26–30 pt on the 1152 pt canvas; placed `W` pt wide they
   render at `26·W/1152` on screen. Never two charts on one slide, never an inset.
 - **Chart width: aim for 460 pt, and record it when the layout will not allow it.** The earlier flat
   “never below 460 pt” rule was written against a full-width layout and the deck does not obey it,
@@ -328,7 +331,8 @@ title, and had been invisible in every export.
 
 - **Status:** Spoken · presenter **open** — Goutham proposed Jaime Pineda on the 23 Jul Zoom and
   Andrea left the swap to the team.
-- **Audience-facing title:** *The FC pattern predicted performance—and transferred to a separate cohort*
+- **Audience-facing title:** *The FC pattern predicted performance and transferred to a separate cohort*
+  <!-- em-dash removed 24 Jul to match the live deck and drop the "X—and Y" cadence -->
 - **Visible copy:**
 
   **B→A transfer**  `r = 0.398; bootstrap 95% CI [0.25, 0.53]`
@@ -372,13 +376,9 @@ title, and had been invisible in every export.
 
 - **Visible copy:**
 
-  `Repeated-CV correlation (mean ± split SD across 20 partitions)`
+  `The four feature-set correlations live ONLY as the chart's own data labels — they are NOT repeated as a text block. Deleting the duplicated "Repeated-CV Correlation" block (24 Jul) is what frees the right column.`
 
-  `0-back FC  0.274 ± 0.032    ·    FC reconfiguration  0.366 ± 0.024`
-
-  `0-back + reconfiguration  0.333 ± 0.026    ·    Activation contrast  0.600 ± 0.016`
-
-  **Direction, as predicted—but only at group level**
+  **Direction, as predicted—but only at group level** — *promote to the top of the right column: it answers opening hypothesis 2 and previously sat buried under the duplicated metrics. Render it as a structured element — a heading plus label·value lines, not a prose sentence — with the group shift (`0.3271 → 0.3035 · Δ = −0.0236 · p = 3.45 × 10⁻⁵`) and the weak per-person link (`r = −0.105 · p = .054, n.s.`) kept together; never the group drop alone.*
   `Segregation fell under load (0.3271 → 0.3035; Δ = −0.0236; p = 3.45 × 10⁻⁵), yet larger shifts did not predict better performance (r = −0.105; p = .054).`
 
   `Open squares = held-out cross-run generalization.`
@@ -401,8 +401,17 @@ title, and had been invisible in every export.
   body size. If it does not fit, cut caveat wording — never add a second chart, and never shrink the
   caveats back to footnote size.
 - **Chart:** [`visuals/charts/activation-robustness.png`](visuals/charts/activation-robustness.png)
-  only, placed at ≥ 460 pt. Do **not** add `incremental-fc-test.png` (duplicates the numbers) and do
+  only. Do **not** add `incremental-fc-test.png` (duplicates the numbers) and do
   **not** add `segregation-refinement.png` here — that figure is backup Slide 8.
+- **Delete two blocks the live deck accumulated (24 Jul), then enlarge the chart.** (1) The duplicated
+  *Repeated-CV Correlation* metric block — its four numbers are already the chart's own data labels,
+  and it currently carries the largest type on the slide, so the least-informative element has the
+  most weight. (2) A **`Chart Insight: … outperforming functional connectivity metrics …`** block that
+  is **not in this storyboard** — it was added directly in Google Slides (Gemini). Its "outperforming"
+  wording is the scoreboard framing the team agreed to drop, and its `(~0.60)` renders like `(-0.60)`
+  at projection size. With both gone the right column is free, so the chart can finally reach ~460 pt
+  (it was capped at 351 pt only because the metric block occupied that space) and the two caveat lines
+  can take the size Andrea asked for.
 - **Template mapping:** Valeria source slide 8 (sparse unexpected finding), rebuilt for the benchmark
   and its guardrails.
 
@@ -715,7 +724,7 @@ this file into Slides introduced no numeric error. Everything below is text, lay
 | 3 | 6 (Turn) | Replace the chart with the regenerated `activation-robustness.png` (label fix, below) | Blocker | Done |
 | 4 | 3 (Intro) | “…as a different claims” → **“are different claims”** | Text | Done |
 | 5 | 7 (Conclusion) | Title needs the semicolon: “Predictive signal survives**;** connectivity-specific…” | Text | Done |
-| 6 | 6 (Turn) | Add the missing legend line `Open squares = held-out cross-run generalization.` — two open squares were unexplained | Text | Done |
+| 6 | 6 (Turn) | Add the missing legend line `Open squares = held-out cross-run generalization.` — two open squares were unexplained | Text | **Regressed 24 Jul — the line is absent from the live deck again; reopen** |
 | 7 | 4 (Method) | Add the definition line (see Slide 4 above) | Content gap | Done |
 | 8 | 6 (Turn) | `Activation contrast: 0.600 ± 0.016` is pale sand on a pale ground; darken it | Legibility | **Open** |
 | 9 | 17, 18 | Delete the empty duplicate divider and the internal compression map | Hygiene | **Open** |
@@ -735,6 +744,55 @@ this file into Slides introduced no numeric error. Everything below is text, lay
 | 18 | 10 (Backup) | Fifth future-work item: ST-GNN, credited to Goutham Arcod | Discord 23 Jul |
 | 19 | — | Settle presenters for slides 5, 6 and 7, and resolve the Goutham/Arefeh clash over slide 4 | TA instruction 10 |
 | 20 | — | Rehearse to one minute per slide; Andrea offered tutorial time on Friday | TA instruction 10 |
+
+### From the live-deck review (24 Jul, against Jaime's PDF export of the 20:52 CEST state)
+
+The deck now has section labels (Introduction / Methods / Results / Conclusions / Backup · …), so the
+titles no longer carry the orientation load alone. Numbers still clean. New defects:
+
+| # | Slide | Fix | Severity |
+|---|---|---|---|
+| 21 | 6 (Turn) | Delete the duplicated *Repeated-CV Correlation* text block — its four numbers are the chart's own data labels; the block also inverts the hierarchy (largest type on the slide) | **High** |
+| 22 | 6 (Turn) | Delete the **`Chart Insight: … outperforming …`** block — not in this storyboard, added in Slides; scoreboard framing, and `(~0.60)` renders as `(-0.60)` | **High** |
+| 23 | 6 (Turn) | Restore `Open squares = …` (reopened #6) and enlarge the chart into the freed column toward ~460 pt | **High** |
+| 24 | 2 (Team) | Remove the four personal email addresses (deck is archived publicly); Kerem still shows role *Accountant* and a placeholder avatar | **Blocker** |
+| 25 | 13–19 | The seven legacy slides are **visible, not hidden** — they export and project. Hide or delete: `So… What does this mean?` · the nb08 figure (rounding contradicts Slide 6) · `IMPORTANT CONCEPTS` (says the result "substantially changes our conclusion") · second bibliography · empty duplicate divider · internal compression map | **Blocker** |
+
+### Title register — the LLM-cadence question (24 Jul)
+
+Raised because several titles read as machine-authored: the balanced antithesis (`X; Y` / `X—but Y`),
+the epistemic meta-comment in the headline (`narrowed what we can claim`, `remains unresolved`), and
+first-person past narration. The assertion-title style itself is legitimate (Alley's
+assertion–evidence model); the execution is what reads as generated. **But two of the worst-sounding
+titles are locked by recent decisions and must not be silently reverted:** Slide 6's
+*Two checks that narrowed what we can claim* is the team+TA retitle that replaced the scoreboard
+title, and Slide 7's *Predictive signal survives; …* was reviewed by Andrea with "Nice. Okay,
+perfect." Now that every slide carries a section label, the safe cuts are the ones the label already
+covers: Slide 5 loses its em-dash (done above); backups 9–11 may become plain descriptors
+(*Segregation: group shift vs individual link* / *Validation: permutation null and holdout* /
+*Proposed follow-up analyses*). Take titles to the team as a proposal, not a unilateral edit.
+
+### Speaker-script guardrail check — Goutham's 24 Jul five-way split
+
+The timing (≈12–15 s each) and the five-presenter structure are good. Several phrasings break the
+delivery guardrails and must be fixed before it is rehearsed — every number is right, the wording is
+the problem:
+
+- **"adaptively shift" (Valeria) and "networks actively dissolve boundaries to integrate" (Kerem)** —
+  *adaptive* and the agentive mechanism are forbidden, and both present the directional hypothesis as
+  **confirmed**. It was **refined**: the group shift is real (p = 3.45 × 10⁻⁵) but the individual link
+  is weak (r = −0.105, p = .054). Say "segregation fell at the group level" and stop.
+- **"independent cohort" (Kerem)** — it is **identity-disjoint same-HCP transfer**, not independent.
+  Keep r = 0.398, name it correctly.
+- **"apparent accuracy of 0.60" and "predicted performance at 0.37" (Jaime)** — 0.60 and 0.37 are
+  **correlations (r)**, not accuracy; accuracy is the behavioural target being predicted. Say
+  "a correlation of 0.60 / 0.37".
+- **"Our FC metric inherently normalizes these physiological artifacts" (Goutham)** — too strong. FC
+  cancels much of a **shared amplitude/scale** factor; it does not normalize vascular reactivity,
+  which stays an acknowledged **uncontrolled** gap. Say "a correlation is less sensitive to that shared
+  amplitude factor."
+- **The closer** lands on the integration mechanism, which inverts the agreed conclusion. End on
+  *predictive signal survives; connectivity-specific mechanism remains unresolved.*
 
 ### Legacy slides to delete, and why
 
