@@ -250,27 +250,26 @@ It's a transfer between **two cohorts of the same HCP**: stronger than reshuffli
 than replicating at another scanner/population. Gradient: reshuffle-your-own-data < **same-HCP transfer
 (this)** < true external replication. Saying where you land = credibility (and it spares you the gotcha).
 
-### 🎤 Your speech (English, ~70 s, ready to deliver)
+### 🎤 Your speech (English — verbatim, line by line)
 
-> *"This is our main result — and it's really two tests, so let me keep them apart.*
->
-> *The figure first. Each dot is one person: the horizontal axis is their **actual** 2-back accuracy, the
-> vertical is what our model **predicted** for them. The key point is where those predictions come from —
-> the model was **trained on our main group, cohort B, 336 people**, and then **tested on a completely
-> separate group it had never seen, cohort A, 100 people**. The cloud rises left to right, so there's real
-> signal.*
->
-> *Two numbers, and they're different kinds of evidence. The primary one, **r = 0.366**, comes from
-> **cross-validating inside that main sample** — and the ± 0.024 next to it is a **split standard
-> deviation**, how stable the number is, not a confidence interval. The harder test: we **froze** the model
-> trained on B and applied it to those 100 separate people in A, after dropping the **35** who appeared in
-> both groups — so nobody is ever in training and test at once. That transfer holds at **r = 0.398**, with a
-> bootstrap 95% CI of 0.25 to 0.53.*
->
-> *And one caveat I'll put on the table myself, before anyone asks: this is a **transfer between two cohorts
-> of the same HCP study** — stronger than reshuffling your own data, but not an independent-site
-> replication. Still, both numbers land right on the **0.36 Avery** reported in this same dataset — so this
-> is a real, replicable effect, not a fluke."*
+```
+This is our main result, and we evaluated it in two ways.
+In the scatterplot, each dot is one person.
+The X axis is their actual 2-back accuracy,
+and the Y axis is what our model predicted.
+The cloud trends upward, so there's signal.
+
+Now, our two results.
+The primary one, an r of 0.366, we got from cross-validation inside our large sample, cohort B, 336 subjects.
+The 0.024 next to it is the spread across partitions.
+
+Then we ran a transfer test with a frozen model, trained on B and applied to another cohort, A, 100 different people from the other HCP dataset.
+We also removed 35 IDs that were in both.
+That transfer, the one you see in the plot, gives an r of 0.398.
+
+It's important to remember that our results are consistent with the published benchmark, Avery's 0.36, within the same HCP study.
+And under permutation, the effect is unlikely to be due to chance.
+```
 
 **Handoff to Goutham:** *"So the pattern held. But is that signal specifically about connectivity? That's
 what the next two checks tackle."*
