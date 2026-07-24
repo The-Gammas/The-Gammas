@@ -129,7 +129,7 @@ ese listón publicado, no en el vacío. **Una sola cita aquí, ninguna más** (i
   - *"Functional connectivity = the Pearson correlation between the time courses of two brain regions. Each node is one of 360 Glasser ROIs."*
   - *"FC reconfiguration = how much each network pair changes its coupling when memory load goes from 0-back to 2-back."*
   - *"System segregation = (mean within-network FC − mean between-network FC) ÷ mean within-network FC, computed per participant per condition (Chan et al. 2014)."*
-- **1 · Cohort** — *"336 participants · HCP N-back working-memory task · 360 Glasser ROIs"*
+- **1 · Cohort** — *"Two HCP N-back samples · 360 Glasser ROIs · B (primary): 336 participants — all cross-validation here · A (transfer target): 100 participants with per-subject behaviour — held out for the B→A test"* — **A/B es jerga interna nuestra; defínelas aquí, en su primera aparición, o el público llega al "B→A" de la siguiente slide sin saber qué es A.**
 - **2 · Condition frames** — *"0-back and 2-back frames kept separate, with no temporal overlap"*
 - **Figura: tres matrices de red** (0-back FC, 2-back FC, y su diferencia). Caption: *"12 Cole-Anticevic networks · 12 within + 66 between = 78 values per person"*
 - **3 · Model** — *"StandardScaler + RidgeCV, fitted inside each training fold"*
@@ -182,7 +182,11 @@ que decirlo si preguntan por los cuadrados abiertos (cross-run) de la slide 5.
 > regions' time courses — each region is one of 360 Glasser nodes. FC reconfiguration is how much each
 > network pair changes its coupling from 0-back to 2-back. And system segregation — we'll need it later —
 > is within-network minus between-network connectivity, normalized: high means a modular brain, low means
-> an integrated one. Pipeline: 336 HCP participants doing the N-back. We compute a 360-by-360 correlation
+> an integrated one. Pipeline — and say this out loud, it's two samples, not one: the main cohort, we call it B, is 336
+> HCP participants doing the N-back, and every cross-validation, holdout and permutation runs inside it.
+> A second, smaller sample — cohort A, 100 people who also have per-subject behaviour — is set aside
+> untouched as the transfer target, so when you hear 'B-to-A' later it just means train on the 336, test
+> on those held-out 100. We compute a 360-by-360 correlation
 > matrix per condition, then summarize it into 12 within- and 66 between-network values — 78 numbers per
 > person. **Naming the axes on this figure:** three network matrices — 2-back, 0-back, and their
 > difference. The first two share one colour scale; the third has its own, about ten times tighter, so

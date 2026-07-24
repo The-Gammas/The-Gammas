@@ -274,7 +274,14 @@ title, and had been invisible in every export.
 
 - **Visible copy — four schematic boxes, with the evidence figure carrying the middle of the pipeline:**
 
-  `1 · Cohort` — `336 participants · HCP N-back working-memory task · 360 Glasser ROIs`
+  `1 · Cohort` — `Two HCP N-back samples · 360 Glasser ROIs` · `B (primary): 336 participants — all cross-validation, holdout & null run here` · `A (transfer target): 100 participants with per-subject behaviour — held out for the B→A test`
+
+  **Why both cohorts are named here (exception to TA instruction 3).** Andrea asked to strip this box to
+  "just HCP, 336, the task." We keep that spirit — no acquisition detail — but the *second* sample cannot
+  be cut: `A`/`B` is internal team shorthand, and Slides 4 and 6 say `B→A transfer · 301 → 100` and
+  `301 B → 100 A`. If `A` (the 100-person behaviour cohort) is never introduced, the audience meets the
+  transfer with no idea what `A` is. So both cohorts and their `A`/`B` labels are **defined at first
+  mention**, right here — this is dataset structure, not acquisition detail.
 
   `2 · Condition frames` — `0-back and 2-back frames kept separate, with no temporal overlap`
 
@@ -757,6 +764,7 @@ titles no longer carry the orientation load alone. Numbers still clean. New defe
 | 23 | 6 (Turn) | Restore `Open squares = …` (reopened #6) and enlarge the chart into the freed column toward ~460 pt | **High** |
 | 24 | 2 (Team) | Remove the four personal email addresses (deck is archived publicly); Kerem still shows role *Accountant* and a placeholder avatar | **Blocker** |
 | 25 | 13–19 | The seven legacy slides are **visible, not hidden** — they export and project. Hide or delete: `So… What does this mean?` · the nb08 figure (rounding contradicts Slide 6) · `IMPORTANT CONCEPTS` (says the result "substantially changes our conclusion") · second bibliography · empty duplicate divider · internal compression map | **Blocker** |
+| 26 | 3 (Method) | COHORT box names only `336` (cohort B); cohort **A (100)** is never introduced, yet Slides 4 & 6 say `B→A · 301 → 100` and `301 B → 100 A`. `A`/`B` is internal team shorthand — the audience meets the transfer with no referent. Fix: **define both samples and their `A`/`B` labels at first mention** in the COHORT box (B = 336 primary, all CV; A = 100 behaviour cohort, held-out transfer target). | **High** |
 
 ### Title register — the LLM-cadence question (24 Jul)
 
