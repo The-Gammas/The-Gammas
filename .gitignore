@@ -52,3 +52,7 @@ manuscript/*.pdf
 
 # Local scratch / temp (throwaway files, chat figures) — never commit.
 tmp/
+
+# Office lock files and app-generated backups (never versioned)
+~$*
+*.pptx.bak-*
