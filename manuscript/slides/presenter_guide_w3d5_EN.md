@@ -6,7 +6,7 @@
 > **A note on how to use it.** I put this together from the final deck, Andrea's review and our Discord
 > discussion — it's a shared aid, not a script anyone has to follow word-for-word. Please correct anything
 > I got wrong. Numbers are all checked against `pipeline/02`.
-> **Source of truth:** the final deck `manuscript/slides/source-snapshots/The Gammas - NMA project.pdf`
+> **Source of truth:** the final deck `manuscript/slides/The Gammas - NMA project.pdf`
 > and `pipeline/02_canonical_analysis_and_slides.ipynb`. On-screen copy is English; the talk is in English.
 
 ## Numbering — this guide matches the final deck
@@ -163,7 +163,7 @@ training fold — never using test info. That's the hygiene that stops CV from i
 *The 4 evaluations* (each appears later): repeated 5-fold CV ×20 · fixed holdout · 1000-permutation null ·
 B→A transfer with no shared identities.
 
-![Slide 3 — 0-back FC, 2-back FC, and their difference (78-network summary). Panels 1–2 share one colour scale; panel 3 has its own, about 10× tighter.](visuals/charts/condition-fc-contrast.png)
+*Figure (in the deck): Slide 3 — 0-back FC, 2-back FC, and their difference (78-network summary). Panels 1–2 share one colour scale; panel 3 has its own, about 10× tighter.*
 
 **The figure (read it this way — it's not self-evident):** three 360×360 grids. Each cell = a region
 pair; colour = its correlation in that condition. Scale: blue (negative) → white (≈0) → tan (positive).
@@ -217,7 +217,7 @@ it."* **Exception:** the **2-runs-per-person** design does need saying if anyone
 - Caveat: *"Identity-disjoint same-HCP transfer—not independent-site validation."*
 - Figure: scatter `identity-disjoint-transfer.png` (predicted vs observed, cohort A).
 
-![Slide 4 — B→A transfer: predicted (y) vs observed (x) 2-back accuracy in cohort A; each dot is one person.](visuals/charts/identity-disjoint-transfer.png)
+*Figure (in the deck): Slide 4 — B→A transfer: predicted (y) vs observed (x) 2-back accuracy in cohort A; each dot is one person.*
 
 ### 1 · The figure — name the axes BEFORE any number (Andrea's rule)
 
@@ -250,23 +250,27 @@ It's a transfer between **two cohorts of the same HCP**: stronger than reshuffli
 than replicating at another scanner/population. Gradient: reshuffle-your-own-data < **same-HCP transfer
 (this)** < true external replication. Saying where you land = credibility (and it spares you the gotcha).
 
-### 🎤 Your speech (English, ~65 s, ready to deliver)
+### 🎤 Your speech (English, ~70 s, ready to deliver)
 
-> *"This is our main result. First, the axes: horizontal is each person's **actual** 2-back accuracy in
-> cohort A — our test group; vertical is the accuracy our model **predicted** for them, from a model
-> trained **only on cohort B** that never saw anyone in A. Each dot is one real participant, and the trend
-> clearly rises.*
+> *"This is our main result — and it's really two tests, so let me keep them apart.*
 >
-> *Two numbers, and they measure different things. Our primary effect is the repeated cross-validation
-> correlation, **r = 0.366** — and that ± 0.024 is a **split standard deviation** across partitions, how
-> stable the number is, not a confidence interval. The stronger test: we froze a model trained on B only
-> and applied it to A, after removing 35 people who appeared in both cohorts — so nobody is in training and
-> test at once. That transfer gives **r = 0.398**, with a bootstrap 95% CI of 0.25 to 0.53.*
+> *The figure first. Each dot is one person: the horizontal axis is their **actual** 2-back accuracy, the
+> vertical is what our model **predicted** for them. The key point is where those predictions come from —
+> the model was **trained on our main group, cohort B, 336 people**, and then **tested on a completely
+> separate group it had never seen, cohort A, 100 people**. The cloud rises left to right, so there's real
+> signal.*
 >
-> *One honest caveat: this is an **identity-disjoint transfer within the same HCP study** — stronger than
-> reshuffling your own data, but not an independent-site replication. Still, both numbers sit right on the
-> **0.36 Avery** reported in this same data, so this is a real, replicable brain-behavior effect — not a
-> fluke."*
+> *Two numbers, and they're different kinds of evidence. The primary one, **r = 0.366**, comes from
+> **cross-validating inside that main sample** — and the ± 0.024 next to it is a **split standard
+> deviation**, how stable the number is, not a confidence interval. The harder test: we **froze** the model
+> trained on B and applied it to those 100 separate people in A, after dropping the **35** who appeared in
+> both groups — so nobody is ever in training and test at once. That transfer holds at **r = 0.398**, with a
+> bootstrap 95% CI of 0.25 to 0.53.*
+>
+> *And one caveat I'll put on the table myself, before anyone asks: this is a **transfer between two cohorts
+> of the same HCP study** — stronger than reshuffling your own data, but not an independent-site
+> replication. Still, both numbers land right on the **0.36 Avery** reported in this same dataset — so this
+> is a real, replicable effect, not a fluke."*
 
 **Handoff to Goutham:** *"So the pattern held. But is that signal specifically about connectivity? That's
 what the next two checks tackle."*
@@ -322,7 +326,7 @@ numbers** — breathe between *"0.366, split SD"* and *"0.398, bootstrap CI"*. R
   - *"Activation is a raw BOLD amplitude difference, not a GLM beta. Individual vascular reactivity (CVR) is uncontrolled, and this dataset carries no CVR proxy."*
 - **Figure:** `activation-robustness.png`.
 
-![Slide 5 — cross-validated r by feature set: 0-back FC, FC reconfiguration, combined FC, activation. Open squares = cross-run generalization.](visuals/charts/activation-robustness.png)
+*Figure (in the deck): Slide 5 — cross-validated r by feature set: 0-back FC, FC reconfiguration, combined FC, activation. Open squares = cross-run generalization.*
 
 **Framing (say it this way):** not "we lost to activation", but "we ran **two robustness checks**, and both
 made us more precise". Two beats: **direction** and **specificity**.
@@ -437,7 +441,7 @@ validation" (it's *identity-disjoint same-HCP*); integration as confirmed at the
 r = −0.105; p = .054"* · *"A reliable mean shift does not establish individual predictive relevance."* ·
 Figure `segregation-refinement.png`.
 
-![Slide 8 — group segregation shift (violins, left) and the weak individual link (scatter, right).](visuals/charts/segregation-refinement.png)
+*Figure (in the deck): Slide 8 — group segregation shift (violins, left) and the weak individual link (scatter, right).*
 
 **The figure (2 panels):** left, two **violins** (0-back / 2-back) = the full segregation distribution of
 the 336 people, not just the mean; a line with two white dots connects the means and shows the 0.3271 →
@@ -458,7 +462,7 @@ fixed B predictions: p = 1/1001 ≈ .001"* · *"Reconfiguration over 0-back FC: 
 clear gain"* · *"FC over activation: ΔR² = −0.0030 ± 0.0065 → no clear gain"* · *"The permutation p belongs
 only to seed-42 r = 0.405; the holdout is a separate split."* · Figure `null-and-holdout.png`.
 
-![Slide 9 — permutation null with the real r marked (left) and the fixed holdout scatter (right).](visuals/charts/null-and-holdout.png)
+*Figure (in the deck): Slide 9 — permutation null with the real r marked (left) and the fixed holdout scatter (right).*
 
 **The figure (2 panels):** left, **histogram** = shuffle the performance labels 1000 times (refitting the
 model, fixed partition) → the distribution of "what chance looks like with this pipeline"; a vertical line

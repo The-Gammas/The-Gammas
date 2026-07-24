@@ -3,7 +3,7 @@
 > **Qué es esto.** Una guía por diapositiva para que quien presente cada una tenga **todo** el contexto:
 > definición de conceptos desde cero, cómo leer cada gráfico, cómo interpretar cada número, qué decir
 > (con las frases en inglés listas para pronunciar) y qué preguntas esperar. Un bloque por slide.
-> **Fuente de verdad:** el deck final `manuscript/slides/source-snapshots/The Gammas - NMA project.pdf`
+> **Fuente de verdad:** el deck final `manuscript/slides/The Gammas - NMA project.pdf`
 > y `pipeline/02_canonical_analysis_and_slides.ipynb` (números). El texto que se proyecta es **inglés**;
 > la explicación va en español y la charla se da en inglés.
 
@@ -247,26 +247,49 @@ Es una transferencia entre **dos cohortes del mismo HCP**: más fuerte que baraj
 replicar en otro escáner/población. Gradiente: barajar-tus-datos < **transferencia same-HCP (esto)** <
 replicación externa real. Decir dónde caes = credibilidad (y te ahorra que te lo saquen como pega).
 
-### 🎤 Tu speech (inglés, ~65 s, listo para decir)
+### 🇪🇸 Tu speech en español (por líneas, para leer)
 
-> *"This is our main result. First, the axes: horizontal is each person's **actual** 2-back accuracy in
-> cohort A — our test group; vertical is the accuracy our model **predicted** for them, from a model
-> trained **only on cohort B** that never saw anyone in A. Each dot is one real participant, and the trend
-> clearly rises.*
->
-> *Two numbers, and they measure different things. Our primary effect is the repeated cross-validation
-> correlation, **r = 0.366** — and that ± 0.024 is a **split standard deviation** across partitions, how
-> stable the number is, not a confidence interval. The stronger test: we froze a model trained on B only
-> and applied it to A, after removing 35 people who appeared in both cohorts — so nobody is in training and
-> test at once. That transfer gives **r = 0.398**, with a bootstrap 95% CI of 0.25 to 0.53.*
->
-> *One honest caveat: this is an **identity-disjoint transfer within the same HCP study** — stronger than
-> reshuffling your own data, but not an independent-site replication. Still, both numbers sit right on the
-> **0.36 Avery** reported in this same data, so this is a real, replicable brain-behavior effect — not a
-> fluke."*
+```
+Este es nuestro resultado principal, y lo evaluamos de dos maneras.
+En el scatterplot, cada punto es una persona.
+El eje X es la precisión real en 2-back,
+y el Y, la que predijo nuestro modelo.
+La nube tiene tendencia ascendente, así que hay señal.
 
-**Handoff a Goutham:** *"So the pattern held. But is that signal specifically about connectivity? That's
-what the next two checks tackle."*
+Ahora, nuestros dos resultados.
+El primario, r = 0,366, lo obtuvimos de validación cruzada dentro de nuestra muestra grande, la cohorte B, 336 sujetos.
+El ± 0,024 es la dispersión entre particiones.
+
+Luego, una prueba de transferencia con el modelo congelado: entrenado en B, lo aplicamos a otra cohorte, la A —100 personas distintas del otro dataset del HCP.
+Eso sí, quitamos 35 IDs que estaban en las dos.
+Esa transferencia, la que veis en el gráfico, da r = 0,398.
+
+Es importante recordar que nuestros resultados son consistentes con el benchmark publicado —el 0,36 de Avery— dentro del mismo estudio HCP.
+Y bajo permutación, es poco probable que el efecto se deba al azar.
+```
+
+### 🎤 Tu speech (inglés — el que leerás verbatim, por líneas)
+
+```
+This is our main result, and we evaluated it in two ways.
+In the scatterplot, each dot is one person.
+The X axis is their actual 2-back accuracy,
+and the Y axis is what our model predicted.
+The cloud trends upward, so there's signal.
+
+Now, our two results
+The primary one, a correlation of 0.366, we got from cross-validation inside our large sample, cohort B, 336 subjects.
+
+Then we ran a stronger test with a frozen model, trained on B and applied to another cohort, A, with 100 different people from the other HCP study.
+We also removed 35 IDs that were in both.
+That transfer, the one you see in the plot, gives an solid 0.398
+
+Two quick things to keep in mind. 
+First, this fully lines up with the published benchmark from Avery, back in 2020, who found a very similar value, 0.36, in this same HCP data.
+And under permutation testing, an effect this size is very unlikely to happen by chance.
+```
+**Handoff a Goutham:** 
+So the pattern held. Now, is that signal specifically about connectivity? My college Goutham will walk you through the next two checks.
 
 ### Interpretación en profundidad (por si aprietan)
 
