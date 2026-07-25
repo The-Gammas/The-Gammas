@@ -5,36 +5,42 @@ Gammas** repo. Tool-agnostic, following the open [AGENTS.md](https://agents.md) 
 purpose: it holds the **rules** and links out for everything else — it does not duplicate the other
 docs. Change a rule here in the same PR that changes the behaviour.
 
+**The project closed at W3D5, 24 July 2026.** What remains is a finished, reproducible record, not a
+live plan.
+
 ## Orient yourself first (read, don't duplicate)
 
-- [README.md](README.md) — the quick current-state snapshot, **setup & commands**, repo layout, key links.
-- [docs/project-plan.md](docs/project-plan.md) — the detailed living plan: current method, evidence,
-  open decisions and milestones.
+- [docs/final-report.md](docs/final-report.md) — **the source of truth**: question, data, method, the
+  canonical results table, limitations, repository map and open threads.
+- [README.md](README.md) — the front door: headline result, the deliverable, **setup & commands**, repo layout.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — where files go, notebook conventions, the everyday Git flow.
-- The newest file in [docs/meetings/](docs/meetings/) — why the current state changed and what the
-  team still needs to decide.
 - [manuscript/references.md](manuscript/references.md) — the claim-level scientific source record.
 
 ### Current-state contract
 
-- `README.md` is the short snapshot; `docs/project-plan.md` is the canonical detailed status.
-- Record a new decision in its dated meeting note first, reconcile `docs/project-plan.md`, then update
-  the short README table. Do not use proposals, literature reviews or old minutes as a current task
-  tracker.
-- Dated records preserve what was known at that time. Add a status pointer when they are superseded;
-  do not silently rewrite their historical content.
+- [`docs/final-report.md`](docs/final-report.md) is the single source of truth for results and
+  conclusions. A number quoted anywhere else without a protocol, an `n` and a source cell is
+  superseded by it; `pipeline/02_canonical_analysis_and_slides.ipynb` is where every number is computed.
+- [`docs/archive/`](docs/archive/) and [`docs/meetings/`](docs/meetings/) are the **frozen record**: what
+  was believed and decided at a given date. Read them for provenance, never as a current task tracker,
+  and never rewrite their historical content — add a pointer instead.
+- New work that changes a conclusion updates the final report in the same PR, with the evidence in a
+  notebook. Do not leave a result living only in prose.
 - Keep external feedback distinct from team decisions. A TA/reviewer comment is attributed evidence
   for discussion, not a veto; experiments, robustness checks and an explicit team decision determine
   whether a method or finding stays in scope.
-- Before coordinating work, check `git status`, the current README table, the living plan and the
-  latest meeting note. If they disagree, stop duplication and reconcile those sources first.
+- Before coordinating work, check `git status` and the final report. If a document disagrees with it,
+  the final report wins — reconcile rather than duplicate.
 
 The data (NMA-curated HCP N-back, 360 ROIs) is **not in Git**: it lives under `data/` (gitignored). How to
-**download, place and load** it → [`data/README.md`](data/README.md). The shared **A/B data layer** is
-`sandbox/jaime/datasets.py` (I/O) → `preprocessing.py` (transforms) → `evaluation.py` (split/QC).
-Import it **read-only** from any sandbox — the one exception to "work only in your own folder": use
-it, don't edit it without the owner or a PR. The current roles of cohorts A and B live in the project
-plan; do not infer them from an older notebook's "finalist" language.
+**download, place and load** it → [`data/README.md`](data/README.md). The shared **A/B data layer** is the
+`gammas/` package at the repo root: `datasets.py` (config + I/O) → `preprocessing.py` (condition
+segmentation, behaviour) → `connectivity.py` (FC representations) → `evaluation.py` (splits, CV,
+permutation nulls). It is shared code, not anyone's sandbox: import it from anywhere, change it only
+through a branch + PR, and run `python -m unittest discover -s tests` after touching it. The roles of
+cohorts A and B (B primary, A the identity-disjoint transfer target) are fixed in
+[`docs/data-dictionary.md`](docs/data-dictionary.md); do not infer them from an older notebook's
+"finalist" language.
 
 ## Rules for agents
 

@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: >-
+  If you use this repository — code, analysis or figures — please cite it as below.
+  Roles and the evidence behind each one are in AUTHORS.md.
+title: >-
+  Adaptive Functional Network Reconfiguration for Predicting Individual
+  Working-Memory Performance (The Gammas, Neuromatch Academy CompNeuro 2026)
+abstract: >-
+  Does functional-connectivity reconfiguration between low (0-back) and high (2-back)
+  working-memory load predict individual performance in unseen participants? HCP N-back
+  data, 336 analytic participants, 360 Glasser ROIs summarised into a 78-feature
+  connectivity fingerprint over 12 Cole-Anticevic networks, cross-validated ridge
+  regression against a permutation null. Results, protocols and limitations:
+  docs/final-report.md.
+type: software
+authors:
+  - given-names: Valeria
+    family-names: Moraga
+  - given-names: Kerem
+    family-names: Akyurt
+  - given-names: Goutham
+    family-names: Arcod
+  - given-names: Jaime Alonso
+    family-names: Pineda Moreno
+  - given-names: Arefeh
+    family-names: Lali Dehaghi
+repository-code: 'https://github.com/The-Gammas/The-Gammas'
+license:
+  - MIT
+  - CC-BY-4.0
+date-released: '2026-07-24'
+keywords:
+  - functional connectivity
+  - working memory
+  - fMRI
+  - Human Connectome Project
+  - network neuroscience
+  - Neuromatch Academy

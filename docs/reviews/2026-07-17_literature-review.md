@@ -15,7 +15,7 @@ that survived verification are kept. Provenance is tagged per item:
 > **18 Jul pointer:** the evidence and numbers remain useful. "Pattern vs scalar" is an active
 > candidate finding, neither a settled headline nor discarded because of one framing comment. The
 > team will decide its weight from the method and robustness evidence; current options and next
-> actions live in the [project plan](../project-plan.md) and
+> actions live in the [project plan](../archive/2026-07-22_project-plan.md) and
 > [17 July minutes](../meetings/2026-07-17.md).
 >
 > **21 Jul update:** notebook 08 ([`../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb),

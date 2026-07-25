@@ -53,7 +53,7 @@
 > adaptive transitions from more segregated toward more integrated network organization provide
 > complementary information beyond static FC.
 
-**Provenance flags for the presentation (updated 21 Jul; [nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb) now reconciles Goutham's pipeline on `main`)**
+**Provenance flags for the presentation (updated 21 Jul; [nb09](../pipeline/04_goutham_pipeline_reconciliation.ipynb) now reconciles Goutham's pipeline on `main`)**
 
 At submission (20 Jul) three of the submitted numbers came from Goutham's Colab and were not
 reproducible from the repo. nb09 (21 Jul) runs his functions verbatim on our data layer and reconciles
@@ -124,7 +124,7 @@ them:
 | Closing rewritten, dropping **"complementary information beyond static FC"** | Overclaim: [nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb) shows reconfiguration does not clearly add over 0-back FC (nested ΔR² +0.034, under 2 sd) and a task-activation contrast predicts better (r ≈ 0.60). The ΔR² itself stays out of the abstract body (a robustness stat belongs in Results per the writing guide). |
 | Closing: added the limitation sentence (letter **G**), calibrated to "may" with no causal verdict | The submitted closing had no limitation; the design is observational and single-task. |
 
-*Segregation, reconciled ([nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb), 21 Jul):* the
+*Segregation, reconciled ([nb09](../pipeline/04_goutham_pipeline_reconciliation.ipynb), 21 Jul):* the
 draft keeps the submitted **−0.048** so it mirrors the sent text, but nb09 reproduces only the
 **direction** (segregation drops 0-back → 2-back, paired t p = 3.45e-05); the magnitude is ≈ −0.024 and
 the individual link is weak. For the presentation, report segregation qualitatively, not as −0.048.
@@ -168,7 +168,7 @@ the individual link is weak. For the presentation, report segregation qualitativ
 
 > **Superseded by the 20 Jul accepted version above.** Kept for the record. <u>Underlined</u> = added
 > in the merge; the rest was Valeria's prose. Rationale:
-> [`sandbox/jaime/docs/05_abstract_proposal.md`](../sandbox/jaime/docs/05_abstract_proposal.md).
+> [`manuscript/archive/2026-07-17_abstract-merge-rationale.md`](archive/2026-07-17_abstract-merge-rationale.md).
 >
 > ⚠️ One sentence in this version is now known to be wrong and should not be reused: *"The directional
 > scalar summaries we expected to carry the effect did not (r ≈ 0.04)"* generalises to a family what
@@ -231,7 +231,7 @@ whether these network properties **predict individual working-memory performance
 
 #### Open flags recorded with this snapshot
 
-See the [living project plan](../docs/project-plan.md#open-now) for current decisions.
+See the [archived project plan](../docs/archive/2026-07-22_project-plan.md#open-now) for current decisions.
 
 - **Objective 2 (resting-state / intrinsic organization):** the task dataset has no clean resting
   state. Decide whether to drop objective 2, reframe it as a caveat, or use a different loader.

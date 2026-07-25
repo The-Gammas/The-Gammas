@@ -1,3 +1,9 @@
+> **FROZEN RECORD — 17 July 2026.** Pre-submission material: the rationale for merging Valeria
+> Moraga's draft with the 17 Jul results draft into the abstract that was submitted on 20 Jul. Kept
+> unedited for its merge rationale and its three-tier authorship table; its scientific framing was
+> already superseded before submission (see the note directly below). Submitted text →
+> [`manuscript/abstract.md`](../abstract.md); current results → [`docs/final-report.md`](../../docs/final-report.md).
+
 # Abstract: merge proposal
 
 > **SUPERSEDED by nb08 (21 Jul).** The predictive signal is NOT specific to reconfiguration; a
@@ -5,7 +11,7 @@
 > is not a load-independent trait. The "pattern-versus-scalar dissociation" and "trait-general"
 > framing in the body below is refined or reversed by that re-check. The body is kept unchanged as the
 > historical pre-workshop record (its value is the merge rationale and the three-tier authorship
-> table). Headline notebook: [`08_activation_vs_reconfiguration.ipynb`](../08_activation_vs_reconfiguration.ipynb).
+> table). Headline notebook: [`08_activation_vs_reconfiguration.ipynb`](../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb).
 
 **Author:** Jaime Pineda · **Version:** v2 · **Date:** 2026-07-17 · **Status:** proposal for group
 review, not a team decision, and not a replacement for the shared Google Doc.
@@ -15,7 +21,7 @@ review, not a team decision, and not a replacement for the shared Google Doc.
 > Azman questioned whether "pattern vs scalar" communicates scientific meaning and suggested
 > considering external validation as the headline. This is feedback, not a veto; the team will retain,
 > refine or replace the framing according to the method and evidence. See the
-> [living plan](../../../docs/project-plan.md).
+> [living plan](../../docs/archive/2026-07-22_project-plan.md).
 
 **Question it answers:** can Valeria's corrected draft and the 17 Jul results draft be merged into one
 abstract that meets NMA's required structure inside the word limit?
@@ -37,14 +43,14 @@ at 246 words.
 
 | Source | What it contributed |
 |---|---|
-| [`sandbox/valeria/Abstract_v1.pdf`](../../valeria/Abstract_v1.pdf) (Valeria Moraga, 17 Jul, via Discord) | The corrected prose, the neutral register, the methods sentences, the trait caveat, and the bibliography. Her §3 opener is the seed of **A**, and her closing question of §3 is **B** almost verbatim |
-| [`manuscript/abstract.md`](../../../manuscript/abstract.md), current proposal, 17 Jul | The results, the numbers, and the difference-score mechanism |
-| [`04_goutham_pipeline_on_B.ipynb`](../04_goutham_pipeline_on_B.ipynb) | Every number below. Goutham's FC pipeline on dataset B, with one p-value detail noted in the notebook |
-| NMA [`projects/docs/project_guidance.md`](../../../../../../official/course-content/nma_course_content/projects/docs/project_guidance.md) and [`TrainIllusionDataProject.ipynb`](../../../../../../official/course-content/nma_course_content/projects/modelingsteps/TrainIllusionDataProject.ipynb) Step 10 | The **ABC…G** structure, which is canonical, and the reason C and G are now present |
-| [`manuscript/writing-guide.md`](../../../manuscript/writing-guide.md) | The 150 to 250 word limit, no citations in the body, tense and flow rules |
-| The 10 Jul snapshot in [`manuscript/abstract.md`](../../../manuscript/abstract.md) | The team's **original** segregation and integration framing, which is what makes C honest |
+| [`sandbox/valeria/Abstract_v1.pdf`](../../sandbox/valeria/Abstract_v1.pdf) (Valeria Moraga, 17 Jul, via Discord) | The corrected prose, the neutral register, the methods sentences, the trait caveat, and the bibliography. Her §3 opener is the seed of **A**, and her closing question of §3 is **B** almost verbatim |
+| [`manuscript/abstract.md`](../abstract.md), current proposal, 17 Jul | The results, the numbers, and the difference-score mechanism |
+| [`04_goutham_pipeline_on_B.ipynb`](../../sandbox/jaime/04_goutham_pipeline_on_B.ipynb) | Every number below. Goutham's FC pipeline on dataset B, with one p-value detail noted in the notebook |
+| NMA [`projects/docs/project_guidance.md`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/docs/project_guidance.md) and [`TrainIllusionDataProject.ipynb`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/modelingsteps/TrainIllusionDataProject.ipynb) Step 10 | The **ABC…G** structure, which is canonical, and the reason C and G are now present |
+| [`manuscript/writing-guide.md`](../writing-guide.md) | The 150 to 250 word limit, no citations in the body, tense and flow rules |
+| The 10 Jul snapshot in [`manuscript/abstract.md`](../abstract.md) | The team's **original** segregation and integration framing, which is what makes C honest |
 
-Bibliography is **not duplicated here**, see [`manuscript/references.md`](../../../manuscript/references.md).
+Bibliography is **not duplicated here**, see [`manuscript/references.md`](../references.md).
 Valeria's refs 6 (Calder 2026) and 7 (Finc 2020) were folded into the team bibliography on 17 July.
 Finc is close enough to our topic that it still deserves a full team read before the abstract lock.
 
@@ -167,7 +173,7 @@ r ≈ 0.22 to 0.24). Those belong in Results. Every number that survived changes
 1. **N discrepancy, resolved after this draft.** The current MVP uses B (336 analytic participants)
    for the primary analysis and A (100 participants) for external validation; the cohorts are not
    merged. Formal team confirmation remains part of Monday's method lock. See
-   [`docs/project-plan.md`](../../../docs/project-plan.md).
+   [`docs/project-plan.md`](../../docs/archive/2026-07-22_project-plan.md).
 2. **The last sentence is the most attackable.** Claiming scalar reorganisation indices may be too
    unreliable for individual prediction is a real claim about metrics the field uses. The hedge is
    kept and the test that would settle it is named. **Goutham should sign it off**, this is his side

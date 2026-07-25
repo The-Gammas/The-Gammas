@@ -6,7 +6,7 @@ gitignored in both repos — only this document travels. Read top to bottom: it 
 
 > **One idea to hold:** **4 folders + 1 atlas = 2 cohorts, not 4.** Cohort A is one folder;
 > cohort B is one loader (`load_hcp`) that unpacks into 3 folders + an atlas. B is the current
-> primary analysis cohort; A is the independent external-validation cohort. Everything is an
+> primary analysis cohort; A is the identity-disjoint transfer cohort, inside the same HCP study. Everything is an
 > official NMA/OSF download; the only local convention is renaming B's task folder to
 > `hcp_task_339` so it can coexist with A's `hcp_task/`.
 
@@ -29,7 +29,7 @@ gitignored in both repos — only this document travels. Read top to bottom: it 
 Both are NMA-curated HCP subsets with the **same** task, parcellation and network logic. They are
 **different cohorts** (see §7), packaged differently, and reached by **different official loaders**.
 
-| | **Cohort A · external validation** | **Cohort B · primary MVP** |
+| | **Cohort A · identity-disjoint transfer** | **Cohort B · primary MVP** |
 |---|---|---|
 | Official loader | [`load_hcp_task_with_behaviour`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) | [`load_hcp`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp.ipynb) |
 | Subjects | 100 | 339 (**336 analytic**, see §6) |
@@ -52,7 +52,7 @@ Both are NMA-curated HCP subsets with the **same** task, parcellation and networ
 
 ```text
 data/                                        ≈9.1 GB · all gitignored (except data/README.md + this doc)
-├── A_load_hcp_task_with_behaviour/          Cohort A · external validation
+├── A_load_hcp_task_with_behaviour/          Cohort A · identity-disjoint transfer
 │   └── hcp_task/            1.1 GB            task time series + EVs + per-subject Stats.txt
 ├── B_load_hcp/                              Cohort B · primary MVP  (8.1 GB)
 │   ├── hcp_task_339/        3.7 GB            task time series (timeseries/) + EVs (EVs/), split apart
@@ -63,7 +63,7 @@ data/                                        ≈9.1 GB · all gitignored (except
 └── README.md
 ```
 
-Folders are grouped by loader (`A_…/`, `B_…/`); [`datasets.py`](../sandbox/jaime/datasets.py) resolves
+Folders are grouped by loader (`A_…/`, `B_…/`); [`datasets.py`](../gammas/datasets.py) resolves
 this grouped layout **or** a legacy flat one automatically. Leaf-folder names (`hcp_task/`,
 `hcp_task_339/`, …) are never changed.
 
@@ -107,7 +107,16 @@ Say **when** each condition happens. Whitespace, **3 columns = onset(s) · durat
 | **Block / condition** | `0bk_{body,faces,places,tools}`, `2bk_…` | 1 row/run · a **27.5 s block** | **the 0/2-back frame split** — pool the 4 categories → `COND_0BACK` / `COND_2BACK` |
 | **Trial outcome** | `0bk_{cor,err,nlr}`, `2bk_…`, `all_bk_{cor,err}` | per-trial · **2.5 s** each | correct / error / no-response; trial-level modelling only, **not** our split |
 
-`condition_frames` converts onset/duration → frame indices via `floor(onset/TR)` / `ceil(dur/TR)`.
+`condition_frames` converts onset/duration → frame indices via `floor((onset + delay)/TR)` / `ceil(dur/TR)`.
+
+**`delay` — the haemodynamic shift (seconds).** `condition_frames` and `condition_timeseries` take a
+`delay` that moves every block forward before it is mapped to frames: BOLD peaks ~4–6 s after the
+stimulus, so the raw onsets index frames the haemodynamic response has not reached yet. **`delay=4.0`
+is mandatory to reproduce the canonical result; with `0.0` the same pipeline gives r = 0.152** (against
+r = 0.366). Nothing raises — the number just changes, which is why it is documented here. It is now the
+package default (`gammas.preprocessing.HRF_DELAY = 4.0`), so callers that pass nothing get the canonical
+recipe. The shift moves the start index only, not the block length: frame counts are unchanged (156 per
+run, 312 concatenated). Full provenance → [`final-report.md`](final-report.md) §7.
 
 #### `Sync.txt` — scanner sync offset
 
@@ -165,7 +174,7 @@ hcp_task/
 > inconsistent** (a known HCP WM issue), so hit/false-alarm — and therefore d′ — are unreliable on A.
 > Use `Median ACC` (→ `acc_2bk`). For d′, use **B's `wm.csv`** (§4.3), whose target fields are clean.
 
-Parsed by [`_parse_stats`](../sandbox/jaime/preprocessing.py) → `behaviour_table` averages the 4
+Parsed by [`_parse_stats`](../gammas/preprocessing.py) → `behaviour_table` averages the 4
 categories × 2 runs into `acc_0bk`, `acc_2bk`, `rt_0bk`, `rt_2bk`.
 
 ---
@@ -321,7 +330,7 @@ analysis.
 > across A∪B), verified by mapping A's real IDs against B's `orig_ids.txt`. Pooling A∪B would add only
 > ~65 subjects over B while forcing two heterogeneous pipelines and deduplicating the overlap to avoid
 > leakage — so **B alone is the clean primary training cohort**. A remains useful as a separate
-> external-validation cohort: train on the 301 B-only participants and test on all 100 A participants,
+> identity-disjoint transfer cohort within the same HCP study: train on the 301 B-only participants and test on all 100 A participants,
 > as implemented in [`sandbox/jaime/05`](../sandbox/jaime/05_dataset_A_external_validation.ipynb).
 > Overlap analysis: [`sandbox/jaime/03` §6](../sandbox/jaime/03_dataset_comparison.ipynb). Original
 > A/B/C costing: [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb).
@@ -346,4 +355,4 @@ analysis.
 | **myelin** | per-ROI T1w/T2w ratio (3rd column of `regions.npy`); structural, not a target. |
 | **`.npy` / `.npz`** | NumPy binary array / zip of named arrays. Load with `np.load`. |
 
-**Sources:** [project plan](project-plan.md) · [official fMRI guide](https://compneuro.neuromatch.io/projects/fMRI/README.html) · [10 Jul meeting](meetings/2026-07-10.md) · verified against the on-disk data 15 Jul 2026.
+**Sources:** [project plan](archive/2026-07-22_project-plan.md) · [official fMRI guide](https://compneuro.neuromatch.io/projects/fMRI/README.html) · [10 Jul meeting](meetings/2026-07-10.md) · verified against the on-disk data 15 Jul 2026.

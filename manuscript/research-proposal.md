@@ -2,15 +2,15 @@
 
 > **Status:** Proposal for team discussion; **not an accepted project decision**.
 > **18 Jul pointer:** the proposal remains the attributable source of the original hypothesis, but
-> implementation and results have moved beyond it. Use the [living project plan](../docs/project-plan.md)
-> for the current cohorts, tested method and open decisions.
+> implementation and results have moved beyond it. Use the [final report](../docs/final-report.md)
+> for the cohorts, the tested method and the open threads.
 >
 > **21 Jul pointer:** the abstract was submitted 20 Jul (predictive hypothesis primary). A follow-up
 > test ([nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb)) found that load
 > reconfiguration does **not** clearly add over single-condition connectivity, and that a 360-region
 > task-activation contrast predicts more strongly (r ≈ 0.60) than the 78-feature network FC summary
 > under the current unmatched comparison. A separate
-> replication ([nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)) reproduced the
+> replication ([`pipeline/04`](../pipeline/04_goutham_pipeline_reconciliation.ipynb)) reproduced the
 > group-level direction of system segregation (it drops 0-back → 2-back) but not the −0.048 magnitude
 > (≈ −0.024) nor a clear individual-difference link. This affects Step 4's predictive extension and the
 > framing, not the proposal's attribution. The consolidated evidence and recommended presentation
@@ -18,7 +18,7 @@
 > remains a proposal pending team approval.
 >
 > **Source contribution:** Valeria Moraga, *Research Question Development*, received via Discord
-> ([source PDF](../sandbox/valeria/Research%20Question%20Development.pdf) ·
+> ([source PDF](../sandbox/valeria/research-question-development.pdf) ·
 > [repository transcription](../sandbox/valeria/research-question-development.md)).
 >
 > **Editorial scope:** This document condenses Valeria's analysis into the
@@ -27,7 +27,7 @@
 > The source files remain unchanged and are the authoritative record of her contribution.
 
 This synthesis gives the team a compact object to review. Statements below describe **proposed**
-questions, hypotheses and methods unless the [living project plan](../docs/project-plan.md) records
+questions, hypotheses and methods unless the [final report](../docs/final-report.md) records
 them as accepted decisions.
 
 ## Step 1 — Phenomenon and research question
@@ -249,7 +249,7 @@ Valeria's proposal can be reduced to the following reviewable core:
 | Covariates | Motion and other justified variables when valid and available | Open |
 | Resting-state objective | Not required by this task-focused proposal | Open in the living project plan |
 
-Accepted decisions should move to the [living project plan](../docs/project-plan.md) and dated meeting
+Accepted decisions should move to the [living project plan](../docs/archive/2026-07-22_project-plan.md) and dated meeting
 notes. Until then, this file remains a structured proposal rather than the project protocol.
 
 ## Provenance and attribution
@@ -257,7 +257,7 @@ notes. Until then, this file remains a structured proposal rather than the proje
 The underlying research framing, literature synthesis, candidate ingredients, mathematical
 hypotheses and project-improvement recommendations were contributed by **Valeria Moraga** in
 *Research Question Development*. This document is an editorial condensation for team review; it
-does not replace or modify her [original PDF](../sandbox/valeria/Research%20Question%20Development.pdf)
+does not replace or modify her [original PDF](../sandbox/valeria/research-question-development.pdf)
 or [repository transcription](../sandbox/valeria/research-question-development.md). Scientific
 qualifications are traceable through the [annotated bibliography](references.md). Subsequent team
 decisions should be attributed through meeting notes and the living project plan.

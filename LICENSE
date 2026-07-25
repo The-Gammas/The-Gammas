@@ -1,0 +1,47 @@
+MIT License
+
+Copyright (c) 2026 The Gammas — Neuromatch Academy CompNeuro 2026 project team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+DOCUMENTATION, TEXT AND FIGURES — CC BY 4.0
+
+The MIT terms above cover the code: the `gammas/` package, `tests/`, the code
+cells of the notebooks in `pipeline/` and `sandbox/`, and any script in this
+repository.
+
+Everything else authored by the team is licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0):
+Markdown documentation, meeting minutes, the manuscript text, the presenter
+guide, the slide deck and the figures — including figure output embedded in
+notebooks.
+
+  https://creativecommons.org/licenses/by/4.0/
+
+Attribution under either license: "The Gammas — Neuromatch Academy CompNeuro
+2026", author list in AUTHORS.md, source https://github.com/The-Gammas/The-Gammas.
+
+Not covered by either license:
+
+- HCP data. No data is stored in this repository. The Human Connectome Project
+  N-back data remain under their own Data Use Terms; see data/README.md.
+- Third-party material referenced or cited (publications, external figures)
+  remains under its own terms.

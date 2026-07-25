@@ -3,10 +3,11 @@ data/*
 !data/README.md
 **/hcp_task/
 **/hcp_task.tgz
+# A personal copy of the download under sandbox/<name>/data/ is still a data blob.
+sandbox/*/data/
 
 # Personal staging outputs remain local until the team agrees how to share them
-sandbox/*/artifacts_staging/*
-!sandbox/*/artifacts_staging/README.md
+sandbox/*/artifacts_staging/
 
 # Python / Jupyter
 __pycache__/
@@ -43,11 +44,17 @@ pipeline/*.png
 **/_view_*.png
 
 # Standalone interactive 3D brain HTML exports are heavy viewer artifacts
-# (nb09 regenerates these in-notebook). Keep any kept copy local, out of git.
+# (pipeline/04 regenerates these in-notebook). Keep any kept copy local, out of git.
 sandbox/goutham/*.html
+
+# Third-party papers under docs/reviews/ are local reading copies: cite them by DOI
+# or PMC id in manuscript/references.md instead of redistributing the PDF.
+docs/reviews/*.pdf
 
 # The submitted abstract PDF is kept local only (it carries author emails on its
 # title page); manuscript/abstract.md is the versioned source of the text.
+# Note: this pattern does NOT reach subfolders — manuscript/slides/*.pdf stays
+# versioned on purpose (the presented deck, verified free of emails and IDs).
 manuscript/*.pdf
 
 # Local scratch / temp (throwaway files, chat figures) — never commit.

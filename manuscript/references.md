@@ -2,9 +2,10 @@
 
 Running bibliography, collected by the team. Annotations note why each is relevant.
 
-> **Status (18 Jul):** evidence record, not a task tracker. The verified numerical findings remain
-> valid; the final project framing is still under team review. Current decisions live in the
-> [project plan](../docs/project-plan.md) and [17 July minutes](../docs/meetings/2026-07-17.md).
+> **Status:** evidence record, not a task tracker. The project closed at W3D5 (24 Jul 2026); the
+> settled framing, the canonical numbers and the open threads are in
+> [`docs/final-report.md`](../docs/final-report.md). The dated decision trail is
+> [`docs/meetings/`](../docs/meetings/) and [`docs/archive/`](../docs/archive/).
 
 ## Core anchors
 
@@ -24,7 +25,7 @@ Running bibliography, collected by the team. Annotations note why each is releva
 - **Wang R. et al., Segregation, integration, and balance of large-scale resting brain networks
   configure different cognitive abilities** — *PNAS* 118(23), 2021.
   Balance of segregation/integration relates to cognitive ability. *(Resting-state — out of the
-  current MVP; see the [living project plan](../docs/project-plan.md#confirmed-direction).)*
+  current MVP; see the [archived project plan](../docs/archive/2026-07-22_project-plan.md#confirmed-direction).)*
   https://doi.org/10.1073/pnas.2022288118
 - **Chan M.Y., Park D.C., Savalia N.K., Petersen S.E., Wig G.S., Decreased segregation of brain
   systems across the healthy adult lifespan** — *PNAS* 111(46):E4997–E5006, 2014.

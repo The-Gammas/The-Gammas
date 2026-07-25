@@ -1,3 +1,9 @@
+> **FROZEN RECORD — 10 July 2026.** The proof-of-concept described below is **Goutham Arcod's own
+> contribution**, and this write-up of it is kept exactly as it was: no number, wording, framing or
+> attribution has been altered in archiving it. It is preserved because it is the origin of the
+> method the project went on to test. For what the project actually concluded, go to
+> [`docs/final-report.md`](../final-report.md). Links inside the body point at pre-archive paths.
+
 # Prior internal work
 
 Explorations by the team that the project builds on. Kept as technical notes: what was done,

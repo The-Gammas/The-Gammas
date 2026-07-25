@@ -1,3 +1,9 @@
+> **FROZEN RECORD — 22 July 2026.** This was the living project plan; it stopped being current when
+> the project closed at W3D5 on 24 July 2026. The body below is kept unedited as the decision trail
+> that led to the presentation, including the scope freeze at `pipeline/02`. For results, conclusions
+> and current status go to [`docs/final-report.md`](../final-report.md). Links inside the body point
+> at pre-archive paths and are not maintained.
+
 # Living project plan
 
 **Last reviewed:** 22 July 2026

@@ -14,6 +14,12 @@ name: CI
 #      experiment — even a broken draft — in their own folder.
 # Revisit (add tests, linting) only when a real, reviewed analysis lands in
 # pipeline/ and the team asks for it.
+#
+# AMENDMENT (2026-07-25): that revisit condition is met. pipeline/02 is the
+# canonical evidence path and the shared layer it imports now lives in gammas/
+# with a unittest suite, so a third guard installs four packages and runs
+# tests/. It stays data-free (no HCP download) and takes seconds. Still no
+# linting.
 
 on:
   push:
@@ -74,3 +80,7 @@ jobs:
           print(f'checked {len(files)} pipeline notebook(s)')
           sys.exit(1 if bad else 0)
           PY
+
+      - name: Unit tests   # gammas/ invariants; no HCP data needed
+        run: |
+          pip install numpy scipy scikit-learn pandas && python -m unittest discover -s tests

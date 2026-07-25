@@ -12,9 +12,9 @@ personal taste.
 
 Canonical NMA sources, all in the course clone:
 
-- [`projects/docs/project_guidance.md`](../../../../official/course-content/nma_course_content/projects/docs/project_guidance.md)
+- [`projects/docs/project_guidance.md`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/docs/project_guidance.md)
   — Abstract Writing Day (W3D1) and Final Presentations (W3D5)
-- [`projects/modelingsteps/TrainIllusionDataProject.ipynb`](../../../../official/course-content/nma_course_content/projects/modelingsteps/TrainIllusionDataProject.ipynb)
+- [`projects/modelingsteps/TrainIllusionDataProject.ipynb`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/modelingsteps/TrainIllusionDataProject.ipynb)
   — Step 10 "Summary": the worked ABC…G example for a **data** project (ours is a data project)
 - [Ten simple rules for structuring papers](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005619)
   (Mensh & Kording 2017) — required skim, **especially Figure 1**
@@ -167,7 +167,7 @@ says nothing about this; it is the gap that matters most given how we draft.
 - [ ] Claims calibrated to n and to a single dataset — "may", not a verdict. No causal language
 - [ ] Every AI-assisted description of a source checked against the original for patchwork paraphrase
 - [ ] Sample size and dataset match the canonical decision in
-      [`../docs/project-plan.md`](../docs/project-plan.md)
+      [`../docs/final-report.md`](../docs/final-report.md) §3
 
 ---
 
