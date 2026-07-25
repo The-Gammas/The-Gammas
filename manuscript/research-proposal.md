@@ -1,24 +1,12 @@
 # Research proposal — synthesis for team review
 
-> **Status:** Proposal for team discussion; **not an accepted project decision**.
-> **18 Jul pointer:** the proposal remains the attributable source of the original hypothesis, but
-> implementation and results have moved beyond it. Use the [living project plan](../docs/project-plan.md)
-> for the current cohorts, tested method and open decisions.
->
-> **21 Jul pointer:** the abstract was submitted 20 Jul (predictive hypothesis primary). A follow-up
-> test ([nb08](../sandbox/jaime/08_activation_vs_reconfiguration.ipynb)) found that load
-> reconfiguration does **not** clearly add over single-condition connectivity, and that a 360-region
-> task-activation contrast predicts more strongly (r ≈ 0.60) than the 78-feature network FC summary
-> under the current unmatched comparison. A separate
-> replication ([nb09](../sandbox/jaime/09_goutham_pipeline_replication.ipynb)) reproduced the
-> group-level direction of system segregation (it drops 0-back → 2-back) but not the −0.048 magnitude
-> (≈ −0.024) nor a clear individual-difference link. This affects Step 4's predictive extension and the
-> framing, not the proposal's attribution. The consolidated evidence and recommended presentation
-> narrative are in [`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb); the narrative
-> remains a proposal pending team approval.
+> **Status:** proposal for team discussion, **not an accepted project decision**. It stays the
+> attributable source of the original hypothesis; the cohorts, the tested method, the settled
+> framing and the open threads are in the [final report](../docs/final-report.md), which
+> supersedes Step 4's predictive extension without touching the proposal's attribution.
 >
 > **Source contribution:** Valeria Moraga, *Research Question Development*, received via Discord
-> ([source PDF](../sandbox/valeria/Research%20Question%20Development.pdf) ·
+> ([source PDF](../sandbox/valeria/research-question-development.pdf) ·
 > [repository transcription](../sandbox/valeria/research-question-development.md)).
 >
 > **Editorial scope:** This document condenses Valeria's analysis into the
@@ -27,7 +15,7 @@
 > The source files remain unchanged and are the authoritative record of her contribution.
 
 This synthesis gives the team a compact object to review. Statements below describe **proposed**
-questions, hypotheses and methods unless the [living project plan](../docs/project-plan.md) records
+questions, hypotheses and methods unless the [final report](../docs/final-report.md) records
 them as accepted decisions.
 
 ## Step 1 — Phenomenon and research question
@@ -218,46 +206,12 @@ Participants used for evaluation must be absent from fitting, feature selection,
 confound estimation. Out-of-sample $R^2$, permutation testing and uncertainty across folds may be
 reported alongside MAE.
 
-## Proposed minimal viable project
-
-Valeria's proposal can be reduced to the following reviewable core:
-
-1. one predefined cortical parcellation;
-2. one primary task-FC estimator with its coactivation limitation or correction stated;
-3. one primary definition of reconfiguration;
-4. no more than one prespecified integration and one segregation measure;
-5. one validated behavioural outcome;
-6. paired 0-back/2-back comparisons;
-7. prespecified brain–behaviour tests;
-8. held-out prediction only if the full leak-free pipeline is implemented;
-9. network-specific and dynamic analyses treated as extensions.
-
-## Decisions required from the team
-
-| Decision | Proposal recorded here | Current status |
-|---|---|---|
-| Scientific framing | Replication and focused extension | Proposed |
-| Primary wording | Association; reserve prediction for held-out evaluation | Proposed; prediction remains the project north star |
-| Dataset and cohort | Use the selected HCP subset after completeness QC | See living project plan |
-| Behavioural target | Validated d′ if defensible; otherwise `acc_2bk` | Open |
-| FC estimator | One prespecified task-FC method | Open |
-| Task-evoked response | Model, regress or declare blockwise FC exploratory | Open |
-| Primary reconfiguration | Matrix distance or change in one graph metric | Open |
-| Graph representation | Weighted and undirected candidate | Open; signed-weight policy required |
-| Primary metrics | System segregation; global efficiency candidate | Open |
-| Network-specific analysis | Small literature-selected set of network pairs | Proposed secondary analysis |
-| Covariates | Motion and other justified variables when valid and available | Open |
-| Resting-state objective | Not required by this task-focused proposal | Open in the living project plan |
-
-Accepted decisions should move to the [living project plan](../docs/project-plan.md) and dated meeting
-notes. Until then, this file remains a structured proposal rather than the project protocol.
-
 ## Provenance and attribution
 
 The underlying research framing, literature synthesis, candidate ingredients, mathematical
 hypotheses and project-improvement recommendations were contributed by **Valeria Moraga** in
 *Research Question Development*. This document is an editorial condensation for team review; it
-does not replace or modify her [original PDF](../sandbox/valeria/Research%20Question%20Development.pdf)
+does not replace or modify her [original PDF](../sandbox/valeria/research-question-development.pdf)
 or [repository transcription](../sandbox/valeria/research-question-development.md). Scientific
 qualifications are traceable through the [annotated bibliography](references.md). Subsequent team
 decisions should be attributed through meeting notes and the living project plan.

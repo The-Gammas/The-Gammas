@@ -1,19 +1,8 @@
 name: CI
 
-# Minimal repo-hygiene check for a student data-science repo.
-#
-# DECISION (2026-07-13, registered here on purpose): keep CI to exactly two
-# cheap, high-signal guards that only fail on a real problem — deliberately NO
-# style linting (avoids red-X noise for Git beginners) and NO dependency-install
-# or data-dependent tests (would add complexity and need the gitignored ~GB HCP
-# download). The two guards:
-#   1. block data blobs / oversized files from entering Git — the #1 risk on a
-#      public repo shared by the team (checked repo-wide), and
-#   2. confirm .py and .ipynb files in pipeline/ (the protected, shared area)
-#      parse. sandbox/ is intentionally NOT validated, so anyone can keep any
-#      experiment — even a broken draft — in their own folder.
-# Revisit (add tests, linting) only when a real, reviewed analysis lands in
-# pipeline/ and the team asks for it.
+# Three cheap guards that only fail on a real problem. Deliberately NO style linting: red X's on
+# formatting would teach Git beginners to ignore CI. Deliberately no data-dependent test either —
+# reproducing the result needs the gitignored ~9 GB, so that check lives in pipeline/02 cell 10.
 
 on:
   push:
@@ -53,24 +42,22 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Validate pipeline/ files   # sandbox/ stays free for experiments
+      - name: pipeline/ notebooks parse   # sandbox/ stays free for experiments
         run: |
-          pyfiles=$(git ls-files pipeline/ | grep -E '\.py$' || true)
-          if [ -n "$pyfiles" ]; then
-            python -m py_compile $pyfiles && echo "py_compile OK: $pyfiles"
-          fi
           python -m pip install --quiet nbformat
           python - <<'PY'
           import glob, sys, nbformat
-          files = set(glob.glob('pipeline/**/*.ipynb', recursive=True)) | set(glob.glob('pipeline/*.ipynb'))
           bad = 0
-          for f in sorted(files):
+          for f in sorted(glob.glob('pipeline/**/*.ipynb', recursive=True)):
               try:
                   nbformat.read(f, as_version=4)
                   print('ok', f)
               except Exception as e:
                   print('INVALID', f, e)
                   bad += 1
-          print(f'checked {len(files)} pipeline notebook(s)')
           sys.exit(1 if bad else 0)
           PY
+
+      - name: Unit tests   # gammas/ invariants; no HCP data needed
+        run: |
+          pip install numpy scipy scikit-learn pandas && python -m unittest discover -s tests

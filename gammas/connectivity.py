@@ -1,7 +1,7 @@
-"""Functional-connectivity representations (Jaime's sandbox).
+"""Functional-connectivity representations.
 
 **Category: FC representations.** Turns condition-restricted BOLD into the two feature
-sets notebook ``06`` compares: the team's 78-dim within/between-network fingerprint and
+sets ``pipeline/03`` compares: the team's 78-dim within/between-network fingerprint and
 off-diagonal log-Euclidean tangent edges. Downstream of :mod:`preprocessing`, consumed by
 the modelling notebooks alongside :mod:`evaluation`.
 
@@ -38,7 +38,10 @@ def subject_covariances(timeseries: list[np.ndarray]) -> np.ndarray:
 
     Shrinkage is required because each condition has fewer frames (312) than ROIs (360),
     so the sample covariance is singular. Inputs follow the project's ``(n_roi, n_frames)``
-    convention; eigenvalues are floored so the matrix logarithm stays defined.
+    convention. The identity spectral map on the last line also floors eigenvalues, which is
+    redundant for keeping the logarithm defined — :func:`matrix_logarithms` floors again. It is
+    kept because dropping it shifts values at the ~1e-16 level, which would invalidate the
+    cached benchmark in ``pipeline/03`` and the published r = 0.3664.
     """
     covariances = np.stack([
         LedoitWolf(assume_centered=False).fit(np.asarray(x, dtype=float).T).covariance_
@@ -113,8 +116,15 @@ class TangentCentering(BaseEstimator, TransformerMixin):
 def network_fingerprint(correlation: np.ndarray, network_labels: np.ndarray) -> np.ndarray:
     """Within/between-network correlation means, ``(78,)`` for 12 networks.
 
-    Reimplements the audited baseline's ``get_brain_profile``: within-network means exclude
-    the diagonal, network pairs follow the upper triangle of the 12x12 network grid.
+    **Goutham Arcod's method.** Reimplements his ``get_brain_profile`` from
+    `sandbox/goutham/per_analysis.ipynb` (commit ``5071ccd``): within-network means exclude the
+    diagonal, network pairs follow the upper triangle of the 12x12 network grid. The feature
+    layout is his; only the vectorisation is ours, and the 78-feature count is asserted in
+    ``tests/test_gammas.py``.
+
+    Kept in this module rather than in :mod:`gammas.contributed` because eight call sites in
+    `pipeline/02` and `pipeline/03` import it from here. See :mod:`gammas.contributed` for the
+    full map of contributed methods and the attribution rule.
     """
     _, membership = np.unique(network_labels, return_inverse=True)
     n_networks = membership.max() + 1

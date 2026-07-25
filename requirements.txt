@@ -7,7 +7,7 @@
 #   python 3.12 · numpy 2.5 · pandas 3.0 · matplotlib 3.11 · scipy 1.18 ·
 #   scikit-learn 1.9 · seaborn 0.13 · nilearn 0.13 · plotly 6.8 · jupyterlab 4.6
 
-# --- core: used by the current sandbox notebooks ---
+# --- core: used by gammas/ and by every notebook ---
 numpy>=1.26
 pandas>=2.1
 matplotlib>=3.7
@@ -17,9 +17,8 @@ jupyterlab>=4.0
 requests>=2.31
 nilearn>=0.10
 
-# --- pipeline (steps 3-6): functional connectivity, graphs, metrics, prediction ---
+# --- analysis: functional connectivity, metrics, prediction, figures ---
 scipy>=1.11
 scikit-learn>=1.3
-networkx>=3.1
 seaborn>=0.13
-plotly>=5.20        # interactive 3D brain maps (sandbox/jaime/09)
+plotly>=5.20        # interactive 3D brain map (pipeline/04)

@@ -7,26 +7,10 @@ that survived verification are kept. Provenance is tagged per item:
 - **[verified]** — confirmed by ≥2/3 adversarial verifier votes on the source quote (17 Jul pass).
 - **[canonical]** — well-established methods reference from the manual pass; standard in the field, not independently re-voted.
 
-> **Status:** the decisions below are implemented in [`../../manuscript/abstract.md`](../../manuscript/abstract.md)
-> and [`../../sandbox/jaime/04_goutham_pipeline_on_B.ipynb`](../../sandbox/jaime/04_goutham_pipeline_on_B.ipynb)
-> (post-audit pattern-vs-scalar reframe). This file is the **evidence base**; the citation list lives in
-> [`../../manuscript/references.md`](../../manuscript/references.md).
->
-> **18 Jul pointer:** the evidence and numbers remain useful. "Pattern vs scalar" is an active
-> candidate finding, neither a settled headline nor discarded because of one framing comment. The
-> team will decide its weight from the method and robustness evidence; current options and next
-> actions live in the [project plan](../project-plan.md) and
-> [17 July minutes](../meetings/2026-07-17.md).
->
-> **21 Jul update:** notebook 08 ([`../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb`](../../sandbox/jaime/08_activation_vs_reconfiguration.ipynb),
-> executed 21 Jul) refines pattern-vs-scalar as the headline. Reconfiguration does not clearly add
-> over single-condition 0-back FC (nested delta-R2 +0.034, sd 0.023, under 2 sd); a 360-region
-> task-activation contrast predicts more strongly than the 78-feature network FC summary (r ~ 0.60
-> pooled, ~0.48 held-out people and runs), while adding FC shows no clear gain (delta-R2 -0.003).
-> Because the representations are unmatched, this does not establish biological equivalence or
-> FC-specific predictive value. Reconfiguration repeated-CV r ~ 0.366 still stands; the 17 Jul
-> analysis below is kept unchanged as its original context. The consolidated presentation evidence
-> is in [`../../pipeline/02_canonical_analysis_and_slides.ipynb`](../../pipeline/02_canonical_analysis_and_slides.ipynb).
+> **Status:** evidence base only. The settled framing, the canonical numbers and the open threads
+> are in [`../docs/final-report.md`](../docs/final-report.md); the citation list is
+> [`references.md`](references.md). The 17 Jul analysis below is kept unchanged as its original
+> context: nb08 (21 Jul) later refined pattern-vs-scalar, and the final report §6 settled the framing.
 
 ---
 

@@ -4,15 +4,15 @@ This directory documents where local data live; its contents are ignored by Git.
 
 > 🗺️ **Full data map, folder structures, object shapes and glossary → [`docs/data-dictionary.md`](../docs/data-dictionary.md).**
 > Read it first: the two group folders here are **2 cohorts** (A + B), with different internal
-> structures. **B is the current primary analysis cohort; A is external validation.**
+> structures. **B is the primary analysis cohort; A is the identity-disjoint transfer cohort, inside the same HCP study.**
 
-Files are grouped by the NMA loader they come from (`A_…/`, `B_…/`); `sandbox/jaime/datasets.py`
+Files are grouped by the NMA loader they come from (`A_…/`, `B_…/`); `gammas/datasets.py`
 resolves this layout for you. Cohort A reads unchanged; cohort B always needs its two renames
 (see the table below). A flat layout works too — see step 3.
 
 ```text
 data/
-├── A_load_hcp_task_with_behaviour/          # Cohort A · external validation
+├── A_load_hcp_task_with_behaviour/          # Cohort A · identity-disjoint transfer
 │   └── hcp_task/                             #   regions.npy · subjects_list.txt · subjects/ (+ Stats.txt)
 ├── B_load_hcp/                              # Cohort B · primary MVP analysis
 │   ├── hcp_task_339/                         #   task time series + EVs (pseudo-IDs)
@@ -37,7 +37,7 @@ the notebook from locally):
 
 | Cohort | Current role | Loader (opens in Colab · pinned v3.0.2) | Where it writes | Move into `data/…` as |
 |---|---|---|---|---|
-| **A** | External validation | [`load_hcp_task_with_behaviour`](https://colab.research.google.com/github/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) | `hcp_task/` (in the working dir) | `A_load_hcp_task_with_behaviour/hcp_task/` |
+| **A** | Identity-disjoint transfer | [`load_hcp_task_with_behaviour`](https://colab.research.google.com/github/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) | `hcp_task/` (in the working dir) | `A_load_hcp_task_with_behaviour/hcp_task/` |
 | **B** | Primary MVP analysis | [`load_hcp`](https://colab.research.google.com/github/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp.ipynb) | `DATA/hcp_task/`, `DATA/hcp_rest/`, `DATA/hcp/` (extracted into a **`DATA/` subfolder**) **plus** `atlas.npz` (in the working-dir root) | `B_load_hcp/` as `DATA/hcp_task/`→**`hcp_task_339/`**, `DATA/hcp_rest/`→`hcp_rest/`, `DATA/hcp/`→`hcp/`, `atlas.npz`→**`hcp_atlas_339.npz`** |
 
 Only the **bold** names change (so B's task data and atlas don't collide with A's `hcp_task/`); `hcp_rest/`
@@ -53,7 +53,7 @@ the loaders resolve grouped **or** flat. B's two renames are still required even
 root, first confirm every artifact is in place:
 
 ```bash
-python -c "import sys; sys.path.insert(0,'sandbox/jaime'); import datasets as ds; \
+python -c "from gammas import datasets as ds; \
 a, b = ds.spec_a('data'), ds.spec_b('data'); \
 print('A  task:', a.task_dir.exists()); \
 print('B  task:', b.task_dir.exists(), 'rest:', b.rest_dir.exists(), 'behaviour:', b.behaviour.exists(), 'atlas:', b.atlas.exists())"
@@ -64,7 +64,7 @@ of a complete download. Then run the aggregate QC (subject counts, shapes, condi
 which raises a clear error if the download is incomplete:
 
 ```bash
-python -c "import sys; sys.path.insert(0,'sandbox/jaime'); import datasets as ds, evaluation as ev; \
+python -c "from gammas import datasets as ds, evaluation as ev; \
 print(ev.validate_dataset(ds.spec_b('data')))"   # or ds.spec_a('data')
 ```
 
@@ -74,20 +74,20 @@ For the narrated, side-by-side QC of both cohorts see
 
 ## Load it (shared A/B interface)
 
-Both cohorts sit behind **one** interface in [`sandbox/jaime/`](../sandbox/jaime/) — `datasets.py` (I/O)
+Both cohorts sit behind **one** interface in [`gammas/`](../gammas/) — `datasets.py` (I/O)
 → `preprocessing.py` (transforms) → `evaluation.py` (split + QC). Import them read-only; switch dataset by
 calling `spec_a` vs `spec_b` — nothing downstream branches on A vs B.
 
 ```python
-import os, sys
+import os
 from pathlib import Path
 
-sys.path.insert(0, "sandbox/jaime")           # the shared A/B layer (run from the repo root)
-import datasets as ds, preprocessing as pp, evaluation as ev
+# the shared A/B layer, importable from the repo root
+from gammas import datasets as ds, preprocessing as pp, evaluation as ev
 
 DATA = Path(os.environ.get("GAMMAS_DATA_DIR", "data"))
 
-spec = ds.spec_b(DATA)                         # primary MVP; use spec_a for external validation
+spec = ds.spec_b(DATA)                         # primary MVP; spec_a = identity-disjoint transfer cohort
 subjects = ds.load_subjects(spec)              # analytic cohort (A: 100 · B: 336)
 ts    = pp.condition_timeseries(spec, subjects[0], "2back")   # (360, 312) BOLD, both runs
 beh   = pp.behaviour_table(spec)               # per-subject target: acc_2bk, …
@@ -96,10 +96,9 @@ qc    = ev.validate_dataset(spec)              # aggregate QC (shapes, frames, c
 ```
 
 `condition_timeseries(..., runs=(0,))` returns a single 156-frame run (for split-half reliability); the
-default concatenates LR+RL to 312 frames. Working from your own `sandbox/<name>/` folder? The notebook
-template ([`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](../pipeline/00_NOTEBOOK_TEMPLATE.ipynb)) ships a setup cell
-that locates the repo root and this layer automatically, so its imports work from anywhere. Function-by-function
-reference: the module docstrings and [`sandbox/jaime/README.md`](../sandbox/jaime/README.md).
+default concatenates LR+RL to 312 frames. The setup snippet above locates the repo root by looking for
+the package, so it works from any folder depth. Function-by-function reference: the module docstrings
+and [`sandbox/jaime/README.md`](../sandbox/jaime/README.md).
 
 ---
 

@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: Please cite this repository as below. Contributor roles are in AUTHORS.md.
+title: >-
+  Adaptive Functional Network Reconfiguration for Predicting Individual
+  Working-Memory Performance (The Gammas, Neuromatch Academy CompNeuro 2026)
+type: software
+authors:
+  - given-names: Valeria
+    family-names: Moraga
+  - given-names: Kerem
+    family-names: Akyurt
+  - given-names: Goutham
+    family-names: Arcod
+  - given-names: Jaime Alonso
+    family-names: Pineda Moreno
+  - given-names: Arefeh
+    family-names: Lali Dehaghi
+repository-code: 'https://github.com/The-Gammas/The-Gammas'
+license:
+  - MIT
+  - CC-BY-4.0
+date-released: '2026-07-24'

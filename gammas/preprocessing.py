@@ -1,4 +1,4 @@
-"""Preprocessing: raw HCP loads -> analysis-ready objects (Jaime's sandbox).
+"""Preprocessing: raw HCP loads -> analysis-ready objects.
 
 **Category: preprocessing.** Turns the raw reads from :mod:`datasets` into the objects the
 FC and behaviour steps consume: condition-restricted BOLD, per-subject behaviour and
@@ -14,14 +14,19 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-import datasets as ds
+from . import datasets as ds
+
+# Haemodynamic shift applied when mapping stimulus onsets to BOLD frames. Load-bearing:
+# the canonical result (r = 0.366) needs 4.0; with 0.0 the same pipeline yields 0.152.
+# Provenance: pipeline/02 cell 8, pipeline/03 benchmark, docs/final-report.md.
+HRF_DELAY: float = 4.0
 
 
 # --------------------------------------------------------------------------- #
 # EV segmentation
 # --------------------------------------------------------------------------- #
 def condition_frames(spec: ds.DatasetSpec, subject: str, run: int, level: str,
-                     delay: float = 0.0) -> np.ndarray:
+                     delay: float = HRF_DELAY) -> np.ndarray:
     """Sorted, unique frame indices for a load level in one run.
 
     Reimplements the official loader's ``load_evs``: pools the 4 stimulus categories of
@@ -31,8 +36,10 @@ def condition_frames(spec: ds.DatasetSpec, subject: str, run: int, level: str,
 
     Args:
         level: ``"0back"`` or ``"2back"``.
-        delay: haemodynamic shift in seconds. Default ``0.0`` is the official timing;
-            notebook ``06`` uses ``4.0`` so windows track the BOLD response, not the stimulus.
+        delay: haemodynamic shift in seconds. Defaults to :data:`HRF_DELAY` (4.0), which
+            is load-bearing: ``delay=0.0`` is the raw stimulus timing and reproduces
+            r = 0.152 instead of the canonical r = 0.366. Pass 0.0 only to demonstrate
+            that effect deliberately.
     """
     if level not in ("0back", "2back"):
         raise ValueError(f'level must be "0back" or "2back", got {level!r}')
@@ -54,7 +61,7 @@ def condition_frames(spec: ds.DatasetSpec, subject: str, run: int, level: str,
 
 
 def condition_timeseries(spec: ds.DatasetSpec, subject: str, level: str,
-                         runs: tuple[int, ...] = (0, 1), delay: float = 0.0) -> np.ndarray:
+                         runs: tuple[int, ...] = (0, 1), delay: float = HRF_DELAY) -> np.ndarray:
     """BOLD restricted to one load level, ``(N_PARCELS, n_frames)``.
 
     The object step 3 (functional connectivity) consumes, one FC matrix per condition.
@@ -184,9 +191,10 @@ def signal_detection_table(spec: ds.DatasetSpec) -> pd.DataFrame:
              .reindex(index=subjects, columns=["0BK", "2BK"]))
     cr = (wm.pivot_table(index="Subject", columns="load", values="ACC_NONTARGET", aggfunc="mean")
             .reindex(index=subjects, columns=["0BK", "2BK"]))
-    # TODO(team): d' = z(hit) - z(fa) from these columns, once the extreme-rate correction is
-    # chosen (e.g. loglinear, or the 1/2N adjustment for hit==1 / fa==0). B-only: A cannot
-    # (its Stats.txt Target/Non-Target accuracies are internally inconsistent — HCP WM bug).
+    # Returns rates, not d'. The project computes d' = z(hit) - z(fa) in pipeline/02 cell 14
+    # with the 1/2N extreme-rate correction (clipping hit==1 and fa==0), which is the choice
+    # this TODO used to leave open. B-only: A's Stats.txt Target/Non-Target accuracies are
+    # internally inconsistent (HCP WM bug), so no clean d' exists for it.
     return pd.DataFrame({
         "subject": [str(s) for s in subjects],
         "hit_0bk": hit["0BK"].to_numpy(),

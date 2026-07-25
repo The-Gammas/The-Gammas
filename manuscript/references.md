@@ -2,9 +2,10 @@
 
 Running bibliography, collected by the team. Annotations note why each is relevant.
 
-> **Status (18 Jul):** evidence record, not a task tracker. The verified numerical findings remain
-> valid; the final project framing is still under team review. Current decisions live in the
-> [project plan](../docs/project-plan.md) and [17 July minutes](../docs/meetings/2026-07-17.md).
+> **Status:** evidence record, not a task tracker. The project closed at W3D5 (24 Jul 2026); the
+> settled framing, the canonical numbers and the open threads are in
+> [`docs/final-report.md`](../docs/final-report.md). The dated decision trail is
+> [`docs/meetings/`](../docs/meetings/) and [`docs/archive/`](../docs/archive/).
 
 ## Core anchors
 
@@ -21,11 +22,6 @@ Running bibliography, collected by the team. Annotations note why each is releva
 
 ## Segregation / integration framework
 
-- **Wang R. et al., Segregation, integration, and balance of large-scale resting brain networks
-  configure different cognitive abilities** — *PNAS* 118(23), 2021.
-  Balance of segregation/integration relates to cognitive ability. *(Resting-state — out of the
-  current MVP; see the [living project plan](../docs/project-plan.md#confirmed-direction).)*
-  https://doi.org/10.1073/pnas.2022288118
 - **Chan M.Y., Park D.C., Savalia N.K., Petersen S.E., Wig G.S., Decreased segregation of brain
   systems across the healthy adult lifespan** — *PNAS* 111(46):E4997–E5006, 2014.
   Origin of the graph-theoretic **system segregation** metric — a within/between-network edge-fraction
@@ -54,25 +50,6 @@ Running bibliography, collected by the team. Annotations note why each is releva
   better accuracy; in motor greater segregation predicted *worse* (more variable) responding. Cite for
   the segregation-vs-integration idea, not as an HCP 0→2-back predicts-performance template.
   https://doi.org/10.1523/JNEUROSCI.2965-15.2016
-- **Bassett & Sporns, Network neuroscience** — *Nature Neuroscience* 20(3):353–364, 2017.
-  Foundational framing of the brain as a complex network.
-- **Wig G.S., Segregated Systems of Human Brain Networks** — *Trends in Cognitive Sciences*
-  21(12):981–996, 2017.
-  Supports a network-level (rather than region-level) read of WM-related activity. Resting-state
-  system-segregation lineage (Chan 2014 → Calder 2026); the "segregation-maintenance" framing our
-  notebook borrows for the 0-back baseline is a **rest** concept, applied to a low-load **task**
-  condition only by analogy.
-- **Sporns O., Network attributes for segregation and integration in the human brain** —
-  *Current Opinion in Neurobiology* 23(2):162–171, 2013.
-  Defines the segregation/integration attributes our graph metrics (step 4) operationalize.
-  *(From the team's shared "Ideas" Doc — Literature Related tab.)*
-  https://doi.org/10.1016/j.conb.2012.11.015
-- **Ren S., Li J., Taya F., deSouza J., Thakor N.V., Bezerianos A., Dynamic Functional Segregation and
-  Integration in Human Brain Network During Complex Tasks** — *IEEE Trans. Neural Syst. Rehabil. Eng.*
-  25(5):547–556, 2017.
-  Dynamic graph metrics of segregation/integration under task load; cited by the group as a
-  **theoretical base, not applied directly**. *(From the shared "Ideas" Doc — Literature Related tab.)*
-  https://ieeexplore.ieee.org/document/7563788/
 
 ## Load-dependent reconfiguration & WM performance
 
@@ -114,12 +91,6 @@ claim level. **Pending team discussion — not a team decision.***
   HCP (644 subjects): working memory relies on **selective** integration — frontoparietal–default-mode
   cooperation correlates with *poorer* performance. Warns against a "more integration is always better" read.
   https://doi.org/10.1038/s41467-020-15541-0
-- **Stevens A.A., Tappon S.C., Garg A., Fair D.A., Functional brain network modularity captures inter-
-  and intra-individual variation in working memory capacity** — *PLoS ONE* 7(1):e30468, 2012.
-  Modularity of a cognitive-control network tracks **both** between- and within-subject variation in
-  visual short-term memory capacity. *(Caveat: resting-state, n=22, change-detection task — supports the
-  theoretical claim, not our task-based HCP design.)*
-  https://doi.org/10.1371/journal.pone.0030468
 - **Avery E.W., Yoo K., Rosenberg M.D. et al., Distributed patterns of functional connectivity predict
   working memory performance in novel healthy and memory-impaired individuals** — *Journal of Cognitive
   Neuroscience* 32(2):241–255, 2020.
@@ -131,11 +102,6 @@ claim level. **Pending team discussion — not a team decision.***
 
 ## Background / methods
 
-- E. W. Lang et al., *Brain connectivity analysis: a short survey*, Comput. Intell. Neurosci., 2012.
-- J. Bijsterbosch et al., *Challenges and future directions for representations of functional brain
-  organization*, Nature Neurosci., 23(12):1484–1495, 2020.
-- Puxeddu M.G. et al., *Leveraging multivariate information for community detection in functional
-  brain networks*, Commun. Biol. 8(1):840, 2025.
 - **Masharipov R., Knyazeva I., Korotkov A., Cherednichenko D., Kireev M., Comparison of whole-brain
   task-modulated functional connectivity methods for fMRI task connectomics** — *Communications Biology*
   7:1402, 2024.

@@ -4,11 +4,11 @@ Where the data come from, how they sit on disk, and **what is inside every file*
 gitignored in both repos — only this document travels. Read top to bottom: it funnels from
 *provenance* → *loaders* → *layout* → *file-by-file variables* → *what the code hands you*.
 
-> **One idea to hold:** **4 folders + 1 atlas = 2 cohorts, not 4.** Cohort A is one folder;
-> cohort B is one loader (`load_hcp`) that unpacks into 3 folders + an atlas. B is the current
-> primary analysis cohort; A is the independent external-validation cohort. Everything is an
-> official NMA/OSF download; the only local convention is renaming B's task folder to
-> `hcp_task_339` so it can coexist with A's `hcp_task/`.
+> **One idea to hold:** **4 folders + 1 atlas = 2 cohorts, not 4.** A is one folder; B is one loader
+> (`load_hcp`) unpacking into 3 folders + an atlas. **B is the primary analysis cohort, A the
+> identity-disjoint transfer cohort inside the same HCP study** — these roles are fixed here, not
+> inferred. Everything is an official NMA/OSF download; the only local convention is renaming B's task
+> folder to `hcp_task_339` so it can coexist with A's `hcp_task/`.
 
 ---
 
@@ -29,7 +29,7 @@ gitignored in both repos — only this document travels. Read top to bottom: it 
 Both are NMA-curated HCP subsets with the **same** task, parcellation and network logic. They are
 **different cohorts** (see §7), packaged differently, and reached by **different official loaders**.
 
-| | **Cohort A · external validation** | **Cohort B · primary MVP** |
+| | **Cohort A · identity-disjoint transfer** | **Cohort B · primary MVP** |
 |---|---|---|
 | Official loader | [`load_hcp_task_with_behaviour`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp_task_with_behaviour.ipynb) | [`load_hcp`](https://github.com/NeuromatchAcademy/course-content/blob/v3.0.2/projects/fMRI/load_hcp.ipynb) |
 | Subjects | 100 | 339 (**336 analytic**, see §6) |
@@ -40,32 +40,15 @@ Both are NMA-curated HCP subsets with the **same** task, parcellation and networ
 | Atlas geometry | ❌ | ✅ `hcp_atlas_339.npz` |
 | Delivers → folder(s) | `hcp_task/` | `hcp_task_339/` · `hcp_rest/` · `hcp/` · `hcp_atlas_339.npz` |
 
-> **Name trap (stated once).** Two official loaders read the **same 339-subject task archive**:
-> `load_hcp_task` exposes *only* the task time series (no behaviour); **`load_hcp` is cohort B** and
-> adds rest + behaviour + atlas. The official B task folder is called `hcp_task/`; we rename it
-> **`hcp_task_339`** locally so it does not collide with A's different 100-subject `hcp_task/`.
-> `load_hcp_retino` (retinotopy) is unrelated and never downloaded.
-
 ---
 
-## 3 · Local layout — where the files sit
+## 3 · Local layout
 
-```text
-data/                                        ≈9.1 GB · all gitignored (except data/README.md + this doc)
-├── A_load_hcp_task_with_behaviour/          Cohort A · external validation
-│   └── hcp_task/            1.1 GB            task time series + EVs + per-subject Stats.txt
-├── B_load_hcp/                              Cohort B · primary MVP  (8.1 GB)
-│   ├── hcp_task_339/        3.7 GB            task time series (timeseries/) + EVs (EVs/), split apart
-│   ├── hcp_rest/            4.4 GB            resting-state, 4 runs
-│   ├── hcp/                  17 MB            behaviour CSVs + demographics + pseudo→real ID map
-│   └── hcp_atlas_339.npz     92 KB           atlas — ROI coordinates + surface vertex→ROI maps
-├── HCP_S1200_Release_Reference_Manual.pdf    shared HCP reference manual
-└── README.md
-```
-
-Folders are grouped by loader (`A_…/`, `B_…/`); [`datasets.py`](../sandbox/jaime/datasets.py) resolves
-this grouped layout **or** a legacy flat one automatically. Leaf-folder names (`hcp_task/`,
-`hcp_task_339/`, …) are never changed.
+≈9.1 GB, all gitignored. The on-disk tree, the two mandatory renames for B and the `load_hcp` vs
+`load_hcp_task` name trap are the acquisition contract and live in
+[`data/README.md`](../data/README.md); [`datasets.py`](../gammas/datasets.py) resolves that grouped
+layout **or** a legacy flat one. Leaf-folder names (`hcp_task/`, `hcp_task_339/`, …) never change,
+which is what makes the per-cohort dictionaries in §4.2 and §4.3 readable as paths.
 
 ---
 
@@ -107,12 +90,19 @@ Say **when** each condition happens. Whitespace, **3 columns = onset(s) · durat
 | **Block / condition** | `0bk_{body,faces,places,tools}`, `2bk_…` | 1 row/run · a **27.5 s block** | **the 0/2-back frame split** — pool the 4 categories → `COND_0BACK` / `COND_2BACK` |
 | **Trial outcome** | `0bk_{cor,err,nlr}`, `2bk_…`, `all_bk_{cor,err}` | per-trial · **2.5 s** each | correct / error / no-response; trial-level modelling only, **not** our split |
 
-`condition_frames` converts onset/duration → frame indices via `floor(onset/TR)` / `ceil(dur/TR)`.
+`condition_frames` converts onset/duration → frame indices via `floor((onset + delay)/TR)` / `ceil(dur/TR)`.
 
-#### `Sync.txt` — scanner sync offset
+**`delay` — the haemodynamic shift (seconds).** `condition_frames` and `condition_timeseries` take a
+`delay` that moves every block forward before it is mapped to frames: BOLD peaks ~4–6 s after the
+stimulus, so the raw onsets index frames the haemodynamic response has not reached yet. **`delay=4.0`
+is mandatory to reproduce the canonical result; with `0.0` the same pipeline gives r = 0.152** (against
+r = 0.366). Nothing raises — the number just changes, which is why it is documented here. It is now the
+package default (`gammas.preprocessing.HRF_DELAY = 4.0`), so callers that pass nothing get the canonical
+recipe. The shift moves the start index only, not the block length: frame counts are unchanged (156 per
+run, 312 concatenated). Full provenance → [`final-report.md`](final-report.md) §7.
 
-One number (e.g. `26.108`): the seconds between scanner start and the EV clock origin. Alignment
-metadata; not used directly by the pipeline.
+Alongside the EVs, `Sync.txt` holds one number (e.g. `26.108`) — seconds between scanner start and the
+EV clock origin. Alignment metadata, not used by the pipeline.
 
 ---
 
@@ -142,30 +132,17 @@ hcp_task/
 
 #### `Stats.txt` (A only) — the per-subject behaviour summary
 
-**48 lines** of `key: value`, one file per subject per run. Every key follows one grammar:
-
-```
-{load} {category} {measure}
-  load     ∈ { 0-Back , 2-Back }
-  category ∈ { BP , Faces , Places , Tools }        # BP = Body Parts
-  measure  ∈ { Median ACC , Median ACC Target , Median ACC Non-Target ,
-               Median RT  , Median RT  Target , Median RT  Non-Target }
-```
-
-2 loads × 4 categories × 6 measures = **48 values**. What the measures mean:
-
-| Measure | Units | Meaning |
-|---|---|---|
-| `Median ACC` | 0–1 | accuracy over all trials of that load×category → **the target** (`acc_2bk`) |
-| `Median ACC Target` | 0–1 | accuracy on *match* trials (would be the **hit rate**) |
-| `Median ACC Non-Target` | 0–1 | accuracy on *non-match* trials (would give **false-alarm = 1 − this**) |
-| `Median RT …` | ms | reaction-time counterparts of the three above |
+**48 lines** of `key: value` per subject per run, keyed `{load} {category} {measure}` = 2 loads
+(`0-Back`, `2-Back`) × 4 categories (`BP` = Body Parts, `Faces`, `Places`, `Tools`) × 6 measures.
+The measures: `Median ACC` (0–1, accuracy over all trials of that load × category → **the target**,
+`acc_2bk`), `Median ACC Target` (*match* trials, i.e. the **hit rate**), `Median ACC Non-Target`
+(*non-match* trials, so **false alarm = 1 − this**), and the three `Median RT` counterparts in ms.
 
 > ⚠️ **Why A cannot give d′.** A's `… Target` / `… Non-Target` accuracy fields are **internally
 > inconsistent** (a known HCP WM issue), so hit/false-alarm — and therefore d′ — are unreliable on A.
 > Use `Median ACC` (→ `acc_2bk`). For d′, use **B's `wm.csv`** (§4.3), whose target fields are clean.
 
-Parsed by [`_parse_stats`](../sandbox/jaime/preprocessing.py) → `behaviour_table` averages the 4
+Parsed by [`_parse_stats`](../gammas/preprocessing.py) → `behaviour_table` averages the 4
 categories × 2 runs into `acc_0bk`, `acc_2bk`, `rt_0bk`, `rt_2bk`.
 
 ---
@@ -220,18 +197,9 @@ One row per **subject × run × condition**; shape **(5382, 9)**.
 > **d′ inputs (B only):** `hit = ACC_TARGET`, `fa = 1 − ACC_NONTARGET`. `signal_detection_table`
 > returns these per subject; the extreme-rate correction and d′ itself are a team choice (§6).
 
-#### `hcp/behavior/{emotion,gambling,language,relational,social}.csv` — the other 5 tasks
-
-Bundled by `load_hcp`; **noise for this WM project** but documented for completeness. All keyed by
-`Subject, Run, ConditionName`; the metric columns differ per task:
-
-| CSV | Shape | Task-specific columns |
-|---|---|---|
-| `emotion.csv` | (1356, 5) | `ACC`, `MEDIAN_RT` |
-| `relational.csv` | (1356, 5) | `ACC`, `MEDIAN_RT` |
-| `language.csv` | (1356, 6) | `ACC`, `AVG_DIFFICULTY_LEVEL`, `MEDIAN_RT` |
-| `gambling.csv` | (1356, 8) | `MEDIAN_RT_{LARGER,SMALLER}`, `PROP_{LARGER,SMALLER,NLR}` |
-| `social.csv` | (1356, 10) | `MEDIAN_RT_{RANDOM,TOM,UNSURE}`, `PROP_{RANDOM,TOM,UNSURE,NLR}` |
+`load_hcp` also bundles `behavior/{emotion,gambling,language,relational,social}.csv` — same
+`Subject, Run, ConditionName` keys, task-specific metric columns, no bearing on this WM project and read
+by no function in `gammas/`. Inspect them with `pd.read_csv(...).columns` if you ever need one.
 
 #### `hcp/pseudo_demographics.npy` — synthetic covariates
 
@@ -262,9 +230,8 @@ Enables painting any per-ROI value onto a brain surface (e.g. where 0→2-back r
 ## 5 · What the code hands you (derived layer)
 
 A newcomer usually consumes these **DataFrames / arrays**, not the raw files above. All sit behind the
-shared A/B interface in [`sandbox/jaime/`](../sandbox/jaime/) — `datasets.py` (I/O) →
-`preprocessing.py` (transforms) → `evaluation.py` (split + QC). Switch dataset with `spec_a` / `spec_b`;
-nothing downstream branches.
+shared A/B interface in [`gammas/`](../gammas/); switch cohort with `spec_a` / `spec_b` and nothing
+downstream branches.
 
 | Function | Returns | Notes |
 |---|---|---|
@@ -309,19 +276,13 @@ analysis.
 
 ## 7 · A/B roles + cohort overlap
 
-| | **A** | **B** |
-|---|---|---|
-| Subjects | 100 | **339** (336 analytic, 3.4×) |
-| Resting-state | ❌ | ✅ |
-| WM behaviour | `Stats.txt` | `wm.csv` (comparable, not coarser; **+ clean d′ inputs**) |
-| IDs | real HCP | pseudo (`0…338`) |
-| Ingestion | done | done + verified |
+Per-cohort contents are in §2; what fixes their **roles** is the overlap.
 
 > **Cohorts are mostly independent, not nested:** only **35 subjects are shared** (404 unique people
 > across A∪B), verified by mapping A's real IDs against B's `orig_ids.txt`. Pooling A∪B would add only
 > ~65 subjects over B while forcing two heterogeneous pipelines and deduplicating the overlap to avoid
 > leakage — so **B alone is the clean primary training cohort**. A remains useful as a separate
-> external-validation cohort: train on the 301 B-only participants and test on all 100 A participants,
+> identity-disjoint transfer cohort within the same HCP study: train on the 301 B-only participants and test on all 100 A participants,
 > as implemented in [`sandbox/jaime/05`](../sandbox/jaime/05_dataset_A_external_validation.ipynb).
 > Overlap analysis: [`sandbox/jaime/03` §6](../sandbox/jaime/03_dataset_comparison.ipynb). Original
 > A/B/C costing: [`sandbox/jaime/00`](../sandbox/jaime/00_framing_and_dataset_choice.ipynb).
@@ -330,20 +291,15 @@ analysis.
 
 ## 8 · Glossary
 
+Only the terms that decode a name on disk or a convention of this project. Standard fMRI vocabulary
+(ROI, BOLD, tfMRI, ACC/RT, hit/false alarm) is not restated here.
+
 | Term | Meaning |
 |---|---|
-| **ROI** | *Region Of Interest* — one of the 360 Glasser cortical parcels; a graph **node**. |
-| **frame** | one fMRI time point (one whole-brain volume), sampled every **TR**. WM run = 405 frames ≈ 292 s. |
-| **TR** | *Repetition Time* = 0.72 s (time between frames). |
-| **BOLD** | *Blood-Oxygen-Level-Dependent* signal — what fMRI measures; each `(360, frames)` array is mean BOLD per ROI per frame. |
+| **frame / TR** | one fMRI time point, sampled every *Repetition Time* = **0.72 s**. WM run = 405 frames ≈ 292 s. |
 | **EV** | *Explanatory Variable* — FSL timing file: onset(s) · duration(s) · amplitude. Says *when* a condition happens. |
-| **LR / RL** | the two **phase-encoding directions**. HCP scans every task twice with opposite directions to cancel distortion; we concatenate both for more frames / more stable FC. |
-| **tfMRI** | *task* fMRI (vs. resting-state). |
+| **LR / RL** | the two **phase-encoding directions**. HCP scans every task twice with opposite directions to cancel distortion; we concatenate both for more frames / more stable FC. Note A's run 0 is LR, B's is RL. |
 | **MSMAll** | *Multimodal Surface Matching* — HCP's cross-subject surface registration (in the timeseries filenames). |
-| **Glasser360Cortical** | the parcellation used for the time series. |
-| **ACC / RT** | *Accuracy* (fraction correct) / *Reaction Time* (ms). |
-| **hit / false alarm** | on a match/non-match task: hit = correct "yes" on a match; false alarm = wrong "yes" on a non-match. Inputs to **d′**. |
-| **myelin** | per-ROI T1w/T2w ratio (3rd column of `regions.npy`); structural, not a target. |
-| **`.npy` / `.npz`** | NumPy binary array / zip of named arrays. Load with `np.load`. |
+| **Glasser360Cortical** | the parcellation used for the time series (in the timeseries filenames). |
 
-**Sources:** [project plan](project-plan.md) · [official fMRI guide](https://compneuro.neuromatch.io/projects/fMRI/README.html) · [10 Jul meeting](meetings/2026-07-10.md) · verified against the on-disk data 15 Jul 2026.
+**Sources:** [project plan](archive/2026-07-22_project-plan.md) · [official fMRI guide](https://compneuro.neuromatch.io/projects/fMRI/README.html) · [10 Jul meeting](meetings/2026-07-10.md) · verified against the on-disk data 15 Jul 2026.
