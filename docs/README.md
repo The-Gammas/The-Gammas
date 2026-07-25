@@ -14,7 +14,7 @@ it goes in `docs/`; if they would reuse it to WRITE a paper, it goes in `manuscr
 | [`final-report.md`](final-report.md) | **Source of truth.** Question, data, method, results, limitations, reproduction, repository map, decision timeline, authorship. Its §5 is the canonical results table: a number quoted anywhere else without a protocol, an `n` and a source cell is superseded by it. |
 | [`data-dictionary.md`](data-dictionary.md) | Files, variables, cohort roles and the shared A/B loader layer. Sole authority on anything about the data. |
 | [`meetings/`](meetings/) | Six dated minutes, `YYYY-MM-DD.md`. Provenance of every team decision; one-row-per-meeting index in [`final-report.md`](final-report.md) §11. |
-| [`reviews/`](reviews/) | Dated literature syntheses, `YYYY-MM-DD_topic.md`, including a *do-not-cite* list of refuted figures. Why this method and not another. Distinct from the citation list, which lives in [`../manuscript/references.md`](../manuscript/references.md). |
+| [`reviews/`](../manuscript/reviews/) | Dated literature syntheses, `YYYY-MM-DD_topic.md`, including a *do-not-cite* list of refuted figures. Why this method and not another. Distinct from the citation list, which lives in [`../manuscript/references.md`](../manuscript/references.md). |
 | [`archive/`](archive/) | Frozen record: documents that stopped being current on a known date, kept under that date. |
 
 ## Status

@@ -113,8 +113,15 @@ class TangentCentering(BaseEstimator, TransformerMixin):
 def network_fingerprint(correlation: np.ndarray, network_labels: np.ndarray) -> np.ndarray:
     """Within/between-network correlation means, ``(78,)`` for 12 networks.
 
-    Reimplements the audited baseline's ``get_brain_profile``: within-network means exclude
-    the diagonal, network pairs follow the upper triangle of the 12x12 network grid.
+    **Goutham Arcod's method.** Reimplements his ``get_brain_profile`` from
+    `sandbox/goutham/per_analysis.ipynb` (commit ``5071ccd``): within-network means exclude the
+    diagonal, network pairs follow the upper triangle of the 12x12 network grid. The feature
+    layout is his; only the vectorisation is ours, and the 78-feature count is asserted in
+    ``tests/test_gammas.py``.
+
+    Kept in this module rather than in :mod:`gammas.contributed` because eight call sites in
+    `pipeline/02` and `pipeline/03` import it from here. See :mod:`gammas.contributed` for the
+    full map of contributed methods and the attribution rule.
     """
     _, membership = np.unique(network_labels, return_inverse=True)
     n_networks = membership.max() + 1

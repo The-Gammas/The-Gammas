@@ -47,9 +47,9 @@ pipeline/*.png
 # (pipeline/04 regenerates these in-notebook). Keep any kept copy local, out of git.
 sandbox/goutham/*.html
 
-# Third-party papers under docs/reviews/ are local reading copies: cite them by DOI
+# Third-party papers under manuscript/reviews/ are local reading copies: cite them by DOI
 # or PMC id in manuscript/references.md instead of redistributing the PDF.
-docs/reviews/*.pdf
+manuscript/reviews/*.pdf
 
 # The submitted abstract PDF is kept local only (it carries author emails on its
 # title page); manuscript/abstract.md is the versioned source of the text.

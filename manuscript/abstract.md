@@ -76,7 +76,7 @@ them:
 > **What this is.** The submitted abstract's closing overstates the evidence: *"complementary
 > information beyond static FC"* was never tested before submission, and the 21 Jul re-check does not
 > support it. Below is the submitted text with **our changes marked in bold**. The bold is a change
-> marker, not emphasis: a clean version drops it, since the [writing guide](writing-guide.md) bars
+> marker, not emphasis: a clean version drops it, since the [writing guide](../docs/writing-guide.md) bars
 > typographic emphasis in the final abstract. Offered for the presentation framing and team
 > discussion, not resubmitted.
 

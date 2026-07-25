@@ -12,6 +12,7 @@ from __future__ import annotations
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 import numpy as np
@@ -19,7 +20,9 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from gammas import connectivity as fc  # noqa: E402
+from gammas import contributed as contrib  # noqa: E402
 from gammas import datasets as ds  # noqa: E402
+from gammas import evaluation as ev  # noqa: E402
 from gammas import preprocessing as pp  # noqa: E402
 
 
@@ -136,6 +139,123 @@ class DelayedSegmentationTests(unittest.TestCase):
             explicit = pp.condition_frames(spec, "sub01", run=0, level="0back", delay=4.0)
 
             np.testing.assert_array_equal(default, explicit)
+
+
+class SplitLeakageTests(unittest.TestCase):
+    """The leakage guarantee. If this breaks, every reported r inflates and nothing warns.
+
+    ``make_split`` is the only thing standing between us and a subject appearing in both train
+    and test. It reads the cohort from disk, so the subject list is stubbed: the split logic is
+    what is under test, not the loader.
+    """
+
+    COHORT = [f"{i:03d}" for i in range(50)]
+
+    def _split(self, **kwargs) -> dict:
+        with unittest.mock.patch.object(ev.ds, "load_subjects", return_value=list(self.COHORT)):
+            return ev.make_split(spec=None, **kwargs)
+
+    def test_train_and_test_are_disjoint_and_cover_the_cohort(self) -> None:
+        split = self._split()
+
+        self.assertEqual(set(split["train"]) & set(split["test"]), set())
+        self.assertEqual(sorted(split["train"] + split["test"]), sorted(self.COHORT))
+        self.assertEqual(split["n_train"] + split["n_test"], len(self.COHORT))
+
+    def test_cv_folds_partition_the_train_set_exactly(self) -> None:
+        """Overlapping folds would leak across CV, which a mean r would silently absorb."""
+        split = self._split(cv_folds=5)
+        fold_subjects = [s for fold in split["cv"] for s in fold["val"]]
+
+        self.assertEqual(sorted(fold_subjects), sorted(split["train"]))
+        self.assertEqual(len(fold_subjects), len(set(fold_subjects)))
+        self.assertEqual(len(split["cv"]), 5)
+
+    def test_same_seed_reproduces_the_same_split(self) -> None:
+        self.assertEqual(self._split(seed=7), self._split(seed=7))
+        self.assertNotEqual(self._split(seed=7)["test"], self._split(seed=8)["test"])
+
+    def test_validate_split_rejects_a_leaked_split(self) -> None:
+        leaked = {"train": ["a", "b"], "test": ["b"], "n_total": 3,
+                  "cv": [{"fold": 0, "val": ["a", "b"]}]}
+
+        with self.assertRaisesRegex(ValueError, "leak"):
+            ev._validate_split(leaked)
+
+    def test_validate_split_rejects_folds_that_do_not_cover_train(self) -> None:
+        dropped = {"train": ["a", "b"], "test": ["c"], "n_total": 3,
+                   "cv": [{"fold": 0, "val": ["a"]}]}
+
+        with self.assertRaisesRegex(ValueError, "partition"):
+            ev._validate_split(dropped)
+
+
+class StatisticsTests(unittest.TestCase):
+    """The three statistics the conclusions rest on, against outcomes we can predict."""
+
+    def setUp(self) -> None:
+        rng = np.random.default_rng(11)
+        self.control = rng.normal(size=400)
+        # both vectors are the control plus independent noise: raw correlation is driven by the
+        # shared control, so partialling it out must collapse the association to ~0
+        self.prediction = self.control + rng.normal(scale=0.5, size=400)
+        self.target = self.control + rng.normal(scale=0.5, size=400)
+
+    def test_partial_correlation_removes_a_shared_driver(self) -> None:
+        raw = ev.correlation(self.prediction, self.target)
+        partial = ev.partial_correlation(self.prediction, self.target, self.control)
+
+        self.assertGreater(raw, 0.6)          # looks like a strong effect
+        self.assertLess(abs(partial), 0.15)   # and is almost entirely the control
+
+    def test_partial_correlation_leaves_an_unrelated_control_alone(self) -> None:
+        unrelated = np.random.default_rng(12).normal(size=400)
+
+        raw = ev.correlation(self.prediction, self.target)
+        partial = ev.partial_correlation(self.prediction, self.target, unrelated)
+
+        self.assertAlmostEqual(raw, partial, delta=0.05)
+
+    def test_permutation_p_separates_real_association_from_none(self) -> None:
+        signal = np.arange(60.0)
+        noise = np.random.default_rng(13).normal(size=60)
+
+        self.assertLess(ev.permutation_p(signal, signal, n_perm=999), 0.01)
+        self.assertGreater(ev.permutation_p(noise, signal, n_perm=999), 0.05)
+
+    def test_bootstrap_ci_brackets_the_point_estimate(self) -> None:
+        low, high = ev.bootstrap_ci(self.prediction, self.target,
+                                    statistic=lambda a, b, axis=-1: np.mean(a * b, axis=axis),
+                                    n_boot=500)
+        point = float(np.mean(self.prediction * self.target))
+
+        self.assertLess(low, point)
+        self.assertGreater(high, point)
+
+
+class ContributedAttributionTests(unittest.TestCase):
+    """Contributed methods must stay attributed and behave as their author defined them."""
+
+    def test_segregation_is_within_minus_between_over_within(self) -> None:
+        labels = np.repeat(["net1", "net2"], 3)
+        fc = np.full((6, 6), 0.2)                       # between-network baseline
+        fc[:3, :3] = fc[3:, 3:] = 0.8                   # stronger within-network
+        np.fill_diagonal(fc, 1.0)                       # must be excluded from W
+
+        segregation = contrib.measure_system_segregation(fc, labels, ["net1", "net2"])
+
+        self.assertAlmostEqual(segregation, (0.8 - 0.2) / 0.8, places=12)
+
+    def test_segregation_returns_zero_when_no_within_network_signal(self) -> None:
+        labels = np.repeat(["net1", "net2"], 3)
+        fc = np.zeros((6, 6))
+
+        self.assertEqual(contrib.measure_system_segregation(fc, labels, ["net1", "net2"]), 0.0)
+
+    def test_contributed_methods_name_their_author(self) -> None:
+        """Attribution is a project rule, so it is checked rather than trusted."""
+        self.assertIn("Goutham Arcod", contrib.measure_system_segregation.__doc__)
+        self.assertIn("Goutham Arcod", fc.network_fingerprint.__doc__)
 
 
 if __name__ == "__main__":

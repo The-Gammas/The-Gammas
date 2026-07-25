@@ -229,7 +229,7 @@ rather than being borrowed from `sandbox/jaime/08`.
 | [`docs/final-report.md`](final-report.md) | this file | results, conclusions, where to continue |
 | [`docs/data-dictionary.md`](data-dictionary.md) | files, variables, loader layer, cohort roles | anything about the data |
 | [`docs/meetings/`](meetings/) | 6 dated minutes | why a decision was taken and when (§11) |
-| [`docs/reviews/`](reviews/) | dated literature syntheses, incl. a *do-not-cite* list | why this method and not another |
+| [`../manuscript/reviews/`](../manuscript/reviews/) | dated literature syntheses, incl. a *do-not-cite* list | why this method and not another |
 | [`docs/archive/`](archive/) | the project plan and the prior-work record, frozen under their dates | what was believed at that date |
 | [`gammas/`](../gammas/) | shared A/B layer: `datasets` → `preprocessing` → `connectivity` → `evaluation` | how a number is computed |
 | [`tests/`](../tests/) | 8 unit tests, no data required | the leakage-critical and delay-critical invariants |

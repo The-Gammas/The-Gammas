@@ -16,6 +16,37 @@ interface; command-line Git is equally welcome.
 Files shared by everyone — `README.md`, `docs/`, `pipeline/`, `gammas/` and `tests/` — should be
 changed by the agreed integrator or through a small pull request.
 
+**`docs/` or `manuscript/`?** If a teammate would read it to **know what happened**, it goes in `docs/`.
+If they would reuse it to **write a paper**, it goes in `manuscript/`. Process and record on one side,
+prose for external readers on the other.
+
+**Why `gammas/` sits at the repo root and not in `src/`.** The `src/` layout is the standard advice for
+installable packages, because it forces tests to run against the *installed* code. We never install this
+repo: notebooks add the root to `sys.path` and import from there, which keeps Colab and GitHub Desktop
+working with no `pip install -e .` step. Flat is the right call *for a research compendium*. If this ever
+becomes a package someone installs, move it to `src/gammas/` then — not before.
+
+## Tests — what deserves one
+
+The suite runs in under a second and needs no project data. Keep it that way: it is only useful if
+people actually run it before a pull request.
+
+**Write a test when a bug would be silent.** The tests that exist protect exactly that: the
+train-only tangent reference (a leak would raise every score), the subject-level split and its CV folds
+(same), the 4 s HRF default (wrong value → r = 0.152 instead of 0.366, no error), and the statistics the
+conclusions rest on. Each of those can fail while producing a perfectly plausible number.
+
+**Don't write a test for:** anything that needs the 9 GB of HCP data — that is what the reproduction gate
+in `pipeline/02` cell 10 is for; plotting; thin wrappers over NumPy or scikit-learn; or a function whose
+failure mode is an obvious exception. We are not chasing a coverage number, and a suite nobody runs
+protects nothing.
+
+**Prefer a predictable outcome over a recorded one.** Assert against a value you can derive by hand
+(`(0.8 − 0.2) / 0.8`), a mathematical property (held-out rows must not move a fitted reference), or a
+clear separation (real association → p < 0.01, noise → p > 0.05). Snapshots of last run's output rot.
+
+`make test` runs them. No pytest, no fixtures, no plugins — `unittest` from the standard library.
+
 ## Sandboxes
 
 Each member has one folder for work that is still being explored. It is visible to the group but not

@@ -9,6 +9,7 @@ Layering, bottom-up — each module may import the ones above it, never the reve
     preprocessing  condition segmentation (0-back / 2-back), behaviour tables
     connectivity   functional-connectivity transformers (Pearson, tangent space)
     evaluation     cross-validation, permutation nulls, leakage-safe splits
+    contributed    methods designed by teammates, kept under their authorship
 
 Usage from a notebook at any depth in the repo::
 
@@ -21,6 +22,6 @@ with ``delay=0.0`` the canonical prediction drops from r = 0.366 to r = 0.152. S
 ``docs/final-report.md`` and ``docs/data-dictionary.md``.
 """
 
-from . import connectivity, datasets, evaluation, preprocessing
+from . import connectivity, contributed, datasets, evaluation, preprocessing
 
-__all__ = ["datasets", "preprocessing", "connectivity", "evaluation"]
+__all__ = ["datasets", "preprocessing", "connectivity", "evaluation", "contributed"]
