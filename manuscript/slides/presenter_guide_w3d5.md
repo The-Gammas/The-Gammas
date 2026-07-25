@@ -1,183 +1,184 @@
-# Guía del presentador — W3D5 · The Gammas
+# Presenter Guide — W3D5 · The Gammas
 
-> **Qué es esto.** Una guía por diapositiva para que quien presente cada una tenga **todo** el contexto:
-> definición de conceptos desde cero, cómo leer cada gráfico, cómo interpretar cada número, qué decir
-> (con las frases en inglés listas para pronunciar) y qué preguntas esperar. Un bloque por slide.
-> **Fuente de verdad:** el deck final `manuscript/slides/The Gammas - NMA project.pdf`
-> y `pipeline/02_canonical_analysis_and_slides.ipynb` (números). El texto que se proyecta es **inglés**;
-> la explicación va en español y la charla se da en inglés.
+> **What this is.** A per-slide guide so whoever presents a slide has the full context: concepts from
+> scratch, how to read each figure, how to interpret each number, what to say (with a ready delivery
+> script), and what questions to expect. One block per slide.
+> **A note on how to use it.** I put this together from the final deck, Andrea's review and our Discord
+> discussion — it's a shared aid, not a script anyone has to follow word-for-word. Please correct anything
+> I got wrong. Numbers are all checked against `pipeline/02`.
+> **Source of truth:** the final deck `manuscript/slides/The Gammas - NMA project.pdf`
+> and `pipeline/02_canonical_analysis_and_slides.ipynb`. On-screen copy is English; the talk is in English.
 
-## Numeración — esta guía coincide con el deck final
+## Numbering — this guide matches the final deck
 
-El deck final tiene **6 páginas habladas + 5 backups**. **Portada y equipo están fusionados en la página 1**
-(por eso la numeración bajó un número respecto al storyboard viejo). Esta guía usa **la numeración del deck
-proyectado**:
+The final deck is **6 spoken pages + 5 backups**. **Cover and team are merged into page 1** (that's why the
+numbering dropped by one vs the old storyboard). This guide uses **the projected-deck numbering**:
 
-| Pág / Slide | Contenido | Presenta |
+| Page / Slide | Content | Presenter |
 |---|---|---|
-| **1** · Portada + Equipo | Título + "Meet the Gammas" | Valeria abre |
-| **2** · Introduction | La pregunta + Pattern/Direction + ancla Avery | **Valeria** |
-| **3** · Methods | 336 HCP · fingerprint de 78 · benchmark vs 360 activación | **Arefeh** |
-| **4** · Results | Primario r=0.366 + transferencia B→A 0.398 (scatter) | **Jaime** |
-| **5** · Robustness checks | Dirección matizada + activación 0.60 vs 0.37 + 2 guardrails | **Goutham** |
-| **6** · Conclusions | Survives / Refined / Unresolved + gracias | **Kerem** |
-| 7–11 · Backups | Divider + direccional + validación + futuro + referencias | según pregunta |
+| **1** · Cover + Team | Title + "Meet the Gammas" | Valeria opens |
+| **2** · Introduction | The question + Pattern/Direction + Avery anchor | **Valeria** |
+| **3** · Methods | 336 HCP · 78-feature fingerprint · benchmark vs 360 activation | **Arefeh** |
+| **4** · Results | Primary r=0.366 + B→A transfer 0.398 (scatter) | **Jaime** |
+| **5** · Robustness checks | Direction refined + activation 0.60 vs 0.37 + 2 guardrails | **Goutham** |
+| **6** · Conclusions | Survives / Refined / Unresolved + thanks | **Kerem** |
+| 7–11 · Backups | Divider + directional + validation + future + references | on demand |
 
-Cinco ponentes, **una slide cada uno (slides 2–6)**. Portada/equipo y backups no consumen minuto.
-Reparto cerrado en Discord (24 jul); dos matices vs el borrador de líneas: Goutham lleva **toda** la slide
-5 (sus guardrails enlazan con el 0.60/0.37 que cualifican), y Jaime lleva **toda** la slide 4 (0.366 + la
-transferencia 0.398). El 0.398 también está impreso en la slide 6 bajo *Survives*, así que Kerem lo remata
-como titular de cierre.
+Five presenters, **one slide each (slides 2–6)**. Cover/team and backups take no speaking slot. Split
+locked on Discord (24 Jul); two tweaks vs the draft lines: Goutham takes the **whole** slide 5 (his
+guardrails lead into the 0.60/0.37 numbers they qualify), and Jaime takes the **whole** slide 4 (0.366 +
+the 0.398 transfer). The 0.398 is also printed on slide 6 under *Survives*, so Kerem lands it as the
+closing headline.
 
-## Reglas de entrega comunes (aplican a TODAS las slides)
+## Common delivery rules (apply to EVERY slide)
 
-**Instrucciones de Andrea (vinculantes):**
-1. **Define cada concepto al nombrarlo** — FC, reconfiguración, segregación. Su instrucción más repetida; Arefeh la pidió directamente.
-2. **Nombra los ejes en voz alta antes de dar ningún número** de un gráfico: *"always make sure people know what they're looking at."*
-3. **Menos texto, más visual.** Menos detalle técnico; lo cortado va a Q&A.
-4. **Ensayad al minuto.** Andrea ofreció una ronda de ensayo y tutoría el viernes. Acordad quién responde qué en Q&A.
-5. **Es sobre el proceso, no el hallazgo:** *"no vais a ganar ningún premio porque el estudio sea mejor o no."* Nadie va a defender un descubrimiento; contáis lo que hicisteis y lo que aprendisteis.
+**From Andrea's review (she was clear about these):**
+1. **Define every concept as you name it** — FC, reconfiguration, segregation. Her most repeated point; Arefeh asked for it directly.
+2. **Name the axes out loud before any number** from a figure: *"always make sure people know what they're looking at."*
+3. **Less text, more visual.** Trim technical detail; cut material goes to Q&A.
+4. **Rehearse to the minute.** Andrea offered a rehearsal round and Friday tutorial time. Let's pre-agree who fields which questions.
+5. **It's about the process, not the finding:** *"you won't get any prize if the study is better or not."* Nobody is defending a discovery; we tell what we did and what we learned.
 
-**Guardarraíles de lenguaje (NO digas nunca, en ninguna slide):**
-- ❌ "cambiamos / evolucionó la hipótesis" → ✅ "predijimos dos cosas; una se sostuvo, otra se matizó".
-- ❌ "intervalo de confianza" para el ±0.024 → ✅ "split SD" (desviación entre particiones).
-- ❌ "validación externa independiente" → ✅ "identity-disjoint same-HCP transfer".
-- ❌ "dFC" / "dynamic FC" / "true network dynamics" → es FC **estática** agregada por condición.
-- ❌ "el modelo A le gana al modelo B" (marcador deportivo) → ✅ "comprobación de especificidad".
-- ❌ causalidad, beneficio adaptativo, mecanismo específico de conectividad.
-
----
-
-# Slide 1 — Portada + Equipo · Valeria abre
-
-**En pantalla:** *"Functional Connectivity Reconfiguration in N-back Working Memory"* · los cinco nombres ·
-**The Gammas** · línea de pod/TA (Pod 884 "Ifrit Ras el Hanout" · Megapod Lotus · TA Andrea Buccellato ·
-Project TA Azman Akhter). Sin gráfico, sin minuto de habla (se muestra mientras Valeria saluda).
-
-**Lo que debes saber:** El título nombra la **medida**, no un mecanismo. "Reconfiguration" aquí es
-literalmente una **resta entre dos matrices de FC** agregadas por condición — no implica dinámica temporal.
-Andrea pidió el **nombre del equipo bien visible**: el deck se archiva y lo lee la cohorte del año que viene.
-
-**Pendientes conocidos (housekeeping, no ciencia):**
-- Fotos stock y roles de relleno ("Actor/Doctor/…") — a medias; Arefeh, Valeria y Jaime ya tienen foto real, Kerem y Goutham no.
-- **Direcciones de email personales** en un deck que se archiva públicamente — buscar y quitar antes de entregar.
-
-**Cómo decirlo:** *"Hi, we're The Gammas. Our project is on functional connectivity reconfiguration in an
-N-back working-memory task."* Y pasar a la Introducción (slide 2).
+**Language guardrails we agreed on — worth avoiding on any slide:**
+- Not "we changed / the hypothesis evolved" → "we predicted two things; one held, one was refined".
+- Not "confidence interval" for the ±0.024 → "split SD" (spread across partitions).
+- Not "independent external validation" → "identity-disjoint same-HCP transfer".
+- Not "dFC" / "dynamic FC" / "true network dynamics" → it's **static** FC aggregated per condition.
+- Not "model A beats model B" (scoreboard) → "specificity check".
+- No causality, adaptive benefit, or connectivity-specific mechanism claims.
 
 ---
 
-# Slide 2 — Introduction: la pregunta y las dos apuestas · **Valeria**
+# Slide 1 — Cover + Team · Valeria opens
 
-**En pantalla (verbatim):**
-- Título: *"Does load-related brain connectivity predict working-memory performance?"*
-- Ancla: *"Avery et al. 2020 predicted 2-back accuracy from task FC in the same dataset (r = 0.36). We asked whether the change between loads carries that signal."*
+**On screen:** *"Functional Connectivity Reconfiguration in N-back Working Memory"* · the five names ·
+**The Gammas** · pod/TA line (Pod 884 "Ifrit Ras el Hanout" · Megapod Lotus · TA Andrea Buccellato ·
+Project TA Azman Akhter). No figure, no speaking slot (shown while Valeria greets).
+
+**What to know:** The title names the **measure**, not a mechanism. "Reconfiguration" here is literally a
+**difference between two condition-averaged FC matrices** — no temporal dynamics implied. Andrea asked for
+the **team name prominent**: the deck is archived and read by next year's cohort.
+
+**Known housekeeping (not science):**
+- Stock photos and filler roles ("Actor/Doctor/…") — partly done; Arefeh, Valeria and Jaime have real photos, Kerem and Goutham don't yet.
+- **Personal email addresses** on a deck that gets archived publicly — worth finding and removing before submission.
+
+**Delivery:** *"Hi, we're The Gammas. Our project is on functional connectivity reconfiguration in an
+N-back working-memory task."* Move to the Introduction (slide 2).
+
+---
+
+# Slide 2 — Introduction: the question and the two predictions · **Valeria**
+
+**On screen (verbatim):**
+- Title: *"Does load-related brain connectivity predict working-memory performance?"*
+- Anchor: *"Avery et al. 2020 predicted 2-back accuracy from task FC in the same dataset (r = 0.36). We asked whether the change between loads carries that signal."*
 - *"We predicted two things"*
   - **Pattern** — *"A 78-feature FC fingerprint of the 2-back − 0-back change predicts performance."*
   - **Direction** — *"Higher load shifts networks toward integration; larger shifts accompany better performance."*
 - *"A distributed pattern and a one-number direction are different claims."*
 
-**Lo que debes saber (desde cero):**
+**What to know (from scratch):**
 
-*La tarea N-back.* Dos niveles de dificultad de memoria de trabajo: **0-back** (fácil, "aprieta al ver
-esta imagen concreta" — atención pura, casi todos rozan el techo) y **2-back** (difícil, "aprieta si la
-imagen actual es igual a la de dos posiciones atrás" — obliga a mantener y actualizar un buffer). El
-2-back es donde la gente **se diferencia**, por eso es la condición estrella.
+*The N-back task.* Two working-memory difficulty levels: **0-back** (easy — "press when you see this
+specific target image"; pure attention, almost everyone is near ceiling) and **2-back** (hard — "press
+when the current image matches the one two positions back"; you must hold and update a buffer). 2-back is
+where people **differ**, so it's the condition of interest.
 
-*Las dos apuestas — la clave de esta slide.* No es una hipótesis, son **dos, de naturaleza distinta**:
-- **Pattern** es **multivariado y sin signo**: das los 78 números juntos a un modelo y ves si el
-  conjunto predice. No exige que ninguno suba o baje en concreto. Analogía: un panel de 78 biomarcadores
-  — no importa cada uno por separado, importa si el conjunto es diagnóstico.
-- **Direction** es **un solo número, con signo esperado**: la carga debe **bajar** la segregación (más
-  integración), y ese cambio, por sí solo, debe predecir quién rinde mejor. Analogía: "la fiebre sube, y
-  a más fiebre peor pronóstico" — una variable, una dirección.
+*The two predictions — the key point of this slide.* Not one hypothesis, two, of different natures:
+- **Pattern** is **multivariate and sign-free**: give the 78 numbers together to a model and see if the
+  set predicts. It doesn't require any one of them to go up or down. Analogy: a 78-biomarker panel — you
+  don't care about each one alone, you care whether the set is diagnostic.
+- **Direction** is **a single signed number**: load must **lower** segregation (more integration), and
+  that shift alone must predict who performs better. Analogy: "fever rises, and higher fever means worse
+  prognosis" — one variable, one direction.
 
-*Por qué eran dos y no una.* En la propuesta original (Arefeh, 15 jul) era **una frase** que ya contenía
-ambas afirmaciones. Al llegar los datos, una se sostuvo y la otra no. Separarlas no es reescribir la
-historia: es hacer explícito lo que siempre fueron: **dos pruebas independientes**. Esto te blinda si
-preguntan "¿no era una sola hipótesis de integración?".
+*Why two and not one.* The original proposal (Arefeh, 15 Jul) was **one sentence** that already held both
+claims. When the data came in, one held and one didn't. Splitting them isn't rewriting history — it's
+making explicit what they always were: **two independent tests**. This covers us if someone asks "wasn't
+it a single integration hypothesis?".
 
-*Por qué Avery 2020.* Es el ancla de calibración. Predijo `acc_2bk` desde FC de tarea, **mismos datos**,
-a r = 0.36. Cítalo para que, cuando en la slide 4 salga **nuestro 0.366**, la audiencia lo juzgue contra
-ese listón publicado, no en el vacío. **Una sola cita aquí, ninguna más** (instrucción de Andrea).
+*Why Avery 2020.* It's the calibration anchor. It predicted `acc_2bk` from task FC, **same dataset**, at
+r = 0.36. Cite it so that when **our 0.366** appears on slide 4, the audience judges it against that
+published bar, not in a vacuum. **One citation here, no more** (Andrea's instruction).
 
-**Cómo decirlo (~1 min):**
+**Delivery (~1 min):**
 > *"Our question: does the way brain connectivity changes with memory load predict how well someone
 > performs? A 2020 study by Avery already predicted 2-back accuracy from connectivity in this same
 > dataset, at r = 0.36 — we asked whether the **change between loads** carries that signal. We made two
 > different predictions. First, a **pattern**: a 78-feature fingerprint of the 2-back-minus-0-back change
 > predicts performance — this doesn't need any particular direction, just that the combined pattern
-> carries information. Second, a **direction**: higher load pushes networks toward integration, and
-> people with bigger shifts perform better — that's a single signed number. These are different kinds of
-> claims, so we test them separately."*
+> carries information. Second, a **direction**: higher load pushes networks toward integration, and people
+> with bigger shifts perform better — that's a single signed number. These are different kinds of claims,
+> so we test them separately."*
 
-**Transición:** *"So how did we actually measure that? Over to the method."*
+**Transition:** *"So how did we actually measure that? Over to the method."*
 
-**Preguntas probables:**
-- *"¿No era una sola hipótesis?"* → "The original proposal was one sentence that contained both a pattern and a directional claim; we report them as the two separate tests they always were."
-- *"¿Por qué 2-back y no 0-back como objetivo?"* → "0-back is near ceiling — everyone gets it. 2-back is where people differ, so it's where there's something to predict."
+**Likely questions:**
+- *"Wasn't it one hypothesis?"* → "The original proposal was one sentence containing both a pattern and a directional claim; we report them as the two separate tests they always were."
+- *"Why 2-back, not 0-back, as the target?"* → "0-back is near ceiling — everyone gets it. 2-back is where people differ, so it's where there's something to predict."
 
-**No digas:** que la hipótesis cambió; una segunda cita.
+**Avoid:** saying the hypothesis changed; a second citation.
 
 ---
 
-# Slide 3 — Methods: de los escáneres a una predicción · **Arefeh**
+# Slide 3 — Methods: from scans to a held-out prediction · **Arefeh**
 
-**En pantalla (verbatim):**
-- Título: *"We evaluated a 78-feature FC difference in held-out people"*
-- Banda de definiciones (3 líneas):
+**On screen (verbatim):**
+- Title: *"We evaluated a 78-feature FC difference in held-out people"*
+- Definitions band (3 lines):
   - *"Functional connectivity = the Pearson correlation between the time courses of two brain regions. Each node is one of 360 Glasser ROIs."*
   - *"FC reconfiguration = how much each network pair changes its coupling when memory load goes from 0-back to 2-back."*
   - *"System segregation = (mean within-network FC − mean between-network FC) ÷ mean within-network FC, computed per participant per condition (Chan et al. 2014)."*
-- **1 · Cohort** — *"Two HCP N-back samples · 360 Glasser ROIs · B (primary): 336 participants — all cross-validation here · A (transfer target): 100 participants with per-subject behaviour — held out for the B→A test"* — **A/B es jerga interna nuestra; defínelas aquí, en su primera aparición, o el público llega al "B→A" de la siguiente slide sin saber qué es A.**
+- **1 · Cohort** — *"Two HCP N-back samples · 360 Glasser ROIs · B (primary): 336 participants — all cross-validation here · A (transfer target): 100 participants with per-subject behaviour — held out for the B→A test"* — **A/B is our internal shorthand; define both here, at first mention, or the audience meets "B→A" on the next slide with no referent.**
 - **2 · Condition frames** — *"0-back and 2-back frames kept separate, with no temporal overlap"*
-- **Figura: tres matrices de red** (0-back FC, 2-back FC, y su diferencia). Caption: *"12 Cole-Anticevic networks · 12 within + 66 between = 78 values per person"*
+- **Figure: three network matrices** (0-back FC, 2-back FC, and their difference). Caption: *"12 Cole-Anticevic networks · 12 within + 66 between = 78 values per person"*
 - **3 · Model** — *"StandardScaler + RidgeCV, fitted inside each training fold"*
 - **4 · Held-out evaluation** — *"repeated 5-fold CV · fixed holdout · 1000-permutation null · B→A transfer (301 → 100, identity-disjoint)"*
 - *"All splits hold out participants; "±" = split SD, not CI."*
 
-**Lo que debes saber (desde cero) — las tres definiciones son tuyas de decir en voz alta:**
+**What to know (from scratch) — the three definitions are yours to say out loud:**
 
-*Conectividad funcional (FC).* La **correlación de Pearson** entre las series temporales de dos
-regiones. Coges cómo sube y baja la señal de la región A en el tiempo y la de la región B; si van
-juntas, correlación alta positiva; si no, cerca de cero. Cada región es un **nodo**; hay **360** (atlas
-Glasser).
+*Functional connectivity (FC).* The **Pearson correlation** between two regions' time courses. Take how
+region A's signal rises and falls over time and region B's; if they move together, high positive
+correlation; if unrelated, near zero. Each region is a **node**; there are **360** (Glasser atlas).
 
-*Reconfiguración de FC.* Cuánto cambia el acoplamiento de cada par de redes al pasar de 0-back a
-2-back. **Foto de 2-back menos foto de 0-back.** (Analogía: prueba de esfuerzo cardiaco — importa el
-cambio reposo→esfuerzo, no cada foto por separado.)
+*FC reconfiguration.* How much each network pair changes its coupling from 0-back to 2-back. **2-back
+picture minus 0-back picture.** (Analogy: a cardiac stress test — what matters is the rest→exercise
+change, not either snapshot alone.)
 
-*Segregación de sistema (necesita desgrane — 3 piezas):* conectividad media **dentro** de las redes,
-menos conectividad media **entre** redes, dividido entre la de dentro (para normalizar). Un número por
-persona y condición. **Alto = cerebro modular** (sistemas hablando consigo mismos); **bajo = integrado**
-(redes mezclándose). Esta métrica la usará Goutham en la slide 5 — quédate con "alto modular, bajo integrado".
+*System segregation (needs unpacking — 3 pieces):* mean **within**-network connectivity, minus mean
+**between**-network connectivity, divided by the within (to normalize). One number per person per
+condition. **High = modular brain** (systems talking to themselves); **low = integrated** (networks
+mixing). Goutham will use this on slide 5 — remember "high modular, low integrated".
 
-*De 360×360 a 78.* Las matrices completas serían >64.000 pares — imposible con 336 personas sin
-sobreajuste. Se agrupan las 360 regiones en **12 redes** (atlas Cole-Anticevic: visual, motora, control
-cognitivo, default…) y se promedia: **12** valores dentro de red + **66** entre redes (12×11/2 = 66
-parejas sin repetir) = **78 features** por persona por condición.
+*From 360×360 to 78.* The full matrices would be >64,000 pairs — impossible with 336 people without heavy
+overfitting. So the 360 regions are grouped into **12 networks** (Cole-Anticevic atlas: visual, motor,
+cognitive control, default…) and averaged: **12** within-network values + **66** between-network (12×11/2
+= 66 unique pairs) = **78 features** per person per condition.
 
-*El modelo (esto lo domináis, no te extiendas):* ridge con estandarizado, ambos ajustados **dentro** de
-cada fold de entrenamiento — nunca con info del test. Es la higiene que evita inflar la CV.
+*The model (you all know this — don't dwell):* ridge with standardization, both fit **inside** each
+training fold — never using test info. That's the hygiene that stops CV from inflating.
 
-*Las 4 evaluaciones* (cada una sale luego): CV repetida 5-fold ×20 · holdout fijo · null de 1000
-permutaciones · transferencia B→A sin identidades compartidas.
+*The 4 evaluations* (each appears later): repeated 5-fold CV ×20 · fixed holdout · 1000-permutation null ·
+B→A transfer with no shared identities.
 
-**El gráfico (léelo así — no es autoevidente):** tres cuadrículas de 360×360. Cada casilla = un par de
-regiones; color = su correlación en esa condición. Escala: azul (negativo) → blanco (≈0) → tierra
-(positivo). Panel 1 = 2-back, panel 2 = 0-back, panel 3 = la resta.
+*Figure (in the deck): Slide 3 — 0-back FC, 2-back FC, and their difference (78-network summary). Panels 1–2 share one colour scale; panel 3 has its own, about 10× tighter.*
 
-⚠️ **Matiz que hay que decir:** los paneles 1 y 2 comparten **una** escala; el panel 3 tiene **la suya**,
-~10× más estrecha. Que los tres se vean igual de intensos **no** significa magnitudes iguales — el panel
-de la diferencia está estirado para que se vea un cambio que en absoluto es pequeño. Solo el panel 3
-lleva colorbar.
+**The figure (read it this way — it's not self-evident):** three 360×360 grids. Each cell = a region
+pair; colour = its correlation in that condition. Scale: blue (negative) → white (≈0) → tan (positive).
+Panel 1 = 2-back, panel 2 = 0-back, panel 3 = the difference.
 
-**Recortado de la slide (disponible en Q&A):** TR 0.72 s, desplazamiento HRF de 4 s, 312 frames por
-condición, 2 runs por persona, matrices intermedias de 360×360. Andrea: *"just say it's HCP, 336
-participants, this is the task. That's it."* **Excepción:** el diseño de **2 runs por persona** sí hay
-que decirlo si preguntan por los cuadrados abiertos (cross-run) de la slide 5.
+⚠️ **Say this:** panels 1 and 2 share **one** scale; panel 3 has **its own**, ~10× tighter. Three
+equally intense-looking panels do **not** mean equal magnitudes — the difference panel is stretched to
+make a genuinely small change visible. Only panel 3 carries a colorbar.
 
-**Cómo decirlo (~1 min):**
+**Cut from the slide (available in Q&A):** TR 0.72 s, 4 s HRF shift, 312 frames per condition, 2 runs per
+person, the 360×360 intermediates. Andrea: *"just say it's HCP, 336 participants, this is the task. That's
+it."* **Exception:** the **2-runs-per-person** design does need saying if anyone asks about the open
+(cross-run) squares on slide 5.
+
+**Delivery (~1 min):**
 > *"Quick definitions first. Functional connectivity is just the Pearson correlation between two brain
 > regions' time courses — each region is one of 360 Glasser nodes. FC reconfiguration is how much each
 > network pair changes its coupling from 0-back to 2-back. And system segregation — we'll need it later —
@@ -193,82 +194,63 @@ que decirlo si preguntan por los cuadrados abiertos (cross-run) de la slide 5.
 > the difference is small even though the colours look strong. Reconfiguration is that difference. We feed
 > it to a ridge model, fitted strictly inside each training fold, and evaluate only on held-out people."*
 
-**Transición:** *"So did this 78-feature difference actually predict anything? Yes — and it transferred."*
+**Transition:** *"So did this 78-feature difference actually predict anything? Yes — and it transferred."*
 
-**Preguntas probables:**
-- *"¿Por qué 78 y no todos los pares?"* → "64,000 edges for 336 people would overfit; the network summary is the standard dimensionality reduction."
-- *"¿No infla la tarea las correlaciones (coactivación)?"* → "Yes, task FC can reflect coactivation, not communication — it's a stated limitation; separating the two is future work (backup slide 10, test 2)."
-- *"¿Parámetros de adquisición?"* → TR 0.72 s, HRF shift 4 s, 312 frames/condición, 2 runs — todo listo si lo piden.
+**Likely questions:**
+- *"Why 78 and not all pairs?"* → "64,000 edges for 336 people would overfit; the network summary is the standard dimensionality reduction."
+- *"Doesn't the task inflate correlations (coactivation)?"* → "Yes, task FC can reflect coactivation, not communication — it's a stated limitation; separating them is future work (backup slide 10, test 2)."
+- *"Acquisition parameters?"* → TR 0.72 s, HRF shift 4 s, 312 frames/condition, 2 runs — ready if asked.
 
-**No digas:** "dynamic FC"; que las matrices muestran magnitudes comparables (escalas distintas).
+**Avoid:** "dynamic FC"; implying the matrices show comparable magnitudes (different scales).
 
 ---
 
-# Slide 4 — Results: el patrón predice y transfiere · **Jaime** ✅
+# Slide 4 — Results: the pattern predicts and transfers · **Jaime** ✅
 
-> **Tu slide.** Objetivo en ~1 min: contar que **el patrón predice y transfiere**, dejar claro **qué
-> fuerza** tiene cada número, y **no sobreafirmar**. Al terminar, se lo pasas a **Goutham** (slide 5).
+> **Your slide.** Goal in ~1 min: tell that **the pattern predicts and transfers**, make clear **how
+> strong** each number is, and **don't overclaim**. When done, hand to **Goutham** (slide 5).
 
-**En pantalla (verbatim):**
-- Título: *"The FC pattern predicted performance—and transferred to a separate cohort"*
+**On screen (verbatim):**
+- Title: *"The FC pattern predicted performance—and transferred to a separate cohort"*
 - **Primary repeated CV** *"r = 0.366 ± 0.024 · 336 participants · 78 FC features"*
 - **B→A transfer** *"r = 0.398; 95% CI [0.25, 0.53]"* · *"301 B → 100 A · 35 shared identities removed"*
 - Caveat: *"Identity-disjoint same-HCP transfer—not independent-site validation."*
-- Gráfico: dispersión `identity-disjoint-transfer.png` (predicho vs observado, cohorte A).
+- Figure: scatter `identity-disjoint-transfer.png` (predicted vs observed, cohort A).
 
-### 1 · El gráfico — nombra los ejes ANTES de dar un número (regla de Andrea)
+*Figure (in the deck): Slide 4 — B→A transfer: predicted (y) vs observed (x) 2-back accuracy in cohort A; each dot is one person.*
 
-- Eje **X** = precisión **real** en 2-back de cada persona del **grupo A** (el test).
-- Eje **Y** = precisión **predicha** por un modelo entrenado **solo en el grupo B**, que nunca vio a nadie de A.
-- Cada punto = una persona real de A. La nube **sube de izquierda a derecha** → hay señal. Si el modelo
-  fuera inútil, sería una nube plana.
+### 1 · The figure — name the axes BEFORE any number (Andrea's rule)
 
-### 2 · Los dos números — miden cosas distintas, NO los fundas
+- **X** = each person's **actual** 2-back accuracy in **cohort A** (the test set).
+- **Y** = the accuracy **predicted** by a model trained **only on cohort B** that never saw anyone in A.
+- Each dot = one real person in A. The cloud **rises left to right** → there's signal. If the model were
+  useless, it'd be a flat cloud.
 
-| | **0.366 ± 0.024** | **0.398 · IC [0.25, 0.53]** |
+### 2 · The two numbers — they measure different things, do NOT conflate them
+
+| | **0.366 ± 0.024** | **0.398 · CI [0.25, 0.53]** |
 |---|---|---|
-| Qué es | media de **CV repetida** (5-fold ×20 semillas) | **transferencia B→A** (modelo fijo) |
-| El ± / IC | **split SD** = cuánto se mueve según la partición | **IC bootstrap** = incertidumbre poblacional clásica |
-| Por qué difieren | el modelo **se reajusta** en cada fold → mides *estabilidad*, no IC | el modelo está **congelado** → puedes remuestrear las 100 de A |
+| What it is | **repeated-CV** mean (5-fold ×20 seeds) | **B→A transfer** (fixed model) |
+| The ± / CI | **split SD** = how much it moves by partition | **bootstrap CI** = classic population uncertainty |
+| Why they differ | model is **refit** each fold → measures *stability*, not a CI | model is **frozen** → you can resample A's 100 people |
 
-El **0.398 es el número más fuerte** que tenéis: modelo entrenado en una cohorte, probado en **otra**, sin
-identidades compartidas (se quitaron las 35 que aparecían en ambas).
+The **0.398 is your strongest number**: a model trained on one cohort, tested on **another**, with no
+shared identities (the 35 that appeared in both were removed).
 
-### 3 · Calibración con Avery (por qué 0.36–0.40 es un buen número)
+### 3 · Calibration with Avery (why 0.36–0.40 is a good number)
 
-0.366 y 0.398 caen **justo en la zona del 0.36 publicado** por Avery en estos mismos datos — o algo por
-encima. Es **modesto en absoluto pero a la altura de la literatura**. El criterio de éxito del Project TA
-nunca fue una R² alta, sino **superar claramente el azar** — y eso lo demuestra el backup de validación
-(slide 9): null de 1000 permutaciones p ≈ .001 + holdout fijo 0.312.
+0.366 and 0.398 land **right in the region of the published 0.36** from Avery in this same data — or a
+touch above. **Modest in absolute terms but on par with the literature.** The Project TA's success
+criterion was never a high R², but **clearly beating chance** — which the validation backup (slide 9) shows:
+1000-permutation null p ≈ .001 + fixed holdout 0.312.
 
-### 4 · El caveat obligatorio — dilo tú, no esperes a que lo pregunten
+### 4 · The mandatory caveat — say it yourself, don't wait to be asked
 
-Es una transferencia entre **dos cohortes del mismo HCP**: más fuerte que barajar tus datos, más débil que
-replicar en otro escáner/población. Gradiente: barajar-tus-datos < **transferencia same-HCP (esto)** <
-replicación externa real. Decir dónde caes = credibilidad (y te ahorra que te lo saquen como pega).
+It's a transfer between **two cohorts of the same HCP**: stronger than reshuffling your own data, weaker
+than replicating at another scanner/population. Gradient: reshuffle-your-own-data < **same-HCP transfer
+(this)** < true external replication. Saying where you land = credibility (and it spares you the gotcha).
 
-### 🇪🇸 Tu speech en español (por líneas, para leer)
-
-```
-Este es nuestro resultado principal, y lo evaluamos de dos maneras.
-En el scatterplot, cada punto es una persona.
-El eje X es la precisión real en 2-back,
-y el Y, la que predijo nuestro modelo.
-La nube tiene tendencia ascendente, así que hay señal.
-
-Ahora, nuestros dos resultados.
-El primario, r = 0,366, lo obtuvimos de validación cruzada dentro de nuestra muestra grande, la cohorte B, 336 sujetos.
-El ± 0,024 es la dispersión entre particiones.
-
-Luego, una prueba de transferencia con el modelo congelado: entrenado en B, lo aplicamos a otra cohorte, la A —100 personas distintas del otro dataset del HCP.
-Eso sí, quitamos 35 IDs que estaban en las dos.
-Esa transferencia, la que veis en el gráfico, da r = 0,398.
-
-Es importante recordar que nuestros resultados son consistentes con el benchmark publicado —el 0,36 de Avery— dentro del mismo estudio HCP.
-Y bajo permutación, es poco probable que el efecto se deba al azar.
-```
-
-### 🎤 Tu speech (inglés — el que leerás verbatim, por líneas)
+### 🎤 Your speech (English — verbatim, line by line)
 
 ```
 This is our main result, and we evaluated it in two ways.
@@ -277,34 +259,35 @@ The X axis is their actual 2-back accuracy,
 and the Y axis is what our model predicted.
 The cloud trends upward, so there's signal.
 
-Now, our two results
-The primary one, a correlation of 0.366, we got from cross-validation inside our large sample, cohort B, 336 subjects.
+Now, our two results.
+The primary one, an r of 0.366, we got from cross-validation inside our large sample, cohort B, 336 subjects.
+The 0.024 next to it is the spread across partitions.
 
-Then we ran a stronger test with a frozen model, trained on B and applied to another cohort, A, with 100 different people from the other HCP study.
+Then we ran a transfer test with a frozen model, trained on B and applied to another cohort, A, 100 different people from the other HCP dataset.
 We also removed 35 IDs that were in both.
-That transfer, the one you see in the plot, gives an solid 0.398
+That transfer, the one you see in the plot, gives an r of 0.398.
 
-Two quick things to keep in mind. 
-First, this fully lines up with the published benchmark from Avery, back in 2020, who found a very similar value, 0.36, in this same HCP data.
-And under permutation testing, an effect this size is very unlikely to happen by chance.
+It's important to remember that our results are consistent with the published benchmark, Avery's 0.36, within the same HCP study.
+And under permutation, the effect is unlikely to be due to chance.
 ```
-**Handoff a Goutham:** 
-So the pattern held. Now, is that signal specifically about connectivity? My college Goutham will walk you through the next two checks.
 
-### Interpretación en profundidad (por si aprietan)
+**Handoff to Goutham:** *"So the pattern held. But is that signal specifically about connectivity? That's
+what the next two checks tackle."*
 
-- **Por qué split SD ≠ IC.** En CV repetida el modelo se reentrena en cada fold, así que la dispersión mide
-  *sensibilidad a la partición*, no incertidumbre poblacional. El IC clásico solo es legítimo para el modelo
-  **fijo** de la transferencia — por eso el IC va con el 0.398, no con el 0.366.
-- **Por qué B→A y no A→B.** B es la cohorte grande (336 vs 100): entrenas en la muestra grande y testeas en
-  la pequeña; es la dirección de generalización más exigente y con más potencia.
-- **Circularidad (misma tarea).** Predecir N-back desde FC de N-back comparte varianza de estado. Está
-  **parcialmente controlado**: al sacar la habilidad general (`acc_0bk`) la señal sobrevive, y se ancla en el
-  diseño de misma tarea de Avery. Separar coactivación de conectividad = trabajo futuro (slide 10, test 2).
-- **¿Por qué parece bajo el número?** En predicción cerebro-conducta un r ≈ 0.35–0.40 es un efecto real y
-  publicable; el techo está además limitado por el efecto techo de `acc_2bk` (mucha gente cerca de 1.0).
+### Interpretation in depth (if they push)
 
-### Preguntas (probables + trampa) — con respuesta lista
+- **Why split SD ≠ CI.** In repeated CV the model is retrained each fold, so the spread measures *partition
+  sensitivity*, not population uncertainty. The classic CI is only legitimate for the **fixed** transfer
+  model — that's why the CI goes with 0.398, not 0.366.
+- **Why B→A and not A→B.** B is the larger cohort (336 vs 100): you train on the big sample and test on the
+  small one; it's the more demanding, higher-powered generalization direction.
+- **Circularity (same task).** Predicting N-back from N-back FC shares state variance. It's **partly
+  controlled**: partialling out general ability (`acc_0bk`) the signal survives, and it's anchored in
+  Avery's same-task design. Separating coactivation from connectivity = future work (slide 10, test 2).
+- **Why does the number look low?** In brain–behavior prediction r ≈ 0.35–0.40 is a real, publishable
+  effect; the ceiling is also capped by the ceiling effect on `acc_2bk` (many people near 1.0).
+
+### Questions (likely + trap) — with ready answers
 
 - *"What if it's overfitting or luck?"* → *"Backup: a 1000-permutation null gives p ≈ .001, and a fixed
   holdout of 67 never-seen people gives r = 0.312 — three procedures, same story."* (slide 9)
@@ -320,70 +303,72 @@ So the pattern held. Now, is that signal specifically about connectivity? My col
 - *"Is this an external / independent validation?"* → *"No — identity-disjoint transfer within the same HCP
   study. Stronger than reshuffling, weaker than an independent-site replication."*
 
-**No digas:** "confidence interval" para el 0.366 · "external / independent validation" para la
-transferencia · que el modelo "gana" nada (eso es de la slide de Goutham) · "dynamic FC".
+**Avoid:** "confidence interval" for 0.366 · "external / independent validation" for the transfer · saying
+the model "wins" anything (that's Goutham's slide) · "dynamic FC".
 
-**Entrega:** ~1 min, una sola figura y dos números. El único riesgo real es **acelerarte y fundir los dos
-números** — respira entre *"0.366, split SD"* y *"0.398, bootstrap CI"*. Ensáyalo cronometrado.
+**Delivery:** ~1 min, one figure and two numbers. The only real risk is **rushing and merging the two
+numbers** — breathe between *"0.366, split SD"* and *"0.398, bootstrap CI"*. Rehearse it against the clock.
 
 ---
 
-# Slide 5 — Robustness checks: dos comprobaciones que acotan lo que se puede afirmar · **Goutham** (la bisagra)
+# Slide 5 — Robustness checks: two checks that narrowed what we can claim · **Goutham** (the hinge)
 
-**En pantalla (verbatim):**
-- Título: *"Two checks that narrowed what we can claim"*
+**On screen (verbatim):**
+- Title: *"Two checks that narrowed what we can claim"*
 - *"Repeated-CV correlation (mean ± split SD across 20 partitions)"*
 - *"0-back FC 0.274 ± 0.032 · FC reconfiguration 0.366 ± 0.024"*
 - *"0-back + reconfiguration 0.333 ± 0.026 · Activation contrast 0.600 ± 0.016"*
 - **Direction, as predicted—but only at group level:** *"Segregation fell under load (0.3271 → 0.3035; Δ = −0.0236; p = 3.45 × 10⁻⁵), yet larger shifts did not predict better performance (r = −0.105; p = .054)."*
 - *"Open squares = held-out cross-run generalization."*
-- Dos líneas de caveat (grandes):
+- Two caveat lines (large):
   - *"A specificity check, not a competition: post hoc, 360 activation features vs 78 FC features, and 0-back activation alone predicts as well (0.571), so the benchmark is not load-specific. FC reconfiguration stays the load-specific measure."*
   - *"Activation is a raw BOLD amplitude difference, not a GLM beta. Individual vascular reactivity (CVR) is uncontrolled, and this dataset carries no CVR proxy."*
-- **Gráfico:** `activation-robustness.png`.
+- **Figure:** `activation-robustness.png`.
 
-**Marco mental (dilo así):** no es "perdimos contra la activación", es "hicimos **dos comprobaciones de
-solidez**, y las dos nos obligaron a ser más precisos". Dos tiempos: **dirección** y **especificidad**.
+*Figure (in the deck): Slide 5 — cross-validated r by feature set: 0-back FC, FC reconfiguration, combined FC, activation. Open squares = cross-run generalization.*
 
-**Comprobación 1 — la dirección (responde a la apuesta "Direction" de la slide 2):** a nivel de grupo la
-segregación bajó 0.3271 → 0.3035; Δ = −0.0236; p = 3.45×10⁻⁵ (pareado, n=336) — **prácticamente cero de
-azar**. La dirección predicha **existe**. Pero ¿predice a un individuo? La correlación entre cuánto cambia
-la segregación de una persona y cuánto rinde es **r = −0.105, p = 0.054** — justo en el borde de lo
-significativo. **No.**
+**Framing (say it this way):** not "we lost to activation", but "we ran **two robustness checks**, and both
+made us more precise". Two beats: **direction** and **specificity**.
 
-> **La lección transferible más importante de la charla:** un efecto de grupo aplastante **no** garantiza
-> valor predictivo individual. Igual que la tensión sube con la edad en la población (hecho rocoso) pero
-> la edad sola no diagnostica a un paciente. Tamaño del efecto ≠ relevancia diagnóstica individual.
+**Check 1 — direction (answers the "Direction" prediction from slide 2):** at group level, segregation
+fell 0.3271 → 0.3035; Δ = −0.0236; p = 3.45×10⁻⁵ (paired, n=336) — **essentially zero by chance**. The
+predicted direction **exists**. But does it predict an individual? The correlation between a person's
+segregation change and their accuracy is **r = −0.105, p = 0.054** — right at the significance border. So
+**no.**
 
-**Comprobación 2 — la especificidad (el gráfico):** puntos con barras de error, horizontal, 4 filas. Eje
-X = correlación de CV, ~0.2 a 0.7. Cada fila = un conjunto de features distinto, misma receta de modelo:
+> **The most transferable lesson of the talk:** an overwhelming group effect does **not** guarantee
+> individual predictive value. Just as blood pressure rises with age across a population (rock-solid) but
+> age alone doesn't diagnose a patient. Effect size ≠ individual diagnostic relevance.
+
+**Check 2 — specificity (the figure):** dot-and-error-bar plot, horizontal, 4 rows. X = CV correlation,
+~0.2 to 0.7. Each row = a different feature set, same model recipe:
 - **0-back FC** (78) → **0.274**
-- **FC reconfiguration** (78) → **0.366** (la protagonista de la slide 4)
-- **Combined** (156) → **0.333** — ojo, **más bajo** que reconfiguration sola: juntarlas no ayuda, diluye. Pista de que la reconfiguración ya hace todo el trabajo útil de la FC.
-- **Activation** (360) → **0.600**, en naranja/diamante — netamente por encima de toda la FC.
+- **FC reconfiguration** (78) → **0.366** (the star of slide 4)
+- **Combined** (156) → **0.333** — note, **lower** than reconfiguration alone: combining doesn't help, it dilutes. A hint that reconfiguration is already doing all the useful FC work.
+- **Activation** (360) → **0.600**, in orange/diamond — clearly above any FC.
 
-**Cuadrados abiertos** sobre reconfiguration y activation = comprobación aún más estricta (entrenar en una
-run, predecir en la otra). A ojo (**lectura aproximada, no cifras impresas**): ~0.24 reconfig vs su 0.366;
-~0.47 activation vs su 0.600. Mensaje honesto: la replicación entre runs es más débil para **las dos**.
+**Open squares** over the reconfiguration and activation rows = an even stricter check (train on one run,
+predict on the other). By eye (**approximate, not printed numbers**): ~0.24 reconfig vs its 0.366; ~0.47
+activation vs its 0.600. Honest message: cross-run replication is weaker for **both** measures.
 
-**Por qué NO es una competición justa (dilo entero):**
-1. **360 vs 78** features, sin igualar → más variables casi siempre predicen más, sin significado biológico.
-2. **La activación de 0-back sola ya predice 0.571** — casi el 0.600 del contraste. Si con la persona en la condición fácil ya tienes casi toda la predicción, la señal **no es de la carga**; parece un **rasgo estable**.
-3. **CVR (reactividad vascular cerebral):** la activación es amplitud BOLD cruda (no un beta de GLM), influida por factores vasculares (rigidez, edad, cafeína) sin nada que ver con actividad neuronal. Este dataset no puede medirlo ni controlarlo. La FC, al ser una **correlación**, cancela buena parte de ese factor de escala.
+**Why it's NOT a fair competition (say all of it):**
+1. **360 vs 78** features, unmatched → more features almost always predict more, with no biological meaning.
+2. **0-back activation alone already predicts 0.571** — nearly the 0.600 of the contrast. If the person just sitting in the easy condition already gives you almost all the prediction, the signal is **not about load**; it looks like a **stable trait**.
+3. **CVR (cerebral vascular reactivity):** activation is raw BOLD amplitude (not a GLM beta), influenced by vascular factors (vessel stiffness, age, caffeine) unrelated to neural activity. This dataset can't measure or control it. FC, being a **correlation**, cancels much of that shared scale factor.
 
-**El argumento de Goutham (es tu slide — dilo si preguntan "¿por qué os quedáis con la medida más débil?"):**
-una **resta** cancela matemáticamente la varianza **estable** (anatomía vascular, amplitud basal, motion
-de rasgo) y deja solo lo que **cambió** con la tarea. Por eso es **esperable** que la reconfiguración
-replique peor entre runs que una medida cruda — no es un defecto que favorezca a la activación. Que la
-activación replique mejor **no** prueba que sea mejor medida cognitiva; puede estar cargada de ruido
-estable (vascular) que resulta que correlaciona con el rendimiento. Con 0-back-sola prediciendo 0.571,
-la ventaja de activación la impulsa un **rasgo estático**, no la tarea.
+**Goutham's argument (it's your slide — say it if asked "why keep the weaker measure?"):** a **difference
+score** mathematically cancels the **stable** variance (vascular anatomy, baseline amplitude, trait-level
+motion) and leaves only what **changed** with the task. So it's **expected** that reconfiguration replicates
+worse across runs than a raw measure — not a defect that favors activation. Activation replicating better
+does **not** prove it's a better cognitive measure; it may be loaded with stable (vascular) noise that
+happens to correlate with performance. With 0-back-alone predicting 0.571, the activation advantage is
+driven by a **static trait**, not the task.
 
-⚠️ **Traceability gap:** los números de fiabilidad entre runs que sostienen este argumento (reconfig ≈
-0.024, activación ≈ 0.169) viven en `nb08`, **no** en `pipeline/02`, así que **no** tienen test
-automático. **No los imprimas en ninguna slide** — mantenlos verbales, en la nota del ponente.
+⚠️ **Traceability gap:** the between-run reliability numbers behind this argument (reconfig ≈ 0.024,
+activation ≈ 0.169) live in `nb08`, **not** in `pipeline/02`, so they have **no automated check**. **Don't
+print them on a slide** — keep them verbal, in the speaker note.
 
-**Cómo decirlo (~1.5–2 min — la slide más larga, ensáyala contra reloj):**
+**Delivery (~1.5–2 min — the longest slide; rehearse against the clock):**
 > *"Two checks, both of which narrowed our claim. **First, direction.** At the group level, segregation
 > fell under load — from 0.327 to 0.304, p around 3 times ten-to-the-minus-five, essentially zero by
 > chance. So the direction we predicted is real. But does it predict individuals? The correlation between
@@ -399,34 +384,34 @@ automático. **No los imprimas en ninguna slide** — mantenlos verbales, en la 
 > removes that stable variance, so it's expected to look less reliable — that's why we keep it as our
 > pre-specified, amplitude-independent measure."*
 
-**Transición:** *"So — what does all this add up to?"* (a la conclusión).
+**Transition:** *"So — what does all this add up to?"* (to the conclusion).
 
-**Preguntas probables:**
-- *"Entonces la activación es mejor, ¿deberíais usarla?"* → "It predicts more in this unmatched, post-hoc comparison, but it isn't load-specific and it's confounded by vascular reactivity. We report it as a specificity check, not a replacement."
-- *"¿Por qué la combinada baja?"* → "Adding 0-back FC to reconfiguration doesn't add independent signal and slightly dilutes it — reconfiguration alone is doing the work."
-- *"¿Qué son los cuadrados?"* → "Cross-run generalization: train on one scan run, test on the other. Both measures drop — reliability across runs is weaker than the main estimate for both." (2 runs por persona — de aquí sale.)
-- *"¿No es dFC?"* → "No — this is static FC aggregated per condition, then subtracted. Not dynamic connectivity."
+**Likely questions:**
+- *"So activation is better — should you use it?"* → "It predicts more in this unmatched, post-hoc comparison, but it isn't load-specific and it's confounded by vascular reactivity. We report it as a specificity check, not a replacement."
+- *"Why does the combined one drop?"* → "Adding 0-back FC to reconfiguration doesn't add independent signal and slightly dilutes it — reconfiguration alone is doing the work."
+- *"What are the squares?"* → "Cross-run generalization: train on one scan run, test on the other. Both measures drop — reliability across runs is weaker than the main estimate for both." (2 runs per person — that's where this comes from.)
+- *"Isn't this dFC?"* → "No — this is static FC aggregated per condition, then subtracted. Not dynamic connectivity."
 
-**No digas:** que un modelo "gana"; que la reconfiguración es "la más robusta"; imprimir los números de fiabilidad de nb08.
+**Avoid:** saying a model "wins"; calling reconfiguration "the most robust"; printing the nb08 reliability numbers.
 
 ---
 
-# Slide 6 — Conclusions: qué predijimos y qué hizo la evidencia · **Kerem** · **se queda en pantalla en Q&A**
+# Slide 6 — Conclusions: what we predicted and what the evidence did to it · **Kerem** · **keep projected in Q&A**
 
-**En pantalla (verbatim):**
-- Título: *"Predictive signal survives; connectivity-specific mechanism remains unresolved"*
+**On screen (verbatim):**
+- Title: *"Predictive signal survives; connectivity-specific mechanism remains unresolved"*
 - **Survives — the pattern hypothesis:** *"A 78-feature FC difference predicts unseen 2-back accuracy."* · *"The model transfers across identity-disjoint same-HCP cohorts (r = 0.398)."*
 - **Refined — the directional hypothesis:** *"Segregation fell under load, but larger shifts did not predict better performance."* · *"Reconfiguration showed no clear gain beyond 0-back FC."* · *"FC added no clear gain over activation under the current unmatched comparison."*
 - **Unresolved:** *"Is the predictive information connectivity-specific, or shared with task activation?"* · *"Vascular reactivity (CVR) is not controlled in the activation benchmark."*
-- Sin gráfico. Andrea la aprobó sin cambios.
+- No figure. Andrea approved it with no changes.
 
-**Lo que debes saber:** son **tres columnas que cierran el bucle de la slide 2**. Survives = la apuesta
-Pattern. Refined = la apuesta Direction. Unresolved = lo que honestamente no se sabe. Nombrar las dos
-primeras columnas con las etiquetas de la slide 2 es lo que hace que el relato **cierre** en vez de sonar
-a retractación. El 0.398 impreso bajo *Survives* es tu titular de cierre — remátalo como *"identity-disjoint
-same-HCP transfer"*, nunca "independent".
+**What to know:** three columns that **close the loop opened on slide 2**. Survives = the Pattern
+prediction. Refined = the Direction prediction. Unresolved = what we honestly don't know. Naming the first
+two columns with slide 2's labels is what makes the story **close** rather than sound like a retraction.
+The 0.398 printed under *Survives* is your closing headline — land it as *"identity-disjoint same-HCP
+transfer"*, never "independent".
 
-**Cómo decirlo (~1 min):**
+**Delivery (~1 min):**
 > *"To close the loop we opened. **Survives** — the pattern hypothesis: a 78-feature FC difference
 > predicts unseen 2-back accuracy, and it transfers across identity-disjoint cohorts at r = 0.398.
 > **Refined** — the directional hypothesis: segregation did fall under load **at the group level**, but
@@ -436,89 +421,91 @@ same-HCP transfer"*, nunca "independent".
 > And vascular reactivity is uncontrolled. So — the predictive signal survives; the connectivity-specific
 > mechanism remains unresolved. Thank you — happy to take questions."*
 
-**Preguntas probables:** esta slide **es** tu mapa de Q&A — se queda proyectada. Cada columna apunta a un
-backup: Refined→slides 8 y 9, Unresolved→slide 10 (futuro).
+**Likely questions:** this slide **is** your Q&A map — keep it projected. Each column points to a backup:
+Refined→slides 8 and 9, Unresolved→slide 10 (future work).
 
-**No digas:** que "cambió" la conclusión; que se demostró un mecanismo de conectividad; "independent
-validation" (es *identity-disjoint same-HCP*); la integración como confirmada a nivel individual (solo grupo).
+**Avoid:** saying the conclusion "changed"; that a connectivity mechanism was demonstrated; "independent
+validation" (it's *identity-disjoint same-HCP*); integration as confirmed at the individual level (group only).
 
 ---
 
-# Backups (slides 7–11 · solo se abren si preguntan)
+# Backups (slides 7–11 · open only if asked)
 
-*(Slide 7 = portada divisoria "Backup · opened only on demand during Q&A". Sin habla.)*
+*(Slide 7 = the "Backup · opened only on demand during Q&A" divider. No speaking.)*
 
-## Slide 8 — Backup: la dirección en detalle
+## Slide 8 — Backup: the directional result in full
 
-**En pantalla:** Título *"Group direction was real; the individual link was weak"* · *"Group mean: 0-back
+**On screen:** Title *"Group direction was real; the individual link was weak"* · *"Group mean: 0-back
 0.3271 → 2-back 0.3035"* · *"Paired change: Δ = −0.0236; p = 3.45 × 10⁻⁵"* · *"Across participants:
 r = −0.105; p = .054"* · *"A reliable mean shift does not establish individual predictive relevance."* ·
-Gráfico `segregation-refinement.png`.
+Figure `segregation-refinement.png`.
 
-**El gráfico (2 paneles):** izquierda, dos **violines** (0-back / 2-back) = la distribución completa de
-segregación de las 336 personas, no solo la media; una línea con dos puntos blancos une las medias y
-muestra la caída 0.3271 → 0.3035. Derecha, **dispersión**: X = cuánto cambió la segregación de cada
-persona, Y = su precisión en 2-back; línea vertical punteada en 0 (izquierda = se integró más). La
-tendencia es casi plana. **Efecto de grupo real, vínculo individual débil** — la misma lección de la
-slide 5 con la imagen completa.
+*Figure (in the deck): Slide 8 — group segregation shift (violins, left) and the weak individual link (scatter, right).*
 
-**Cuándo abrirla:** "¿qué significa que la hipótesis direccional se 'matizó'?".
+**The figure (2 panels):** left, two **violins** (0-back / 2-back) = the full segregation distribution of
+the 336 people, not just the mean; a line with two white dots connects the means and shows the 0.3271 →
+0.3035 drop. Right, **scatter**: X = each person's segregation change, Y = their 2-back accuracy; a dotted
+vertical line at 0 (left = integrated more). The trend is almost flat. **Real group effect, weak
+individual link** — slide 5's lesson with the full picture.
 
-**Ojo:** no reuses la magnitud **−0.048** del abstract enviado — esa tenía otra convención de atlas; la
-canónica es −0.0236 (mismo signo, mitad de magnitud).
+**When to open:** "what does 'the directional hypothesis was refined' actually mean?".
 
-## Slide 9 — Backup: las comprobaciones del resultado primario
+**Note:** don't reuse the **−0.048** magnitude from the submitted abstract — that used a different atlas
+convention; the canonical one is −0.0236 (same sign, half the magnitude).
 
-**En pantalla:** Título *"The checks behind the primary result"* · *"Fixed holdout: r = 0.312 in 67
-unseen participants"* · *"Full-refit null (seed 42): r = 0.405; p = 1/1001 ≈ .001"* · *"B→A A-label
-permutation, fixed B predictions: p = 1/1001 ≈ .001"* · *"Reconfiguration over 0-back FC: ΔR² = +0.0344 ±
-0.0225 → no clear gain"* · *"FC over activation: ΔR² = −0.0030 ± 0.0065 → no clear gain"* · *"The
-permutation p belongs only to seed-42 r = 0.405; the holdout is a separate split."* · Gráfico
-`null-and-holdout.png`.
+## Slide 9 — Backup: the checks behind the primary result
 
-**El gráfico (2 paneles):** izquierda, **histograma** = barajar 1000 veces las etiquetas de rendimiento
-(reajustando el modelo, partición fija) → distribución de "esto es el azar con este pipeline"; una línea
-vertical marca el r real 0.405, a la derecha de casi toda la nube → solo 1 de 1001 fue tan extrema →
-p ≈ .001. Derecha, **holdout fijo**: 67 personas nunca tocadas, r = 0.312.
+**On screen:** Title *"The checks behind the primary result"* · *"Fixed holdout: r = 0.312 in 67 unseen
+participants"* · *"Full-refit null (seed 42): r = 0.405; p = 1/1001 ≈ .001"* · *"B→A A-label permutation,
+fixed B predictions: p = 1/1001 ≈ .001"* · *"Reconfiguration over 0-back FC: ΔR² = +0.0344 ± 0.0225 → no
+clear gain"* · *"FC over activation: ΔR² = −0.0030 ± 0.0065 → no clear gain"* · *"The permutation p belongs
+only to seed-42 r = 0.405; the holdout is a separate split."* · Figure `null-and-holdout.png`.
 
-⚠️ El p de una-entre-mil pertenece **solo** al 0.405 de la semilla 42 — no al 0.312 del holdout ni al
-0.366 de la CV repetida. Tres procedimientos distintos, misma historia, no intercambiables.
+*Figure (in the deck): Slide 9 — permutation null with the real r marked (left) and the fixed holdout scatter (right).*
 
-**Los dos ΔR² ("no clear gain"):** regla heurística de "2 SD" (el incremento es menor que el doble de su
-variabilidad). **No es un test formal** de superioridad/equivalencia — dilo si preguntan.
+**The figure (2 panels):** left, **histogram** = shuffle the performance labels 1000 times (refitting the
+model, fixed partition) → the distribution of "what chance looks like with this pipeline"; a vertical line
+marks the real r = 0.405, to the right of almost the whole cloud → only 1 of 1001 was that extreme →
+p ≈ .001. Right, **fixed holdout**: 67 never-touched people, r = 0.312.
 
-**Cuándo abrirla:** "¿cómo sabéis que no es azar / y el holdout?".
+⚠️ The one-in-a-thousand p belongs **only** to the seed-42 r = 0.405 — not to the 0.312 holdout nor the
+0.366 repeated-CV. Three different procedures, same story, not interchangeable.
 
-*Munición extra (en `pipeline/02`, no en slide):* también controlaron parcialmente por precisión en
-0-back (para descartar "habilidad general") y repitieron con **d′** (sensibilidad de teoría de detección
-de señales) en la cohorte B. Si preguntan "¿controlasteis por habilidad general?" → sí.
+**The two ΔR² ("no clear gain"):** a "2-SD" heuristic (the increment is smaller than twice its own
+variability). **Not a formal** superiority/equivalence test — say so if asked.
 
-## Slide 10 — Backup: trabajo futuro
+**When to open:** "how do you know it's not chance / and the holdout?".
 
-**En pantalla:** Título *"Five tests could resolve the remaining question"* · 5 ítems + criterio de
-decisión (*"FC must add reliable held-out value beyond activation and single-condition FC."*).
+*Extra ammunition (in `pipeline/02`, not on a slide):* we also partial out 0-back accuracy (to rule out
+"general ability") and repeat with **d′** (signal-detection sensitivity) in cohort B. If asked "did you
+control for general ability?" → yes.
 
-**Los 5, qué ataca cada uno:** (1) igualar dimensionalidad activación/FC en CV anidada; (2) separar
-coactivación de acoplamiento con un estimador prefijado; (3) generalización a otro sitio/sesión con
-parentesco modelado; (4) correr el modelo de activación sobre **reposo** — si el reposo predice tan bien
-como la tarea, la señal es **independiente de tarea** (ejecutable ya: cohorte B trae 4 runs de reposo);
-(5) **ST-GNN** (propuesta de Goutham, ya construyéndola) — modelar la transición como grafo dinámico y
-que el modelo **aprenda** la reorganización en vez de resumirla en una resta ("ver la película, no dos
-fotos").
+## Slide 10 — Backup: future work
 
-**Cuándo abrirla:** "¿y ahora qué / cómo resolveríais lo de activación vs FC?".
+**On screen:** Title *"Five tests could resolve the remaining question"* · 5 items + decision criterion
+(*"FC must add reliable held-out value beyond activation and single-condition FC."*).
 
-## Slide 11 — Backup: referencias y guardarraíles
+**The 5, what each attacks:** (1) match activation/FC dimensionality in nested CV; (2) separate
+coactivation from coupling with a prespecified estimator; (3) independent-site / repeat-session
+generalization with kinship modelled; (4) run the activation model on **resting-state** — if rest predicts
+as well as task, the signal is **task-independent** (runnable now: cohort B ships 4 rest runs); (5)
+**ST-GNN** (Goutham's proposal, already building it) — model the transition as a dynamic graph and let the
+model **learn** the reorganization rather than summarize it in one difference ("watch the film, not two
+snapshots").
 
-**En pantalla:** Título *"References and statistical guardrails"* · bibliografía (Avery 2020, Chan 2014,
-Murphy 2020, Masharipov 2024, Hedge 2018, Logothetis 2008) + definiciones de guardarraíl (r = 0.366 ±
-0.024 = media ± split SD de 20 particiones; seed-42 r = 0.405, p ≈ .001 = null de refit completo; B→A
-r = 0.398, IC [0.25, 0.53] = transferencia identity-disjoint).
+**When to open:** "what next / how would you resolve the activation-vs-FC question?".
 
-**Cómo presentarla (Andrea):** el último ponente la muestra ~5 segundos, dice "estas son las referencias",
-y pasa a preguntas. **No se lee en voz alta.** Chan sostiene la fórmula de segregación; Hedge sostiene el
-argumento de Goutham (slide 5); Logothetis enmarca el límite de CVR como limitación **ya conocida** del
-campo, no un hallazgo propio.
+## Slide 11 — Backup: references and statistical guardrails
 
-**Las tres cifras a memorizar (sostienen toda la charla):** 0.366 ± 0.024 · seed-42 0.405, p ≈ .001 · B→A
-0.398, IC [0.25, 0.53].
+**On screen:** Title *"References and statistical guardrails"* · bibliography (Avery 2020, Chan 2014,
+Murphy 2020, Masharipov 2024, Hedge 2018, Logothetis 2008) + guardrail definitions (r = 0.366 ± 0.024 =
+mean ± split SD over 20 partitions; seed-42 r = 0.405, p ≈ .001 = full-refit null; B→A r = 0.398, CI
+[0.25, 0.53] = identity-disjoint transfer).
+
+**How to present it (Andrea):** the last presenter shows it for ~5 seconds, says "these are the references
+we used", and moves to questions. **Don't read it aloud.** Chan backs the segregation formula; Hedge backs
+Goutham's argument (slide 5); Logothetis frames the CVR limit as a **known** field limitation, not a
+finding of ours.
+
+**Three numbers to memorize (they carry the whole talk):** 0.366 ± 0.024 · seed-42 0.405, p ≈ .001 · B→A
+0.398, CI [0.25, 0.53].
