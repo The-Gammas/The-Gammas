@@ -1,4 +1,4 @@
-"""Functional-connectivity representations (Jaime's sandbox).
+"""Functional-connectivity representations.
 
 **Category: FC representations.** Turns condition-restricted BOLD into the two feature
 sets notebook ``06`` compares: the team's 78-dim within/between-network fingerprint and

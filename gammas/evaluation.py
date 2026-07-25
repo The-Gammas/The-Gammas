@@ -1,4 +1,4 @@
-"""Split + QC for the HCP working-memory finalists (Jaime's sandbox).
+"""Split + QC for the HCP working-memory finalists.
 
 **Category: evaluation setup + quality control.** :func:`make_split` builds the leakage-safe
 subject-level train/test + CV split; :func:`validate_dataset` produces the aggregate QC the
@@ -17,8 +17,8 @@ from sklearn.linear_model import RidgeCV
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-import datasets as ds
-import preprocessing as pp
+from . import datasets as ds
+from . import preprocessing as pp
 
 
 # --------------------------------------------------------------------------- #

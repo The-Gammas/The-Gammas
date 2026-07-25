@@ -16,11 +16,11 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import connectivity as fc  # noqa: E402
-import datasets as ds  # noqa: E402
-import preprocessing as pp  # noqa: E402
+from gammas import connectivity as fc  # noqa: E402
+from gammas import datasets as ds  # noqa: E402
+from gammas import preprocessing as pp  # noqa: E402
 
 
 def spd_stack(rng: np.random.Generator, n: int, n_roi: int) -> np.ndarray:
@@ -114,11 +114,28 @@ class DelayedSegmentationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             spec = self._spec_with_ev(Path(tmp), onset=10.0)
 
-            undelayed = pp.condition_frames(spec, "sub01", run=0, level="0back")
+            undelayed = pp.condition_frames(spec, "sub01", run=0, level="0back", delay=0.0)
             delayed = pp.condition_frames(spec, "sub01", run=0, level="0back", delay=4.0)
 
             self.assertEqual(undelayed.tolist(), [13, 14, 15, 16])  # floor(10 / 0.72)
             self.assertEqual(delayed.tolist(), [19, 20, 21, 22])  # floor(14 / 0.72)
+
+    def test_default_delay_is_the_canonical_shift(self) -> None:
+        """Regression guard for the bug this suite used to miss.
+
+        The delay was a parameter nobody had to pass, so every caller that omitted it
+        silently reproduced r = 0.152 instead of the canonical r = 0.366. The old suite
+        stayed green because it only checked that the parameter *worked*, never that the
+        default was right. Callers that omit ``delay`` must now get the 4 s shift.
+        """
+        self.assertEqual(pp.HRF_DELAY, 4.0)
+        with tempfile.TemporaryDirectory() as tmp:
+            spec = self._spec_with_ev(Path(tmp), onset=10.0)
+
+            default = pp.condition_frames(spec, "sub01", run=0, level="0back")
+            explicit = pp.condition_frames(spec, "sub01", run=0, level="0back", delay=4.0)
+
+            np.testing.assert_array_equal(default, explicit)
 
 
 if __name__ == "__main__":

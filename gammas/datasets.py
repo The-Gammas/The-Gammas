@@ -1,4 +1,4 @@
-"""Config + raw loaders for the HCP working-memory finalists (Jaime's sandbox).
+"""Config + raw loaders for the HCP working-memory finalists.
 
 **Category: loaders / I-O.** Defines the two datasets (:class:`DatasetSpec`, :func:`spec_a`,
 :func:`spec_b`), the shared constants, and the raw reads from disk (subject lists,
