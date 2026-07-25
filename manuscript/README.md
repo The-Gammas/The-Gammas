@@ -11,9 +11,8 @@ every result; scientific claims come from
 | [`TheGammas_abstract_submitted_2026-07-20.pdf`](TheGammas_abstract_submitted_2026-07-20.pdf) | The submitted PDF exactly as sent |
 | [`research-proposal.md`](research-proposal.md) | Valeria Moraga's *Research Question Development* condensed into NMA's four-step modelling frame. A proposal, not a record of team agreement; her source PDF and transcription in [`../sandbox/valeria/`](../sandbox/valeria/) are unchanged |
 | [`references.md`](references.md) | Annotated bibliography. The single place a citation lives |
-| [`writing-guide.md`](../docs/writing-guide.md) | The shared writing standard: NMA's **ABC…G** abstract structure, source use, word discipline, slide format. Review drafts against it, not against personal taste |
+| [`writing-guide.md`](../manuscript/writing-guide.md) | The shared writing standard: NMA's **ABC…G** abstract structure, source use, word discipline, slide format. Review drafts against it, not against personal taste |
 | [`slides/`](slides/) | The deck presented at W3D5 on 24 Jul 2026 and its presenter guide |
-| [`archive/`](archive/) | Pre-submission material, frozen under its date and left unedited — currently the 17 Jul rationale for merging the two abstract drafts, kept for that rationale and its authorship table |
 
 ## Attribution and review workflow
 

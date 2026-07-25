@@ -1,7 +1,7 @@
 """Functional-connectivity representations.
 
 **Category: FC representations.** Turns condition-restricted BOLD into the two feature
-sets notebook ``06`` compares: the team's 78-dim within/between-network fingerprint and
+sets ``pipeline/03`` compares: the team's 78-dim within/between-network fingerprint and
 off-diagonal log-Euclidean tangent edges. Downstream of :mod:`preprocessing`, consumed by
 the modelling notebooks alongside :mod:`evaluation`.
 
@@ -38,7 +38,10 @@ def subject_covariances(timeseries: list[np.ndarray]) -> np.ndarray:
 
     Shrinkage is required because each condition has fewer frames (312) than ROIs (360),
     so the sample covariance is singular. Inputs follow the project's ``(n_roi, n_frames)``
-    convention; eigenvalues are floored so the matrix logarithm stays defined.
+    convention. The identity spectral map on the last line also floors eigenvalues, which is
+    redundant for keeping the logarithm defined — :func:`matrix_logarithms` floors again. It is
+    kept because dropping it shifts values at the ~1e-16 level, which would invalidate the
+    cached benchmark in ``pipeline/03`` and the published r = 0.3664.
     """
     covariances = np.stack([
         LedoitWolf(assume_centered=False).fit(np.asarray(x, dtype=float).T).covariance_

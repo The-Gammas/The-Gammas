@@ -96,10 +96,9 @@ qc    = ev.validate_dataset(spec)              # aggregate QC (shapes, frames, c
 ```
 
 `condition_timeseries(..., runs=(0,))` returns a single 156-frame run (for split-half reliability); the
-default concatenates LR+RL to 312 frames. Working from your own `sandbox/<name>/` folder? The notebook
-template ([`pipeline/00_NOTEBOOK_TEMPLATE.ipynb`](../pipeline/00_NOTEBOOK_TEMPLATE.ipynb)) ships a setup cell
-that locates the repo root and this layer automatically, so its imports work from anywhere. Function-by-function
-reference: the module docstrings and [`sandbox/jaime/README.md`](../sandbox/jaime/README.md).
+default concatenates LR+RL to 312 frames. The setup snippet above locates the repo root by looking for
+the package, so it works from any folder depth. Function-by-function reference: the module docstrings
+and [`sandbox/jaime/README.md`](../sandbox/jaime/README.md).
 
 ---
 

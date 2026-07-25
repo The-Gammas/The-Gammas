@@ -2,8 +2,6 @@
 #
 # Version floors are deliberately loose so this installs cleanly on Google Colab
 # and on local venvs alike. Pin harder only if we hit a real incompatibility.
-# If a fresh install stops reproducing pipeline/02, fall back to the exact pins in
-# requirements-lock.txt.
 #
 # Known-good reference (tested locally, Jul 2026):
 #   python 3.12 · numpy 2.5 · pandas 3.0 · matplotlib 3.11 · scipy 1.18 ·

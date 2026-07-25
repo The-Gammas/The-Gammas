@@ -95,7 +95,6 @@ class DatasetSpec:
         behaviour: A -> same as ``task_dir`` (per-subject ``Stats.txt``); B -> ``wm.csv``.
         rest_dir: resting-state root (B only), else ``None``.
         atlas: ROI-geometry ``.npz`` (B only: ``coords`` + surface ``labels_R/L``), else ``None``.
-        n_expected: sanity-check subject count (100 for A, 339 for B).
     """
 
     kind: str
@@ -105,7 +104,6 @@ class DatasetSpec:
     behaviour: Path
     rest_dir: Path | None
     atlas: Path | None
-    n_expected: int
 
 
 def _resolve(data_dir: Path, group: str, subpath: str) -> Path:
@@ -195,9 +193,3 @@ def list_rest_runs(spec: DatasetSpec, subject: str) -> list[Path]:
     return sorted(ts_dir.glob("bold*.npy")) if ts_dir.exists() else []
 
 
-def load_rest_timeseries(spec: DatasetSpec, subject: str, run: int = 0) -> np.ndarray:
-    """One resting-state run as ``(N_PARCELS, n_timepoints)``; ``run`` indexes
-    :func:`list_rest_runs` order. Raw read (no mean removal) — rest is only probed for
-    availability/shape in QC, not part of this data layer's analysis path.
-    """
-    return np.load(list_rest_runs(spec, subject)[run])

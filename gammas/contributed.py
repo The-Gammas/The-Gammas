@@ -1,35 +1,13 @@
 """Analysis methods contributed by teammates, kept under their authorship.
 
-**Why this module exists.** Some of the methods this project rests on were designed by other
-members of the team, not by whoever moved them into the shared layer. Burying them among our
-own functions would erase that, and copying them into every notebook that needs them makes the
-same logic drift in several places at once. This module is the single home for that code, with
-the author, the origin file and the commit stated next to each function.
+**These implementations are not refactored, renamed or "improved" here.** They are the author's
+method, and the numbers the project reports are attributed to them: a well-meaning edit to
+``measure_system_segregation`` would change the ΔSegregation = −0.0236 that
+``docs/final-report.md`` credits to Goutham Arcod. If one looks wrong, that is a conversation
+with its author, not a commit here.
 
-**The rule, and it matters.** These implementations are *not* refactored, renamed or "improved".
-They are the author's method. If one of them looks wrong, that is a conversation to have with
-its author and a change to make together — not a silent edit here. Only the docstring and the
-type hints are ours.
-
-**Their own notebooks keep their own copies, on purpose.** Nothing here asks a contributor to
-import from us. `sandbox/goutham/FCM_entropy.ipynb` and `pipeline/04_goutham_pipeline_
-reconciliation.ipynb` both keep an inline definition, and that is deliberate: the sandbox is
-where the author reads and reasons about his own logic, and `pipeline/04` is a dated record of
-the reconciliation exactly as it ran. This module gives *us* one mapped, tested copy for shared
-analyses; it does not take theirs away.
-
-Map of contributed methods across the repo:
-
-| Method | Author | Lives in | Origin |
-|---|---|---|---|
-| `measure_system_segregation` | Goutham Arcod | here | `sandbox/goutham/FCM_entropy.ipynb` (`f886169`) |
-| `network_fingerprint` | Goutham Arcod (as `get_brain_profile`) | :mod:`gammas.connectivity` | `sandbox/goutham/per_analysis.ipynb` (`5071ccd`) |
-
-`network_fingerprint` stays in :mod:`gammas.connectivity` because eight call sites across two
-pipeline notebooks import it from there; its attribution lives in its own docstring. This table
-is the complete map, so the split does not hide anything.
-
-See `AUTHORS.md` for CRediT roles and `docs/final-report.md` §12 for the narrative.
+``network_fingerprint`` is also his method but lives in :mod:`gammas.connectivity`, where its
+eight call sites import it from. Roles and evidence: ``AUTHORS.md``.
 """
 
 from __future__ import annotations

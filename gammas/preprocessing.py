@@ -191,9 +191,10 @@ def signal_detection_table(spec: ds.DatasetSpec) -> pd.DataFrame:
              .reindex(index=subjects, columns=["0BK", "2BK"]))
     cr = (wm.pivot_table(index="Subject", columns="load", values="ACC_NONTARGET", aggfunc="mean")
             .reindex(index=subjects, columns=["0BK", "2BK"]))
-    # TODO(team): d' = z(hit) - z(fa) from these columns, once the extreme-rate correction is
-    # chosen (e.g. loglinear, or the 1/2N adjustment for hit==1 / fa==0). B-only: A cannot
-    # (its Stats.txt Target/Non-Target accuracies are internally inconsistent — HCP WM bug).
+    # Returns rates, not d'. The project computes d' = z(hit) - z(fa) in pipeline/02 cell 14
+    # with the 1/2N extreme-rate correction (clipping hit==1 and fa==0), which is the choice
+    # this TODO used to leave open. B-only: A's Stats.txt Target/Non-Target accuracies are
+    # internally inconsistent (HCP WM bug), so no clean d' exists for it.
     return pd.DataFrame({
         "subject": [str(s) for s in subjects],
         "hit_0bk": hit["0BK"].to_numpy(),

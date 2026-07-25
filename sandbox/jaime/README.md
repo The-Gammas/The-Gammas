@@ -10,7 +10,7 @@ its tests in [`tests/`](../../tests/); `06_tangent_fc_benchmark` became
 [`pipeline/03`](../../pipeline/03_method_benchmark_tangent_fc.ipynb) with its
 [report](../../pipeline/03_tangent_benchmark_report.md); `09_goutham_pipeline_replication` became
 [`pipeline/04`](../../pipeline/04_goutham_pipeline_reconciliation.ipynb); the abstract merge proposal
-became [`manuscript/archive/2026-07-17_abstract-merge-rationale.md`](../../manuscript/archive/2026-07-17_abstract-merge-rationale.md).
+became [`../../docs/archive/2026-07-17_abstract-merge-rationale.md`](../../docs/archive/2026-07-17_abstract-merge-rationale.md).
 All by `git mv`, so `git log --follow` keeps the history.
 
 This folder began as the data-ingestion contribution and grew into the full evidence path: choose and

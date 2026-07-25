@@ -77,16 +77,6 @@ def save_split(split: dict, path: str | Path) -> None:
     Path(path).write_text(json.dumps(split, indent=2))
 
 
-def load_split(path: str | Path) -> dict:
-    """Load and re-validate a subject-level split from ``splits.json``.
-
-    Re-validated on load, so a corrupted or hand-edited file fails loudly.
-    """
-    split = json.loads(Path(path).read_text())
-    _validate_split(split)
-    return split
-
-
 # --------------------------------------------------------------------------- #
 # Aggregate QC (the evidence the A/B decision rests on)
 # --------------------------------------------------------------------------- #
@@ -115,7 +105,6 @@ def validate_dataset(spec: ds.DatasetSpec) -> dict:
 
     rest_files = ds.list_rest_runs(spec, probe)
     rest_runs = len(rest_files)
-    rest_shape = ds.load_rest_timeseries(spec, probe).shape if rest_files else None
 
     return {
         "dataset": spec.name,
@@ -131,7 +120,6 @@ def validate_dataset(spec: ds.DatasetSpec) -> dict:
         "n_parcels": len(regions),
         "n_networks": regions["network"].nunique(),
         "rest_runs_per_subject": rest_runs,
-        "rest_run_shape": rest_shape,
         "acc_2bk_n": int(acc2.size),
         "acc_2bk_mean": round(float(acc2.mean()), 3),
         "acc_2bk_min": round(float(acc2.min()), 3),
@@ -149,7 +137,7 @@ RIDGE_ALPHAS = np.logspace(-3, 5, 100)
 def ridge_pipeline(*feature_steps) -> Pipeline:
     """Train-fitted scaling + RidgeCV, optionally behind feature transformers.
 
-    Ours — the estimator every method in notebook ``06`` shares, so comparisons differ only
+    Ours — the estimator every method in ``pipeline/03`` shares, so comparisons differ only
     in their features. Passing the whole pipeline to ``cross_val_predict`` is what keeps the
     scaler, the selected alpha and any ``feature_steps`` fitted on training rows only.
     """

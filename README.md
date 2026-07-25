@@ -9,7 +9,7 @@ HCP N-back · Neuromatch Academy CompNeuro 2026 · Pod Ifrit Ras el Hanout · Gr
 [![Project closed 24 Jul 2026](https://img.shields.io/badge/project-closed_24_Jul_2026-455a64)](docs/final-report.md)
 [![Dataset HCP N-back](https://img.shields.io/badge/dataset-HCP_N--back_(A%2FB)-c62828)](data/README.md)
 [![Atlas Glasser 360](https://img.shields.io/badge/atlas-Glasser_360_·_Cole--Anticevic-00897b)](docs/data-dictionary.md)
-[![Tests](https://img.shields.io/badge/tests-20_·_no_data_needed-43a047)](tests/)
+[![Tests](https://img.shields.io/badge/tests_·_no_data_needed-43a047)](tests/)
 [![License MIT + CC BY 4.0](https://img.shields.io/badge/license-MIT_·_CC--BY--4.0-1e88e5)](LICENSE)
 
 </div>
@@ -71,15 +71,16 @@ sandbox notebooks stay as the dated source record, so the chronology remains aud
 gammas/        shared A/B data layer: datasets → preprocessing → connectivity → evaluation
                + contributed.py — methods designed by teammates, under their authorship
 tests/         unit tests for the layer, no data required
-pipeline/      group-reviewed notebooks: template, EDA, canonical evidence, two benchmarks
+pipeline/      group-reviewed notebooks: EDA, canonical evidence, two benchmarks
 docs/          final report, data dictionary, meeting minutes, writing guide, archive/
 manuscript/    abstract, references, proposal, literature review, the presented deck, archive/
 sandbox/       per-person exploration, one folder per member — the audit trail
 data/          local HCP data — gitignored except its README, never committed
 ```
 
-Area indexes: [`docs/`](docs/README.md) · [`pipeline/`](pipeline/README.md) ·
-[`manuscript/`](manuscript/README.md) · [`data/`](data/README.md) · [`sandbox/jaime/`](sandbox/jaime/README.md)
+Area indexes: [`pipeline/`](pipeline/README.md) · [`manuscript/`](manuscript/README.md) ·
+[`data/`](data/README.md) · [`sandbox/jaime/`](sandbox/jaime/README.md) · full map with the source of
+truth for each fact: [final report §9](docs/final-report.md)
 
 *Rule of thumb: if a teammate would read it to **know what happened** it goes in `docs/`; if they would
 reuse it to **write a paper**, `manuscript/`.*
@@ -114,8 +115,7 @@ pip install -r requirements.txt
 make test                                            # sanity check, no data needed
 ```
 
-Loaders read from `./data` by default; set `GAMMAS_DATA_DIR` to point elsewhere. For an exact
-environment rather than loose floors, use [`requirements-lock.txt`](requirements-lock.txt).
+Loaders read from `./data` by default; set `GAMMAS_DATA_DIR` to point elsewhere.
 
 Notebooks at any depth import the shared layer the same way — it locates the package rather than
 guessing a relative hop:
@@ -126,7 +126,7 @@ sys.path.insert(0, str(ROOT))
 from gammas import datasets as ds, preprocessing as pp, evaluation as ev
 ```
 
-`make help` lists the other commands.
+`make reproduce` re-runs the analysis end to end once you have the data.
 
 </details>
 
@@ -139,4 +139,4 @@ Raw data and subject-level derived files are **not** versioned here — see
 
 Code under the **MIT License**, text and figures under **CC BY 4.0** ([LICENSE](LICENSE)). If you reuse
 this work, cite it with [CITATION.cff](CITATION.cff) and credit the authors in [AUTHORS.md](AUTHORS.md).
-Conduct: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+Conduct: we keep the [NMA Code of Conduct](https://docs.neuromatch.io/p/vIfHFwWpiwsIOa/Code-of-Conduct).

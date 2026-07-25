@@ -271,7 +271,7 @@ Enables painting any per-ROI value onto a brain surface (e.g. where 0→2-back r
 ## 5 · What the code hands you (derived layer)
 
 A newcomer usually consumes these **DataFrames / arrays**, not the raw files above. All sit behind the
-shared A/B interface in [`sandbox/jaime/`](../sandbox/jaime/) — `datasets.py` (I/O) →
+shared A/B interface in [`gammas/`](../gammas/) — `datasets.py` (I/O) →
 `preprocessing.py` (transforms) → `evaluation.py` (split + QC). Switch dataset with `spec_a` / `spec_b`;
 nothing downstream branches.
 

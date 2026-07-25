@@ -194,7 +194,7 @@ Carried from the same evidence base:
 
 1. **Environment.** Python 3.12; `pip install -r requirements.txt` from the repo root. The frozen run
    used NumPy 2.5.1, SciPy 1.18.0, scikit-learn 1.9.0, pandas 3.0.3, matplotlib 3.11.0 (`pipeline/02`
-   cell 32). Sanity check without any data: `python -m unittest discover -s tests` → 8 tests, ~0.02 s.
+   cell 32). Sanity check without any data: `python -m unittest discover -s tests` (seconds, no data).
 2. **Data.** Not in Git. Accept the HCP Data Use Terms, run the two official NMA loader notebooks and
    place the output exactly as [`data/README.md`](../data/README.md) specifies (≈1 GB for A, ≈8 GB for
    B). `GAMMAS_DATA_DIR` points the loaders elsewhere.
@@ -229,10 +229,10 @@ rather than being borrowed from `sandbox/jaime/08`.
 | [`docs/final-report.md`](final-report.md) | this file | results, conclusions, where to continue |
 | [`docs/data-dictionary.md`](data-dictionary.md) | files, variables, loader layer, cohort roles | anything about the data |
 | [`docs/meetings/`](meetings/) | 6 dated minutes | why a decision was taken and when (§11) |
-| [`../manuscript/reviews/`](../manuscript/reviews/) | dated literature syntheses, incl. a *do-not-cite* list | why this method and not another |
+| [`../manuscript/2026-07-17_literature-review.md`](../manuscript/2026-07-17_literature-review.md) | dated literature synthesis, incl. a *do-not-cite* list | why this method and not another |
 | [`docs/archive/`](archive/) | the project plan and the prior-work record, frozen under their dates | what was believed at that date |
 | [`gammas/`](../gammas/) | shared A/B layer: `datasets` → `preprocessing` → `connectivity` → `evaluation` | how a number is computed |
-| [`tests/`](../tests/) | 8 unit tests, no data required | the leakage-critical and delay-critical invariants |
+| [`tests/`](../tests/) | Unit tests, no data required | the leakage-critical and delay-critical invariants |
 | [`pipeline/01`](../pipeline/01_explore_dataset_b.ipynb) | cohort-B onboarding and EDA | what the raw inputs look like |
 | [`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb) | **canonical evidence path** | every number in §5 |
 | [`pipeline/03`](../pipeline/03_method_benchmark_tangent_fc.ipynb) + [report](../pipeline/03_tangent_benchmark_report.md) | tangent-space FC benchmark | the POSTPONE ADOPTION verdict |
@@ -240,7 +240,7 @@ rather than being borrowed from `sandbox/jaime/08`.
 | [`manuscript/abstract.md`](../manuscript/abstract.md) | the submitted abstract + the 21 Jul corrected draft | what was sent, exactly as sent |
 | [`manuscript/slides/`](../manuscript/slides/) | the presented deck + presenter guide | what was said on 24 Jul |
 | [`manuscript/references.md`](../manuscript/references.md) | annotated bibliography | citations |
-| [`manuscript/archive/`](../manuscript/archive/) | pre-submission material, frozen under its date | how the abstract was merged |
+| [`archive/`](archive/) | dated records, frozen: project plan, Goutham's PoC, abstract merge | how decisions were made |
 | [`sandbox/<name>/`](../sandbox/) | per-person exploration, audit trail | chronology; each folder belongs to its author |
 | [`data/README.md`](../data/README.md) | how to obtain and place the data | reproduction setup |
 

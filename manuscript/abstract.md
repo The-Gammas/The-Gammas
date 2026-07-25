@@ -76,7 +76,7 @@ them:
 > **What this is.** The submitted abstract's closing overstates the evidence: *"complementary
 > information beyond static FC"* was never tested before submission, and the 21 Jul re-check does not
 > support it. Below is the submitted text with **our changes marked in bold**. The bold is a change
-> marker, not emphasis: a clean version drops it, since the [writing guide](../docs/writing-guide.md) bars
+> marker, not emphasis: a clean version drops it, since the [writing guide](../manuscript/writing-guide.md) bars
 > typographic emphasis in the final abstract. Offered for the presentation framing and team
 > discussion, not resubmitted.
 
@@ -168,7 +168,7 @@ the individual link is weak. For the presentation, report segregation qualitativ
 
 > **Superseded by the 20 Jul accepted version above.** Kept for the record. <u>Underlined</u> = added
 > in the merge; the rest was Valeria's prose. Rationale:
-> [`manuscript/archive/2026-07-17_abstract-merge-rationale.md`](archive/2026-07-17_abstract-merge-rationale.md).
+> [`../docs/archive/2026-07-17_abstract-merge-rationale.md`](../docs/archive/2026-07-17_abstract-merge-rationale.md).
 >
 > ⚠️ One sentence in this version is now known to be wrong and should not be reused: *"The directional
 > scalar summaries we expected to carry the effect did not (r ≈ 0.04)"* generalises to a family what
