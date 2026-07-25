@@ -118,7 +118,7 @@ the permutation null, not against another model's score.
 | **r = +0.398**, 95% CI [+0.25, +0.53], p < 0.001 | train on 301 B-only, test on all 100 of A, 35 shared identities removed and asserted disjoint; 2000-sample bootstrap over A; permutation on A labels with B predictions fixed | 301 → 100 | `pipeline/02` | 16 | `ridge_pipeline` + bootstrap |
 | r = +0.352 ± 0.026 (seed-42 0.399; partial \| `acc_0bk` 0.249) | same fingerprint, target **d′**, repeated CV ×20 | 336 | `pipeline/02` | 14 | `preprocessing.signal_detection_table` |
 | 0-back FC **0.274 ± 0.032** · reconfiguration **0.366 ± 0.024** · 0bk+reconfig **0.333 ± 0.026** · activation contrast **0.600 ± 0.016** | repeated CV ×20, identical folds, only the representation changes | 336 | `pipeline/02` | 18 | `repeated_cv_r` |
-| activation 0-back alone **0.571 ± 0.014** · 2-back alone **0.569 ± 0.015** | repeated CV ×20, 360 features | 336 | `sandbox/jaime/08` (executed output); `pipeline/02` cell 18 computes them | 8 | `repeated_cv_r` |
+| activation 0-back alone **0.571 ± 0.014** · 2-back alone **0.569 ± 0.015** | repeated CV ×20, 360 features, same folds as the row above | 336 | `pipeline/02` (first reported in `sandbox/jaime/08` cell 8) | 18 | `repeated_cv_r` |
 | activation seed-42 0.598 · partial \| `acc_0bk` +0.412 · partial \| DVARS +0.580 · perm p < 0.001 · corr(contrast, 0-back) = −0.855 · corr(0-back, 2-back) = −0.482 | seed-42 CV, residualised controls, full-refit null, per-ROI mean correlations | 336 | `pipeline/02` | 20 | `permutation_null`, `partial_with_target` |
 | cross-run: activation **0.475** vs reconfiguration **0.246**; between-run reliability: activation **0.169** vs reconfiguration **0.024** | train on one run, predict the other run of held-out participants; Fisher-averaged per-feature test-retest | 336 | `pipeline/02` | 20 | `cross_run_r`, `between_run_reliability` |
 | **ΔSegregation = −0.0236**, paired p = **3.45e-05** (0.3271 → 0.3035); individual corr(ΔSeg, `acc_2bk`) r = −0.105, p = 0.054; corr(0-back seg, `acc_2bk`) r = +0.109, p = 0.046 | paired t-test over participants; direct correlations | 336 | `pipeline/02` | 22 | `measure_system_segregation` (Goutham's function, verbatim) |
@@ -211,13 +211,14 @@ Carried from the same evidence base:
 6. **The delay default is now 4.0.** Callers of `condition_frames`/`condition_timeseries` that pass no
    `delay` now match the canonical recipe (see §7).
 
-**Stored outputs are one edit behind the source.** `pipeline/02` cell 18 evaluates six representations,
-but its stored output predates the two single-condition activation rows — which is why 0.571 and 0.569
-are cited above from `sandbox/jaime/08`. Cell 24 had its figure labels and colours fixed to four, so a
-top-to-bottom run raised a `ValueError` at the figure; the two missing entries were added on 25 Jul,
-with a length assertion against cell 18 so the two cannot drift apart again. No number changed. The
-notebook has not been re-executed since, so the stored outputs of cells 18 and 24 still show four rows:
-re-run it to bring them level with the source.
+**Top-to-bottom run, verified 25 Jul 2026.** Until that date the notebook could not complete: cell 18
+evaluates six representations while cell 24 had its figure labels and colours fixed to four, so
+`set_yticks` raised a `ValueError` at the figure and the stored outputs of cell 18 showed only four
+rows. The two missing entries were added, with a length assertion against cell 18 so the two cannot
+drift apart again, and the notebook was re-executed end to end: **0 error cells, and the reproduction
+gate at cell 10 returns absolute error 0.000 against the 0.366 reference.** Every figure in §5 came
+back identical. The single-condition activation rows (0.571, 0.569) now live in cell 18's own output
+rather than being borrowed from `sandbox/jaime/08`.
 
 ---
 
