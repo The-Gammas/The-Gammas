@@ -7,19 +7,13 @@ every result; scientific claims come from
 
 | File | What it is |
 |---|---|
-| [`abstract.md`](abstract.md) | The abstract **as submitted on 20 Jul 2026 (22:12)**, its 21 Jul corrected draft, and the earlier snapshots as history. The submitted text is never rewritten; corrections live in the final report |
-| [`TheGammas_abstract_submitted_2026-07-20.pdf`](TheGammas_abstract_submitted_2026-07-20.pdf) | The submitted PDF exactly as sent |
+| [`abstract.md`](abstract.md) | The abstract **as submitted on 20 Jul 2026 (22:12)**, with the provenance flags on its numbers and the reference keys of the submitted PDF. The submitted text is never rewritten; corrections live in the final report |
 | [`research-proposal.md`](research-proposal.md) | Valeria Moraga's *Research Question Development* condensed into NMA's four-step modelling frame. A proposal, not a record of team agreement; her source PDF and transcription in [`../sandbox/valeria/`](../sandbox/valeria/) are unchanged |
 | [`references.md`](references.md) | Annotated bibliography. The single place a citation lives |
-| [`writing-guide.md`](../manuscript/writing-guide.md) | The shared writing standard: NMA's **ABC…G** abstract structure, source use, word discipline, slide format. Review drafts against it, not against personal taste |
-| [`slides/`](slides/) | The deck presented at W3D5 on 24 Jul 2026 and its presenter guide |
+| [`2026-07-17_literature-review.md`](2026-07-17_literature-review.md) | The verified evidence base behind the framing: canonical methods background, the four gaps, and the claims that did **not** survive verification and must not be cited |
+| [`writing-guide.md`](writing-guide.md) | The shared writing standard: NMA's **ABC…G** abstract structure, the fractal paragraph shape, source use and paraphrase, word discipline, and the AI-drafting policy. Review drafts against it, not against personal taste |
+| [`slides/The Gammas - NMA project.pdf`](slides/The%20Gammas%20-%20NMA%20project.pdf) | The deck presented at W3D5 on 24 Jul 2026: 11 pages, 6 spoken plus 5 backup slides, every figure embedded. **Authored in the team Google Slides owned by Valeria Moraga** and exported here as the frozen final PDF |
+| [`slides/presenter_guide_w3d5.md`](slides/presenter_guide_w3d5.md) | Per-slide presenter guide: concept definitions, how to read each figure and number, likely Q&A |
 
-## Attribution and review workflow
-
-1. Preserve each source contribution in its author's sandbox and link it explicitly.
-2. Mark derived syntheses as proposals until the team records a decision in the living plan or
-   meeting notes.
-3. Keep scientific qualifications traceable to [`references.md`](references.md); do not duplicate a
-   second bibliography in each proposal.
-4. Update the live Google Doc first when revising the submitted abstract, then capture a dated
-   repository snapshot at a meaningful milestone.
+Preserve each source contribution in its author's sandbox and link it explicitly; mark derived
+syntheses as proposals until a decision is recorded in the final report or the meeting notes.

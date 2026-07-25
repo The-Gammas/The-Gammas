@@ -53,27 +53,21 @@ negative, shown properly, was declared a valid result.
 
 ## 3 · Data
 
-One loader interface, two NMA-curated HCP N-back cohorts. Full file-and-variable reference:
-[`docs/data-dictionary.md`](data-dictionary.md). How to obtain and place the data:
-[`data/README.md`](../data/README.md). Nothing below is stored in Git.
+One loader interface, two NMA-curated HCP N-back cohorts, nothing stored in Git. Files, variables and
+cohort roles: [`docs/data-dictionary.md`](data-dictionary.md), the sole authority on the data. How to
+obtain and place it: [`data/README.md`](../data/README.md).
 
-| | **Cohort B — primary** | **Cohort A — transfer target** |
-|---|---|---|
-| Official loader | `load_hcp` | `load_hcp_task_with_behaviour` |
-| Participants | 339 released, **336 analytic** (3 lack complete 2-back behaviour) | 100 |
-| Subject IDs | pseudo (`0…338`), mapped by `orig_ids.txt` | real HCP 6-digit |
-| Behaviour | `hcp/behavior/wm.csv` (supports d′) | per-subject `Stats.txt` (no clean d′) |
-| Resting-state | 4 runs (unused here) | none |
-| `acc_2bk` | mean 0.849, range 0.406–1.000 | mean 0.839, range 0.537–0.988 |
+**Cohort B — primary** (`load_hcp`): 339 released, **336 analytic** (3 lack complete 2-back
+behaviour), pseudo-IDs, behaviour in `hcp/behavior/wm.csv`, which supports d′.
+**Cohort A — transfer target** (`load_hcp_task_with_behaviour`): 100 participants, real HCP IDs,
+behaviour in per-subject `Stats.txt` with no clean d′. The two share **35 identities**, verified by
+mapping A's real IDs against B's `orig_ids.txt` — sibling samples of one HCP study, which is why the
+B→A transfer in §5 removes them and asserts disjointness.
 
 **Shared geometry.** 360 Glasser cortical ROIs (no subcortex, no cerebellum) → 12 Cole-Anticevic
 networks. WM run shape (360, 405), TR 0.72 s, two phase-encoding runs (LR/RL) concatenated: 156 frames
 per condition per run, **312 concatenated**, zero overlap between 0-back and 2-back frames (asserted in
 `pipeline/02` cell 6).
-
-**Cohort overlap.** A and B share **35 identities**, verified by mapping A's real IDs against B's
-`orig_ids.txt`. Union = **401 unique analytic people** (336 + 100 − 35); 404 counted over all 339
-released. Sibling samples of one study, not independent studies.
 
 **The `n` convention, fixed once.** `336` = B analytic · `301` = B minus the shared identities (the B→A
 training pool) · `100` = A · `67` = fixed holdout test set · `269` = canonical development split.
@@ -201,54 +195,43 @@ Carried from the same evidence base:
 3. **Order.** [`pipeline/01`](../pipeline/01_explore_dataset_b.ipynb) for the data tour, then
    [`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb) for every number in §5. Cell 10
    is a hard reproduction gate: it asserts r = 0.366 ± 0.01 and stops the notebook before any
-   interpretation if the pipeline no longer reproduces it.
+   interpretation if the pipeline no longer reproduces it. Re-executed top to bottom on 25 Jul 2026:
+   **0 error cells, gate absolute error 0.000** against the 0.366 reference, every figure identical.
 4. **Cost.** The frozen full run took **342.8 s**, dominated by the 1000-permutation null (131 s) that
    refits the pipeline on every permuted target. `GAMMAS_NPERM=100` gives a fast pass — the p floor is
    1/(N+1), so it moves with N. Without the nulls the primary number takes under half a minute.
 5. **Nothing local is required.** No cache, staged artifact, exported figure or stored notebook output
-   is an input to any result; `sandbox/jaime/artifacts_staging/` is gitignored scratch. Every number in
-   §5 is recomputed from `data/` through the `gammas` package.
+   is an input to any result: every number in §5 is recomputed from `data/` through `gammas`.
 6. **The delay default is now 4.0.** Callers of `condition_frames`/`condition_timeseries` that pass no
    `delay` now match the canonical recipe (see §7).
 
-**Top-to-bottom run, verified 25 Jul 2026.** Until that date the notebook could not complete: cell 18
-evaluates six representations while cell 24 had its figure labels and colours fixed to four, so
-`set_yticks` raised a `ValueError` at the figure and the stored outputs of cell 18 showed only four
-rows. The two missing entries were added, with a length assertion against cell 18 so the two cannot
-drift apart again, and the notebook was re-executed end to end: **0 error cells, and the reproduction
-gate at cell 10 returns absolute error 0.000 against the 0.366 reference.** Every figure in §5 came
-back identical. The single-condition activation rows (0.571, 0.569) now live in cell 18's own output
-rather than being borrowed from `sandbox/jaime/08`.
+**Provenance rule that held throughout.** Where a submitted number could not be reproduced, it was
+reconciled rather than quietly replaced: `pipeline/04` re-runs the original functions verbatim on the
+shared data layer, and `pipeline/02` cell 28 derives the submitted-vs-canonical difference in code
+instead of retyping it. The submitted abstract stays exactly as sent; the corrections live here.
 
 ---
 
-## 9 · Repository map
+## 9 · Where each fact is authoritative
 
-| Path | What it is | Source of truth for |
-|---|---|---|
-| [`docs/final-report.md`](final-report.md) | this file | results, conclusions, where to continue |
-| [`docs/data-dictionary.md`](data-dictionary.md) | files, variables, loader layer, cohort roles | anything about the data |
-| [`docs/meetings/`](meetings/) | 6 dated minutes | why a decision was taken and when (§11) |
-| [`../manuscript/2026-07-17_literature-review.md`](../manuscript/2026-07-17_literature-review.md) | dated literature synthesis, incl. a *do-not-cite* list | why this method and not another |
-| [`docs/archive/`](archive/) | the project plan and the prior-work record, frozen under their dates | what was believed at that date |
-| [`gammas/`](../gammas/) | shared A/B layer: `datasets` → `preprocessing` → `connectivity` → `evaluation` | how a number is computed |
-| [`tests/`](../tests/) | Unit tests, no data required | the leakage-critical and delay-critical invariants |
-| [`pipeline/01`](../pipeline/01_explore_dataset_b.ipynb) | cohort-B onboarding and EDA | what the raw inputs look like |
-| [`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb) | **canonical evidence path** | every number in §5 |
-| [`pipeline/03`](../pipeline/03_method_benchmark_tangent_fc.ipynb) + [report](../pipeline/03_tangent_benchmark_report.md) | tangent-space FC benchmark | the POSTPONE ADOPTION verdict |
-| [`pipeline/04`](../pipeline/04_goutham_pipeline_reconciliation.ipynb) | Goutham's functions re-run verbatim on the shared layer | why the submitted numbers differ from the canonical ones |
-| [`manuscript/abstract.md`](../manuscript/abstract.md) | the submitted abstract + the 21 Jul corrected draft | what was sent, exactly as sent |
-| [`manuscript/slides/`](../manuscript/slides/) | the presented deck + presenter guide | what was said on 24 Jul |
-| [`manuscript/references.md`](../manuscript/references.md) | annotated bibliography | citations |
-| [`archive/`](archive/) | dated records, frozen: project plan, Goutham's PoC, abstract merge | how decisions were made |
-| [`sandbox/<name>/`](../sandbox/) | per-person exploration, audit trail | chronology; each folder belongs to its author |
-| [`data/README.md`](../data/README.md) | how to obtain and place the data | reproduction setup |
+The directory tree lives in the [root README](../README.md) and the rules for adding to it in
+[`CONTRIBUTING.md`](../CONTRIBUTING.md). Listed here: only the ownerships a path name does not reveal.
 
-Rule of thumb, if you are unsure where something belongs: *if a teammate would read it to KNOW what
-happened, it goes in `docs/`; if they would reuse it to WRITE a paper, it goes in `manuscript/`.*
+| Path | Source of truth for |
+|---|---|
+| [`docs/data-dictionary.md`](data-dictionary.md) | anything about the data: files, variables, loader layer, cohort roles |
+| [`pipeline/02`](../pipeline/02_canonical_analysis_and_slides.ipynb) | every number in §5 — the canonical evidence path |
+| [`pipeline/03`](../pipeline/03_method_benchmark_tangent_fc.ipynb) + [report](../pipeline/03_tangent_benchmark_report.md) | the tangent-FC POSTPONE ADOPTION verdict |
+| [`pipeline/04`](../pipeline/04_goutham_pipeline_reconciliation.ipynb) | why the submitted numbers differ from the canonical ones |
+| [`manuscript/abstract.md`](../manuscript/abstract.md) | what was submitted, exactly as sent |
 
-An empty sandbox folder means space was assigned and the work was delivered outside the repository
-(shared documents, slides, meetings) — not that nothing was contributed.
+**Why [`docs/archive/`](archive/) is kept.** Its three files are the decision trail, so they are moved,
+dated and banner-marked, never condensed or rewritten; their internal links point at pre-archive paths
+and are not maintained. `2026-07-22_project-plan.md` is the plan that ran the project until the W3D5
+scope freeze (cohort choice, cohort-A pilot, open items as they stood), `2026-07-10_goutham-poc.md` is
+Goutham Arcod's Triple-Network proof-of-concept — the origin of the method the project ended up
+testing, kept unaltered including its attribution — and `2026-07-17_abstract-merge-rationale.md`
+records how the submitted abstract was merged.
 
 ---
 
@@ -315,26 +298,11 @@ delivered on 24 Jul with pod TA Andrea Buccellato and Project TA Azman Akhter.
 
 ## 12 · Authorship and contributions
 
-Author list as fixed on [20 Jul](meetings/2026-07-20.md): **Valeria Moraga · Kerem Akyurt ·
-Goutham Arcod · Jaime Alonso Pineda Moreno · Arefeh Lali Dehaghi**. Pratik Bhandari was a pod member and,
-by recorded decision, not an author. Commit history is **not** a proxy for contribution in this
-repository: several members delivered through shared documents, slides and meetings.
+Author list as fixed on [20 Jul](meetings/2026-07-20.md), in that order: **Valeria Moraga · Kerem
+Akyurt · Goutham Arcod · Jaime Alonso Pineda Moreno · Arefeh Lali Dehaghi**. Pratik Bhandari was a pod
+member and, by recorded decision, not an author.
 
-| Person | Contribution | Where it lives |
-|---|---|---|
-| **Goutham Arcod** | The analysis method itself: FC per condition → 2bk−0bk → 12-network fingerprint → cross-validated prediction, plus the Chan-style system-segregation function. Raised the CVR caveat and the difference-score reliability argument that qualifies the activation comparator. | `sandbox/goutham/per_analysis.ipynb`, `sandbox/goutham/FCM_entropy.ipynb`; his `get_brain_profile` survives as `gammas.connectivity.network_fingerprint` and `measure_system_segregation` runs verbatim in `pipeline/02` cell 22 |
-| **Valeria Moraga** | Research-question development, the research proposal, the abstract (drafting, merge and submission) and ownership of the deck source; presented the introduction. | `sandbox/valeria/`, `manuscript/research-proposal.md`, `manuscript/abstract.md`, `manuscript/slides/` |
-| **Arefeh Lali Dehaghi** | The project hypothesis in the form the analysis tested, and abstract drafting; presented the methods. | [15 Jul minutes](meetings/2026-07-15.md), `manuscript/abstract.md` |
-| **Kerem Akyurt** | Graph-metric ownership from the 10 Jul role split and the graph-theory layer as feature enrichment; raised the A+B merge and its ~35-subject overlap; reviewed the shared interpretation before W3D5; presented the conclusions. | [10 Jul](meetings/2026-07-10.md), [15 Jul](meetings/2026-07-15.md) and [22 Jul](meetings/2026-07-22.md) minutes |
-| **Jaime Alonso Pineda Moreno** | Shared A/B data layer and data dictionary; ingestion and EV segmentation; cohort choice; port and audit of the pipeline to B; identity-disjoint B→A transfer; activation robustness check; tangent benchmark; canonical assembly of `pipeline/02`; deck build, presenter guide and this report. | `gammas/`, `tests/`, `pipeline/`, `sandbox/jaime/`, `docs/` |
-
-**`sandbox/goutham/` and `sandbox/valeria/` are their authors' own contribution.** Their content has
-never been edited or rewritten by anyone else. The only changes ever applied were housekeeping: one PDF
-renamed to kebab-case with no byte of content altered, and the removal of placeholder `.gitkeep` files
-from folders that now hold work. Where a technical caveat about that material was needed it was
-documented outside their files — here and in `pipeline/04` — never by editing their work.
-
-**Provenance rule that held throughout.** Where a submitted number could not be reproduced, it was
-reconciled rather than quietly replaced: `pipeline/04` re-runs the original functions verbatim on the
-shared data layer, and `pipeline/02` cell 28 derives the submitted-vs-canonical difference in code
-instead of retyping it. The submitted abstract stays exactly as sent; the corrections live here.
+**Per-person CRediT roles, each with the file, commit or minutes that evidence it, live in
+[`AUTHORS.md`](../AUTHORS.md)** — the only place they are maintained, and the reason commit history is
+not read as a contribution split here. Teammate sandboxes were never edited: where a technical caveat
+about that material was needed it went outside their files, into §5, §6 and `pipeline/04`.
