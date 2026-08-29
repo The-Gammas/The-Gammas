@@ -123,7 +123,7 @@ def _resolve(data_dir: Path, group: str, subpath: str) -> Path:
 def spec_a(data_dir: str | Path) -> DatasetSpec:
     """Finalist A spec — loader ``load_hcp_task_with_behaviour``, task+behaviour in ``hcp_task``."""
     task = _resolve(Path(data_dir), GROUP_A, "hcp_task")
-    return DatasetSpec("A", "Finalist A (100 subj, task-only)", LOADER_A, task, task, None, None, 100)
+    return DatasetSpec("A", "Finalist A (100 subj, task-only)", LOADER_A, task, task, None, None)
 
 
 def spec_b(data_dir: str | Path) -> DatasetSpec:
@@ -137,7 +137,6 @@ def spec_b(data_dir: str | Path) -> DatasetSpec:
         _resolve(root, GROUP_B, "hcp/behavior/wm.csv"),
         _resolve(root, GROUP_B, "hcp_rest"),
         _resolve(root, GROUP_B, "hcp_atlas_339.npz"),
-        339,
     )
 
 

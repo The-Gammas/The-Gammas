@@ -229,5 +229,31 @@ class ContributedAttributionTests(unittest.TestCase):
 
 
 
+class SpecConstructionTests(unittest.TestCase):
+    """The dataset specs must actually build.
+
+    Regression: `1a60b49` dropped `DatasetSpec.n_expected` but left the subject count as a
+    trailing positional argument in both factories, so every call raised TypeError and the
+    canonical notebook died on its first code cell. The existing tests missed it because they
+    build `DatasetSpec` with keywords and never call the factories.
+    """
+
+    def test_factories_build_without_project_data(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, spec in (("A", ds.spec_a(tmp)), ("B", ds.spec_b(tmp))):
+                self.assertEqual(spec.kind, name)
+                self.assertIsInstance(spec.task_dir, Path)
+
+    def test_b_carries_rest_and_atlas_a_does_not(self) -> None:
+        """Guards the field order: a shifted argument would silently swap these."""
+        with tempfile.TemporaryDirectory() as tmp:
+            a, b = ds.spec_a(tmp), ds.spec_b(tmp)
+            self.assertIsNone(a.rest_dir)
+            self.assertIsNone(a.atlas)
+            self.assertIsNotNone(b.rest_dir)
+            self.assertIsNotNone(b.atlas)
+            self.assertTrue(str(b.atlas).endswith(".npz"))
+
+
 if __name__ == "__main__":
     unittest.main()
